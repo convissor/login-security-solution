@@ -74,7 +74,7 @@ The tests have caught every password dictionary entry I've tried.
 * Unit tests covering 100% of the main class
 
 
-== Securing Your WordPress Site is Important ==
+= Securing Your WordPress Site is Important =
 
 You're probably thinking "There's nothing valuable on my website. No one
 will bother breaking into it."  What you need to realize is that attackers
@@ -169,20 +169,7 @@ clients and friends.
 1. Ensure your password is strong by changing it.
 
 
-== Removal ==
-
-1. This plugin offers the ability to remove all of this plugin's settings
-    from your database.  Go to WordPress' "Plugins" admin interface and
-    click the "Settings" link for this plugin.  In the "Deactivate" entry,
-    click the "Yes, delete the damn data" button and save the form.
-
-1. Use WordPress' "Plugins" admin interface to and click the "Deactivate"
-    link.
-
-1. Remove the `login-security-solution` directory.
-
-
-== Unit Tests ==
+= Unit Tests =
 
 A thorough set of unit tests are found in the `tests` directory.
 
@@ -197,16 +184,22 @@ Many tests will be skipped if your `wp_options` and `wp_usermeta` tables
 are not using the `InnoDB` storage engine.
 
 
+= Removal =
+
+1. This plugin offers the ability to remove all of this plugin's settings
+    from your database.  Go to WordPress' "Plugins" admin interface and
+    click the "Settings" link for this plugin.  In the "Deactivate" entry,
+    click the "Yes, delete the damn data" button and save the form.
+
+1. Use WordPress' "Plugins" admin interface to and click the "Deactivate"
+    link.
+
+1. Remove the `login-security-solution` directory.
+
+
 == Frequently Asked Questions ==
 
 Ask and ye shall receive.
-
-
-== Bugs and Feature Requests ==
-
-Report bugs and submit feature requests by opening a ticket in WordPress'
-plugins Trac website: http://plugins.trac.wordpress.org/report.  Select
-`login-security-solution` in the "Component" list.
 
 
 == Changelog ==
@@ -238,6 +231,13 @@ plugins Trac website: http://plugins.trac.wordpress.org/report.  Select
 * Delete old data in the `fail` table.
 * Add some JS/AJAX magic to make users' lives easier by also validating
   passwords on the front end prior to submission.  Patches welcome!
+
+
+== Bugs and Feature Requests ==
+
+Report bugs and submit feature requests by opening a ticket in WordPress'
+plugins Trac website: http://plugins.trac.wordpress.org/report.
+Select `login-security-solution` in the "Component" list.
 
 
 == Inspiration and References ==
