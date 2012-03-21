@@ -1,0 +1,259 @@
+=== Login Security Solution ===
+Contributors: convissor
+Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
+Requires at least: 3.0
+Tested up to: 3.3.1
+Stable tag: trunk
+
+Repels brute force attacks (by IP, name, and password). Requires very strong passwords (complex, don't match site/user info, etc). Plus much more!
+
+== Description ==
+
+* Blocks brute force and dictionary attacks without inconveniencing
+legitimate users
+    + Tracks IP addresses, usernames, and passwords
+    + If a login failure uses data matching a past failure, the plugin
+      slows down response times.  The more failures, the longer the delay.
+      This encourages attackers to give up and go find an easier target.
+    + If an account seems breached, the "user" is immediately logged out
+      and forced to use WordPress' password reset utility. This prevents
+      any damage from being done and verifies the user's identity.  All
+      without intervention by an administrator.
+    + Can notify the administrator of attacks and breaches
+    + Supports IPv6
+
+* Thoroughly examines the strength of new passwords.  Includes full
+UTF-8 character set support if PHP's `mbstring` extension is enabled.
+The tests have caught every password dictionary entry I've tried.
+    + Minimum length (customizable)
+    + Doesn't match blog info
+    + Doesn't match user data
+    + Must either have numbers in it or be very long
+    + Must either have punctuation, upper and lower case characters or be
+      very long
+    + Non-sequential codepoints
+    + Non-sequential keystrokes (custom sequence files can be added)
+    + Not in the password dictionary files you've provided (if any)
+    + Decodes "leet" speak
+    + Not found by the `dict` dictionary program (if available)
+
+* Password aging (optional)
+    + Users need to change password every x days (customizable)
+    + Grace period for picking a new password (customizable)
+    + Remembers old passwords (quantity is customizable)
+
+* Administrators can require all users to change their passwords
+    + Done via a flag in each user's database entry
+    + No mail is sent, keeping your server off of spam lists
+
+* Logs out idle sessions (optional) (idle time is customizable)
+
+* Maintenance mode (optional)
+    + Publicly viewable content remains visible
+    + Disables logins by all users, except administrators
+    + Logs out existing sessions, except administrators
+    + Disables posting of comments
+    + Useful for maintenance or emergency reasons
+    + This is separate from WordPress' maintenance mode
+
+* Prevents information disclosures from failed logins
+
+
+= Improvements Over Similar WordPress Plugins =
+
+* The plugin itself is secure against SQL, HTML, and header injections
+* Notice-free code means no information disclosures if error_reporting = E_ALL
+* Only loads files, actions, and filters needed for enabled options
+  and the page's context
+* Provides an option to have deactivation remove all of this plugin's
+  data from the database
+* Uses WordPress' features rather than fighting or overriding them
+* No advertising, promotions, or beacons
+* Proper internationalization support
+* Clean, documented code
+* Unit tests covering 100% of the main class
+
+
+== Securing Your WordPress Site is Important ==
+
+You're probably thinking "There's nothing valuable on my website. No one
+will bother breaking into it."  What you need to realize is that attackers
+are going after your visitors.  They put stealth code on your website
+that pushes malware into the browsers of the people looking at your site.
+
+> According to SophosLabs more than 30,000 websites are infected
+> every day and 80% of those infected sites are legitimate.
+> Eighty-five percent of all malware, including viruses, worms,
+> spyware, adware and Trojans, comes from the web. Today,
+> drive-by downloads have become the top web threat.
+>
+> -- [*Security Threat Report 2012*](http://www.sophos.com/en-us/security-news-trends/reports/security-threat-report/html-08.aspx)
+
+So if your site does get cracked, not only do you waste hours cleaning up,
+your reputation is sullied, security software flags your site as dangerous,
+and worst of all, you've inadvertently helped infect the computers of your
+clients and friends.
+
+
+== Installation ==
+
+1. Download the package
+   from `http://wordpress.org/extend/plugins/login-security-solution/`
+
+1. Unzip the file.
+
+1. Our existing tests are very effective, catching all of the 2 million
+    entries in the Dazzlepod password list.  But if you need to block
+    specific passwords that my tests miss, this plugin offers the ability
+    to provide your own dictionary files.
+
+    Add a file to the `pw_dictionaries` directory and place those passwords
+    in it.  One password per line.
+
+    Please be aware that checking the password files is computationally
+    expensive.  The following script runs through each of the password
+    files and weeds out passwords caught by the other
+    tests:
+
+            php utilities/reduce-dictionary-files.php
+
+1. If your website has a large number of non-English-speaking users:
+
+    * See if a keyboard sequence file exists in this plugin's
+    `pw_sequences` directory for your target languages.  The following steps
+    are for left-to-right languages.  (For right-to-left languages, flip the
+    direction of the motions indicated.)
+        + Open a text editor and create a file in the `pw_sequences`
+            directory
+        + Hold down the shift key
+        + Press the top left **character** key of the keyboard.
+            NOTE: during this entire process, do not press function, control
+            or whitespace keys (like tab, enter, delete, arrows, space, etc).
+        + Work your way across the top row, pressing each key across the
+            row, one by one
+        + Press the left-most character key in the second row
+        + Go across the second row pressing each key
+        + Continue through the entire keyboard in the same manner
+        + Let go of the shift key
+        + Re-start the process at the top left key of the keyboard and
+           work your way through the keyboard, now in lower-case mode
+        + Save the file and close the editor
+        + Feel free to submit the files to me so others can use it.  See
+           the features request section, below.
+
+    * If a translation file for your language does not exist in this
+    plugin's `languages` directory, add one.  Read
+    http://codex.wordpress.org/I18n_for_WordPress_Developers
+    for details.  Send me the file and I'll include it in future
+    releases.  See the features request section, below.
+
+1. The last step of the new password validation process is checking if
+    the password matches an entry in the `dict` program.  See if `dict`
+    is installed on your server and consider installing it if not.
+    http://en.wikipedia.org/wiki/Dict
+
+1. Upload the `login-security-solution` directory to your
+    server's `/wp-content/plugins/` directory
+
+1. Activate the plugin through the "Plugins" menu in WordPress.
+
+1. Adjust the settings as desired.  This plugin's settings page can be
+    reached via a sub-menu entry under WordPress' "Settings" menu or this
+    plugin's entry on WordPress' "Plugins" page.
+
+1. Run the "Change All Passwords" process. This is necessary to ensure
+    all of your users have strong passwords.  The user interface for
+    doing so is accessible via a link in this plugin's entry on
+    WordPress' "Plugins" page.
+
+1. Ensure your password is strong by changing it.
+
+
+== Removal ==
+
+1. This plugin offers the ability to remove all of this plugin's settings
+    from your database.  Go to WordPress' "Plugins" admin interface and
+    click the "Settings" link for this plugin.  In the "Deactivate" entry,
+    click the "Yes, delete the damn data" button and save the form.
+
+1. Use WordPress' "Plugins" admin interface to and click the "Deactivate"
+    link.
+
+1. Remove the `login-security-solution` directory.
+
+
+== Unit Tests ==
+
+A thorough set of unit tests are found in the `tests` directory.
+
+The plugin needs to be placed in the `wp-contents/plugins` directory of
+a working WordPress installation.  The plugin does not need to be
+activated for the tests to run.
+
+To execute the tests, `cd` into the `tests` directory and call `phpunit .`.
+
+Please note that the tests make extensive use of database transactions.
+Many tests will be skipped if your `wp_options` and `wp_usermeta` tables
+are not using the `InnoDB` storage engine.
+
+
+== Frequently Asked Questions ==
+
+Ask and ye shall receive.
+
+
+== Bugs and Feature Requests ==
+
+Report bugs and submit feature requests by opening a ticket in WordPress'
+plugins Trac website: http://plugins.trac.wordpress.org/report.  Select
+`login-security-solution` in the "Component" list.
+
+
+== Changelog ==
+
+= 0.0.4 =
+* Initial import to `plugins.svn.wordpress.org`.
+
+= 0.0.3 =
+* Fix mixups in the code saving the "Change All Passwords" admin UI.
+* Adjust IdleTest so it doesn't radically change `wp_users` auto increment.
+* Tested under WordPress 3.3.1.
+* Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
+
+= 0.0.2 =
+* Use Unicode character properties to improve portability.
+* Stop tests short if not in a wp install.
+* Skip dict test if dict not available.
+* Skip database tests if transactions are not available.
+* Tested under WordPress 3.3.1.
+* Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
+
+= 0.0.1 =
+* Post the code for public review.
+* Tested under WordPress 3.3.1.
+
+
+== To Do ==
+
+* Delete old data in the `fail` table.
+* Add some JS/AJAX magic to make users' lives easier by also validating
+  passwords on the front end prior to submission.  Patches welcome!
+
+
+== Inspiration and References ==
+
+* Password Research
+    + [You can never have too many passwords: techniques for evaluating a huge corpus](http://www.cl.cam.ac.uk/~jcb82/doc/B12-IEEESP-evaluating_a_huge_password_corpus.pdf)
+    + [Analyzing Password Strength](http://www.cs.ru.nl/bachelorscripties/2010/Martin_Devillers___0437999___Analyzing_password_strength.pdf)
+    + [Consumer Password Worst Practices](http://www.imperva.com/docs/WP_Consumer_Password_Worst_Practices.pdf)
+    + [Preventing Brute Force Attacks on your Web Login](http://www.bryanrite.com/preventing-brute-force-attacks-on-your-web-login/)
+    + [Password Strength](http://xkcd.com/936/)
+
+* Technical Info
+    + [The Extreme UTF-8 Table](http://doc.infosnel.nl/extreme_utf-8.html)
+    + [A Recommendation for IPv6 Address Text Representation](http://tools.ietf.org/html/rfc5952)
+
+* Password Lists
+    + [Dazzlepod Password List](http://dazzlepod.com/site_media/txt/passwords.txt)
+    + [Common Passwords](http://www.searchlores.org/commonpass1.htm)
+    + [The Top 500 Worst Passwords of All Time](http://www.whatsmypass.com/the-top-500-worst-passwords-of-all-time)

@@ -1,0 +1,250 @@
+<?php
+
+/**
+ * Test login failure and lockout functionality
+ *
+ * @package login-security-solution
+ * @author Daniel Convissor <danielc@analysisandsolutions.com>
+ * @copyright The Analysis and Solutions Company, 2012
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
+ */
+
+/**
+ * Get the class we will use for testing
+ */
+require_once dirname(__FILE__) .  '/TestCase.php';
+
+/**
+ * Test login failure and lockout functionality
+ *
+ * @package login-security-solution
+ * @author Daniel Convissor <danielc@analysisandsolutions.com>
+ * @copyright The Analysis and Solutions Company, 2012
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
+ */
+class LoginFailTest extends TestCase {
+	protected $ip;
+	protected $network_ip;
+	protected $user_name;
+	protected $pass_md5;
+
+
+	public static function setUpBeforeClass() {
+		parent::$db_needed = true;
+		parent::set_up_before_class();
+	}
+
+	public function setUp() {
+		parent::setUp();
+
+		$this->ip = '1.2.3.4';
+		$_SERVER['REMOTE_ADDR'] = $this->ip;
+		$this->network_ip = '1.2.3';
+
+		$this->user_name = 'test';
+		$this->pass_md5 = 'ababab';
+
+		$options = self::$lss->options;
+		$options['login_fail_minutes'] = 60;
+		$options['login_fail_notify'] = 4;
+		$options['login_fail_tier_2'] = 3;
+		$options['login_fail_tier_3'] = 4;
+		$options['login_fail_breach_notify'] = 4;
+		$options['login_fail_breach_pw_force_change'] = 4;
+		self::$lss->options = $options;
+	}
+
+
+	/*
+	 * LOGIN FAIL
+	 */
+
+	public function test_insert_fail() {
+		self::$lss->insert_fail($this->ip, $this->user_name, $this->pass_md5);
+		$this->check_fail_record($this->ip, $this->user_name, $this->pass_md5);
+
+		self::$lss->insert_fail($this->ip, $this->user_name, 'other md5');
+		$this->check_fail_record($this->ip, $this->user_name, 'other md5');
+	}
+
+	/**
+	 * @depends test_insert_fail
+	 */
+	public function test_get_login_fail() {
+		$expected = array(
+			'total' => '2',
+			'network_ip' => '2',
+			'user_name' => '2',
+			'pass_md5' => '1',
+		);
+
+		$actual = self::$lss->get_login_fail($this->network_ip,
+				$this->user_name, $this->pass_md5);
+
+		$this->assertEquals($expected, $actual);
+	}
+
+	/**
+	 * @depends test_insert_fail
+	 */
+	public function test_get_login_fail__empty_ip() {
+		global $wpdb;
+
+		$expected = array(
+			'total' => '3',
+			'network_ip' => '1',
+			'user_name' => '3',
+			'pass_md5' => '2',
+		);
+
+		$wpdb->query('SAVEPOINT pre_threshold');
+
+		self::$lss->insert_fail('', $this->user_name, $this->pass_md5);
+		$this->check_fail_record('', $this->user_name, $this->pass_md5);
+
+		$actual = self::$lss->get_login_fail('',
+				$this->user_name, $this->pass_md5);
+
+		$this->assertEquals($expected, $actual);
+
+		$wpdb->query('ROLLBACK TO pre_threshold');
+	}
+
+	/*
+	 * PROCESS LOGIN FAIL
+	 */
+
+	/**
+	 * @depends test_get_login_fail
+	 */
+	public function test_process_login_fail__pre_threshold() {
+		global $wpdb;
+
+		self::$lss->process_login_fail($this->user_name, $this->pass_md5);
+
+		$this->assertInternalType('integer', $wpdb->insert_id,
+				'This should be an insert id.');
+	}
+
+	public function test_wp_login__null() {
+		$actual = self::$lss->wp_login(null, null);
+		$this->assertNull($actual, 'Bad return value.');
+	}
+
+	/**
+	 * @depends test_process_login_fail__pre_threshold
+	 */
+	public function test_wp_login__pre_breach_threshold() {
+		$actual = self::$lss->wp_login($this->user_name, $this->user);
+		$this->assertSame(1, $actual, 'wp_login() return value...');
+
+		$actual = self::$lss->get_pw_force_change($this->user->ID);
+		$this->assertFalse($actual, 'get_pw_force_change() return value...');
+	}
+
+	/**
+	 * @depends test_process_login_fail__pre_threshold
+	 */
+	public function test_process_login_fail__post_threshold() {
+		self::$mail_file_basename = __METHOD__;
+
+		try {
+			// Do THE deed.
+			self::$lss->process_login_fail($this->user_name, $this->pass_md5);
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+
+		$this->check_mail_file();
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold
+	 */
+	public function test_wp_login__post_breach_threshold() {
+		self::$mail_file_basename = __METHOD__;
+
+		try {
+			// Do THE deed.
+			$actual = self::$lss->wp_login($this->user_name, $this->user);
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertSame(7, $actual, 'Bad return value.');
+
+		$actual = self::$lss->get_pw_force_change($this->user->ID);
+		$this->assertTrue($actual, 'get_pw_force_change() return value...');
+
+		$this->check_mail_file();
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold
+	 */
+	public function test_wp_login__post_breach_threshold_only_notify() {
+		$options = self::$lss->options;
+		$options['login_fail_breach_pw_force_change'] = 0;
+		self::$lss->options = $options;
+
+		self::$lss->delete_pw_force_change($this->user->ID);
+		self::$mail_file_basename = 'LoginFailTest::test_wp_login__post_breach_threshold';
+
+		try {
+			// Do THE deed.
+			$actual = self::$lss->wp_login($this->user_name, $this->user);
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertSame(5, $actual, 'Bad return value.');
+
+		$actual = self::$lss->get_pw_force_change($this->user->ID);
+		$this->assertFalse($actual, 'get_pw_force_change() return value...');
+
+		$this->check_mail_file();
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold
+	 */
+	public function test_wp_login__post_breach_threshold_only_force() {
+		$options = self::$lss->options;
+		$options['login_fail_breach_notify'] = 0;
+		self::$lss->options = $options;
+
+		self::$lss->delete_pw_force_change($this->user->ID);
+
+		try {
+			// Do THE deed.
+			$actual = self::$lss->wp_login($this->user_name, $this->user);
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertSame(3, $actual, 'Bad return value.');
+
+		$actual = self::$lss->get_pw_force_change($this->user->ID);
+		$this->assertTrue($actual, 'get_pw_force_change() return value...');
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold
+	 */
+	public function test_wp_login__post_breach_threshold_no_action() {
+		$options = self::$lss->options;
+		$options['login_fail_breach_notify'] = 0;
+		$options['login_fail_breach_pw_force_change'] = 0;
+		self::$lss->options = $options;
+
+		self::$lss->delete_pw_force_change($this->user->ID);
+
+		try {
+			// Do THE deed.
+			$actual = self::$lss->wp_login($this->user_name, $this->user);
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertSame(-1, $actual, 'Bad return value.');
+
+		$actual = self::$lss->get_pw_force_change($this->user->ID);
+		$this->assertFalse($actual, 'get_pw_force_change() return value...');
+	}
+}

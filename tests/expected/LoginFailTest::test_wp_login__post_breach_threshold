@@ -1,0 +1,14 @@
+To: %a
+Subject: POTENTIAL INTRUSION AT %a
+
+Your website, %s, may have been broken in to.
+
+Someone just logged in using the following components. Prior to that, some combination of those components were a part of 4 failed attempts to log in during the past 60 minutes:
+
+Component     Count  Value from Current Attempt
+------------  -----  --------------------------------
+Network IP        4  1.2.3
+Username          4  test
+Password MD5      %d  %s
+
+The user has been logged out and will be required to confirm their identity via the password reset functionality.

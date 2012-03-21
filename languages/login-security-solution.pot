@@ -1,0 +1,203 @@
+# Copyright (C) 2012 Login Security Solution
+# This file is distributed under the same license as the Login Security Solution package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Login Security Solution 0.0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/login-security-solution\n"
+"POT-Creation-Date: 2012-03-19 19:35:46+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: login-security-solution.php:422
+msgid "Invalid username or password."
+msgstr ""
+
+#: login-security-solution.php:428 tests/LoginErrorsTest.php:110
+#: tests/LoginErrorsTest.php:122
+msgid "Password reset is not allowed for this user"
+msgstr ""
+
+#: login-security-solution.php:453 tests/LoginMessageTest.php:55
+msgid "It has been over %d minutes since your last action."
+msgstr ""
+
+#: login-security-solution.php:454 tests/LoginMessageTest.php:56
+msgid "Please log back in."
+msgstr ""
+
+#: login-security-solution.php:457 tests/LoginMessageTest.php:66
+msgid "The grace period for changing your password has expired."
+msgstr ""
+
+#: login-security-solution.php:458 tests/LoginMessageTest.php:67
+msgid "Please submit this form to reset your password."
+msgstr ""
+
+#: login-security-solution.php:461 tests/LoginMessageTest.php:77
+msgid "Your password must be reset."
+msgstr ""
+
+#: login-security-solution.php:462 tests/LoginMessageTest.php:78
+msgid "Please submit this form to reset it."
+msgstr ""
+
+#: login-security-solution.php:465 tests/LoginMessageTest.php:88
+msgid "Your password has expired. Please log and change it."
+msgstr ""
+
+#: login-security-solution.php:466 tests/LoginMessageTest.php:89
+msgid "We provide a %d minute grace period to do so."
+msgstr ""
+
+#: login-security-solution.php:472 tests/LoginMessageTest.php:103
+#: tests/LoginMessageTest.php:118
+msgid "The site is undergoing maintenance."
+msgstr ""
+
+#: login-security-solution.php:473 tests/LoginMessageTest.php:104
+#: tests/LoginMessageTest.php:119
+msgid "Please try again later."
+msgstr ""
+
+#: login-security-solution.php:532
+msgid "<strong>ERROR</strong>: Passwords can not be reused."
+msgstr ""
+
+#: login-security-solution.php:785
+msgid "Component     Count  Value from Current Attempt"
+msgstr ""
+
+#: login-security-solution.php:787
+msgid "Network IP    %5d  %s"
+msgstr ""
+
+#: login-security-solution.php:789
+msgid "Username      %5d  %s"
+msgstr ""
+
+#: login-security-solution.php:791
+msgid "Password MD5  %5d  %s"
+msgstr ""
+
+#: login-security-solution.php:1498
+msgid "Your website, %s, may have been broken in to."
+msgstr ""
+
+#: login-security-solution.php:1501
+msgid ""
+"Someone just logged in using the following components. Prior to that, some "
+"combination of those components were a part of %d failed attempts to log in "
+"during the past %d minutes:"
+msgstr ""
+
+#: login-security-solution.php:1506
+msgid ""
+"The user has been logged out and will be required to confirm their identity "
+"via the password reset functionality."
+msgstr ""
+
+#: login-security-solution.php:1535
+msgid "Your website, %s, is undergoing a brute force attack."
+msgstr ""
+
+#: login-security-solution.php:1538
+msgid ""
+"There have been at least %d failed attempts to log in during the past %d "
+"minutes that used one or more of the following components:"
+msgstr ""
+
+#: login-security-solution.php:1543
+msgid ""
+"The %s plugin for WordPress is repelling the attack by making their login "
+"failures take a very long time."
+msgstr ""
+
+#: login-security-solution.php:1849 tests/PasswordValidationTest.php:436
+msgid "<strong>ERROR</strong>: Password not set."
+msgstr ""
+
+#: login-security-solution.php:1864 tests/PasswordValidationTest.php:447
+msgid "<strong>ERROR</strong>: Passwords must be strings."
+msgstr ""
+
+#: login-security-solution.php:1882 tests/PasswordValidationTest.php:460
+msgid "<strong>ERROR</strong>: Passwords must use ASCII characters."
+msgstr ""
+
+#: login-security-solution.php:1901 tests/PasswordValidationTest.php:477
+#: tests/PasswordValidationTest.php:491
+msgid "<strong>ERROR</strong>: Password is too short."
+msgstr ""
+
+#: login-security-solution.php:1910 tests/PasswordValidationTest.php:517
+msgid ""
+"<strong>ERROR</strong>: Passwords must either contain numbers or be %d "
+"characters long."
+msgstr ""
+
+#: login-security-solution.php:1919 tests/PasswordValidationTest.php:504
+msgid ""
+"<strong>ERROR</strong>: Passwords must either contain punctuation marks / "
+"symbols or be %d characters long."
+msgstr ""
+
+#: login-security-solution.php:1928 tests/PasswordValidationTest.php:530
+msgid ""
+"<strong>ERROR</strong>: Passwords must either contain upper-case and lower-"
+"case letters or be %d characters long."
+msgstr ""
+
+#: login-security-solution.php:1938 tests/PasswordValidationTest.php:543
+msgid "<strong>ERROR</strong>: Passwords can't be sequential keys."
+msgstr ""
+
+#: login-security-solution.php:1947 tests/PasswordValidationTest.php:556
+msgid ""
+"<strong>ERROR</strong>: Passwords can't have that many sequential characters."
+msgstr ""
+
+#: login-security-solution.php:1963 tests/PasswordValidationTest.php:569
+#: tests/PasswordValidationTest.php:582
+msgid "<strong>ERROR</strong>: Passwords can't contain user data."
+msgstr ""
+
+#: login-security-solution.php:1974 tests/PasswordValidationTest.php:595
+msgid "<strong>ERROR</strong>: Passwords can't contain site info."
+msgstr ""
+
+#: login-security-solution.php:1983 tests/PasswordValidationTest.php:608
+msgid "<strong>ERROR</strong>: Password is too common."
+msgstr ""
+
+#: login-security-solution.php:1992 tests/PasswordValidationTest.php:621
+msgid ""
+"<strong>ERROR</strong>: Passwords can't be variations of dictionary words."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Login Security Solution"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/login-security-solution/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Requires very strong passwords, repels brute force login attacks, prevents "
+"login information disclosures, expires idle sessions, notifies admins of "
+"attacks and breaches, permits administrators to disable logins for "
+"maintenance or emergency reasons and reset all passwords."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Daniel Convissor"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.analysisandsolutions.com/"
+msgstr ""
