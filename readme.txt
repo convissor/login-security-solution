@@ -5,7 +5,7 @@ Requires at least: 3.0
 Tested up to: 3.3.1
 Stable tag: trunk
 
-Repels brute force attacks (by IP, name, and password). Requires very strong passwords (complex, don't match site/user info, etc). Plus much more!
+Repels brute force attacks (by IP, name, password). Requires very strong passwords (complex, don't match site/user info, etc). Plus much more!
 
 == Description ==
 
