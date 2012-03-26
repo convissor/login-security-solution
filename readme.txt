@@ -10,7 +10,7 @@ Repels brute force attacks (by IP, name, password). Requires very strong passwor
 == Description ==
 
 * Blocks brute force and dictionary attacks without inconveniencing
-legitimate users
+legitimate users or administrators
     + Tracks IP addresses, usernames, and passwords
     + If a login failure uses data matching a past failure, the plugin
       slows down response times.  The more failures, the longer the delay.
@@ -35,9 +35,10 @@ The tests have caught every password dictionary entry I've tried.
     + Non-sequential keystrokes (custom sequence files can be added)
     + Not in the password dictionary files you've provided (if any)
     + Decodes "leet" speak
-    + Not found by the `dict` dictionary program (if available)
+    + The password/phrase is not found by the `dict` dictionary
+      program (if available)
 
-* Password aging (optional)
+* Password aging (optional) (not recommended)
     + Users need to change password every x days (customizable)
     + Grace period for picking a new password (customizable)
     + Remembers old passwords (quantity is customizable)
@@ -62,7 +63,8 @@ The tests have caught every password dictionary entry I've tried.
 = Improvements Over Similar WordPress Plugins =
 
 * The plugin itself is secure against SQL, HTML, and header injections
-* Notice-free code means no information disclosures if error_reporting = E_ALL
+* Notice-free code means no information disclosures if `display_errors`
+  is on and `error_reporting` includes `E_NOTICE`
 * Only loads files, actions, and filters needed for enabled options
   and the page's context
 * Provides an option to have deactivation remove all of this plugin's
@@ -79,7 +81,7 @@ The tests have caught every password dictionary entry I've tried.
 You're probably thinking "There's nothing valuable on my website. No one
 will bother breaking into it."  What you need to realize is that attackers
 are going after your visitors.  They put stealth code on your website
-that pushes malware into the browsers of the people looking at your site.
+that pushes malware into your readers' browsers.
 
 > According to SophosLabs more than 30,000 websites are infected
 > every day and 80% of those infected sites are legitimate.
@@ -90,7 +92,7 @@ that pushes malware into the browsers of the people looking at your site.
 > -- [*Security Threat Report 2012*](http://www.sophos.com/en-us/security-news-trends/reports/security-threat-report/html-08.aspx)
 
 So if your site does get cracked, not only do you waste hours cleaning up,
-your reputation is sullied, security software flags your site as dangerous,
+your reputation gets sullied, security software flags your site as dangerous,
 and worst of all, you've inadvertently helped infect the computers of your
 clients and friends.
 
@@ -98,7 +100,7 @@ clients and friends.
 == Installation ==
 
 1. Download the package
-   from `http://wordpress.org/extend/plugins/login-security-solution/`
+    from `http://wordpress.org/extend/plugins/login-security-solution/`
 
 1. Unzip the file.
 
@@ -177,7 +179,8 @@ The plugin needs to be placed in the `wp-contents/plugins` directory of
 a working WordPress installation.  The plugin does not need to be
 activated for the tests to run.
 
-To execute the tests, `cd` into the `tests` directory and call `phpunit .`.
+To execute the tests, `cd` into this plugin's directory and
+call `phpunit tests` .
 
 Please note that the tests make extensive use of database transactions.
 Many tests will be skipped if your `wp_options` and `wp_usermeta` tables
@@ -243,17 +246,17 @@ Select `login-security-solution` in the "Component" list.
 == Inspiration and References ==
 
 * Password Research
-    + [You can never have too many passwords: techniques for evaluating a huge corpus](http://www.cl.cam.ac.uk/~jcb82/doc/B12-IEEESP-evaluating_a_huge_password_corpus.pdf)
-    + [Analyzing Password Strength](http://www.cs.ru.nl/bachelorscripties/2010/Martin_Devillers___0437999___Analyzing_password_strength.pdf)
-    + [Consumer Password Worst Practices](http://www.imperva.com/docs/WP_Consumer_Password_Worst_Practices.pdf)
-    + [Preventing Brute Force Attacks on your Web Login](http://www.bryanrite.com/preventing-brute-force-attacks-on-your-web-login/)
-    + [Password Strength](http://xkcd.com/936/)
+    + [You can never have too many passwords: techniques for evaluating a huge corpus](http://www.cl.cam.ac.uk/~jcb82/doc/B12-IEEESP-evaluating_a_huge_password_corpus.pdf), Joseph Bonneau
+    + [Analyzing Password Strength](http://www.cs.ru.nl/bachelorscripties/2010/Martin_Devillers___0437999___Analyzing_password_strength.pdf), Martin_Devillers
+    + [Consumer Password Worst Practices](http://www.imperva.com/docs/WP_Consumer_Password_Worst_Practices.pdf), Imperva
+    + [Preventing Brute Force Attacks on your Web Login](http://www.bryanrite.com/preventing-brute-force-attacks-on-your-web-login/), Bryan Rite
+    + [Password Strength](http://xkcd.com/936/), Randall Munroe
 
 * Technical Info
-    + [The Extreme UTF-8 Table](http://doc.infosnel.nl/extreme_utf-8.html)
-    + [A Recommendation for IPv6 Address Text Representation](http://tools.ietf.org/html/rfc5952)
+    + [The Extreme UTF-8 Table](http://doc.infosnel.nl/extreme_utf-8.html), infosnel.nl
+    + [A Recommendation for IPv6 Address Text Representation](http://tools.ietf.org/html/rfc5952), Seiichi Kawamura and Masanobu Kawashima
 
 * Password Lists
-    + [Dazzlepod Password List](http://dazzlepod.com/site_media/txt/passwords.txt)
-    + [Common Passwords](http://www.searchlores.org/commonpass1.htm)
-    + [The Top 500 Worst Passwords of All Time](http://www.whatsmypass.com/the-top-500-worst-passwords-of-all-time)
+    + [Dazzlepod Password List](http://dazzlepod.com/site_media/txt/passwords.txt), Dazzlepod
+    + [Common Passwords](http://www.searchlores.org/commonpass1.htm), Fravia
+    + [The Top 500 Worst Passwords of All Time](http://www.whatsmypass.com/the-top-500-worst-passwords-of-all-time), Mark Burnett
