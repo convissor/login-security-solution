@@ -1220,6 +1220,9 @@ class login_security_solution {
 		$prior = array_shift($chars);
 		$transitions = 0;
 		foreach ($chars as $char) {
+			// Use "> 2" because some alphabets have the upper and lower case
+			// of a letter next to each other, so the next letter in the same
+			// case is two points away.
 			if (abs( hexdec(bin2hex($char)) - hexdec(bin2hex($prior)) ) > 2) {
 				$transitions++;
 			}
