@@ -207,6 +207,9 @@ Ask and ye shall receive.
 
 == Changelog ==
 
+= 0.1.0 =
+* Beta release.
+
 = 0.0.4 =
 * Initial import to `plugins.svn.wordpress.org`.
 
