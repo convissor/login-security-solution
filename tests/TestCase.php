@@ -14,8 +14,10 @@
  * Keep PHPUnit from messing up WordPress' crazy use of globals.
  *
  * This prevents the following errors:
- * Call to a member function add_rule() on a non-object in wp-includes/rewrite.php
- * Call to a member function add_rewrite_tag() on a non-object in wp-includes/taxonomy.php
+ *  + Call to a member function add_rule() on a non-object in
+ *    wp-includes/rewrite.php
+ *  + Call to a member function add_rewrite_tag() on a non-object in
+ *    wp-includes/taxonomy.php
  */
 global $wp_rewrite;
 
