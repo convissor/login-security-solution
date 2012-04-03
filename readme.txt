@@ -213,6 +213,8 @@ Ask and ye shall receive.
 = 0.2.0 =
 * Utilize the $encoding parameter of `htmlspecialchars()` to avoid
 problems under PHP 5.4.
+* Tested under WordPress 3.3.1.
+* Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
 = 0.1.0 =
 * Beta release.
