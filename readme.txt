@@ -210,6 +210,10 @@ Ask and ye shall receive.
 
 == Changelog ==
 
+= 0.2.1 =
+* Ensure all files are in the state I intended.  Needed because
+WordPress' plugin site automatically rolls releases.
+
 = 0.2.0 =
 * Utilize the $encoding parameter of `htmlspecialchars()` to avoid
 problems under PHP 5.4.
