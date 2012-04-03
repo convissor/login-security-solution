@@ -266,11 +266,14 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 				"'pass_md5' field mismatch.");
 
 		$date_failed = new DateTime($actual->date_failed);
-		$sysdate = new DateTime($actual->sysdate);
-		$interval = $date_failed->diff($sysdate);
-		$this->assertLessThanOrEqual('00000000000001',
-				$interval->format('%Y%M%D%H%I%S'),
-				"'date_failed' field off by over 1 second: $actual->date_failed.");
+		// Keep tests from going fatal under PHP 5.2.
+		if (method_exists($date_failed, 'diff')) {
+			$sysdate = new DateTime($actual->sysdate);
+			$interval = $date_failed->diff($sysdate);
+			$this->assertLessThanOrEqual('00000000000001',
+					$interval->format('%Y%M%D%H%I%S'),
+					"'date_failed' field off by over 1 second: $actual->date_failed.");
+		}
 	}
 
 	/**
