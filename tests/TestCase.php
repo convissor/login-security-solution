@@ -204,6 +204,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 		$_SERVER['SERVER_PROTOCOL'] = 'http';
 
 		$this->user = new WP_User;
+		$this->user->data = new StdClass;
 		$this->user->ID = 9999999999;
 		$this->user->user_login = 'aaaa';
 		$this->user->user_email = 'bbbb';
