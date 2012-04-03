@@ -6,7 +6,7 @@
  * Description: Requires very strong passwords, repels brute force login attacks, prevents login information disclosures, expires idle sessions, notifies admins of attacks and breaches, permits administrators to disable logins for maintenance or emergency reasons and reset all passwords.
  *
  * Plugin URI: http://wordpress.org/extend/plugins/login-security-solution/
- * Version: 0.1.0
+ * Version: 0.2.0
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
@@ -475,7 +475,7 @@ class login_security_solution {
 
 		if ($ours) {
 			$out .= '<p class="login message">'
-					. htmlspecialchars($ours) . '</p>';
+					. $this->hsc($ours) . '</p>';
 		}
 
 		return $out;
@@ -861,6 +861,64 @@ class login_security_solution {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Sanitizes output via htmlspecialchars()
+	 *
+	 * Created this method to make using the $encoding parameter easier.
+	 *
+	 * @param string $in   the string to sanitize
+	 * @return string  the sanitized string
+	 *
+	 * @uses DB_CHARSET  set in wp-config.php to know which $encoding to use
+	 */
+	protected function hsc($in) {
+		static $encoding;
+
+		if (!isset($encoding)) {
+			// Translate MySQL encoding to PHP encoding.
+			switch (DB_CHARSET) {
+				case 'latin1':
+					$encoding = 'ISO-8859-1';
+					break;
+				case 'utf8':
+				case 'utf8mb4':
+					$encoding = 'UTF-8';
+					break;
+				case 'cp866':
+					$encoding = 'cp866';
+					break;
+				case 'cp1251':
+					$encoding = 'cp1251';
+					break;
+				case 'koi8r':
+					$encoding = 'KOI8-R';
+					break;
+				case 'big5':
+					$encoding = 'BIG5';
+					break;
+				case 'gb2312':
+					$encoding = 'GB2312';
+					break;
+				case 'sjis':
+					$encoding = 'Shift_JIS';
+					break;
+				case 'ujis':
+					$encoding = 'EUC-JP';
+					break;
+				case 'macroman':
+					$encoding = 'MacRoman';
+					break;
+				default:
+					$encoding = 'UTF-8';
+					if (WP_DEBUG) {
+						trigger_error("Your DB_CHARSET doesn't map to a PHP encoding.", E_USER_WARNING);
+					}
+			}
+		}
+
+		return htmlspecialchars($in, ENT_COMPAT, $encoding);
 	}
 
 	/**

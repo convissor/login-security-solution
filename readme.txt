@@ -147,8 +147,10 @@ clients and friends.
     * If a translation file for your language does not exist in this
     plugin's `languages` directory, add one.  Read
     http://codex.wordpress.org/I18n_for_WordPress_Developers
-    for details.  Send me the file and I'll include it in future
-    releases.  See the features request section, below.
+    for details.  The file should use the same character set encoding as
+    the `DB_CHARSET` setting in `wp-config.php`.  Send me the file and
+    I'll include it in future releases.  See the features request
+    section, below.
 
 1. The last step of the new password validation process is checking if
     the password matches an entry in the `dict` program.  See if `dict`
@@ -207,6 +209,10 @@ Ask and ye shall receive.
 
 
 == Changelog ==
+
+= 0.2.0 =
+* Utilize the $encoding parameter of `htmlspecialchars()` to avoid
+problems under PHP 5.4.
 
 = 0.1.0 =
 * Beta release.
