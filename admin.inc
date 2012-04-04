@@ -389,7 +389,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return void
 	 */
 	public function page_settings() {
-		echo '<h2>' . $this->hsc($this->text_settings) . '</h2>';
+		echo '<h2>' . $this->hsc_utf8($this->text_settings) . '</h2>';
 		echo '<form action="options.php" method="post">' . "\n";
 		settings_fields($this->option_name);
 		do_settings_sections(self::ID);
@@ -454,18 +454,18 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return void
 	 */
 	protected function input_radio($name) {
-		echo $this->hsc($this->fields[$name]['text']) . '<br/>';
+		echo $this->hsc_utf8($this->fields[$name]['text']) . '<br/>';
 		echo '<input type="radio" value="0" name="'
-			. $this->hsc($this->option_name)
-			. '[' . $this->hsc($name) . ']"'
+			. $this->hsc_utf8($this->option_name)
+			. '[' . $this->hsc_utf8($name) . ']"'
 			. ($this->options[$name] ? '' : ' checked="checked"') . ' /> ';
-		echo $this->hsc($this->fields[$name]['bool0']);
+		echo $this->hsc_utf8($this->fields[$name]['bool0']);
 		echo '<br/>';
 		echo '<input type="radio" value="1" name="'
-			. $this->hsc($this->option_name)
-			. '[' . $this->hsc($name) . ']"'
+			. $this->hsc_utf8($this->option_name)
+			. '[' . $this->hsc_utf8($name) . ']"'
 			. ($this->options[$name] ? ' checked="checked"' : '') . ' /> ';
-		echo $this->hsc($this->fields[$name]['bool1']);
+		echo $this->hsc_utf8($this->fields[$name]['bool1']);
 	}
 
 	/**
@@ -474,12 +474,12 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	protected function input_text($name) {
 		echo '<input type="text" size="3" name="'
-			. $this->hsc($this->option_name)
-			. '[' . $this->hsc($name) . ']"'
-			. ' value="' . $this->hsc($this->options[$name]) . '" /> ';
-		echo $this->hsc($this->fields[$name]['text']);
+			. $this->hsc_utf8($this->option_name)
+			. '[' . $this->hsc_utf8($name) . ']"'
+			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
+		echo $this->hsc_utf8($this->fields[$name]['text']);
 		echo ' ' . __('Default:', self::ID) . ' '
-			. $this->hsc($this->options_default[$name]) . '.';
+			. $this->hsc_utf8($this->options_default[$name]) . '.';
 	}
 
 	/**
@@ -513,7 +513,7 @@ class login_security_solution_admin extends login_security_solution {
 			if (!is_scalar($in[$name])) {
 				// Not translating this since only hackers will see it.
 				add_settings_error($this->option_name, $name, "'"
-						. $this->hsc($field['label'])
+						. $this->hsc_utf8($field['label'])
 						. "' was not a scalar, $default");
 				continue;
 			}
@@ -523,7 +523,7 @@ class login_security_solution_admin extends login_security_solution {
 					if ($in[$name] != 0 && $in[$name] != 1) {
 						// Not translating this since only hackers will see it.
 						add_settings_error($this->option_name, $name, "'"
-								. $this->hsc($field['label'])
+								. $this->hsc_utf8($field['label'])
 								. "' must be '0' or '1', $default");
 						continue 2;
 					}
@@ -531,7 +531,7 @@ class login_security_solution_admin extends login_security_solution {
 				case 'int':
 					if (!ctype_digit($in[$name])) {
 						add_settings_error($this->option_name, $name, "'"
-								. $this->hsc($field['label'])
+								. $this->hsc_utf8($field['label'])
 								. "' " . __("must be an integer,", self::ID)
 								. ' ' . $default);
 						continue 2;
@@ -540,7 +540,7 @@ class login_security_solution_admin extends login_security_solution {
 						&& $in[$name] < $field['greater_than'])
 					{
 						add_settings_error($this->option_name, $name, "'"
-								. $this->hsc($field['label'])
+								. $this->hsc_utf8($field['label'])
 								. "' " . sprintf($gt_format,
 										$field['greater_than'])
 								. ' ' . $default);
@@ -555,9 +555,9 @@ class login_security_solution_admin extends login_security_solution {
 		$name = 'login_fail_tier_3';
 		if ($out[$name] <= $out['login_fail_tier_2']) {
 			add_settings_error($this->option_name, $name, "'"
-					. $this->hsc($this->fields[$name]['label'])
+					. $this->hsc_utf8($this->fields[$name]['label'])
 					. "' " . sprintf($gt_format,
-							$this->hsc($this->fields['login_fail_tier_2']['label']))
+							$this->hsc_utf8($this->fields['login_fail_tier_2']['label']))
 					. ' ' . $default);
 
 			$out[$name] = $out['login_fail_tier_2'] + 5;
@@ -567,7 +567,7 @@ class login_security_solution_admin extends login_security_solution {
 		$name = 'pw_reuse_count';
 		if ($out['pw_change_days'] && !$out[$name]) {
 			add_settings_error($this->option_name, $name, "'"
-					. $this->hsc($this->fields[$name]['label'])
+					. $this->hsc_utf8($this->fields[$name]['label'])
 					. "' " . sprintf($gt_format, 1)
 					. ' ' . $default);
 
@@ -630,12 +630,12 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return void
 	 */
 	public function page_pw_force_change() {
-		echo '<h2>' . $this->hsc($this->text_pw_force_change) . '</h2>';
+		echo '<h2>' . $this->hsc_utf8($this->text_pw_force_change) . '</h2>';
 
 		echo '<p>';
 		_e("There may be cases where everyone's password should be reset.", self::ID);
 		echo ' ';
-		printf(__("This page, provided by the %s plugin, offers that functionality.", self::ID), $this->hsc(self::NAME));
+		printf(__("This page, provided by the %s plugin, offers that functionality.", self::ID), $this->hsc_utf8(self::NAME));
 		echo '</p>';
 
 		echo '<p>';
@@ -650,8 +650,8 @@ class login_security_solution_admin extends login_security_solution {
 		$this->echo_div();
 
 		echo '<p><strong><input type="checkbox" value="1" name="'
-			. $this->hsc($this->option_pw_force_change_name)
-			. '[' . $this->hsc($this->key_checkbox_require)
+			. $this->hsc_utf8($this->option_pw_force_change_name)
+			. '[' . $this->hsc_utf8($this->key_checkbox_require)
 			. ']" /> ';
 		_e("Confirm that you want to force all users to change their passwords by checking this box, then click the button, below.", self::ID);
 		echo '</strong></p>';
@@ -659,7 +659,7 @@ class login_security_solution_admin extends login_security_solution {
 		submit_button(
 			$this->text_button_require,
 			'primary',
-			$this->hsc($this->option_pw_force_change_name) . '[submit]'
+			$this->hsc_utf8($this->option_pw_force_change_name) . '[submit]'
 		);
 
 		echo "</div>\n";
@@ -668,8 +668,8 @@ class login_security_solution_admin extends login_security_solution {
 			$this->echo_div();
 
 			echo '<p><input type="checkbox" value="1" name="'
-				. $this->hsc($this->option_pw_force_change_name)
-				. '[' . $this->hsc($this->key_checkbox_remind)
+				. $this->hsc_utf8($this->option_pw_force_change_name)
+				. '[' . $this->hsc_utf8($this->key_checkbox_remind)
 				. ']" /> ';
 			_e("No thanks. I know what I'm doing. Please don't remind me about this.", self::ID);
 			echo '</p>';
@@ -677,7 +677,7 @@ class login_security_solution_admin extends login_security_solution {
 			submit_button(
 				$this->text_button_remind,
 				'secondary',
-				$this->hsc($this->option_pw_force_change_name) . '[submit]'
+				$this->hsc_utf8($this->option_pw_force_change_name) . '[submit]'
 			);
 
 			echo "</div>\n";
@@ -770,7 +770,7 @@ class login_security_solution_admin extends login_security_solution {
 		_e("Speaking of which, do YOU have a strong password? Make sure by changing yours once you've submitted the Change All Passwords form.", self::ID);
 		echo '</strong></p>';
 
-		echo '<p><strong><a href="options-general.php?page=' . $this->hsc($this->option_pw_force_change_name) . '">' . $this->text_pw_force_change . "</a></strong></p>\n";
+		echo '<p><strong><a href="options-general.php?page=' . $this->hsc_utf8($this->option_pw_force_change_name) . '">' . $this->text_pw_force_change . "</a></strong></p>\n";
 
 		echo "</div>\n";
 	}

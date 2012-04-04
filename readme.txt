@@ -146,9 +146,8 @@ clients and friends.
 
     * If a translation file for your language does not exist in this
     plugin's `languages` directory, add one.  Read
-    http://codex.wordpress.org/I18n_for_WordPress_Developers
-    for details.  The file should use the same character set encoding as
-    the `DB_CHARSET` setting in `wp-config.php`.  Send me the file and
+    http://codex.wordpress.org/I18n_for_WordPress_Developers for
+    details.  The files must use UTF-8 encoding.  Send me the file and
     I'll include it in future releases.  See the features request
     section, below.
 
@@ -209,6 +208,11 @@ Ask and ye shall receive.
 
 
 == Changelog ==
+
+= 0.3.0 =
+* Use UTF-8 encoding for `htmlspecialchars()` instead of `DB_CHARSET`.
+* Tested under WordPress 3.3.1.
+* Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
 = 0.2.1 =
 * Ensure all files are in the state I intended.  Needed because

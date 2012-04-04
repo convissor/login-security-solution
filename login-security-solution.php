@@ -6,7 +6,7 @@
  * Description: Requires very strong passwords, repels brute force login attacks, prevents login information disclosures, expires idle sessions, notifies admins of attacks and breaches, permits administrators to disable logins for maintenance or emergency reasons and reset all passwords.
  *
  * Plugin URI: http://wordpress.org/extend/plugins/login-security-solution/
- * Version: 0.2.1
+ * Version: 0.3.0
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
@@ -475,7 +475,7 @@ class login_security_solution {
 
 		if ($ours) {
 			$out .= '<p class="login message">'
-					. $this->hsc($ours) . '</p>';
+					. $this->hsc_utf8($ours) . '</p>';
 		}
 
 		return $out;
@@ -864,16 +864,16 @@ class login_security_solution {
 	}
 
 	/**
-	 * Sanitizes output via htmlspecialchars()
+	 * Sanitizes output via htmlspecialchars() using DB_CHARSET's encoding
 	 *
-	 * Created this method to make using the $encoding parameter easier.
+	 * Makes query results safe for displaying in browsers.
 	 *
 	 * @param string $in   the string to sanitize
 	 * @return string  the sanitized string
 	 *
 	 * @uses DB_CHARSET  set in wp-config.php to know which $encoding to use
 	 */
-	protected function hsc($in) {
+	protected function hsc_db($in) {
 		static $encoding;
 
 		if (!isset($encoding)) {
@@ -919,6 +919,19 @@ class login_security_solution {
 		}
 
 		return htmlspecialchars($in, ENT_COMPAT, $encoding);
+	}
+
+	/**
+	 * Sanitizes output via htmlspecialchars() using UTF-8 encoding
+	 *
+	 * Makes this program's native text and translated/localized strings
+	 * safe for displaying in browsers.
+	 *
+	 * @param string $in   the string to sanitize
+	 * @return string  the sanitized string
+	 */
+	protected function hsc_utf8($in) {
+		return htmlspecialchars($in, ENT_COMPAT, 'UTF-8');
 	}
 
 	/**
