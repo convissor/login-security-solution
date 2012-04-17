@@ -160,11 +160,15 @@ clients and friends.
 1. Upload the `login-security-solution` directory to your
     server's `/wp-content/plugins/` directory
 
-1. Activate the plugin through the "Plugins" menu in WordPress.
+1. Activate the plugin using WordPress' admin interface:
+    * Regular sites:  Plugins
+    * Sites using multisite networks:  My Sites | Network Admin | Plugins
 
 1. Adjust the settings as desired.  This plugin's settings page can be
     reached via a sub-menu entry under WordPress' "Settings" menu or this
-    plugin's entry on WordPress' "Plugins" page.
+    plugin's entry on WordPress' "Plugins" page.  Sites using WordPress'
+    multisite network capabilitiy will find the "Settings" and "Plugin"
+    menus under "My Sites | Network Admin".
 
 1. Run the "Change All Passwords" process. This is necessary to ensure
     all of your users have strong passwords.  The user interface for
@@ -203,7 +207,12 @@ are not using the `InnoDB` storage engine.
 
 == Frequently Asked Questions ==
 
-Ask and ye shall receive.
+= Where did the "Change All Passwords" interface go? =
+
+A link to the page is found in this plugin's entry in the "Plugins" admin
+interface:
+* Regular sites:  Plugins
+* Sites using multisite networks:  My Sites | Network Admin | Plugins
 
 
 == Changelog ==
