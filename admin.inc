@@ -6,7 +6,6 @@
  *
  * @package login-security-solution
  * @link http://wordpress.org/extend/plugins/login-security-solution/
- * @version 0.0.1
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
  * @copyright The Analysis and Solutions Company, 2012
@@ -18,7 +17,6 @@
  *
  * @package login-security-solution
  * @link http://wordpress.org/extend/plugins/login-security-solution/
- * @version 0.0.1
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
  * @copyright The Analysis and Solutions Company, 2012
