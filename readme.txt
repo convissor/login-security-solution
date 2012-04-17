@@ -214,6 +214,14 @@ interface:
 * Regular sites:  Plugins
 * Sites using multisite networks:  My Sites | Network Admin | Plugins
 
+= How do I generate the POT translation file? =
+
+Get the translation tools from `http://i18n.svn.wordpress.org/tools/trunk/`
+then `cd` into that directory and run:
+
+        php makepot.php wp-plugin ../login-security-solution \
+            ../login-security-solution/languages/login-security-solution.pot
+
 
 == Changelog ==
 
