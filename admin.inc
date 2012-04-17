@@ -803,7 +803,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return void
 	 */
 	public function admin_notices() {
-		if (!current_user_can('activate_plugins')) {
+		if (!current_user_can($this->capability_required)) {
 			return;
 		}
 
@@ -841,7 +841,7 @@ class login_security_solution_admin extends login_security_solution {
 	protected function force_change_for_all() {
 		global $user_ID, $wpdb;
 
-		if (!current_user_can('activate_plugins')) {
+		if (!current_user_can($this->capability_required)) {
 			// Translaton already in WP.
 			return __('You do not have sufficient permissions to access this page.');
 		}
