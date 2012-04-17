@@ -23,10 +23,22 @@
  */
 class login_security_solution_admin extends login_security_solution {
 	/**
+	 * The WP privilege level required to use the admin interface
+	 * @var string
+	 */
+	protected $capability_required;
+
+	/**
 	 * Metadata and labels for each element of the plugin's options
 	 * @var array
 	 */
 	protected $fields;
+
+	/**
+	 * URI for the forms' action attributes
+	 * @var string
+	 */
+	protected $form_action;
 
 	/**
 	 * Key for the change password "don't remind me" checkbox
@@ -45,6 +57,12 @@ class login_security_solution_admin extends login_security_solution {
 	 * @var string
 	 */
 	protected $option_pw_force_change_name;
+
+	/**
+	 * Name of the page holding the options
+	 * @var string
+	 */
+	protected $page_options;
 
 	/**
 	 * Text for the plugin's password change page "don't remind me" button
@@ -88,6 +106,16 @@ class login_security_solution_admin extends login_security_solution {
 		// Combine plugin's name with translation already in WP.
 		$this->text_settings = self::NAME . ' ' . __('Settings');
 
+		if (is_multisite()) {
+			$this->capability_required = 'manage_network_options';
+			$this->form_action = '../options.php';
+			$this->page_options = 'settings.php';
+		} else {
+			$this->capability_required = 'manage_options';
+			$this->form_action = 'options.php';
+			$this->page_options = 'options-general.php';
+		}
+
 		// NON-STANDARD: This is for the password change page.
 		$this->option_pw_force_change_name = self::ID . '-pw-force-change-done';
 		$this->text_pw_force_change = __('Change All Passwords', self::ID);
@@ -105,6 +133,10 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	public function activate() {
 		global $wpdb;
+
+		if (is_multisite() && !is_network_admin()) {
+			die(sprintf(__("%s must be activated via the Network Admin interface when WordPress is in multistie network mode."), self::NAME));
+		}
 
 		/*
 		 * Create or alter the plugin's tables as needed.
@@ -135,8 +167,14 @@ class login_security_solution_admin extends login_security_solution {
 		 * Save this plugin's options to the database.
 		 */
 
+		if (is_multisite()) {
+			switch_to_blog(1);
+		}
 		update_option($this->option_name, $this->options);
 		add_option($this->option_pw_force_change_name, 0, '', 'no');
+		if (is_multisite()) {
+			restore_current_blog();
+		}
 
 		/*
 		 * Store password hashes.
@@ -310,12 +348,12 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	public function plugin_action_links($links, $file) {
 		if ($file == self::ID . '/' . self::ID . '.php') {
-			$links[] = '<a href="options-general.php?page='
-					. self::ID . '">' . __('Settings') . '</a>';
+			$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
+					. '?page=' . self::ID . '">' . __('Settings') . '</a>';
 
 			// NON-STANDARD: This is for the password change page.
-			$links[] = '<a href="options-general.php?page='
-					. $this->option_pw_force_change_name . '">'
+			$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
+					. '?page=' . $this->option_pw_force_change_name . '">'
 					. $this->text_pw_force_change . '</a>' ;
 		}
 		return $links;
@@ -328,10 +366,11 @@ class login_security_solution_admin extends login_security_solution {
 	 * any admin page is rendered
 	 */
 	public function admin_menu() {
-		add_options_page(
+		add_submenu_page(
+			$this->page_options,
 			$this->text_settings,
 			self::NAME,
-			'activate_plugins',
+			$this->capability_required,
 			self::ID,
 			array(&$this, 'page_settings')
 		);
@@ -388,7 +427,7 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	public function page_settings() {
 		echo '<h2>' . $this->hsc_utf8($this->text_settings) . '</h2>';
-		echo '<form action="options.php" method="post">' . "\n";
+		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
 		settings_fields($this->option_name);
 		do_settings_sections(self::ID);
 		submit_button();
@@ -586,10 +625,11 @@ class login_security_solution_admin extends login_security_solution {
 	 * any admin page is rendered
 	 */
 	public function admin_menu_pw_force_change() {
-		add_options_page(
+		add_submenu_page(
+			$this->page_options,
 			$this->text_pw_force_change,
 			'',
-			'activate_plugins',
+			$this->capability_required,
 			$this->option_pw_force_change_name,
 			array(&$this, 'page_pw_force_change')
 		);
@@ -642,7 +682,7 @@ class login_security_solution_admin extends login_security_solution {
 		_e("Users who are presently logged in will be logged out the next time they view a page that requires authentication.", self::ID);
 		echo '</p>';
 
-		echo '<form action="options.php" method="post">' . "\n";
+		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
 		settings_fields($this->option_pw_force_change_name);
 
 		$this->echo_div();
@@ -768,7 +808,7 @@ class login_security_solution_admin extends login_security_solution {
 		_e("Speaking of which, do YOU have a strong password? Make sure by changing yours once you've submitted the Change All Passwords form.", self::ID);
 		echo '</strong></p>';
 
-		echo '<p><strong><a href="options-general.php?page=' . $this->hsc_utf8($this->option_pw_force_change_name) . '">' . $this->text_pw_force_change . "</a></strong></p>\n";
+		echo '<p><strong><a href="' . $this->hsc_utf8($this->page_options) . '?page=' . $this->hsc_utf8($this->option_pw_force_change_name) . '">' . $this->text_pw_force_change . "</a></strong></p>\n";
 
 		echo "</div>\n";
 	}

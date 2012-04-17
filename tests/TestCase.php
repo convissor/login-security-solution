@@ -21,6 +21,21 @@
  */
 global $wp_rewrite;
 
+
+/*
+ * Hacks to keep WordPress multisite network mode happy under PHPUnit.
+ */
+
+// Undefined index: HTTP_HOST in wp-includes/ms-settings.php.
+$_SERVER['HTTP_HOST'] = 'localhost';
+
+// Undefined variable: wpdb in wp-includes/ms-settings.php.
+global $wpdb;
+
+// Trying to get property of non-object in wp-includes/functions.php.
+global $current_site, $current_blog;
+
+
 /**
  * Overrides the wp_mail() function so we can ensure the messages are
  * composed when and how they should be
@@ -50,6 +65,13 @@ if (!is_readable($wp_load)) {
 	die("The plugin must be in the 'wp-content/plugins' directory of a working WordPress installation.\n");
 }
 require_once $wp_load;
+
+
+if (is_multisite()) {
+	// Workaround for the authentication check in my activate() method.
+	define('WP_NETWORK_ADMIN', true);
+}
+
 
 /**
  * Get the class we will use for testing

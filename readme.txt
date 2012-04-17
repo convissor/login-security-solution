@@ -63,6 +63,7 @@ The tests have caught every password dictionary entry I've tried.
 
 = Improvements Over Similar WordPress Plugins =
 
+* Multisite network support
 * The plugin itself is secure against SQL, HTML, and header injections
 * Notice-free code means no information disclosures if `display_errors`
   is on and `error_reporting` includes `E_NOTICE`
@@ -208,6 +209,9 @@ Ask and ye shall receive.
 
 
 == Changelog ==
+
+= 0.4.0 =
+* Add multisite network support.
 
 = 0.3.0 =
 * Use UTF-8 encoding for `htmlspecialchars()` instead of `DB_CHARSET`.

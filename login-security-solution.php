@@ -204,9 +204,19 @@ class login_security_solution {
 			require_once dirname(__FILE__) . '/admin.inc';
 			$admin = new login_security_solution_admin;
 
-			add_action('admin_menu', array(&$admin, 'admin_menu'));
+			if (is_multisite()) {
+				$admin_menu = 'network_admin_menu';
+				$admin_notices = 'network_admin_notices';
+				$plugin_action_links = 'network_admin_plugin_action_links';
+			} else {
+				$admin_menu = 'admin_menu';
+				$admin_notices = 'admin_notices';
+				$plugin_action_links = 'plugin_action_links';
+			}
+
+			add_action($admin_menu, array(&$admin, 'admin_menu'));
 			add_action('admin_init', array(&$admin, 'admin_init'));
-			add_filter('plugin_action_links', array(&$admin, 'plugin_action_links'), 10, 2);
+			add_filter($plugin_action_links, array(&$admin, 'plugin_action_links'), 10, 2);
 
 			register_activation_hook(__FILE__, array(&$admin, 'activate'));
 			if ($this->options['deactivate_deletes_data']) {
@@ -214,11 +224,11 @@ class login_security_solution {
 			}
 
 			// NON-STANDARD: This is for the password change page.
-			add_action('admin_menu', array(&$admin, 'admin_menu_pw_force_change'));
-			add_action('admin_init', array(&$admin, 'admin_init_pw_force_change'));
+			add_action($admin_menu, array(&$admin, 'admin_menu_pw_force_change'));
 			if (!$admin->was_pw_force_change_done()) {
-				add_action('admin_notices', array(&$admin, 'admin_notices'));
+				add_action($admin_notices, array(&$admin, 'admin_notices'));
 			}
+			add_action('admin_init', array(&$admin, 'admin_init_pw_force_change'));
 		}
 	}
 
