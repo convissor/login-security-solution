@@ -192,8 +192,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 
 		if (self::$db_needed && self::are_transactions_available()) {
 			self::$db_has_transactions = true;
-			self::$lss->activate();
 			$wpdb->query('START TRANSACTION');
+			$wpdb->query('DELETE FROM `' . self::$lss->table_fail . '`');
 		} else {
 			self::$db_has_transactions = false;
 		}
@@ -207,7 +207,6 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 
 		if (self::$db_has_transactions) {
 			$wpdb->query('ROLLBACK');
-			self::$lss->deactivate();
 		}
 
 		self::$lss = null;

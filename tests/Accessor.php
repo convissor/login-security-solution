@@ -33,12 +33,6 @@ unset($GLOBALS['login_security_solution']);
  */
 class Accessor extends login_security_solution_admin {
 	/**
-	 * This plugin's table name prefix FOR TESTING
-	 * @var string
-	 */
-	protected $prefix = 'login_security_solution__tests__';
-
-	/**
 	 * Is this class being used by our unit tests?
 	 * @var bool
 	 */

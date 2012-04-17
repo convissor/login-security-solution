@@ -178,9 +178,7 @@ clients and friends.
 
 A thorough set of unit tests are found in the `tests` directory.
 
-The plugin needs to be placed in the `wp-contents/plugins` directory of
-a working WordPress installation.  The plugin does not need to be
-activated for the tests to run.
+The plugin needs to be installed and activated before running the tests.
 
 To execute the tests, `cd` into this plugin's directory and
 call `phpunit tests` .
@@ -212,6 +210,8 @@ Ask and ye shall receive.
 
 = 0.4.0 =
 * Add multisite network support.
+* Keep unit tests from deleting settings.  Note: removes the ability to
+run the unit tests without activating the plugin.
 
 = 0.3.0 =
 * Use UTF-8 encoding for `htmlspecialchars()` instead of `DB_CHARSET`.
