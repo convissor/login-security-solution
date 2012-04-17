@@ -343,19 +343,17 @@ class login_security_solution_admin extends login_security_solution {
 	 * plugin being displayed on WordPress' Plugins admin page.
 	 *
 	 * @param array $links  the links generated thus far
-	 * @param string $file  the name of the plugin currently being rendered
 	 * @return array
 	 */
-	public function plugin_action_links($links, $file) {
-		if ($file == self::ID . '/' . self::ID . '.php') {
-			$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
-					. '?page=' . self::ID . '">' . __('Settings') . '</a>';
+	public function plugin_action_links($links) {
+		$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
+				. '?page=' . self::ID . '">' . __('Settings') . '</a>';
 
-			// NON-STANDARD: This is for the password change page.
-			$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
-					. '?page=' . $this->option_pw_force_change_name . '">'
-					. $this->text_pw_force_change . '</a>' ;
-		}
+		// NON-STANDARD: This is for the password change page.
+		$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
+				. '?page=' . $this->option_pw_force_change_name . '">'
+				. $this->text_pw_force_change . '</a>' ;
+
 		return $links;
 	}
 

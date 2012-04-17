@@ -207,16 +207,16 @@ class login_security_solution {
 			if (is_multisite()) {
 				$admin_menu = 'network_admin_menu';
 				$admin_notices = 'network_admin_notices';
-				$plugin_action_links = 'network_admin_plugin_action_links';
+				$plugin_action_links = 'network_admin_plugin_action_links_login-security-solution/login-security-solution.php';
 			} else {
 				$admin_menu = 'admin_menu';
 				$admin_notices = 'admin_notices';
-				$plugin_action_links = 'plugin_action_links';
+				$plugin_action_links = 'plugin_action_links_login-security-solution/login-security-solution.php';
 			}
 
 			add_action($admin_menu, array(&$admin, 'admin_menu'));
 			add_action('admin_init', array(&$admin, 'admin_init'));
-			add_filter($plugin_action_links, array(&$admin, 'plugin_action_links'), 10, 2);
+			add_filter($plugin_action_links, array(&$admin, 'plugin_action_links'));
 
 			register_activation_hook(__FILE__, array(&$admin, 'activate'));
 			if ($this->options['deactivate_deletes_data']) {
