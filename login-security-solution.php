@@ -1674,6 +1674,11 @@ class login_security_solution {
 
 		if ($sleep) {
 			if (!$this->testing) {
+				if (is_multisite()) {
+					// Get this cached before disconnecting the database.
+					get_option('users_can_register');
+				}
+
 				// Keep login failures from becoming denial of service attacks.
 				mysql_close($wpdb->dbh);
 
