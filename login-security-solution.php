@@ -428,13 +428,13 @@ class login_security_solution {
 			$user_pass = empty($_POST['pwd']) ? '' : $_POST['pwd'];
 			$this->process_login_fail($user_name, $user_pass);
 			$this->load_plugin_textdomain();
-			return __('Invalid username or password.', self::ID);
+			return $this->hsc_utf8(__('Invalid username or password.', self::ID));
 		}
 
 		$codes_to_cloak = array('invalid_email', 'invalidcombo');
 		if (array_intersect($error_codes, $codes_to_cloak)) {
 			// This text is lifted directly from WordPress.
-			return __('Password reset is not allowed for this user');
+			return $this->hsc_utf8(__('Password reset is not allowed for this user'));
 		}
 
 		return $out;
@@ -538,7 +538,7 @@ class login_security_solution {
 			if ($this->is_pw_reused($user->user_pass, $user->ID)) {
 				$this->load_plugin_textdomain();
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords can not be reused.", self::ID),
+					$this->err(__("Passwords can not be reused.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 				return false;
@@ -674,6 +674,18 @@ class login_security_solution {
 	 */
 	protected function delete_pw_grace_period($user_ID) {
 		return delete_user_meta($user_ID, $this->umk_grace_period);
+	}
+
+	/**
+	 * Safely composes translated error messages
+	 *
+	 * @param string $message  the error message
+	 * @return string
+	 */
+	protected function err($message) {
+		$error = $this->hsc_utf8(__("ERROR"));
+		$message = $this->hsc_utf8($message);
+		return "<strong>$error</strong>: $message";
 	}
 
 	/**
@@ -1934,7 +1946,7 @@ class login_security_solution {
 			if (empty($user->user_pass)) {
 				if ($errors !== null) {
 					$errors->add(self::ID,
-						__("<strong>ERROR</strong>: Password not set.", self::ID),
+						$this->err(__("Password not set.", self::ID)),
 						array('form-field' => 'pass1')
 					);
 				}
@@ -1949,7 +1961,7 @@ class login_security_solution {
 		if (!is_string($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords must be strings.", self::ID),
+					$this->err(__("Passwords must be strings.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -1967,7 +1979,7 @@ class login_security_solution {
 		{
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords must use ASCII characters.", self::ID),
+					$this->err(__("Passwords must use ASCII characters.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -1986,7 +1998,7 @@ class login_security_solution {
 		if ($length < $this->options['pw_length']) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Password is too short.", self::ID),
+					$this->err(__("Password is too short.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -1995,7 +2007,7 @@ class login_security_solution {
 		if ($enforce_complexity && $this->is_pw_missing_numeric($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					sprintf(__("<strong>ERROR</strong>: Passwords must either contain numbers or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']),
+					$this->err(sprintf(__("Passwords must either contain numbers or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length'])),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2004,7 +2016,7 @@ class login_security_solution {
 		if ($enforce_complexity && $this->is_pw_missing_punct_chars($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					sprintf(__("<strong>ERROR</strong>: Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']),
+					$this->err(sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length'])),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2013,7 +2025,7 @@ class login_security_solution {
 		if ($enforce_complexity && $this->is_pw_missing_upper_lower_chars($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					sprintf(__("<strong>ERROR</strong>: Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']),
+					$this->err(sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length'])),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2023,7 +2035,7 @@ class login_security_solution {
 		if ($this->is_pw_sequential_file($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords can't be sequential keys.", self::ID),
+					$this->err(__("Passwords can't be sequential keys.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2032,7 +2044,7 @@ class login_security_solution {
 		if ($this->is_pw_sequential_codepoints($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords can't have that many sequential characters.", self::ID),
+					$this->err(__("Passwords can't have that many sequential characters.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2048,7 +2060,7 @@ class login_security_solution {
 		{
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords can't contain user data.", self::ID),
+					$this->err(__("Passwords can't contain user data.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2059,7 +2071,7 @@ class login_security_solution {
 		{
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords can't contain site info.", self::ID),
+					$this->err(__("Passwords can't contain site info.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2068,7 +2080,7 @@ class login_security_solution {
 		if ($all_tests && $this->is_pw_dictionary($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Password is too common.", self::ID),
+					$this->err(__("Password is too common.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2077,7 +2089,7 @@ class login_security_solution {
 		if ($this->is_pw_dict_program($stripped)) {
 			if ($errors !== null) {
 				$errors->add(self::ID,
-					__("<strong>ERROR</strong>: Passwords can't be variations of dictionary words.", self::ID),
+					$this->err(__("Passwords can't be variations of dictionary words.", self::ID)),
 					array('form-field' => 'pass1')
 				);
 			}

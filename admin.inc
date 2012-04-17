@@ -135,7 +135,7 @@ class login_security_solution_admin extends login_security_solution {
 		global $wpdb;
 
 		if (is_multisite() && !is_network_admin()) {
-			die(sprintf(__("%s must be activated via the Network Admin interface when WordPress is in multistie network mode."), self::NAME));
+			die($this->hsc_utf8(sprintf(__("%s must be activated via the Network Admin interface when WordPress is in multistie network mode."), self::NAME)));
 		}
 
 		/*
@@ -347,12 +347,13 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	public function plugin_action_links($links) {
 		$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
-				. '?page=' . self::ID . '">' . __('Settings') . '</a>';
+				. '?page=' . self::ID . '">'
+				. $this->hsc_utf8(__('Settings')) . '</a>';
 
 		// NON-STANDARD: This is for the password change page.
 		$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
-				. '?page=' . $this->option_pw_force_change_name . '">'
-				. $this->text_pw_force_change . '</a>' ;
+				. '?page=' . $this->hsc_utf8($this->option_pw_force_change_name)
+				. '">' . $this->hsc_utf8($this->text_pw_force_change) . '</a>';
 
 		return $links;
 	}
@@ -445,19 +446,19 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	public function section_login() {
 		echo '<p>';
-		_e("This plugin stores the IP address, username and password for each failed log in attempt.", self::ID);
+		echo $this->hsc_utf8(__("This plugin stores the IP address, username and password for each failed log in attempt.", self::ID));
 		echo ' ';
-		_e("The data from future login failures are compared against the historical data.", self::ID);
+		echo $this->hsc_utf8(__("The data from future login failures are compared against the historical data.", self::ID));
 		echo ' ';
-		_e("If any of the data points match, the plugin delays printing out the failure message.", self::ID);
+		echo $this->hsc_utf8(__("If any of the data points match, the plugin delays printing out the failure message.", self::ID));
 		echo ' ';
-		_e("The goal is for the responses to take so long that the attackers give up and go find an easier target.", self::ID);
+		echo $this->hsc_utf8(__("The goal is for the responses to take so long that the attackers give up and go find an easier target.", self::ID));
 		echo ' ';
-		_e("The length of the delay is broken up into three tiers.", self::ID);
+		echo $this->hsc_utf8(__("The length of the delay is broken up into three tiers.", self::ID));
 		echo ' ';
-		_e("The amount of the delay increases in higher tiers.", self::ID);
+		echo $this->hsc_utf8(__("The amount of the delay increases in higher tiers.", self::ID));
 		echo ' ';
-		_e("The delay time within each tier is randomized to complicate profiling by attackers.", self::ID);
+		echo $this->hsc_utf8(__("The delay time within each tier is randomized to complicate profiling by attackers.", self::ID));
 		echo '</p>';
 	}
 
@@ -512,9 +513,9 @@ class login_security_solution_admin extends login_security_solution {
 			. $this->hsc_utf8($this->option_name)
 			. '[' . $this->hsc_utf8($name) . ']"'
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
-		echo $this->hsc_utf8($this->fields[$name]['text']);
-		echo ' ' . __('Default:', self::ID) . ' '
-			. $this->hsc_utf8($this->options_default[$name]) . '.';
+		echo $this->hsc_utf8($this->fields[$name]['text']
+				. ' ' . __('Default:', self::ID) . ' '
+				. $this->options_default[$name] . '.');
 	}
 
 	/**
@@ -547,9 +548,9 @@ class login_security_solution_admin extends login_security_solution {
 
 			if (!is_scalar($in[$name])) {
 				// Not translating this since only hackers will see it.
-				add_settings_error($this->option_name, $name, "'"
-						. $this->hsc_utf8($field['label'])
-						. "' was not a scalar, $default");
+				add_settings_error($this->option_name, $name,
+						$this->hsc_utf8("'" . $field['label'])
+								. "' was not a scalar, $default");
 				continue;
 			}
 
@@ -557,28 +558,27 @@ class login_security_solution_admin extends login_security_solution {
 				case 'bool':
 					if ($in[$name] != 0 && $in[$name] != 1) {
 						// Not translating this since only hackers will see it.
-						add_settings_error($this->option_name, $name, "'"
-								. $this->hsc_utf8($field['label'])
-								. "' must be '0' or '1', $default");
+						add_settings_error($this->option_name, $name,
+								$this->hsc_utf8("'" . $field['label']
+										. "' must be '0' or '1', $default"));
 						continue 2;
 					}
 					break;
 				case 'int':
 					if (!ctype_digit($in[$name])) {
-						add_settings_error($this->option_name, $name, "'"
-								. $this->hsc_utf8($field['label'])
-								. "' " . __("must be an integer,", self::ID)
-								. ' ' . $default);
+						add_settings_error($this->option_name, $name,
+								$this->hsc_utf8("'" . $field['label'] . "' "
+										. __("must be an integer,", self::ID)
+										. ' ' . $default));
 						continue 2;
 					}
 					if (array_key_exists('greater_than', $field)
 						&& $in[$name] < $field['greater_than'])
 					{
-						add_settings_error($this->option_name, $name, "'"
-								. $this->hsc_utf8($field['label'])
-								. "' " . sprintf($gt_format,
-										$field['greater_than'])
-								. ' ' . $default);
+						add_settings_error($this->option_name, $name,
+								$this->hsc_utf8("'" . $field['label'] . "' "
+										. sprintf($gt_format, $field['greater_than'])
+										. ' ' . $default));
 						continue 2;
 					}
 					break;
@@ -589,11 +589,10 @@ class login_security_solution_admin extends login_security_solution {
 		// Special check to make sure Delay Tier 3 > Delay Tier 2.
 		$name = 'login_fail_tier_3';
 		if ($out[$name] <= $out['login_fail_tier_2']) {
-			add_settings_error($this->option_name, $name, "'"
-					. $this->hsc_utf8($this->fields[$name]['label'])
-					. "' " . sprintf($gt_format,
-							$this->hsc_utf8($this->fields['login_fail_tier_2']['label']))
-					. ' ' . $default);
+			add_settings_error($this->option_name, $name,
+					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
+							. sprintf($gt_format, $this->fields['login_fail_tier_2']['label'])
+							. ' ' . $default));
 
 			$out[$name] = $out['login_fail_tier_2'] + 5;
 		}
@@ -601,10 +600,10 @@ class login_security_solution_admin extends login_security_solution {
 		// Speical check to ensure reuse count is set if aging is enabled.
 		$name = 'pw_reuse_count';
 		if ($out['pw_change_days'] && !$out[$name]) {
-			add_settings_error($this->option_name, $name, "'"
-					. $this->hsc_utf8($this->fields[$name]['label'])
-					. "' " . sprintf($gt_format, 1)
-					. ' ' . $default);
+			add_settings_error($this->option_name, $name,
+					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
+							. sprintf($gt_format, 1)
+							. ' ' . $default));
 
 			$out[$name] = 5;
 		}
@@ -669,15 +668,15 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<h2>' . $this->hsc_utf8($this->text_pw_force_change) . '</h2>';
 
 		echo '<p>';
-		_e("There may be cases where everyone's password should be reset.", self::ID);
+		echo $this->hsc_utf8(__("There may be cases where everyone's password should be reset.", self::ID));
 		echo ' ';
-		printf(__("This page, provided by the %s plugin, offers that functionality.", self::ID), $this->hsc_utf8(self::NAME));
+		echo $this->hsc_utf8(sprintf(__("This page, provided by the %s plugin, offers that functionality.", self::ID), self::NAME));
 		echo '</p>';
 
 		echo '<p>';
-		_e("Submitting this form sets a flag that forces all users to utilize WordPress' built in password reset functionality.", self::ID);
+		echo $this->hsc_utf8(__("Submitting this form sets a flag that forces all users to utilize WordPress' built in password reset functionality.", self::ID));
 		echo ' ';
-		_e("Users who are presently logged in will be logged out the next time they view a page that requires authentication.", self::ID);
+		echo $this->hsc_utf8(__("Users who are presently logged in will be logged out the next time they view a page that requires authentication.", self::ID));
 		echo '</p>';
 
 		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
@@ -689,13 +688,14 @@ class login_security_solution_admin extends login_security_solution {
 			. $this->hsc_utf8($this->option_pw_force_change_name)
 			. '[' . $this->hsc_utf8($this->key_checkbox_require)
 			. ']" /> ';
-		_e("Confirm that you want to force all users to change their passwords by checking this box, then click the button, below.", self::ID);
+		echo $this->hsc_utf8(__("Confirm that you want to force all users to change their passwords by checking this box, then click the button, below.", self::ID));
 		echo '</strong></p>';
 
+		// This function escapes output.
 		submit_button(
 			$this->text_button_require,
 			'primary',
-			$this->hsc_utf8($this->option_pw_force_change_name) . '[submit]'
+			$this->option_pw_force_change_name . '[submit]'
 		);
 
 		echo "</div>\n";
@@ -707,13 +707,14 @@ class login_security_solution_admin extends login_security_solution {
 				. $this->hsc_utf8($this->option_pw_force_change_name)
 				. '[' . $this->hsc_utf8($this->key_checkbox_remind)
 				. ']" /> ';
-			_e("No thanks. I know what I'm doing. Please don't remind me about this.", self::ID);
+			echo $this->hsc_utf8(__("No thanks. I know what I'm doing. Please don't remind me about this.", self::ID));
 			echo '</p>';
 
+			// This function escapes output.
 			submit_button(
 				$this->text_button_remind,
 				'secondary',
-				$this->hsc_utf8($this->option_pw_force_change_name) . '[submit]'
+				$this->option_pw_force_change_name . '[submit]'
 			);
 
 			echo "</div>\n";
@@ -738,40 +739,50 @@ class login_security_solution_admin extends login_security_solution {
 			&& !empty($in['submit'])
 			&& is_scalar($in['submit']))
 		{
-			$crossed = __("You have checked a box that does not correspond with the button you pressed. Please check and press buttons inside the same section.", self::ID);
+			$crossed = $this->hsc_utf8(__("You have checked a box that does not correspond with the button you pressed. Please check and press buttons inside the same section.", self::ID));
+
+			$confirm = __("Please confirm that you really want to do this. Put a check in the '%s' box before hitting the submit button.", self::ID);
 
 			switch ($in['submit']) {
 				case $this->text_button_remind:
 					if (!empty($in[$this->key_checkbox_require])) {
 						add_settings_error($this->option_pw_force_change_name,
-								$this->option_pw_force_change_name, $crossed);
+								$this->option_pw_force_change_name,
+								$crossed);
 					} elseif (empty($in[$this->key_checkbox_remind])) {
-						add_settings_error($this->option_pw_force_change_name, $this->option_pw_force_change_name, __("Please confirm that you really want to do this. Put a check in the 'No thanks' box before hitting the submit button.", self::ID));
+						add_settings_error($this->option_pw_force_change_name,
+								$this->option_pw_force_change_name,
+								$this->hsc_utf8(sprintf($confirm, "No thanks")));
 					} else {
 						// Translaton already in WP.
 						add_settings_error($this->option_pw_force_change_name,
 								$this->option_pw_force_change_name,
-								__('Success!'), 'updated');
+								$this->hsc_utf8(__("Success!")),
+								'updated');
 						$out = 1;
 					}
 					break;
 				case $this->text_button_require:
 					if (!empty($in[$this->key_checkbox_remind])) {
 						add_settings_error($this->option_pw_force_change_name,
-								$this->option_pw_force_change_name, $crossed);
+								$this->option_pw_force_change_name,
+								$crossed);
 					} elseif (empty($in[$this->key_checkbox_require])) {
-						add_settings_error($this->option_pw_force_change_name, $this->option_pw_force_change_name, __("Please confirm that you really want to do this. Put a check in the 'Confirm' box before hitting the submit button.", self::ID));
+						add_settings_error($this->option_pw_force_change_name,
+								$this->option_pw_force_change_name,
+								$this->hsc_utf8(sprintf($confirm, "Confirm")));
 					} else {
 						$result = $this->force_change_for_all();
 						if ($result === true) {
 							// Translaton already in WP.
 							add_settings_error($this->option_pw_force_change_name,
 									$this->option_pw_force_change_name,
-									__('Success!'), 'updated');
+									$this->hsc_utf8(__("Success!")), 'updated');
 							$out = 1;
 						} else {
 							add_settings_error($this->option_pw_force_change_name,
-									$this->option_pw_force_change_name, $result);
+									$this->option_pw_force_change_name,
+									$this->hsc_utf8($result));
 						}
 					}
 					break;
@@ -799,14 +810,17 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<div class="error">';
 
 		echo '<p><strong>';
-		_e("You have not asked your users to change their passwords since the plugin was activated. Most users have weak passwords. This plugin's password policies protect your site from brute force attacks. Please improve <em>everyone's</em> security by making all users pick new, strong, passwords.", self::ID);
+		echo $this->hsc_utf8(__("You have not asked your users to change their passwords since the plugin was activated. Most users have weak passwords. This plugin's password policies protect your site from brute force attacks. Please improve security for everyone on the Internet by making all users pick new, strong, passwords.", self::ID));
 		echo '</strong></p>';
 
 		echo '<p><strong>';
-		_e("Speaking of which, do YOU have a strong password? Make sure by changing yours once you've submitted the Change All Passwords form.", self::ID);
+		echo $this->hsc_utf8(__("Speaking of which, do YOU have a strong password? Make sure by changing yours once you've submitted the Change All Passwords form.", self::ID));
 		echo '</strong></p>';
 
-		echo '<p><strong><a href="' . $this->hsc_utf8($this->page_options) . '?page=' . $this->hsc_utf8($this->option_pw_force_change_name) . '">' . $this->text_pw_force_change . "</a></strong></p>\n";
+		echo '<p><strong><a href="' . $this->hsc_utf8($this->page_options)
+			. '?page=' . $this->hsc_utf8($this->option_pw_force_change_name)
+			. '">' . $this->hsc_utf8($this->text_pw_force_change)
+			. "</a></strong></p>\n";
 
 		echo "</div>\n";
 	}
