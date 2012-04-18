@@ -235,6 +235,13 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.6.0 =
+* Use `ENT_QUOTES` instead of `ENT_COMPAT` in `htmlspecialchars()` calls
+because WordPress mixes and matches the double and single quotes to
+delimit attributes.
+* Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
+* Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
+
 = 0.5.0 =
 * Have multisite network mode use the saved options instead of the defaults.
 * Close more HTML injection vectors.  (One would think WordPress' built in

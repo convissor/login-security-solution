@@ -6,7 +6,7 @@
  * Description: Requires very strong passwords, repels brute force login attacks, prevents login information disclosures, expires idle sessions, notifies admins of attacks and breaches, permits administrators to disable logins for maintenance or emergency reasons and reset all passwords.
  *
  * Plugin URI: http://wordpress.org/extend/plugins/login-security-solution/
- * Version: 0.5.0
+ * Version: 0.6.0
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
@@ -939,7 +939,7 @@ class login_security_solution {
 			}
 		}
 
-		return htmlspecialchars($in, ENT_COMPAT, $encoding);
+		return htmlspecialchars($in, ENT_QUOTES, $encoding);
 	}
 
 	/**
@@ -952,7 +952,7 @@ class login_security_solution {
 	 * @return string  the sanitized string
 	 */
 	protected function hsc_utf8($in) {
-		return htmlspecialchars($in, ENT_COMPAT, 'UTF-8');
+		return htmlspecialchars($in, ENT_QUOTES, 'UTF-8');
 	}
 
 	/**
