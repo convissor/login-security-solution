@@ -425,6 +425,13 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return void
 	 */
 	public function page_settings() {
+		if (is_multisite()) {
+			// WordPress doesn't show the successs/error messages on
+			// the Network Admin screen, at least in version 3.3.1,
+			// so force it to happen for now.
+			include_once ABSPATH . 'wp-admin/options-head.php';
+		}
+
 		echo '<h2>' . $this->hsc_utf8($this->text_settings) . '</h2>';
 		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
 		settings_fields($this->option_name);

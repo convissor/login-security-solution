@@ -231,6 +231,8 @@ then `cd` into that directory and run:
 = 0.5.0 =
 * Close more HTML injection vectors.  (One would think WordPress' built in
 functions would already do this.  Alas...)
+* Get the success/error messages to work when saving settings via the
+Network Admin page.
 * Improve unit tests by ensuring the fail table uses InnoDB.
 * Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
