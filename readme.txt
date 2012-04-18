@@ -3,12 +3,15 @@ Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
 Requires at least: 3.0
-Tested up to: 3.3.1
+Tested up to: 3.4beta2
 Stable tag: trunk
 
 Repels brute force attacks (by IP, name, password). Requires very strong passwords (complex, don't match site/user info, etc). Plus much more!
 
 == Description ==
+
+Locks down login related security matters for regular and multisite
+WordPress installations.
 
 * Blocks brute force and dictionary attacks without inconveniencing
 legitimate users or administrators
@@ -229,6 +232,8 @@ then `cd` into that directory and run:
 * Add multisite network support.
 * Keep unit tests from deleting settings.  Note: removes the ability to
 run the unit tests without activating the plugin.
+* Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
+* Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
 = 0.3.0 =
 * Use UTF-8 encoding for `htmlspecialchars()` instead of `DB_CHARSET`.
