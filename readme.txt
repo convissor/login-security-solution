@@ -210,12 +210,19 @@ are not using the `InnoDB` storage engine.
 
 == Frequently Asked Questions ==
 
+= Where should I report bugs and feature requests? =
+
+Report bugs and submit feature requests by opening a ticket in WordPress'
+[plugins Trac website](http://plugins.trac.wordpress.org/report).
+Select `login-security-solution` in the "Component" list.
+
 = Where did the "Change All Passwords" interface go? =
 
 A link to the page is found in this plugin's entry in the "Plugins" admin
 interface:
-    * Regular sites:  Plugins
-    * Sites using multisite networks:  My Sites | Network Admin | Plugins
+
+* Regular sites:  Plugins
+* Sites using multisite networks:  My Sites | Network Admin | Plugins
 
 = How do I generate the POT translation file? =
 
@@ -295,7 +302,7 @@ problems under PHP 5.4.
 == Bugs and Feature Requests ==
 
 Report bugs and submit feature requests by opening a ticket in WordPress'
-plugins Trac website: http://plugins.trac.wordpress.org/report.
+[plugins Trac website](http://plugins.trac.wordpress.org/report).
 Select `login-security-solution` in the "Component" list.
 
 
@@ -303,7 +310,7 @@ Select `login-security-solution` in the "Component" list.
 
 * Password Research
     + [You can never have too many passwords: techniques for evaluating a huge corpus](http://www.cl.cam.ac.uk/~jcb82/doc/B12-IEEESP-evaluating_a_huge_password_corpus.pdf), Joseph Bonneau
-    + [Analyzing Password Strength](http://www.cs.ru.nl/bachelorscripties/2010/Martin_Devillers___0437999___Analyzing_password_strength.pdf), Martin_Devillers
+    + [Analyzing Password Strength](http://www.cs.ru.nl/bachelorscripties/2010/Martin_Devillers___0437999___Analyzing_password_strength.pdf), Martin Devillers
     + [Consumer Password Worst Practices](http://www.imperva.com/docs/WP_Consumer_Password_Worst_Practices.pdf), Imperva
     + [Preventing Brute Force Attacks on your Web Login](http://www.bryanrite.com/preventing-brute-force-attacks-on-your-web-login/), Bryan Rite
     + [Password Strength](http://xkcd.com/936/), Randall Munroe
