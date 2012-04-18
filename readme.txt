@@ -185,7 +185,7 @@ A thorough set of unit tests are found in the `tests` directory.
 The plugin needs to be installed and activated before running the tests.
 
 To execute the tests, `cd` into this plugin's directory and
-call `phpunit tests` .
+call `phpunit tests`
 
 Please note that the tests make extensive use of database transactions.
 Many tests will be skipped if your `wp_options` and `wp_usermeta` tables
@@ -211,8 +211,8 @@ are not using the `InnoDB` storage engine.
 
 A link to the page is found in this plugin's entry in the "Plugins" admin
 interface:
-* Regular sites:  Plugins
-* Sites using multisite networks:  My Sites | Network Admin | Plugins
+    * Regular sites:  Plugins
+    * Sites using multisite networks:  My Sites | Network Admin | Plugins
 
 = How do I generate the POT translation file? =
 
