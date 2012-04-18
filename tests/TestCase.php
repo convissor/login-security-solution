@@ -258,9 +258,15 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 
 		$opt = $wpdb->get_row("SHOW CREATE TABLE `$wpdb->options`", ARRAY_N);
 		$usr = $wpdb->get_row("SHOW CREATE TABLE `$wpdb->usermeta`", ARRAY_N);
+		$fail = $wpdb->get_row("SHOW CREATE TABLE `"
+				. self::$lss->table_fail . "`", ARRAY_N);
 
-		return (strpos($opt[1], 'ENGINE=InnoDB')
-				&& strpos($usr[1], 'ENGINE=InnoDB'));
+		return (
+			strpos($opt[1], 'ENGINE=InnoDB')
+			&& strpos($usr[1], 'ENGINE=InnoDB')
+			&& !empty($fail)
+			&& strpos($fail[1], 'ENGINE=InnoDB')
+		);
 	}
 
 	/**

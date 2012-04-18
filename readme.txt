@@ -228,6 +228,9 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.5.0 =
+* Improve unit tests by ensuring the fail table uses InnoDB.
+
 = 0.4.0 =
 * Add multisite network support.
 * Keep unit tests from deleting settings.  Note: removes the ability to
