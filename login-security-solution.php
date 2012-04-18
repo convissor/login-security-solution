@@ -1829,7 +1829,13 @@ class login_security_solution {
 	 * @uses login_security_solution::$options  to hold the data
 	 */
 	protected function set_options() {
-		$options = get_option($this->option_name);
+		if (is_multisite()) {
+			switch_to_blog(1);
+			$options = get_option($this->option_name);
+			restore_current_blog();
+		} else {
+			$options = get_option($this->option_name);
+		}
 		if (!is_array($options)) {
 			$options = array();
 		}

@@ -229,6 +229,7 @@ then `cd` into that directory and run:
 == Changelog ==
 
 = 0.5.0 =
+* Have multisite network mode use the saved options instead of the defaults.
 * Close more HTML injection vectors.  (One would think WordPress' built in
 functions would already do this.  Alas...)
 * Get the success/error messages to work when saving settings via the
