@@ -391,19 +391,19 @@ class login_security_solution_admin extends login_security_solution {
 
 		add_settings_section(
 			self::ID . '-login',
-			__('Login Failure Policies', self::ID),
+			$this->hsc_utf8(__("Login Failure Policies", self::ID)),
 			array(&$this, 'section_login'),
 			self::ID
 		);
 		add_settings_section(
 			self::ID . '-pw',
-			__('Password Policies', self::ID),
+			$this->hsc_utf8(__("Password Policies", self::ID)),
 			array(&$this, 'section_blank'),
 			self::ID
 		);
 		add_settings_section(
 			self::ID . '-misc',
-			__('Miscellaneous Policies', self::ID),
+			$this->hsc_utf8(__("Miscellaneous Policies", self::ID)),
 			array(&$this, 'section_blank'),
 			self::ID
 		);
@@ -412,7 +412,7 @@ class login_security_solution_admin extends login_security_solution {
 		foreach ($this->fields as $id => $field) {
 			add_settings_field(
 				$id,
-				$field['label'],
+				$this->hsc_utf8($field['label']),
 				array(&$this, $id),
 				self::ID,
 				self::ID . '-' . $field['group']
@@ -532,7 +532,8 @@ class login_security_solution_admin extends login_security_solution {
 		$out = $this->options_default;
 		if (!is_array($in)) {
 			// Not translating this since only hackers will see it.
-			add_settings_error($this->option_name, $this->option_name,
+			add_settings_error($this->option_name,
+					$this->hsc_utf8($this->option_name),
 					'Input must be an array.');
 			return $out;
 		}
@@ -548,7 +549,8 @@ class login_security_solution_admin extends login_security_solution {
 
 			if (!is_scalar($in[$name])) {
 				// Not translating this since only hackers will see it.
-				add_settings_error($this->option_name, $name,
+				add_settings_error($this->option_name,
+						$this->hsc_utf8($name),
 						$this->hsc_utf8("'" . $field['label'])
 								. "' was not a scalar, $default");
 				continue;
@@ -558,7 +560,8 @@ class login_security_solution_admin extends login_security_solution {
 				case 'bool':
 					if ($in[$name] != 0 && $in[$name] != 1) {
 						// Not translating this since only hackers will see it.
-						add_settings_error($this->option_name, $name,
+						add_settings_error($this->option_name,
+								$this->hsc_utf8($name),
 								$this->hsc_utf8("'" . $field['label']
 										. "' must be '0' or '1', $default"));
 						continue 2;
@@ -566,7 +569,8 @@ class login_security_solution_admin extends login_security_solution {
 					break;
 				case 'int':
 					if (!ctype_digit($in[$name])) {
-						add_settings_error($this->option_name, $name,
+						add_settings_error($this->option_name,
+								$this->hsc_utf8($name),
 								$this->hsc_utf8("'" . $field['label'] . "' "
 										. __("must be an integer,", self::ID)
 										. ' ' . $default));
@@ -575,7 +579,8 @@ class login_security_solution_admin extends login_security_solution {
 					if (array_key_exists('greater_than', $field)
 						&& $in[$name] < $field['greater_than'])
 					{
-						add_settings_error($this->option_name, $name,
+						add_settings_error($this->option_name,
+								$this->hsc_utf8($name),
 								$this->hsc_utf8("'" . $field['label'] . "' "
 										. sprintf($gt_format, $field['greater_than'])
 										. ' ' . $default));
@@ -589,7 +594,8 @@ class login_security_solution_admin extends login_security_solution {
 		// Special check to make sure Delay Tier 3 > Delay Tier 2.
 		$name = 'login_fail_tier_3';
 		if ($out[$name] <= $out['login_fail_tier_2']) {
-			add_settings_error($this->option_name, $name,
+			add_settings_error($this->option_name,
+					$this->hsc_utf8($name),
 					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
 							. sprintf($gt_format, $this->fields['login_fail_tier_2']['label'])
 							. ' ' . $default));
@@ -600,7 +606,8 @@ class login_security_solution_admin extends login_security_solution {
 		// Speical check to ensure reuse count is set if aging is enabled.
 		$name = 'pw_reuse_count';
 		if ($out['pw_change_days'] && !$out[$name]) {
-			add_settings_error($this->option_name, $name,
+			add_settings_error($this->option_name,
+					$this->hsc_utf8($name),
 					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
 							. sprintf($gt_format, 1)
 							. ' ' . $default));
@@ -747,16 +754,16 @@ class login_security_solution_admin extends login_security_solution {
 				case $this->text_button_remind:
 					if (!empty($in[$this->key_checkbox_require])) {
 						add_settings_error($this->option_pw_force_change_name,
-								$this->option_pw_force_change_name,
+								$this->hsc_utf8($this->option_pw_force_change_name),
 								$crossed);
 					} elseif (empty($in[$this->key_checkbox_remind])) {
 						add_settings_error($this->option_pw_force_change_name,
-								$this->option_pw_force_change_name,
+								$this->hsc_utf8($this->option_pw_force_change_name),
 								$this->hsc_utf8(sprintf($confirm, "No thanks")));
 					} else {
 						// Translaton already in WP.
 						add_settings_error($this->option_pw_force_change_name,
-								$this->option_pw_force_change_name,
+								$this->hsc_utf8($this->option_pw_force_change_name),
 								$this->hsc_utf8(__("Success!")),
 								'updated');
 						$out = 1;
@@ -765,23 +772,23 @@ class login_security_solution_admin extends login_security_solution {
 				case $this->text_button_require:
 					if (!empty($in[$this->key_checkbox_remind])) {
 						add_settings_error($this->option_pw_force_change_name,
-								$this->option_pw_force_change_name,
+								$this->hsc_utf8($this->option_pw_force_change_name),
 								$crossed);
 					} elseif (empty($in[$this->key_checkbox_require])) {
 						add_settings_error($this->option_pw_force_change_name,
-								$this->option_pw_force_change_name,
+								$this->hsc_utf8($this->option_pw_force_change_name),
 								$this->hsc_utf8(sprintf($confirm, "Confirm")));
 					} else {
 						$result = $this->force_change_for_all();
 						if ($result === true) {
 							// Translaton already in WP.
 							add_settings_error($this->option_pw_force_change_name,
-									$this->option_pw_force_change_name,
+									$this->hsc_utf8($this->option_pw_force_change_name),
 									$this->hsc_utf8(__("Success!")), 'updated');
 							$out = 1;
 						} else {
 							add_settings_error($this->option_pw_force_change_name,
-									$this->option_pw_force_change_name,
+									$this->hsc_utf8($this->option_pw_force_change_name),
 									$this->hsc_utf8($result));
 						}
 					}
