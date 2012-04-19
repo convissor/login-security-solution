@@ -6,8 +6,10 @@ Requires at least: 3.0
 Tested up to: 3.4beta2
 Stable tag: trunk
 
-Repels brute force attacks (by IP, name, password). Requires very strong
-passwords. Maintenance mode. Idle timeout. Supports multisite networks.
+Security against brute force attacks by tracking IP, name, password;
+requiring very strong passwords. Idle timeout. Maintenance mode. Multisite
+ready!
+
 
 == Description ==
 
@@ -67,7 +69,8 @@ The tests have caught every password dictionary entry I've tried.
 = Improvements Over Similar WordPress Plugins =
 
 * Multisite network support
-* The plugin itself is secure against SQL, HTML, and header injections
+* Takes security seriously so the plugin itself does not open your site
+  to SQL, HTML, or header injection vulnerabilities
 * Notice-free code means no information disclosures if `display_errors`
   is on and `error_reporting` includes `E_NOTICE`
 * Only loads files, actions, and filters needed for enabled options
@@ -104,8 +107,8 @@ clients and friends.
 
 == Installation ==
 
-1. Download the package
-    from `http://wordpress.org/extend/plugins/login-security-solution/`
+1. Download the Login Security Solution zip file from WordPress' plugin
+    site: `http://wordpress.org/extend/plugins/login-security-solution/`
 
 1. Unzip the file.
 
