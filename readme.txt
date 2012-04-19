@@ -170,7 +170,7 @@ clients and friends.
 1. Adjust the settings as desired.  This plugin's settings page can be
     reached via a sub-menu entry under WordPress' "Settings" menu or this
     plugin's entry on WordPress' "Plugins" page.  Sites using WordPress'
-    multisite network capabilitiy will find the "Settings" and "Plugin"
+    multisite network capability will find the "Settings" and "Plugin"
     menus under "My Sites | Network Admin".
 
 1. Run the "Change All Passwords" process. This is necessary to ensure
@@ -232,11 +232,11 @@ administrators from being inconvenienced.  Plus it provides a quick sand
 trap that ties up attackers' resources instead of immediately tipping them
 off that the jig is up.
 
-= Won't the slowdowns open my website to Denial of Serivice (DOS) attacks? =
+= Won't the slowdowns open my website to Denial of Service (DOS) attacks? =
 
 Yeah, the DOS potential is there.  I mitigated it for the most part by
-disconnecting the database link (the most precious resorce in most
-situations) before sleeping.  But remember, distributed deinal of service
+disconnecting the database link (the most precious resource in most
+situations) before sleeping.  But remember, distributed denial of service
 attacks are fairly easy to initiate these days.  If someone really wants to
 shut down your site, they'll be able to do it without even touching this
 plugin's login failure process.
@@ -301,15 +301,15 @@ problems under PHP 5.4.
 * Initial import to `plugins.svn.wordpress.org`.
 
 = 0.0.3 =
-* Fix mixups in the code saving the "Change All Passwords" admin UI.
+* Fix mix ups in the code saving the "Change All Passwords" admin UI.
 * Adjust IdleTest so it doesn't radically change `wp_users` auto increment.
 * Tested under WordPress 3.3.1.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
 = 0.0.2 =
 * Use Unicode character properties to improve portability.
-* Stop tests short if not in a wp install.
-* Skip dict test if dict not available.
+* Stop tests short if not in a WordPress install.
+* Skip `dict` test if `dict` not available.
 * Skip database tests if transactions are not available.
 * Tested under WordPress 3.3.1.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
