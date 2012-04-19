@@ -41,6 +41,22 @@ class login_security_solution_admin extends login_security_solution {
 	protected $form_action;
 
 	/**
+	 * Name of the page holding the options
+	 * @var string
+	 */
+	protected $page_options;
+
+	/**
+	 * Title for the plugin's settings page
+	 * @var string
+	 */
+	protected $text_settings;
+
+
+	/**#@+
+	 * NON-STANDARD: These properties are for the password change page.
+	 */
+	/**
 	 * Key for the change password "don't remind me" checkbox
 	 * @var string
 	 */
@@ -59,12 +75,6 @@ class login_security_solution_admin extends login_security_solution {
 	protected $option_pw_force_change_name;
 
 	/**
-	 * Name of the page holding the options
-	 * @var string
-	 */
-	protected $page_options;
-
-	/**
 	 * Text for the plugin's password change page "don't remind me" button
 	 * @var string
 	 */
@@ -77,16 +87,11 @@ class login_security_solution_admin extends login_security_solution {
 	protected $text_button_require;
 
 	/**
-	 * Title for the plugin's settings page
-	 * @var string
-	 */
-	protected $text_settings;
-
-	/**
 	 * Title for the plugin's password change page
 	 * @var string
 	 */
 	protected $text_pw_force_change;
+	/**#@-*/
 
 
 	/**
