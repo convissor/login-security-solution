@@ -252,6 +252,9 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.6.1 =
+* Minor wording adjustments.
+
 = 0.6.0 =
 * Use `ENT_QUOTES` instead of `ENT_COMPAT` in `htmlspecialchars()` calls
 because WordPress mixes and matches the double and single quotes to
