@@ -224,7 +224,24 @@ interface:
 * Regular sites:  Plugins
 * Sites using multisite networks:  My Sites | Network Admin | Plugins
 
-= How do I generate the POT translation file? =
+= Why use slowdowns instead of lockouts? =
+
+The best way to go here is a subject open to debate.  (Hey what isn't?)
+I chose the slowdown approach because it keeps legitimate users and
+administrators from being inconvenienced.  Plus it provides a quick sand
+trap that ties up attackers' resources instead of immediately tipping them
+off that the jig is up.
+
+= Won't the slowdowns open my website to Denial of Serivice (DOS) attacks? =
+
+Yeah, the DOS potential is there.  I mitigated it for the most part by
+disconnecting the database link (the most precious resorce in most
+situations) before sleeping.  But remember, distributed deinal of service
+attacks are fairly easy to initiate these days.  If someone really wants to
+shut down your site, they'll be able to do it without even touching this
+plugin's login failure process.
+
+= How do developers generate the POT translation file? =
 
 Get the translation tools from `http://i18n.svn.wordpress.org/tools/trunk/`
 then `cd` into that directory and run:
