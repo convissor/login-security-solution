@@ -6,12 +6,12 @@ Requires at least: 3.0
 Tested up to: 3.4beta2
 Stable tag: trunk
 
-Repels brute force attacks (by IP, name, password). Requires very strong passwords (complex, don't match site/user info, etc). Plus much more!
+Repels brute force attacks (by IP, name, password). Requires very strong
+passwords. Maintenance mode. Idle timeout. Supports multisite networks.
 
 == Description ==
 
-Locks down login related security matters for regular and multisite
-WordPress installations.
+Locks down login security for multisite and regular WordPress installations.
 
 * Blocks brute force and dictionary attacks without inconveniencing
 legitimate users or administrators
