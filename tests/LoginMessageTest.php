@@ -58,7 +58,12 @@ class LoginMessageTest extends TestCase {
 	public function test_login_message__idle() {
 		$_GET[self::$lss->key_login_msg] = 'idle';
 
-		$ours = sprintf(__('It has been over %d minutes since your last action.', self::ID), self::$lss->options['idle_timeout']);
+		$value = 8;
+		$options = self::$lss->options;
+		$options['idle_timeout'] = $value;
+		self::$lss->options = $options;
+
+		$ours = sprintf(__('It has been over %d minutes since your last action.', self::ID), $value);
 		$ours .= ' ' . __('Please log back in.', self::ID);
 
 		$actual = self::$lss->login_message('input');
@@ -91,8 +96,13 @@ class LoginMessageTest extends TestCase {
 	public function test_login_message__pw_grace() {
 		$_GET[self::$lss->key_login_msg] = 'pw_grace';
 
+		$value = 8;
+		$options = self::$lss->options;
+		$options['pw_change_grace_period_minutes'] = $value;
+		self::$lss->options = $options;
+
 		$ours = __('Your password has expired. Please log and change it.', self::ID);
-		$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), self::$lss->options['pw_change_grace_period_minutes']);
+		$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $value);
 
 		$actual = self::$lss->login_message('input');
 		$this->assertEquals('input' . $this->ours($ours), $actual,
