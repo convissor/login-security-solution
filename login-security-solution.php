@@ -6,7 +6,7 @@
  * Description: Requires very strong passwords, repels brute force login attacks, prevents login information disclosures, expires idle sessions, notifies admins of attacks and breaches, permits administrators to disable logins for maintenance or emergency reasons and reset all passwords.
  *
  * Plugin URI: http://wordpress.org/extend/plugins/login-security-solution/
- * Version: 0.6.1
+ * Version: 0.7.0
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
@@ -474,6 +474,10 @@ class login_security_solution {
 					$ours = __('Your password has expired. Please log and change it.', self::ID);
 					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $this->options['pw_change_grace_period_minutes']);
 					break;
+				case 'pw_reset_bad':
+					$ours = __('The password you just created is not secure so must be changed. Use it now to log in then go to your profile page and create a new password.', self::ID);
+					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $this->options['pw_change_grace_period_minutes']);
+					break;
 			}
 		}
 
@@ -498,7 +502,7 @@ class login_security_solution {
 	 *
 	 * @param WP_User  the user object being edited
 	 * @param string $user_pass  the unhashed new password
-	 * @return void
+	 * @return mixed  return values provided for unit testing
 	 *
 	 * @uses login_security_solution::process_pw_metadata()  to update user
 	 *       metadata
@@ -507,6 +511,16 @@ class login_security_solution {
 		if (empty($user->ID)) {
 			return false;
 		}
+
+		$user->user_pass = $user_pass;
+		if (!$this->validate_pw($user)) {
+			$this->process_pw_metadata($user->ID, $user_pass);
+			$this->set_pw_force_change($user->ID);
+			$this->set_pw_grace_period($user->ID);
+			$this->redirect_to_login('pw_reset_bad');
+			return -1;
+		}
+
 		$this->process_pw_metadata($user->ID, $user_pass);
 	}
 

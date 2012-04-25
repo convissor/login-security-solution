@@ -188,7 +188,7 @@ class PasswordChangeTest extends TestCase {
 
 		// Check the outcome.
 		$actual = self::$lss->get_pw_changed_time($this->user->ID);
-		$this->assertGreaterThan(0, $actual, 'Changed time should be 0.');
+		$this->assertGreaterThan(0, $actual, 'Changed time should be > 0.');
 
 		$actual = self::$lss->is_pw_reused(self::$pass_1, $this->user->ID);
 		$this->assertTrue($actual, 'Password should show up as reused');
@@ -196,6 +196,37 @@ class PasswordChangeTest extends TestCase {
 		$this->ensure_grace_and_force_are_empty();
 
 		$wpdb->query('ROLLBACK TO empty');
+	}
+
+	public function test_password_reset__bad_pw() {
+		global $wpdb;
+
+		$bad_pw = 'too simple';
+
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+		self::$location_expected = get_option('siteurl')
+				. '/wp-login.php?action=login&'
+				. self::$lss->key_login_msg . '=pw_reset_bad';
+
+		$actual = self::$lss->password_reset($this->user, $bad_pw);
+		$this->assertEquals(-1, $actual, 'password_reset() return.');
+
+		// Check the outcome.
+		$actual = self::$lss->get_pw_changed_time($this->user->ID);
+		$this->assertGreaterThan(0, $actual, 'Changed time should be > 0.');
+
+		$actual = self::$lss->is_pw_reused($bad_pw, $this->user->ID);
+		$this->assertTrue($actual, 'Password should show up as reused');
+
+		$this->ensure_grace_and_force_are_populated();
+
+		$wpdb->query('ROLLBACK TO empty');
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
+		$this->assertEquals(self::$location_expected, self::$location_actual,
+				'wp_redirect() produced unexpected location header.');
 	}
 
 	/*

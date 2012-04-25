@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danie
 Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
 Requires at least: 3.0
 Tested up to: 3.4beta2
-Stable tag: trunk
+Stable tag: 0.7.0
 
 Security against brute force attacks by tracking IP, name, password;
 requiring very strong passwords. Idle timeout. Maintenance mode. Multisite
@@ -254,6 +254,11 @@ then `cd` into that directory and run:
 
 
 == Changelog ==
+
+= 0.7.0 =
+* The "lost your password" process now validates passwords.
+* Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
+* Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
 = 0.6.1 =
 * Minor wording adjustments.
