@@ -2,7 +2,7 @@
 Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
-Requires at least: 3.0
+Requires at least: 3.3
 Tested up to: 3.4beta2
 Stable tag: 0.7.0
 
@@ -254,6 +254,9 @@ then `cd` into that directory and run:
 
 
 == Changelog ==
+
+= 0.8.0 =
+* It turns out this plugin requires WordPress 3.3, not 3.0.
 
 = 0.7.0 =
 * The "lost your password" process now validates passwords.
