@@ -373,7 +373,7 @@ class login_security_solution {
 	 * NOTE: This method is automatically called by WordPress when users
 	 * log in or out.
 	 *
-	 * @return bool|null  null if $user_ID and $user_name are unknown
+	 * @return mixed  return values provided for unit testing
 	 */
 	public function delete_last_active() {
 		global $user_ID, $user_name;
@@ -383,6 +383,9 @@ class login_security_solution {
 				return;
 			}
 			$user = get_user_by('login', $user_name);
+			if (! $user instanceof WP_User) {
+				return -1;
+			}
 			$user_ID = $user->ID;
 		}
 

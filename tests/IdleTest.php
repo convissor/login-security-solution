@@ -104,6 +104,21 @@ class IdleTest extends TestCase {
 		$this->assertTrue($actual, 'Delete last active...');
 	}
 
+	/**
+	 * @depends test_delete_last_active__user_name
+	 */
+	public function test_delete_last_active__user_name_unknown() {
+		global $user_ID, $user_name;
+
+		$actual = self::$lss->set_last_active(self::$user_ID);
+		$this->assertInternalType('integer', $actual, 'Set last active...');
+
+		$user_ID = null;
+		$user_name = 'nowaycanthisnameexistokayprettyplease';
+		$actual = self::$lss->delete_last_active();
+		$this->assertEquals(-1, $actual, 'Delete last active...');
+	}
+
 	/*
 	 * IS IDLE
 	 */
