@@ -23,6 +23,9 @@ require_once dirname(__FILE__) .  '/TestCase.php';
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  */
 class IdleTest extends TestCase {
+	protected static $user_ID;
+
+
 	public static function setUpBeforeClass() {
 		parent::$db_needed = true;
 		parent::set_up_before_class();
@@ -95,7 +98,10 @@ class IdleTest extends TestCase {
 		);
 		$this->assertSame(1, $actual, 'Could not insert sample record.');
 
-		$actual = self::$lss->set_last_active($wpdb->insert_id);
+		// Save this for later use.
+		self::$user_ID = $wpdb->insert_id;
+
+		$actual = self::$lss->set_last_active(self::$user_ID);
 		$this->assertInternalType('integer', $actual, 'Set last active...');
 
 		$user_ID = null;
@@ -117,6 +123,47 @@ class IdleTest extends TestCase {
 		$user_name = 'nowaycanthisnameexistokayprettyplease';
 		$actual = self::$lss->delete_last_active();
 		$this->assertEquals(-1, $actual, 'Delete last active...');
+	}
+
+	/*
+	 * AUTH COOKIE EXPIRED
+	 */
+
+	/**
+	 * @depends test_delete_last_active__user_name
+	 */
+	public function test_auth_cooke_expired__user_name_unknown() {
+		$cookie_elements = array(
+			'username' => 'nowaycanthisnameexistokayprettyplease',
+		);
+		$actual = self::$lss->auth_cookie_expired($cookie_elements);
+		$this->assertEquals(-1, $actual, 'auth_cookie_expired');
+	}
+
+	/**
+	 * @depends test_delete_last_active__user_name_unknown
+	 */
+	public function test_auth_cookie_expired__normal() {
+		global $user_ID, $user_name, $wpdb;
+
+		$actual = self::$lss->get_last_active(self::$user_ID);
+		$this->assertInternalType('integer', $actual, 'get_last_active');
+		$this->assertGreaterThan(0, $actual, 'get_last_active');
+
+		$cookie_elements = array(
+			'username' => $this->user->user_login,
+		);
+		$actual = self::$lss->auth_cookie_expired($cookie_elements);
+		$this->assertTrue($actual, 'auth_cookie_expired');
+
+		$actual = self::$lss->get_last_active(self::$user_ID);
+		$this->assertSame(0, $actual, 'get_last_active');
+	}
+
+	public function test_auth_cooke_expired__user_name_empty() {
+		$cookie_elements = array();
+		$actual = self::$lss->auth_cookie_expired($cookie_elements);
+		$this->assertNull($actual, 'auth_cookie_expired');
 	}
 
 	/*

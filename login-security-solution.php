@@ -190,6 +190,7 @@ class login_security_solution {
 		if ($this->options['idle_timeout']) {
 			add_action('wp_login', array(&$this, 'delete_last_active'));
 			add_action('wp_logout', array(&$this, 'delete_last_active'));
+			add_action('auth_cookie_expired', array(&$this, 'auth_cookie_expired'));
 		}
 
 		if ($this->options['login_fail_breach_notify']
@@ -285,6 +286,28 @@ class login_security_solution {
 	/*
 	 * ===== ACTION & FILTER CALLBACK METHODS =====
 	 */
+
+	/**
+	 * Removes the current user's last active time metadata
+	 *
+	 * NOTE: This method is automatically called by WordPress when a user's
+	 * cookie has expired.
+	 *
+	 * @param array $cookie_elements  the auth cookie data
+	 * @return mixed  return values provided for unit testing
+	 */
+	public function auth_cookie_expired($cookie_elements) {
+		if (empty($cookie_elements['username'])) {
+			return;
+		}
+
+		$user = get_user_by('login', $cookie_elements['username']);
+		if (! $user instanceof WP_User) {
+			return -1;
+		}
+
+		return delete_user_meta($user->ID, $this->umk_last_active);
+	}
 
 	/**
 	 * Redirects the current user to the login screen if their password
