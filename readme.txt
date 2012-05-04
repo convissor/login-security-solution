@@ -255,6 +255,8 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+* Regenerate translation POT file.
+
 = 0.8.0 =
 * Fix logging user out a second time after WordPress expires cookies.
 * It turns out this plugin requires WordPress 3.3, not 3.0.
