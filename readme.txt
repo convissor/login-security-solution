@@ -3,7 +3,7 @@ Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
 Requires at least: 3.3
-Tested up to: 3.4beta2
+Tested up to: 3.4beta3
 Stable tag: 0.8.0
 
 Security against brute force attacks by tracking IP, name, password;
@@ -13,14 +13,16 @@ ready!
 
 == Description ==
 
-Locks down login security for multisite and regular WordPress installations.
+A simple way to lock down login security for multisite and regular
+WordPress installations.
 
 * Blocks brute force and dictionary attacks without inconveniencing
 legitimate users or administrators
     + Tracks IP addresses, usernames, and passwords
     + If a login failure uses data matching a past failure, the plugin
       slows down response times.  The more failures, the longer the delay.
-      This encourages attackers to give up and go find an easier target.
+      This limits attackers ability to effectively probe your site,
+      so they'll give up and go find an easier target.
     + If an account seems breached, the "user" is immediately logged out
       and forced to use WordPress' password reset utility. This prevents
       any damage from being done and verifies the user's identity.  All
