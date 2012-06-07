@@ -104,7 +104,8 @@ that pushes malware into your readers' browsers.
 So if your site does get cracked, not only do you waste hours cleaning up,
 your reputation gets sullied, security software flags your site as dangerous,
 and worst of all, you've inadvertently helped infect the computers of your
-clients and friends.
+clients and friends.  Oh, and that malware has possibly gotten itself
+into the browser/computer you use for administering your website.
 
 
 == Installation ==
