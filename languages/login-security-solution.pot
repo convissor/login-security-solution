@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Login Security Solution package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.8.0\n"
+"Project-Id-Version: Login Security Solution 0.9.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/login-security-solution\n"
-"POT-Creation-Date: 2012-04-30 12:13:24+00:00\n"
+"POT-Creation-Date: 2012-06-12 01:40:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,137 +49,134 @@ msgstr ""
 msgid "Your password has expired. Please log and change it."
 msgstr ""
 
-#: login-security-solution.php:501 login-security-solution.php:505
-#: tests/LoginMessageTest.php:105 tests/LoginMessageTest.php:121
+#: login-security-solution.php:501 tests/LoginMessageTest.php:105
 msgid "We provide a %d minute grace period to do so."
 msgstr ""
 
-#: login-security-solution.php:504 tests/LoginMessageTest.php:120
-msgid ""
-"The password you just created is not secure so must be changed. Use it now "
-"to log in then go to your profile page and create a new password."
+#: login-security-solution.php:504 tests/LoginMessageTest.php:115
+msgid "The password you tried to create is not secure. Please try again."
 msgstr ""
 
-#: login-security-solution.php:511 tests/LoginMessageTest.php:135
-#: tests/LoginMessageTest.php:150
+#: login-security-solution.php:510 tests/LoginMessageTest.php:129
+#: tests/LoginMessageTest.php:144
 msgid "The site is undergoing maintenance."
 msgstr ""
 
-#: login-security-solution.php:512 tests/LoginMessageTest.php:136
-#: tests/LoginMessageTest.php:151
+#: login-security-solution.php:511 tests/LoginMessageTest.php:130
+#: tests/LoginMessageTest.php:145
 msgid "Please try again later."
 msgstr ""
 
-#: login-security-solution.php:581
+#: login-security-solution.php:578
 msgid "Passwords can not be reused."
 msgstr ""
 
-#: login-security-solution.php:726
+#: login-security-solution.php:723
 msgid "ERROR"
 msgstr ""
 
-#: login-security-solution.php:846
+#: login-security-solution.php:843
 msgid "Component     Count  Value from Current Attempt"
 msgstr ""
 
-#: login-security-solution.php:848
+#: login-security-solution.php:845
 msgid "Network IP    %5d  %s"
 msgstr ""
 
-#: login-security-solution.php:850
+#: login-security-solution.php:847
 msgid "Username      %5d  %s"
 msgstr ""
 
-#: login-security-solution.php:852
+#: login-security-solution.php:849
 msgid "Password MD5  %5d  %s"
 msgstr ""
 
-#: login-security-solution.php:1633
+#: login-security-solution.php:1630
 msgid "Your website, %s, may have been broken in to."
 msgstr ""
 
-#: login-security-solution.php:1636
+#: login-security-solution.php:1633
 msgid ""
 "Someone just logged in using the following components. Prior to that, some "
 "combination of those components were a part of %d failed attempts to log in "
 "during the past %d minutes:"
 msgstr ""
 
-#: login-security-solution.php:1641
+#: login-security-solution.php:1638
 msgid ""
 "The user has been logged out and will be required to confirm their identity "
 "via the password reset functionality."
 msgstr ""
 
-#: login-security-solution.php:1670
+#: login-security-solution.php:1667
 msgid "Your website, %s, is undergoing a brute force attack."
 msgstr ""
 
-#: login-security-solution.php:1673
+#: login-security-solution.php:1670
 msgid ""
 "There have been at least %d failed attempts to log in during the past %d "
 "minutes that used one or more of the following components:"
 msgstr ""
 
-#: login-security-solution.php:1678
+#: login-security-solution.php:1675
 msgid ""
 "The %s plugin for WordPress is repelling the attack by making their login "
 "failures take a very long time."
 msgstr ""
 
-#: login-security-solution.php:1995
+#: login-security-solution.php:1997
 msgid "Password not set."
 msgstr ""
 
-#: login-security-solution.php:2010
+#: login-security-solution.php:2012
 msgid "Passwords must be strings."
 msgstr ""
 
-#: login-security-solution.php:2028
+#: login-security-solution.php:2030
 msgid "Passwords must use ASCII characters."
 msgstr ""
 
-#: login-security-solution.php:2047
+#: login-security-solution.php:2049
 msgid "Password is too short."
 msgstr ""
 
-#: login-security-solution.php:2056
+#: login-security-solution.php:2058
 msgid "Passwords must either contain numbers or be %d characters long."
 msgstr ""
 
-#: login-security-solution.php:2065
+#: login-security-solution.php:2067
 msgid ""
 "Passwords must either contain punctuation marks / symbols or be %d "
 "characters long."
 msgstr ""
 
-#: login-security-solution.php:2074
+#: login-security-solution.php:2076
 msgid ""
 "Passwords must either contain upper-case and lower-case letters or be %d "
 "characters long."
 msgstr ""
 
-#: login-security-solution.php:2084
+#: login-security-solution.php:2086
 msgid "Passwords can't be sequential keys."
 msgstr ""
 
-#: login-security-solution.php:2093
+#: login-security-solution.php:2095
 msgid "Passwords can't have that many sequential characters."
 msgstr ""
 
-#: login-security-solution.php:2109
+#: login-security-solution.php:2111
 msgid "Passwords can't contain user data."
 msgstr ""
 
-#: login-security-solution.php:2120
+#: login-security-solution.php:2122
 msgid "Passwords can't contain site info."
 msgstr ""
 
-#: login-security-solution.php:2129
+#: login-security-solution.php:2131
 msgid "Password is too common."
 msgstr ""
 
-#: login-security-solution.php:2138
+#: login-security-solution.php:2140
 msgid "Passwords can't be variations of dictionary words."
 msgstr ""
 

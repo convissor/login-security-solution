@@ -112,13 +112,7 @@ class LoginMessageTest extends TestCase {
 	public function test_login_message__pw_reset_bad() {
 		$_GET[self::$lss->key_login_msg] = 'pw_reset_bad';
 
-		$value = 8;
-		$options = self::$lss->options;
-		$options['pw_change_grace_period_minutes'] = $value;
-		self::$lss->options = $options;
-
-		$ours = __('The password you just created is not secure so must be changed. Use it now to log in then go to your profile page and create a new password.', self::ID);
-		$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $value);
+		$ours = __('The password you tried to create is not secure. Please try again.', self::ID);
 
 		$actual = self::$lss->login_message('input');
 		$this->assertEquals('input' . $this->ours($ours), $actual,

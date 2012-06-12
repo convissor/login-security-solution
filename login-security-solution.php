@@ -6,7 +6,7 @@
  * Description: Requires very strong passwords, repels brute force login attacks, prevents login information disclosures, expires idle sessions, notifies admins of attacks and breaches, permits administrators to disable logins for maintenance or emergency reasons and reset all passwords.
  *
  * Plugin URI: http://wordpress.org/extend/plugins/login-security-solution/
- * Version: 0.8.0
+ * Version: 0.9.0
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
@@ -501,8 +501,7 @@ class login_security_solution {
 					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $this->options['pw_change_grace_period_minutes']);
 					break;
 				case 'pw_reset_bad':
-					$ours = __('The password you just created is not secure so must be changed. Use it now to log in then go to your profile page and create a new password.', self::ID);
-					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $this->options['pw_change_grace_period_minutes']);
+					$ours = __('The password you tried to create is not secure. Please try again.', self::ID);
 					break;
 			}
 		}
@@ -540,10 +539,8 @@ class login_security_solution {
 
 		$user->user_pass = $user_pass;
 		if (!$this->validate_pw($user)) {
-			$this->process_pw_metadata($user->ID, $user_pass);
 			$this->set_pw_force_change($user->ID);
-			$this->set_pw_grace_period($user->ID);
-			$this->redirect_to_login('pw_reset_bad');
+			$this->redirect_to_login('pw_reset_bad', false, 'rp');
 			return -1;
 		}
 
@@ -1775,7 +1772,7 @@ class login_security_solution {
 	 * @param string $login_msg_id  the ID representing the message to
 	 *                              display above the login form
 	 * @param bool $use_rt  use WP's "redirect_to" on successful login?
-	 * @param bool $action  "login" (default) or "retrievepassword"
+	 * @param bool $action  "login" (default), "rp", or "retrievepassword"
 	 * @return void
 	 *
 	 * @uses login_security_solution::$key_login_msg  to know which $_GET
@@ -1802,6 +1799,11 @@ class login_security_solution {
 			$uri .= '&';
 		}
 		$uri .= 'action=' . urlencode($action);
+
+		if ($action == 'rp') {
+			$uri .= '&key=' . urlencode(@$_GET['key']);
+			$uri .= '&login=' . urlencode(@$_GET['login']);
+		}
 
 		if ($login_msg_id) {
 			$uri .= '&' . urlencode($this->key_login_msg) . '='

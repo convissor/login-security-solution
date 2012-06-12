@@ -202,24 +202,21 @@ class PasswordChangeTest extends TestCase {
 		global $wpdb;
 
 		$bad_pw = 'too simple';
+		$_GET['key'] = 'jk';
+		$_GET['login'] = 'ab';
 
 		$expected_error = 'Cannot modify header information';
 		$this->expected_errors($expected_error);
 		self::$location_expected = get_option('siteurl')
-				. '/wp-login.php?action=login&'
+				. '/wp-login.php?action=rp&key=jk&login=ab&'
 				. self::$lss->key_login_msg . '=pw_reset_bad';
 
 		$actual = self::$lss->password_reset($this->user, $bad_pw);
 		$this->assertEquals(-1, $actual, 'password_reset() return.');
 
 		// Check the outcome.
-		$actual = self::$lss->get_pw_changed_time($this->user->ID);
-		$this->assertGreaterThan(0, $actual, 'Changed time should be > 0.');
-
-		$actual = self::$lss->is_pw_reused($bad_pw, $this->user->ID);
-		$this->assertTrue($actual, 'Password should show up as reused');
-
-		$this->ensure_grace_and_force_are_populated();
+		$actual = self::$lss->get_pw_force_change($this->user->ID);
+		$this->assertTrue($actual, 'Force change should not be cleared.');
 
 		$wpdb->query('ROLLBACK TO empty');
 
