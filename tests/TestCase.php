@@ -258,14 +258,10 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 
 		$opt = $wpdb->get_row("SHOW CREATE TABLE `$wpdb->options`", ARRAY_N);
 		$usr = $wpdb->get_row("SHOW CREATE TABLE `$wpdb->usermeta`", ARRAY_N);
-		$fail = $wpdb->get_row("SHOW CREATE TABLE `"
-				. self::$lss->table_fail . "`", ARRAY_N);
 
 		return (
 			strpos($opt[1], 'ENGINE=InnoDB')
 			&& strpos($usr[1], 'ENGINE=InnoDB')
-			&& !empty($fail)
-			&& strpos($fail[1], 'ENGINE=InnoDB')
 		);
 	}
 
@@ -309,6 +305,22 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 	protected function expected_errors($error_messages) {
 		$this->expected_error_list = (array) $error_messages;
 		set_error_handler(array(&$this, 'expected_errors_handler'));
+	}
+
+	/**
+	 * Determines if the fail tabe exists  and uses InnoDB
+	 * @return bool
+	 */
+	protected static function is_fail_table_configured() {
+		global $wpdb;
+
+		$fail = $wpdb->get_row("SHOW CREATE TABLE `"
+				. self::$lss->table_fail . "`", ARRAY_N);
+
+		return (
+			!empty($fail)
+			&& strpos($fail[1], 'ENGINE=InnoDB')
+		);
 	}
 
 	/**

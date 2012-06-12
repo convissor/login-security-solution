@@ -37,6 +37,10 @@ class LoginFailTest extends TestCase {
 	public function setUp() {
 		parent::setUp();
 
+		if (!$this->is_fail_table_configured()) {
+			$this->markTestSkipped("The " . self::$lss->table_fail . " table doesn't exist or isn't using the InnoDB engine. Probably the plugin hasn't been activated.");
+		}
+
 		$this->ip = '1.2.3.4';
 		$_SERVER['REMOTE_ADDR'] = $this->ip;
 		$this->network_ip = '1.2.3';
