@@ -344,6 +344,7 @@ class login_security_solution {
 		 */
 
 		if ($this->is_idle($user->ID)) {
+			###$this->log("check(): Idle.");
 			$this->redirect_to_login('idle', true);
 			return -5;
 		}
@@ -351,11 +352,11 @@ class login_security_solution {
 		if ($this->is_pw_expired($user->ID)) {
 			$grace = $this->check_pw_grace_period($user->ID);
 			if ($grace === true) {
-				// First time they've been here since password expired.
+				###$this->log("check(): First time here since password expired.");
 				$this->redirect_to_login('pw_grace', true);
 				return -1;
 			} elseif ($grace === false) {
-				// Grace period has expired.
+				###$this->log("check(): Grace period expired.");
 				$this->redirect_to_login('pw_expired', false, 'retrievepassword');
 				return -2;
 			}
@@ -363,6 +364,7 @@ class login_security_solution {
 		}
 
 		if ($this->get_pw_force_change($user->ID)) {
+			###$this->log("check(): Password force change.");
 			$this->redirect_to_login('pw_force', false, 'retrievepassword');
 			return -3;
 		}
@@ -370,6 +372,7 @@ class login_security_solution {
 		if ($this->options['disable_logins']
 			&& !current_user_can('administrator'))
 		{
+			###$this->log("check(): Disable logins.");
 			$this->redirect_to_login();
 			return -4;
 		}
@@ -403,10 +406,12 @@ class login_security_solution {
 
 		if (empty($user_ID)) {
 			if (empty($user_name)) {
+				###$this->log("delete_last_active(): Empty user_ID, user_name.");
 				return;
 			}
 			$user = get_user_by('login', $user_name);
 			if (! $user instanceof WP_User) {
+				###$this->log("delete_last_active(): Unknown user_name.");
 				return -1;
 			}
 			$user_ID = $user->ID;
@@ -534,11 +539,13 @@ class login_security_solution {
 	 */
 	public function password_reset($user, $user_pass) {
 		if (empty($user->ID)) {
+			###$this->log("password_reset(): user->ID not set.");
 			return false;
 		}
 
 		$user->user_pass = $user_pass;
 		if (!$this->validate_pw($user)) {
+			###$this->log("password_reset(): Invalid password chosen.");
 			$this->set_pw_force_change($user->ID);
 			$this->redirect_to_login('pw_reset_bad', false, 'rp');
 			return -1;
@@ -633,6 +640,7 @@ class login_security_solution {
 		if ($this->options['login_fail_breach_pw_force_change']
 			&& $fails['total'] >= $this->options['login_fail_breach_pw_force_change'])
 		{
+			###$this->log("wp_login(): Breach force change.");
 			$this->set_pw_force_change($user->ID);
 			$return += 2;
 		}
@@ -640,6 +648,7 @@ class login_security_solution {
 		if ($this->options['login_fail_breach_notify']
 			&& $fails['total'] >= $this->options['login_fail_breach_notify'])
 		{
+			###$this->log("wp_login(): Breach notify.");
 			$this->notify_breach($network_ip, $user_name, $pass_md5, $fails);
 			$return += 4;
 		}

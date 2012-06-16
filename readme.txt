@@ -258,6 +258,8 @@ then `cd` into that directory and run:
 
 = 0.10.0 =
 * Catch $user_ID not being set during "Change All Passwords" submission.
+* Add (commented out) log() calls in important spots. Enables users to
+help me help them.
 
 = 0.9.0 =
 * Fix change that prevented users from logging in after using the password
