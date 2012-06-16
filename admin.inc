@@ -865,6 +865,12 @@ class login_security_solution_admin extends login_security_solution {
 			return __('You do not have sufficient permissions to access this page.');
 		}
 
+		if (empty($user_ID)) {
+			###$this->log("force_change_for_all() user_ID not set.");
+			###$this->log(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
+			return __("\$user_ID variable not set. Another plugin is misbehaving.", self::ID);
+		}
+
 		$sql = "INSERT INTO `$wpdb->usermeta`
 				(user_id, meta_key, meta_value)
 				SELECT ID, %s, 1

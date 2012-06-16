@@ -6,9 +6,7 @@ Requires at least: 3.3
 Tested up to: 3.4RC3
 Stable tag: 0.9.0
 
-Security against brute force attacks by tracking IP, name, password;
-requiring very strong passwords. Idle timeout. Maintenance mode. Multisite
-ready!
+Security against brute force attacks by tracking IP, name, password; requiring very strong passwords. Idle timeout. Maintenance mode. Multisite ready!
 
 
 == Description ==
@@ -257,6 +255,9 @@ then `cd` into that directory and run:
 
 
 == Changelog ==
+
+= 0.10.0 =
+* Catch $user_ID not being set during "Change All Passwords" submission.
 
 = 0.9.0 =
 * Fix change that prevented users from logging in after using the password
