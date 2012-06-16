@@ -3,8 +3,8 @@ Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
 Requires at least: 3.3
-Tested up to: 3.4RC3
-Stable tag: 0.9.0
+Tested up to: 3.4
+Stable tag: 0.10.0
 
 Security against brute force attacks by tracking IP, name, password; requiring very strong passwords. Idle timeout. Maintenance mode. Multisite ready!
 
