@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danie
 Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 0.10.0
+Stable tag: trunk
 
 Security against brute force attacks by tracking IP, name, password; requiring very strong passwords. Idle timeout. Maintenance mode. Multisite ready!
 
@@ -105,8 +105,15 @@ and worst of all, you've inadvertently helped infect the computers of your
 clients and friends.  Oh, and that malware has possibly gotten itself
 into the browser/computer you use for administering your website.
 
+= Compatability with Other Plugins =
+
+Some plugins provide similar functionality.  These overlaps can lead to
+conflicts during program execution.  Please read the FAQ!
+
 
 == Installation ==
+
+1. Before installing this plugin, read the FAQ!
 
 1. Download the Login Security Solution zip file from WordPress' plugin
     site: `http://wordpress.org/extend/plugins/login-security-solution/`
@@ -213,6 +220,14 @@ are not using the `InnoDB` storage engine.
 
 
 == Frequently Asked Questions ==
+
+= Compatibility with Other Plugins =
+
+* __Better WP Security__:  Their "Enable Login Limits" and "Enable strong
+password enforcement" functionality conflict with our features.  The good
+news is we provide more robust protection in those areas and the Better WP
+Security "Settings" page lets you disable those features in their plugin.
+This way you get to enjoy even better security than either plugin alone.
 
 = Where should I report bugs and feature requests? =
 
