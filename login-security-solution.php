@@ -455,8 +455,11 @@ class login_security_solution {
 
 		$codes_to_cloak = array('incorrect_password', 'invalid_username');
 		if (array_intersect($error_codes, $codes_to_cloak)) {
-			unset($_POST['log']);
+			// Use POST value, global $user_name isn't always set.
+			$user_name = empty($_POST['log']) ? '' : $_POST['log'];
 			$user_pass = empty($_POST['pwd']) ? '' : $_POST['pwd'];
+			// Unset user name to avoid information disclosure.
+			unset($_POST['log']);
 			$this->process_login_fail($user_name, $user_pass);
 			$this->load_plugin_textdomain();
 			return $this->hsc_utf8(__('Invalid username or password.', self::ID));

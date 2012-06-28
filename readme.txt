@@ -271,6 +271,10 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.11.0 =
+* Use POST value for `$user_name` in `login_errors()` because global value
+isn't always set.
+
 = 0.10.0 =
 * Catch $user_ID not being set during "Change All Passwords" submission.
 * Add (commented out) log() calls in important spots. Enables users to
