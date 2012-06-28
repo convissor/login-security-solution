@@ -274,6 +274,7 @@ then `cd` into that directory and run:
 = 0.11.0 =
 * Use POST value for `$user_name` in `login_errors()` because global value
 isn't always set.
+* Add some more (commented out) log() calls to help users help me help them.
 
 = 0.10.0 =
 * Catch $user_ID not being set during "Change All Passwords" submission.

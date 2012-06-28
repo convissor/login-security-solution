@@ -460,6 +460,7 @@ class login_security_solution {
 			$user_pass = empty($_POST['pwd']) ? '' : $_POST['pwd'];
 			// Unset user name to avoid information disclosure.
 			unset($_POST['log']);
+			###$this->log("login_fail(): user_name: $user_name, user_pass: $user_pass.");
 			$this->process_login_fail($user_name, $user_pass);
 			$this->load_plugin_textdomain();
 			return $this->hsc_utf8(__('Invalid username or password.', self::ID));
