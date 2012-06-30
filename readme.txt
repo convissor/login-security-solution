@@ -265,7 +265,8 @@ plugin's login failure process.
 Get the translation tools from `http://i18n.svn.wordpress.org/tools/trunk/`
 then `cd` into that directory and run:
 
-        php makepot.php wp-plugin ../login-security-solution \
+        php makepot.php wp-plugin -d 'error_reporting=E_ALL^E_STRICT' \
+            ../login-security-solution \
             ../login-security-solution/languages/login-security-solution.pot
 
 
