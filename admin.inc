@@ -366,7 +366,7 @@ class login_security_solution_admin extends login_security_solution {
 	/**
 	 * Declares a menu item and callback for this plugin's settings page
 	 *
-	 * NOTE: This method is automatically called by WordPress when the
+	 * NOTE: This method is automatically called by WordPress when
 	 * any admin page is rendered
 	 */
 	public function admin_menu() {
@@ -384,7 +384,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * Declares the callbacks for rendering and validating this plugin's
 	 * settings sections and fields
 	 *
-	 * NOTE: This method is automatically called by WordPress when the
+	 * NOTE: This method is automatically called by WordPress when
 	 * any admin page is rendered
 	 */
 	public function admin_init() {
@@ -637,7 +637,7 @@ class login_security_solution_admin extends login_security_solution {
 	/**
 	 * Declares a menu item and callback for the force password change page
 	 *
-	 * NOTE: This method is automatically called by WordPress when the
+	 * NOTE: This method is automatically called by WordPress when
 	 * any admin page is rendered
 	 */
 	public function admin_menu_pw_force_change() {
@@ -655,7 +655,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * Declares the callbacks for rendering and validating the
 	 * force password change page
 	 *
-	 * NOTE: This method is automatically called by WordPress when the
+	 * NOTE: This method is automatically called by WordPress when
 	 * any admin page is rendered
 	 */
 	public function admin_init_pw_force_change() {
@@ -815,7 +815,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * Produces a notice at the top of each admin page, telling admins to
 	 * run the Change All Passwords process
 	 *
-	 * NOTE: This method is automatically called by WordPress when the
+	 * NOTE: This method is automatically called by WordPress when
 	 * any admin page is rendered AND our Change All Passwords function
 	 * has not been called.
 	 *
