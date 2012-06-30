@@ -227,7 +227,7 @@ class login_security_solution {
 			// NON-STANDARD: This is for the password change page.
 			add_action($admin_menu, array(&$admin, 'admin_menu_pw_force_change'));
 			if (!$admin->was_pw_force_change_done()) {
-				add_action($admin_notices, array(&$admin, 'admin_notices'));
+				add_action($admin_notices, array(&$admin, 'admin_notices_pw_force_change'));
 			}
 			add_action('admin_init', array(&$admin, 'admin_init_pw_force_change'));
 		}

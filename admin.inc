@@ -821,7 +821,7 @@ class login_security_solution_admin extends login_security_solution {
 	 *
 	 * @return void
 	 */
-	public function admin_notices() {
+	public function admin_notices_pw_force_change() {
 		if (!current_user_can($this->capability_required)) {
 			return;
 		}
