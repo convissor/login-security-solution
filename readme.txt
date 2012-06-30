@@ -271,6 +271,9 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.12.0 =
+* Display a notice on top of admin pages when our maintenance mode is enabled.
+
 = 0.11.0 =
 * Use POST value for `$user_name` in `login_errors()` because global value
 isn't always set.

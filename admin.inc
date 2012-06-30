@@ -812,6 +812,29 @@ class login_security_solution_admin extends login_security_solution {
 	}
 
 	/**
+	 * Produces a notice at the top of each admin page, telling admins
+	 * that the system is in maintenance mode
+	 *
+	 * NOTE: This method is automatically called by WordPress when
+	 * any admin page is rendered AND our Maintenance Mode feature is on.
+	 *
+	 * @return void
+	 */
+	public function admin_notices_disable_logins() {
+		if (!current_user_can('manage_options')) {
+			return;
+		}
+
+		echo '<div class="error">';
+
+		echo '<p><strong>';
+		echo $this->hsc_utf8(__("WARNING: The site is in maintenance mode. DO NOT TOUCH ANYTHING! Your changes may get overwritten!", self::ID));
+		echo '</strong></p>';
+
+		echo "</div>\n";
+	}
+
+	/**
 	 * Produces a notice at the top of each admin page, telling admins to
 	 * run the Change All Passwords process
 	 *

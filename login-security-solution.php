@@ -219,6 +219,10 @@ class login_security_solution {
 			add_action('admin_init', array(&$admin, 'admin_init'));
 			add_filter($plugin_action_links, array(&$admin, 'plugin_action_links'));
 
+			if ($this->options['disable_logins']) {
+				add_action('admin_notices', array(&$admin, 'admin_notices_disable_logins'));
+			}
+
 			register_activation_hook(__FILE__, array(&$admin, 'activate'));
 			if ($this->options['deactivate_deletes_data']) {
 				register_deactivation_hook(__FILE__, array(&$admin, 'deactivate'));
