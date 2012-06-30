@@ -1,7 +1,7 @@
 === Login Security Solution ===
 Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Tags: login, password, idle, timeout, maintenance, security, attack, hack, lock, ban
+Tags: login, password, passwords, strength, strong, idle, timeout, maintenance, security, attack, hack, lock, ban
 Requires at least: 3.3
 Tested up to: 3.4.1
 Stable tag: 0.12.0
@@ -28,7 +28,7 @@ legitimate users or administrators
     + Can notify the administrator of attacks and breaches
     + Supports IPv6
 
-* Thoroughly examines the strength of new passwords.  Includes full
+* Thoroughly examines and enforces password strength.  Includes full
 UTF-8 character set support if PHP's `mbstring` extension is enabled.
 The tests have caught every password dictionary entry I've tried.
     + Minimum length (customizable)
@@ -102,8 +102,9 @@ that pushes malware into your readers' browsers.
 So if your site does get cracked, not only do you waste hours cleaning up,
 your reputation gets sullied, security software flags your site as dangerous,
 and worst of all, you've inadvertently helped infect the computers of your
-clients and friends.  Oh, and that malware has possibly gotten itself
-into the browser/computer you use for administering your website.
+clients and friends.  Oh, and that malware has likely gotten itself
+into your computer.
+
 
 = Compatability with Other Plugins =
 
@@ -189,7 +190,7 @@ conflicts during program execution.  Please read the FAQ!
     doing so is accessible via a link in this plugin's entry on
     WordPress' "Plugins" page.
 
-1. Ensure your password is strong by changing it.
+1. Ensure your password strength by changing it.
 
 
 = Unit Tests =
