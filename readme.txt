@@ -273,6 +273,10 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.13.0 =
+* Add a script for turning our "Disable Logins" feature on and off from the
+command line.
+
 = 0.12.0 =
 * Display a notice on top of admin pages when our maintenance mode is enabled.
 
