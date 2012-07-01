@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danie
 Tags: login, password, passwords, strength, strong, idle, timeout, maintenance, security, attack, hack, lock, ban
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 0.12.0
+Stable tag: 0.13.0
 
 Security against brute force attacks by tracking IP, name, password; requiring very strong passwords. Idle timeout. Maintenance mode. Multisite ready!
 
