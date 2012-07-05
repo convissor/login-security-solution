@@ -273,6 +273,9 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.14.0 =
+* Add an `.htaccess` file that blocks access to this plugin's directory.
+
 = 0.13.0 =
 * Add a script for turning our "Disable Logins" feature on and off from the
 command line.
