@@ -15,8 +15,8 @@ $option_name = 'login-security-solution-options';
 
 
 function usage() {
-	echo "Usage:  disable_logins_setter.php <enabled>\n";
-	echo "  @param int enabled  should logins be disabled? 1 = yes, 0 = no.\n";
+	echo "Usage:  disable_logins_setter.php <input>\n";
+	echo "  @param int input  1 = disable logins, 0 = enable logins\n";
 	echo "\nAuthor: Daniel Convissor <danielc@analysisandsolutions.com>\n";
 	echo "License: http://www.gnu.org/licenses/gpl-2.0.html\n";
 	echo "Link: http://wordpress.org/extend/plugins/login-security-solution/\n";
@@ -26,8 +26,8 @@ function usage() {
 if (!isset($_SERVER['argv'][1])) {
 	usage();
 } else {
-	$enabled = $_SERVER['argv'][1];
-	if ($enabled !== '0' && $enabled !== '1') {
+	$input = $_SERVER['argv'][1];
+	if ($input !== '0' && $input !== '1') {
 		usage();
 	}
 }
@@ -44,7 +44,7 @@ $root_dir = "$util_dir/../../../..";
 require_once "$root_dir/wp-load.php";
 
 $option_value = get_option($option_name);
-$option_value['disable_logins'] = $enabled;
+$option_value['disable_logins'] = $input;
 if (!update_option($option_name, $option_value)) {
 	echo "ERROR: updating the option had a problem.\n";
 	exit(1);
