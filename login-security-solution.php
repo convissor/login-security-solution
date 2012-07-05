@@ -164,6 +164,12 @@ class login_security_solution {
 	 */
 	protected $umk_last_active;
 
+	/**
+	 * Our usermeta key for tracking if a user's password needs to be changed
+	 * @var string
+	 */
+	protected $umk_pw_force_change;
+
 
 	/**
 	 * Declares the WordPress action and filter callbacks
