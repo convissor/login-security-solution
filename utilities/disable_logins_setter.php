@@ -18,7 +18,7 @@ function usage() {
 	echo "Usage:  disable_logins_setter.php <enabled>\n";
 	echo "  @param int enabled  should logins be disabled? 1 = yes, 0 = no.\n";
 	echo "\nAuthor: Daniel Convissor <danielc@analysisandsolutions.com>\n";
-	echo "License: http://www.analysisandsolutions.com/software/license.htm\n";
+	echo "License: http://www.gnu.org/licenses/gpl-2.0.html\n";
 	echo "Link: http://wordpress.org/extend/plugins/login-security-solution/\n";
 	exit(1);
 }
