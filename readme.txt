@@ -274,6 +274,8 @@ then `cd` into that directory and run:
 == Changelog ==
 
 = 0.14.0 =
+* Fix emails being mistakenly sent in multisite mode that say "There have
+been at least 0 failed attempts to log in".  (Bug #1548, deanmarktaylor)
 * Add an `.htaccess` file that blocks access to this plugin's directory.
 
 = 0.13.0 =
