@@ -544,7 +544,7 @@ class login_security_solution {
 	 * NOTE: This method is automatically called by WordPress when users
 	 * provide their new password via the password reset functionality.
 	 *
-	 * @param WP_User  the user object being edited
+	 * @param WP_User $user  the user object being edited
 	 * @param string $user_pass  the unhashed new password
 	 * @return mixed  return values provided for unit testing
 	 *
@@ -575,9 +575,9 @@ class login_security_solution {
 	 * their profile information or when admins add a user.  The callback
 	 * is activated in the edit_user() function in wp-admin/includes/user.php.
 	 *
-	 * @param WP_User  the user object being edited
+	 * @param WP_Error $errors  the means to provide specific error messages
 	 * @param bool $update  is this an existing user?
-	 * @param WP_Error  the means to provide specific error messages
+	 * @param WP_User $user  the user object being edited
 	 * @return bool|null  return values provided for unit testing
 	 *
 	 * @uses login_security_solution::is_pw_reused()  to know if it's an old
@@ -1019,7 +1019,7 @@ class login_security_solution {
 	 * Saves the failed login's info in the database
 	 *
 	 * @param string $ip  a prior result from get_ip()
-	 * @param string $user_name  the user name from the current login form
+	 * @param string $user_login  the user name from the current login form
 	 * @param string $pass_md5  the md5 hashed new password
 	 * @return void
 	 */
@@ -1219,6 +1219,7 @@ class login_security_solution {
 	 * Does the password contain data from the user's profile?
 	 *
 	 * @param string $pw  the password to examine
+	 * @param WP_User $user  the current user
 	 * @return bool
 	 */
 	protected function is_pw_like_user_data($pw, $user) {
@@ -1342,6 +1343,7 @@ class login_security_solution {
 	 * Is the user's password the same as one they've used earlier?
 	 *
 	 * @param string $pw  the password to examine
+	 * @param int $user_ID  the user's id number
 	 * @return mixed  true if reused.  Other replies all evaluate to empty
 	 *                but use different types to aid unit testing.
 	 */
@@ -1633,6 +1635,7 @@ class login_security_solution {
 	 * @param string $network_ip  a prior result from get_network_ip()
 	 * @param string $user_name  the user name from the current login form
 	 * @param string $pass_md5  the md5 hashed new password
+	 * @param array $fails  the data from get_login_fail()
 	 * @return bool
 	 *
 	 * @uses login_security_solution::get_notify_counts()  for some shared text
@@ -1670,6 +1673,7 @@ class login_security_solution {
 	 * @param string $network_ip  a prior result from get_network_ip()
 	 * @param string $user_name  the user name from the current login form
 	 * @param string $pass_md5  the md5 hashed new password
+	 * @param array $fails  the data from get_login_fail()
 	 * @return bool
 	 *
 	 * @uses login_security_solution::get_notify_counts()  for some shared text
@@ -1795,7 +1799,7 @@ class login_security_solution {
 	 * @param string $login_msg_id  the ID representing the message to
 	 *                              display above the login form
 	 * @param bool $use_rt  use WP's "redirect_to" on successful login?
-	 * @param bool $action  "login" (default), "rp", or "retrievepassword"
+	 * @param string $action  "login" (default), "rp", or "retrievepassword"
 	 * @return void
 	 *
 	 * @uses login_security_solution::$key_login_msg  to know which $_GET
@@ -1978,8 +1982,8 @@ class login_security_solution {
 	/**
 	 * Reverses a string in a multibyte safe way
 	 *
-	 * @param sring $pw  the string to examine
-	 * @return sring  the reversed string
+	 * @param string $pw  the string to examine
+	 * @return string  the reversed string
 	 */
 	protected function strrev($pw) {
 		return implode('', array_reverse($this->split($pw)));
@@ -2005,7 +2009,7 @@ class login_security_solution {
 	 * Is the password valid?
 	 *
 	 * @param WP_User|string  the user object or password to be examined
-	 * @param WP_Error  the means to provide specific error messages
+	 * @param WP_Error $errors  the means to provide specific error messages
 	 * @return bool
 	 */
 	public function validate_pw($user, &$errors = null) {
