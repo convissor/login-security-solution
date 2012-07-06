@@ -23,6 +23,9 @@ require_once dirname(dirname(__FILE__)) .  '/admin.inc';
 // Remove automatically created object.
 unset($GLOBALS['login_security_solution']);
 
+/** Tell the system not to disconnect the database or do the slow downs. */
+define('LOGIN_SECURITY_SOLUTION_TESTING', true);
+
 /**
  * Extend the class to be tested, providing access to protected elements
  *
@@ -32,13 +35,6 @@ unset($GLOBALS['login_security_solution']);
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  */
 class Accessor extends login_security_solution_admin {
-	/**
-	 * Is this class being used by our unit tests?
-	 * @var bool
-	 */
-	protected $testing = true;
-
-
 	public function __call($method, $args) {
 		return call_user_func_array(array($this, $method), $args);
 	}

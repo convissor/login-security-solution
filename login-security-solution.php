@@ -135,12 +135,6 @@ class login_security_solution {
 	protected $table_fail;
 
 	/**
-	 * Is this class being used by our unit tests?
-	 * @var bool
-	 */
-	protected $testing = false;
-
-	/**
 	 * Our usermeta key for tracking when passwords were changed
 	 * @var string
 	 */
@@ -1749,7 +1743,7 @@ class login_security_solution {
 		}
 
 		if ($sleep) {
-			if (!$this->testing) {
+			if (!defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
 				if (is_multisite()) {
 					// Get this cached before disconnecting the database.
 					get_option('users_can_register');
@@ -1840,7 +1834,7 @@ class login_security_solution {
 		wp_logout();
 		wp_redirect($uri);
 
-		if (!$this->testing) {
+		if (!defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
 			exit;
 		}
 	}
