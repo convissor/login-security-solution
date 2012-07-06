@@ -17,6 +17,7 @@ WordPress installations.
 * Blocks brute force and dictionary attacks without inconveniencing
 legitimate users or administrators
     + Tracks IP addresses, usernames, and passwords
+    + Monitors logins made by form submissions and auth cookies
     + If a login failure uses data matching a past failure, the plugin
       slows down response times.  The more failures, the longer the delay.
       This limits attackers ability to effectively probe your site,
@@ -80,6 +81,7 @@ The tests have caught every password dictionary entry I've tried.
 * Uses WordPress' features rather than fighting or overriding them
 * No advertising, promotions, or beacons
 * Proper internationalization support
+* Monitors auth cookie failures
 * Clean, documented code
 * Unit tests covering 100% of the main class
 
@@ -272,6 +274,9 @@ then `cd` into that directory and run:
 
 
 == Changelog ==
+
+= 0.15.0 =
+* Log auth cookie failures too.
 
 = 0.14.0 =
 * Fix emails being mistakenly sent in multisite mode that say "There have

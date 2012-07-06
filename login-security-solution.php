@@ -175,6 +175,8 @@ class login_security_solution {
 	public function __construct() {
 		$this->initialize();
 
+		add_action('auth_cookie_bad_username', array(&$this, 'auth_cookie_bad'));
+		add_action('auth_cookie_bad_hash', array(&$this, 'auth_cookie_bad'));
 		add_action('auth_cookie_valid', array(&$this, 'check'), 1, 2);
 		add_action('password_reset', array(&$this, 'password_reset'), 10, 2);
 		add_action('user_profile_update_errors',
@@ -290,6 +292,22 @@ class login_security_solution {
 	/*
 	 * ===== ACTION & FILTER CALLBACK METHODS =====
 	 */
+
+	/**
+	 * Passes failed auth cookie data to our login failure process
+	 *
+	 * NOTE: This method is automatically called by WordPress when a user's
+	 * cookie has an invalid user name or password hash.
+	 *
+	 * @param array $cookie_elements  the auth cookie data
+	 *
+	 * @uses login_security_solution::process_login_fail()  to log the failure
+	 *       and slow down the response as necessary
+	 */
+	public function auth_cookie_bad($cookie_elements) {
+		$this->process_login_fail(@$cookie_elements['username'],
+				@$cookie_elements['hmac']);
+	}
 
 	/**
 	 * Removes the current user's last active time metadata
