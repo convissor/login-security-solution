@@ -450,7 +450,7 @@ class login_security_solution {
 	 * @return string
 	 *
 	 * @uses login_security_solution::process_login_fail()  to log the failure
-	 *       and lock the user out if necessary
+	 *       and slow down the response as necessary
 	 */
 	public function login_errors($out = '') {
 		global $errors, $user_name;
