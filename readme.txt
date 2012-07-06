@@ -277,6 +277,7 @@ then `cd` into that directory and run:
 
 = 0.15.0 =
 * Log auth cookie failures too.
+* Clean up sleep logic. (Bug #1549, deanmarktaylor)
 
 = 0.14.0 =
 * Fix emails being mistakenly sent in multisite mode that say "There have

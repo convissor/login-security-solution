@@ -1750,7 +1750,6 @@ class login_security_solution {
 			$this->notify_fail($network_ip, $user_name, $pass_md5, $fails);
 		}
 
-		$sleep = 0;
 		if ($fails['total'] < $this->options['login_fail_tier_2']) {
 			// Use random, overlapping sleep times to complicate profiling.
 			$sleep = rand(1, 7);
@@ -1760,19 +1759,17 @@ class login_security_solution {
 			$sleep = rand(25, 60);
 		}
 
-		if ($sleep) {
-			if (!defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
-				if (is_multisite()) {
-					// Get this cached before disconnecting the database.
-					get_option('users_can_register');
-				}
-
-				// Keep login failures from becoming denial of service attacks.
-				mysql_close($wpdb->dbh);
-
-				// Increasingly slow down attackers to the point they'll give up.
-				sleep($sleep);
+		if (!defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
+			if (is_multisite()) {
+				// Get this cached before disconnecting the database.
+				get_option('users_can_register');
 			}
+
+			// Keep login failures from becoming denial of service attacks.
+			mysql_close($wpdb->dbh);
+
+			// Increasingly slow down attackers to the point they'll give up.
+			sleep($sleep);
 		}
 
 		return $sleep;
