@@ -14,6 +14,10 @@
 $option_name = 'login-security-solution-options';
 
 
+/**
+ * Displays help information to CLI users
+ * @return string  the information
+ */
 function usage() {
 	echo "Usage:  disable_logins_setter.php <input>\n";
 	echo "  @param int input  1 = disable logins, 0 = enable logins\n";
