@@ -50,12 +50,12 @@ require_once "$root_dir/wp-load.php";
 $option_value = get_option($option_name);
 
 if ($option_value['disable_logins'] === $input) {
-	echo "NOTICE: option is '$input' already.  No action needed.\n";
+	echo "NOTICE: disable_logins = '$input' already.  No action needed.\n";
 	exit;
 }
 
 $option_value['disable_logins'] = $input;
 if (!update_option($option_name, $option_value)) {
-	echo "ERROR: updating the option had a problem.\n";
+	echo "ERROR: updating the 'disable_logins' option had a problem.\n";
 	exit(1);
 }
