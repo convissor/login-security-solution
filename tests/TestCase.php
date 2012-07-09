@@ -371,8 +371,9 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 			$this->fail('wp_mail() has not been called.');
 		}
 
+		$basename = str_replace('::', '--', self::$mail_file_basename);
 		$this->assertStringMatchesFormatFile(
-			dirname(__FILE__) . '/expected/' . self::$mail_file_basename,
+			dirname(__FILE__) . '/expected/' . $basename,
 			file_get_contents(self::$mail_file)
 		);
 	}
