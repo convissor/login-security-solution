@@ -818,7 +818,7 @@ class login_security_solution {
 					SUM(IF(user_login = '$user_name', 1, 0)) AS user_name,
 					SUM(IF(pass_md5 = '$pass_md5', 1, 0)) AS pass_md5
 				FROM `$this->table_fail`
-				WHERE (ip LIKE '$network_ip%'
+				WHERE ($ip_search
 					OR user_login = '$user_name'
 					OR pass_md5 = '$pass_md5')
 					AND date_failed > DATE_SUB(NOW(), INTERVAL "
