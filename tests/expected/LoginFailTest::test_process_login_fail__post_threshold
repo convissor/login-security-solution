@@ -7,7 +7,7 @@ There have been at least 4 failed attempts to log in during the past 60 minutes 
 
 Component     Count  Value from Current Attempt
 ------------  -----  --------------------------------
-Network IP        4  1.2.3
+Network IP        4  1.2.38
 Username          4  test
 Password MD5      2  %s
 

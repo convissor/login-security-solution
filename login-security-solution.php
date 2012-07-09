@@ -808,6 +808,11 @@ class login_security_solution {
 		if ($network_ip) {
 			// Can't use wpdb::prepare() because it adds quote marks.
 			$wpdb->escape_by_ref($network_ip);
+			if (strpos($network_ip, ':') === false) {
+				$network_ip .= '.';
+			} else {
+				$network_ip .= ':';
+			}
 			$ip_search = "ip LIKE '$network_ip%'";
 		} else {
 			$ip_search = "ip = ''";
@@ -823,7 +828,7 @@ class login_security_solution {
 					OR pass_md5 = '$pass_md5')
 					AND date_failed > DATE_SUB(NOW(), INTERVAL "
 					. (int) $this->options['login_fail_minutes'] . " MINUTE)";
-
+$this->log($sql);
 		return $wpdb->get_row($sql, ARRAY_A);
 	}
 

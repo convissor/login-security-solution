@@ -41,9 +41,9 @@ class LoginFailTest extends TestCase {
 			$this->markTestSkipped("The " . self::$lss->table_fail . " table doesn't exist or isn't using the InnoDB engine. Probably the plugin hasn't been activated.");
 		}
 
-		$this->ip = '1.2.3.4';
+		$this->ip = '1.2.38.4';
 		$_SERVER['REMOTE_ADDR'] = $this->ip;
-		$this->network_ip = '1.2.3';
+		$this->network_ip = '1.2.38';
 
 		$this->user_name = 'test';
 		$this->pass_md5 = 'ababab';
@@ -84,6 +84,22 @@ class LoginFailTest extends TestCase {
 
 		$actual = self::$lss->get_login_fail($this->network_ip,
 				$this->user_name, $this->pass_md5);
+
+		$this->assertEquals($expected, $actual);
+	}
+
+	/**
+	 * @depends test_get_login_fail
+	 */
+	public function test_get_login_fail_shorter_network() {
+		$expected = array(
+			'total' => '0',
+			'network_ip' => null,
+			'user_name' => null,
+			'pass_md5' => null,
+		);
+
+		$actual = self::$lss->get_login_fail('1.2.3', 'nunca', 'nada');
 
 		$this->assertEquals($expected, $actual);
 	}
