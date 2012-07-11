@@ -360,7 +360,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 		$contents = 'To: ' . implode(', ', (array) $to) . "\n"
 				. "Subject: $subject\n\n$message";
 
-		return file_put_contents(self::$mail_file, $contents);
+		return file_put_contents(self::$mail_file, $contents, FILE_APPEND);
 	}
 
 	/**

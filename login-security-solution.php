@@ -164,6 +164,12 @@ class login_security_solution {
 	 */
 	protected $umk_pw_force_change;
 
+	/**
+	 * Our usermeta key for tracking this user's verified IP addresses
+	 * @var string
+	 */
+	protected $umk_verified_ips;
+
 
 	/**
 	 * Declares the WordPress action and filter callbacks
@@ -264,6 +270,7 @@ class login_security_solution {
 		$this->umk_grace_period = self::ID . '-pw-grace-period-start-time';
 		$this->umk_hashes = self::ID . '-pw-hashes';
 		$this->umk_last_active = self::ID . '-last-active';
+		$this->umk_verified_ips = self::ID . '-verified-ips';
 
 		$this->dir_dictionaries = dirname(__FILE__) . '/pw_dictionaries/';
 		$this->dir_sequences = dirname(__FILE__) . '/pw_sequences/';
@@ -577,6 +584,7 @@ class login_security_solution {
 			return -1;
 		}
 
+		$this->save_verified_ip($user->ID, $this->get_ip());
 		$this->process_pw_metadata($user->ID, $user_pass);
 	}
 
@@ -619,6 +627,9 @@ class login_security_solution {
 		// Empty ID means an admin is adding a new user.
 		if (!empty($user->ID) && !$errors->get_error_codes()) {
 			$this->process_pw_metadata($user->ID, $user->user_pass);
+			if ($user->ID == get_current_user_id()) {
+				$this->save_verified_ip($user->ID, $this->get_ip());
+			}
 		}
 
 		return $answer;
@@ -634,11 +645,14 @@ class login_security_solution {
 	 * @param WP_User $user  the current user
 	 * @return mixed  return values provided for unit testing
 	 *
+	 * @uses login_security_solution::get_ip()  to get the
+	 *       $_SERVER['REMOTE_ADDR']
 	 * @uses login_security_solution::get_network_ip()  gets the IP's
 	 *       "network" part
 	 * @uses login_security_solution::md5()  to hash the password
 	 * @uses login_security_solution::get_login_fail()  to see if
 	 *       they're over the limit
+	 * @uses login_security_solution::get_verified_ips()  to check legitimacy
 	 * @uses login_security_solution::$options  for the
 	 *       login_fail_breach_notify value
 	 * @uses login_security_solution::$options  for the
@@ -657,14 +671,31 @@ class login_security_solution {
 			return -1;
 		}
 
-		$network_ip = $this->get_network_ip();
+		$ip = $this->get_ip();
+		$network_ip = $this->get_network_ip($ip);
 		$pass_md5 = $this->md5(empty($_POST['pwd']) ? '' : $_POST['pwd']);
 
 		$return = 1;
 		$fails = $this->get_login_fail($network_ip, $user_name, $pass_md5);
 
+		/*
+		 * Keep legitimate users from having to repeatedly reset passwords
+		 * during active attacks against their user name (password ).  Do this
+		 * if the user's current IP address is not involved with any of the
+		 * recent failed logins and the current IP address has been verified.
+		 */
+		if (!$fails['network_ip']
+			&& in_array($ip, $this->get_verified_ips($user->ID)))
+		{
+			$return += 8;
+			$verified_ip = true;
+		} else {
+			$verified_ip = false;
+		}
+
 		if ($this->options['login_fail_breach_pw_force_change']
-			&& $fails['total'] >= $this->options['login_fail_breach_pw_force_change'])
+			&& $fails['total'] >= $this->options['login_fail_breach_pw_force_change']
+			&& !$verified_ip)
 		{
 			###$this->log("wp_login(): Breach force change.");
 			$this->set_pw_force_change($user->ID);
@@ -674,8 +705,13 @@ class login_security_solution {
 		if ($this->options['login_fail_breach_notify']
 			&& $fails['total'] >= $this->options['login_fail_breach_notify'])
 		{
+			// Send this, even if IP is verified, just in case.
 			###$this->log("wp_login(): Breach notify.");
-			$this->notify_breach($network_ip, $user_name, $pass_md5, $fails);
+			$this->notify_breach($network_ip, $user_name, $pass_md5, $fails,
+					$verified_ip);
+			if ($verified_ip) {
+				$this->notify_breach_user($user);
+			}
 			$return += 4;
 		}
 
@@ -908,6 +944,22 @@ $this->log($sql);
 	 */
 	protected function get_pw_force_change($user_ID) {
 		return (bool) get_user_meta($user_ID, $this->umk_pw_force_change, true);
+	}
+
+	/**
+	 * Lists IP addresses known to be good for the user
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return array  the IP addresses
+	 */
+	protected function get_verified_ips($user_ID) {
+		$out = get_user_meta($user_ID, $this->umk_verified_ips, true);
+		if (empty($out)) {
+			$out = array();
+		} elseif (!is_array($out)) {
+			$out = (array) $out;
+		}
+		return $out;
 	}
 
 	/**
@@ -1653,13 +1705,14 @@ $this->log($sql);
 	 * @param string $user_name  the user name from the current login form
 	 * @param string $pass_md5  the md5 hashed new password
 	 * @param array $fails  the data from get_login_fail()
+	 * @param bool $verified_ip  is the user coming form a verified ip?
 	 * @return bool
 	 *
 	 * @uses login_security_solution::get_notify_counts()  for some shared text
 	 * @uses wp_mail()  to send the messages
 	 */
 	protected function notify_breach($network_ip, $user_name, $pass_md5,
-			$fails)
+			$fails, $verified_ip)
 	{
 		$this->load_plugin_textdomain();
 
@@ -1676,9 +1729,41 @@ $this->log($sql);
 			. sprintf(__("Someone just logged in using the following components. Prior to that, some combination of those components were a part of %d failed attempts to log in during the past %d minutes:", self::ID),
 				$fails['total'], $this->options['login_fail_minutes']) . "\n\n"
 
-			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails)
+			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails);
 
-			. __("The user has been logged out and will be required to confirm their identity via the password reset functionality.", self::ID) . "\n";
+		if ($verified_ip) {
+			$message .= __("The user's current IP address is one they have verified with your site in the past.  Therefore, the user will NOT be required to confirm their identity via the password reset process.  An email will be sent to them, just in case this actually was a breach.", self::ID) . "\n";
+		} else {
+			$message .= __("The user has been logged out and will be required to confirm their identity via the password reset functionality.", self::ID) . "\n";
+		}
+
+		return wp_mail($to, $subject, $message);
+	}
+
+	/**
+	 * Sends an email to the current user letting them know a breakin
+	 * may have occurred
+	 *
+	 * @param WP_User $user  the current user
+	 * @return bool
+	 *
+	 * @uses wp_mail()  to send the messages
+	 */
+	protected function notify_breach_user($user)
+	{
+		$this->load_plugin_textdomain();
+
+		$to = $this->sanitize_whitespace($user->user_email);
+
+		$blog = get_option('blogname');
+		$subject = sprintf(__("POTENTIAL INTRUSION AT %s", self::ID), $blog);
+		$subject = $this->sanitize_whitespace($subject);
+
+		$message =
+			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site is being attacked.", self::ID), $user->user_login, get_option('siteurl')) . "\n\n"
+			. __("IF IT WAS NOT YOU, please do the following right away:", self::ID) . "\n\n"
+			. sprintf(__("1) Log into %s and change your password.", self::ID), wp_login_url()) . "\n\n"
+			. sprintf(__("2) Send an email to %s letting them know it was not you who logged in.", self::ID), get_option('admin_email')) . "\n";
 
 		return wp_mail($to, $subject, $message);
 	}
@@ -1892,6 +1977,38 @@ $this->log($sql);
 		}
 
 		update_user_meta($user_ID, $this->umk_hashes, $hashes);
+
+		return true;
+	}
+
+	/**
+	 * Stores the user's current IP address
+	 *
+	 * Note: saves up to 10 adddresses, duplicates are not stored.
+	 *
+	 * @param int $user_ID  the user's id number
+	 * @param string $new_ip  the ip address to add
+	 * @return mixed  true on success, 1 if IP is already stored, -1 if IP empty
+	 */
+	protected function save_verified_ip($user_ID, $new_ip) {
+		if (!$new_ip) {
+			return -1;
+		}
+
+		$ips = $this->get_verified_ips($user_ID);
+
+		if (in_array($new_ip, $ips)) {
+			return 1;
+		}
+
+		$ips[] = $new_ip;
+
+		$cut = count($ips) - 10;
+		if ($cut > 0) {
+			array_splice($ips, 0, $cut);
+		}
+
+		update_user_meta($user_ID, $this->umk_verified_ips, $ips);
 
 		return true;
 	}

@@ -23,9 +23,11 @@ legitimate users or administrators
       This limits attackers ability to effectively probe your site,
       so they'll give up and go find an easier target.
     + If an account seems breached, the "user" is immediately logged out
-      and forced to use WordPress' password reset utility. This prevents
-      any damage from being done and verifies the user's identity.  All
-      without intervention by an administrator.
+      and forced to use WordPress' password reset utility.  This prevents
+      any damage from being done and verifies the user's identity.  But
+      if the user is coming in from an IP address they have used in the
+      past, an email is sent to the user making sure it was them logging in.
+      All without intervention by an administrator.
     + Can notify the administrator of attacks and breaches
     + Supports IPv6
 
@@ -274,6 +276,10 @@ then `cd` into that directory and run:
 
 
 == Changelog ==
+
+= 0.18.0 =
+* Keep legit user from having to repeatedly reset pw during active attacks
+against their user name.
 
 = 0.17.0 =
 * Fix network IP query in get_login_fail(). (Bug #1553, deanmarktaylor)

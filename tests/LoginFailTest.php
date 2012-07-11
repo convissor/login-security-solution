@@ -195,6 +195,39 @@ class LoginFailTest extends TestCase {
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertTrue($actual, 'get_pw_force_change() return value...');
 
+		self::$lss->delete_pw_force_change($this->user->ID);
+
+		$this->check_mail_file();
+	}
+
+	/**
+	 * @depends test_wp_login__post_breach_threshold
+	 */
+	public function test_wp_login__post_breach_threshold_verified_ip() {
+		global $wpdb;
+		self::$mail_file_basename = __METHOD__;
+
+		$wpdb->query('SAVEPOINT pre_verified_ip');
+
+		$this->ip = '1.2.33.4';
+		$_SERVER['REMOTE_ADDR'] = $this->ip;
+		$this->network_ip = '1.2.33';
+
+		self::$lss->save_verified_ip($this->user->ID, $this->ip);
+
+		try {
+			// Do THE deed.
+			$actual = self::$lss->wp_login($this->user_name, $this->user);
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertSame(13, $actual, 'Bad return value.');
+
+		$actual = self::$lss->get_pw_force_change($this->user->ID);
+		$this->assertFalse($actual, 'get_pw_force_change() return value...');
+
+		$wpdb->query('ROLLBACK TO pre_verified_ip');
+
 		$this->check_mail_file();
 	}
 
@@ -230,6 +263,10 @@ class LoginFailTest extends TestCase {
 		$options = self::$lss->options;
 		$options['login_fail_breach_notify'] = 0;
 		self::$lss->options = $options;
+
+		$this->ip = '1.2.38.4';
+		$_SERVER['REMOTE_ADDR'] = $this->ip;
+		$this->network_ip = '1.2.38';
 
 		self::$lss->delete_pw_force_change($this->user->ID);
 

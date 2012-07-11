@@ -1,0 +1,24 @@
+To: %a
+Subject: POTENTIAL INTRUSION AT %a
+
+Your website, %s, may have been broken in to.
+
+Someone just logged in using the following components. Prior to that, some combination of those components were a part of 4 failed attempts to log in during the past 60 minutes:
+
+Component     Count  Value from Current Attempt
+------------  -----  --------------------------------
+Network IP        0  1.2.33
+Username          4  test
+Password MD5      %d  %s
+
+The user's current IP address is one they have verified with your site in the past.  Therefore, the user will NOT be required to confirm their identity via the password reset process.  An email will be sent to them, just in case this actually was a breach.
+To: %a
+Subject: POTENTIAL INTRUSION AT %a
+
+Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site is being attacked.
+
+IF IT WAS NOT YOU, please do the following right away:
+
+1) Log into %s and change your password.
+
+2) Send an email to %s letting them know it was not you who logged in.
