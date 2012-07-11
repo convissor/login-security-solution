@@ -864,7 +864,7 @@ class login_security_solution {
 					OR pass_md5 = '$pass_md5')
 					AND date_failed > DATE_SUB(NOW(), INTERVAL "
 					. (int) $this->options['login_fail_minutes'] . " MINUTE)";
-$this->log($sql);
+
 		return $wpdb->get_row($sql, ARRAY_A);
 	}
 

@@ -277,6 +277,9 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.19.0 =
+* Remove inadvertent log call added in 0.17.0.
+
 = 0.18.0 =
 * Keep legit user from having to repeatedly reset pw during active attacks
 against their user name.
