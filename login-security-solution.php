@@ -1666,7 +1666,7 @@ $this->log($sql);
 		$to = $this->sanitize_whitespace(get_option('admin_email'));
 
 		$blog = get_option('blogname');
-		$subject = sprintf('POTENTIAL INTRUSION AT %s', $blog);
+		$subject = sprintf(__("POTENTIAL INTRUSION AT %s", self::ID), $blog);
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =
@@ -1704,7 +1704,7 @@ $this->log($sql);
 		$to = $this->sanitize_whitespace(get_option('admin_email'));
 
 		$blog = get_option('blogname');
-		$subject = sprintf('ATTACK HAPPENING TO %s', $blog);
+		$subject = sprintf(__("ATTACK HAPPENING TO %s", self::ID), $blog);
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =
