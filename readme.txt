@@ -278,6 +278,9 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.20.1 =
+* Add "numbers" to the password policy text.
+
 = 0.20.0 =
 * Replace WP's password policy text with our own.
 
