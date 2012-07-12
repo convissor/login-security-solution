@@ -237,8 +237,9 @@ This way you get to enjoy even better security than either plugin alone.
 = Where should I report bugs and feature requests? =
 
 Report bugs and submit feature requests by opening a ticket in WordPress'
-[plugins Trac website](http://plugins.trac.wordpress.org/report).
-Select `login-security-solution` in the "Component" list.
+[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
+
+You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
 
 = Where did the "Change All Passwords" interface go? =
 
@@ -416,8 +417,9 @@ problems under PHP 5.4.
 == Bugs and Feature Requests ==
 
 Report bugs and submit feature requests by opening a ticket in WordPress'
-[plugins Trac website](http://plugins.trac.wordpress.org/report).
-Select `login-security-solution` in the "Component" list.
+[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
+
+You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
 
 
 == Inspiration and References ==
