@@ -277,6 +277,9 @@ then `cd` into that directory and run:
 
 == Changelog ==
 
+= 0.20.0 =
+* Replace WP's password policy text with our own.
+
 = 0.19.0 =
 * Remove inadvertent log call added in 0.17.0.
 

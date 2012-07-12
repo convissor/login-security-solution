@@ -188,6 +188,10 @@ class login_security_solution {
 		add_action('user_profile_update_errors',
 				array(&$this, 'user_profile_update_errors'), 999, 3);
 
+		add_action('personal_options', array(&$this, 'pw_policy_add_filter'));
+		add_action('user_new_form_tag', array(&$this, 'pw_policy_add_filter'));
+		add_action('login_init', array(&$this, 'pw_policy_add_filter'));
+
 		add_filter('login_errors', array(&$this, 'login_errors'));
 		add_filter('login_message', array(&$this, 'login_message'));
 
@@ -586,6 +590,41 @@ class login_security_solution {
 
 		$this->save_verified_ip($user->ID, $this->get_ip());
 		$this->process_pw_metadata($user->ID, $user_pass);
+	}
+
+	/**
+	 * Declares our password policy gettext filter
+	 *
+	 * NOTE: This method is automatically called by WordPress
+	 * on the wp-login.php, user-new.php, and user-edit.php pages.
+	 *
+	 * @return void
+	 */
+	public function pw_policy_add_filter() {
+		add_filter('gettext', array(&$this, 'pw_policy_rewrite'), 11, 2);
+	}
+
+	/**
+	 * Replaces WP's password policy text with ours
+	 *
+	 * NOTE: This method is automatically called by WordPress during gettext
+	 * calls on the wp-login.php, user-new.php, and user-edit.php pages.
+	 *
+	 * @param string $translated  the translated output from earlier filters
+	 * @param string $original  the un-translated text
+	 * @return string  our translated password policy
+	 *
+	 * @uses login_security_solution::$options  for the pw_length and
+	 *       pw_complexity_exemption_length values
+	 */
+	public function pw_policy_rewrite($translated, $original) {
+		$policy = 'Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).';
+
+		if ($original == $policy) {
+			$translated = sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters plus punctuation, or B) at least %d characters long.", self::ID), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']);
+		}
+
+		return $translated;
 	}
 
 	/**
