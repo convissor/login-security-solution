@@ -119,26 +119,26 @@ msgstr ""
 
 #: login-security-solution.php:958
 #@ login-security-solution
-msgid "Component     Count  Value from Current Attempt"
-msgstr "Composant     Nombre  Valeur de la tentative courante"
+msgid "Component               Count     Value from Current Attempt"
+msgstr "Composant               Nombre    Valeur de la tentative courante"
 
 #: login-security-solution.php:960
 #, php-format
 #@ login-security-solution
-msgid "Network IP    %5d  %s"
-msgstr "Réseau IP    %5d  %s"
+msgid "Network IP              %5d       %s"
+msgstr "Réseau IP               %5d       %s"
 
 #: login-security-solution.php:962
 #, php-format
 #@ login-security-solution
-msgid "Username      %5d  %s"
-msgstr "Nom d'utilisateur      %5d  %s"
+msgid "Username                %5d       %s"
+msgstr "Nom d'utilisateur       %5d       %s"
 
 #: login-security-solution.php:964
 #, php-format
 #@ login-security-solution
-msgid "Password MD5  %5d  %s"
-msgstr "MD5 du mot de passe  %5d  %s"
+msgid "Password MD5            %5d       %s"
+msgstr "MD5 du mot de passe     %5d       %s"
 
 #: login-security-solution.php:1761
 #: login-security-solution.php:1798

@@ -83,19 +83,19 @@ msgid "ERROR"
 msgstr ""
 
 #: login-security-solution.php:958
-msgid "Component     Count  Value from Current Attempt"
+msgid "Component               Count     Value from Current Attempt"
 msgstr ""
 
 #: login-security-solution.php:960
-msgid "Network IP    %5d  %s"
+msgid "Network IP              %5d       %s"
 msgstr ""
 
 #: login-security-solution.php:962
-msgid "Username      %5d  %s"
+msgid "Username                %5d       %s"
 msgstr ""
 
 #: login-security-solution.php:964
-msgid "Password MD5  %5d  %s"
+msgid "Password MD5            %5d       %s"
 msgstr ""
 
 #: login-security-solution.php:1761 login-security-solution.php:1798
