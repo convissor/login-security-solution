@@ -371,9 +371,15 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 			$this->fail('wp_mail() has not been called.');
 		}
 
+		$basedir = dirname(__FILE__) . '/expected/';
+		$locale = get_locale();
+		if (!file_exists("$basedir/$locale")) {
+			$locale = 'en_US';
+		}
+
 		$basename = str_replace('::', '--', self::$mail_file_basename);
 		$this->assertStringMatchesFormatFile(
-			dirname(__FILE__) . '/expected/' . $basename,
+			"$basedir/$locale/$basename",
 			file_get_contents(self::$mail_file)
 		);
 	}
