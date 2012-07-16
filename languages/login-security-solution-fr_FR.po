@@ -92,14 +92,14 @@ msgstr "Le mot de passe que vous voulez utiliser n'est pas suffisamment robuste.
 #: tests/LoginMessageTest.php:144
 #@ login-security-solution
 msgid "The site is undergoing maintenance."
-msgstr "Le site est en maintenance..."
+msgstr "Le site est en maintenance."
 
 #: login-security-solution.php:553
 #: tests/LoginMessageTest.php:130
 #: tests/LoginMessageTest.php:145
 #@ login-security-solution
 msgid "Please try again later."
-msgstr "Veuillez ré-essayer un peu plus tard..."
+msgstr "Veuillez ré-essayer un peu plus tard."
 
 #: login-security-solution.php:624
 #, php-format
@@ -151,7 +151,7 @@ msgstr "INTRUSION POSSIBLE A %s"
 #, php-format
 #@ login-security-solution
 msgid "Your website, %s, may have been broken in to."
-msgstr "Votre site, %s, a peut-être été corrompu. "
+msgstr "Votre site, %s, a peut-être été corrompu."
 
 #: login-security-solution.php:1768
 #, php-format
