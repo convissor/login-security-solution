@@ -91,7 +91,7 @@ The tests have caught every password dictionary entry I've tried.
 
 = Translations =
 
-* Français, français (fr_FR) by mermouy
+* Français, français (French, France) (fr_FR) by mermouy
 
 
 = Securing Your WordPress Site is Important =
