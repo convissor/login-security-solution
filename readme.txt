@@ -274,19 +274,19 @@ plugin's login failure process.
 
 = How do developers generate the translation files? =
 
-Get the translation tools from `http://i18n.svn.wordpress.org/tools/trunk/`
-then `cd` into that directory and run:
+To update the POT file, do this:
 
-        php -d 'error_reporting=E_ALL^E_STRICT' makepot.php wp-plugin \
-            ../login-security-solution \
-            ../login-security-solution/languages/login-security-solution.pot
+* cd into the directory above this one.
+* `svn checkout http://i18n.svn.wordpress.org/tools/trunk/ makepot`
+* `cd login-security-solution/languages`
+* `./makepot.sh`
 
-To produce the machine readable translation used by WordPress' gettext
-implementation, do the following for each translation, adjusting the
-locale in the file name for each one, of course:
+To produce the machine readable translations used by WordPress' gettext
+implementation, use the script I made for generating all of the .mo files:
 
-        msgfmt -o login-security-solution-fr_FR.mo \
-            login-security-solution-fr_FR.po
+* `cd languages`
+* `./makemos.sh`
+
 
 == Changelog ==
 
