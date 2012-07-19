@@ -4,13 +4,325 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Login Security Solution 0.21.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/login-security-solution\n"
-"POT-Creation-Date: 2012-07-17 11:56:58+00:00\n"
+"POT-Creation-Date: 2012-07-17 13:00:44+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin.php:112 admin.php:356
+msgid "Settings"
+msgstr ""
+
+#: admin.php:126
+msgid "Change All Passwords"
+msgstr ""
+
+#: admin.php:127
+msgid "Do not remind me about this"
+msgstr ""
+
+#: admin.php:128
+msgid "Require All Passwords Be Changed"
+msgstr ""
+
+#: admin.php:143
+msgid ""
+"%s must be activated via the Network Admin interface when WordPress is in "
+"multistie network mode."
+msgstr ""
+
+#: admin.php:249
+msgid "Idle Timeout"
+msgstr ""
+
+#: admin.php:250
+msgid ""
+"Close inactive sessions after this many minutes. 0 disables this feature."
+msgstr ""
+
+#: admin.php:255
+msgid "Maintenance Mode"
+msgstr ""
+
+#: admin.php:256
+msgid ""
+"Disable logins from users who are not administrators and disable posting of "
+"comments?"
+msgstr ""
+
+#: admin.php:258
+msgid "Off, let all users log in."
+msgstr ""
+
+#: admin.php:259
+msgid "On, disable comments and only let administrators log in."
+msgstr ""
+
+#: admin.php:263
+msgid "Deactivation"
+msgstr ""
+
+#: admin.php:264
+msgid ""
+"Should deactivating the plugin remove all of the plugin's data and settings?"
+msgstr ""
+
+#: admin.php:266
+msgid "No, preserve the data for future use."
+msgstr ""
+
+#: admin.php:267
+msgid "Yes, delete the damn data."
+msgstr ""
+
+#: admin.php:272
+msgid "Match Time"
+msgstr ""
+
+#: admin.php:273
+msgid "How far back, in minutes, should login failures look for matching data?"
+msgstr ""
+
+#: admin.php:278
+msgid "Delay Tier 2"
+msgstr ""
+
+#: admin.php:279
+msgid ""
+"How many matching login failures should it take to get into this (%d - %d "
+"second) Delay Tier? Must be >= %d."
+msgstr ""
+
+#: admin.php:285
+msgid "Delay Tier 3"
+msgstr ""
+
+#: admin.php:286
+msgid ""
+"How many matching login failures should it take to get into this (%d - %d "
+"second) Delay Tier? Must be > Delay Tier 2."
+msgstr ""
+
+#: admin.php:291
+msgid "Failure Notification"
+msgstr ""
+
+#: admin.php:292
+msgid ""
+"Notify the administrator upon every x matching login failures. 0 disables "
+"this feature."
+msgstr ""
+
+#: admin.php:297
+msgid "Breach Notification"
+msgstr ""
+
+#: admin.php:298
+msgid ""
+"Notify the administrator if a successful login uses data matching x login "
+"failures. 0 disables this feature."
+msgstr ""
+
+#: admin.php:303
+msgid "Breach Email Confirm"
+msgstr ""
+
+#: admin.php:304
+msgid ""
+"If a successful login uses data matching x login failures, immediately log "
+"the user out and require them to use WordPress' lost password process. 0 "
+"disables this feature."
+msgstr ""
+
+#: admin.php:310
+msgid "Length"
+msgstr ""
+
+#: admin.php:311
+msgid "How long must passwords be? Must be >= %d."
+msgstr ""
+
+#: admin.php:317
+msgid "Complexity Exemption"
+msgstr ""
+
+#: admin.php:318
+msgid ""
+"How long must passwords be to be exempt from the complexity requirements? "
+"Must be >= %d."
+msgstr ""
+
+#: admin.php:324
+msgid "Aging"
+msgstr ""
+
+#: admin.php:325
+msgid ""
+"How many days old can a password be before requiring it be changed? Not "
+"recommended. 0 disables this feature."
+msgstr ""
+
+#: admin.php:330
+msgid "Grace Period"
+msgstr ""
+
+#: admin.php:331
+msgid ""
+"How many minutes should a user have to change their password once they know "
+"it has expired? Must be >= %d."
+msgstr ""
+
+#: admin.php:337
+msgid "History"
+msgstr ""
+
+#: admin.php:338
+msgid ""
+"How many passwords should be remembered? Prevents reuse of old passwords. 0 "
+"disables this feature."
+msgstr ""
+
+#: admin.php:399
+msgid "Login Failure Policies"
+msgstr ""
+
+#: admin.php:405
+msgid "Password Policies"
+msgstr ""
+
+#: admin.php:411
+msgid "Miscellaneous Policies"
+msgstr ""
+
+#: admin.php:461
+msgid ""
+"This plugin stores the IP address, username and password for each failed log "
+"in attempt."
+msgstr ""
+
+#: admin.php:463
+msgid ""
+"The data from future login failures are compared against the historical data."
+msgstr ""
+
+#: admin.php:465
+msgid ""
+"If any of the data points match, the plugin delays printing out the failure "
+"message."
+msgstr ""
+
+#: admin.php:467
+msgid ""
+"The goal is for the responses to take so long that the attackers give up and "
+"go find an easier target."
+msgstr ""
+
+#: admin.php:469
+msgid "The length of the delay is broken up into three tiers."
+msgstr ""
+
+#: admin.php:471
+msgid "The amount of the delay increases in higher tiers."
+msgstr ""
+
+#: admin.php:473
+msgid ""
+"The delay time within each tier is randomized to complicate profiling by "
+"attackers."
+msgstr ""
+
+#: admin.php:529
+msgid "Default:"
+msgstr ""
+
+#: admin.php:553
+msgid "must be >= '%s',"
+msgstr ""
+
+#: admin.php:554
+msgid "so we used the default value instead."
+msgstr ""
+
+#: admin.php:587
+msgid "must be an integer,"
+msgstr ""
+
+#: admin.php:690
+msgid "There may be cases where everyone's password should be reset."
+msgstr ""
+
+#: admin.php:692
+msgid "This page, provided by the %s plugin, offers that functionality."
+msgstr ""
+
+#: admin.php:696
+msgid ""
+"Submitting this form sets a flag that forces all users to utilize WordPress' "
+"built in password reset functionality."
+msgstr ""
+
+#: admin.php:698
+msgid ""
+"Users who are presently logged in will be logged out the next time they view "
+"a page that requires authentication."
+msgstr ""
+
+#: admin.php:710
+msgid ""
+"Confirm that you want to force all users to change their passwords by "
+"checking this box, then click the button, below."
+msgstr ""
+
+#: admin.php:729
+msgid "No thanks. I know what I'm doing. Please don't remind me about this."
+msgstr ""
+
+#: admin.php:761
+msgid ""
+"You have checked a box that does not correspond with the button you pressed. "
+"Please check and press buttons inside the same section."
+msgstr ""
+
+#: admin.php:763
+msgid ""
+"Please confirm that you really want to do this. Put a check in the '%s' box "
+"before hitting the submit button."
+msgstr ""
+
+#: admin.php:779 admin.php:799
+msgid "Success!"
+msgstr ""
+
+#: admin.php:831
+msgid ""
+"WARNING: The site is in maintenance mode. DO NOT TOUCH ANYTHING! Your "
+"changes may get overwritten!"
+msgstr ""
+
+#: admin.php:855
+msgid ""
+"You have not asked your users to change their passwords since the plugin was "
+"activated. Most users have weak passwords. This plugin's password policies "
+"protect your site from brute force attacks. Please improve security for "
+"everyone on the Internet by making all users pick new, strong, passwords."
+msgstr ""
+
+#: admin.php:859
+msgid ""
+"Speaking of which, do YOU have a strong password? Make sure by changing "
+"yours once you've submitted the Change All Passwords form."
+msgstr ""
+
+#: admin.php:888
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: admin.php:894
+msgid "$user_ID variable not set. Another plugin is misbehaving."
+msgstr ""
 
 #: login-security-solution.php:499 tests/LoginErrorsTest.php:97
 #: tests/LoginErrorsTest.php:111

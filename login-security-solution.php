@@ -214,7 +214,7 @@ class login_security_solution {
 		if (is_admin()) {
 			$this->load_plugin_textdomain();
 
-			require_once dirname(__FILE__) . '/admin.inc';
+			require_once dirname(__FILE__) . '/admin.php';
 			$admin = new login_security_solution_admin;
 
 			if (is_multisite()) {

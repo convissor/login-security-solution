@@ -293,6 +293,7 @@ locale in the file name for each one, of course:
 = 0.21.0 =
 * Add the French translation.  Thanks mermouy!
 * Internationalize the unit tests.
+* Rename admin.inc to admin.php.
 
 = 0.20.2 =
 * Ugh, update the translation pot file.

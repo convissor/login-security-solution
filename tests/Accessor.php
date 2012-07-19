@@ -18,7 +18,7 @@ require_once dirname(dirname(__FILE__)) . '/login-security-solution.php';
 /**
  * Get the admin class
  */
-require_once dirname(dirname(__FILE__)) .  '/admin.inc';
+require_once dirname(dirname(__FILE__)) .  '/admin.php';
 
 // Remove automatically created object.
 unset($GLOBALS['login_security_solution']);
