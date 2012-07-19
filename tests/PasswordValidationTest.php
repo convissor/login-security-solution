@@ -442,7 +442,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"password not being set should have failed.");
 		$this->assertEquals(
-			$this->err("Password not set."),
+			$this->err(__("Password not set.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -453,7 +453,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'array('abc')' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords must be strings."),
+			$this->err(__("Passwords must be strings.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -466,7 +466,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords must use ASCII characters."),
+			$this->err(__("Passwords must use ASCII characters.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -483,7 +483,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Password is too short."),
+			$this->err(__("Password is too short.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -497,7 +497,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Password is too short."),
+			$this->err(__("Password is too short.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -510,7 +510,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-				$this->err(sprintf("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::$lss->options['pw_complexity_exemption_length'])),
+				$this->err(sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
 			$errors->get_error_message()
 		);
 	}
@@ -523,7 +523,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-					$this->err(sprintf("Passwords must either contain numbers or be %d characters long.", self::$lss->options['pw_complexity_exemption_length'])),
+					$this->err(sprintf(__("Passwords must either contain numbers or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
 			$errors->get_error_message()
 		);
 	}
@@ -536,7 +536,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-					$this->err(sprintf("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::$lss->options['pw_complexity_exemption_length'])),
+					$this->err(sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
 			$errors->get_error_message()
 		);
 	}
@@ -549,7 +549,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords can't be sequential keys."),
+			$this->err(__("Passwords can't be sequential keys.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -562,7 +562,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords can't have that many sequential characters."),
+			$this->err(__("Passwords can't have that many sequential characters.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -575,7 +575,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords can't contain user data."),
+			$this->err(__("Passwords can't contain user data.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -588,7 +588,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords can't contain user data."),
+			$this->err(__("Passwords can't contain user data.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -601,7 +601,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords can't contain site info."),
+			$this->err(__("Passwords can't contain site info.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -614,7 +614,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Password is too common."),
+			$this->err(__("Password is too common.", self::ID)),
 			$errors->get_error_message()
 		);
 	}
@@ -630,7 +630,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-			$this->err("Passwords can't be variations of dictionary words."),
+			$this->err(__("Passwords can't be variations of dictionary words.", self::ID)),
 			$errors->get_error_message()
 		);
 	}

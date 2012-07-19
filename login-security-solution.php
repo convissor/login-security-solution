@@ -955,14 +955,16 @@ class login_security_solution {
 	protected function get_notify_counts($network_ip, $user_name, $pass_md5,
 			$fails)
 	{
-		return __("Component               Count     Value from Current Attempt", self::ID)
-			. "\n-------------------     -----     --------------------------------\n"
-			. sprintf(__("Network IP              %5d     %s", self::ID),
-				$fails['network_ip'], $network_ip) . "\n"
-			. sprintf(__("Username                %5d     %s", self::ID),
-				$fails['user_name'], $user_name) . "\n"
-			. sprintf(__("Password MD5            %5d     %s", self::ID),
-				$fails['pass_md5'], $pass_md5) . "\n\n";
+		return sprintf(__("
+Component                    Count     Value from Current Attempt
+------------------------     -----     --------------------------------
+Network IP                   %5d     %s
+Username                     %5d     %s
+Password MD5                 %5d     %s
+", self::ID),
+			$fails['network_ip'], $network_ip,
+			$fails['user_name'], $user_name,
+			$fails['pass_md5'], $pass_md5) . "\n";
 	}
 
 	/**

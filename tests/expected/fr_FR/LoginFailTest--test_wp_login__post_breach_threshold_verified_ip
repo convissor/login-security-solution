@@ -1,0 +1,25 @@
+To: %a
+Subject: INTRUSION POSSIBLE A %a
+
+Votre site, %s, a peut-être été corrompu.
+
+Quelqu'un vient de se connecter avec les données qui suivent. Avant cela, plusieurs de ces éléments ont été utilisés parmi les %d tentatives de connexion au cours des %d dernières minutes:
+
+
+Composant                   Nombre     Valeur de la tentative courante
+------------------------     -----     --------------------------------
+Réseau IP                        0     1.2.33
+Nom d'utilisateur                4     test
+MD5 du mot de passe              %d    %s
+
+L'adresse IP utilisée à déjà été vérifiée auparavant. C'est pourquoi l'utilisateur ne devra PAS nécessairement confirmer son identité via le processus de changement de mot de passe. Un email lui sera envoyé, au cas où ce serait effectivement un intrusion.
+To: %a
+Subject: INTRUSION POSSIBLE A %a
+
+Quelqu'un a %s vient de se connecter en tant que '%s'. Était-ce vous? Nous vous posons la question parce que le site semble subir une attaque.
+
+SI CE N'ÉTAIT PAS VOUS, veuillez suivre ces consignes au plus vite:
+
+1) Connectez vous à %s et changez votre mot de passe.
+
+2) Envoyez un message à %s pour les prévenir que ce n'était pas vous qui vous êtes connecté récemment.

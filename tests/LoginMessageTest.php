@@ -31,7 +31,7 @@ class LoginMessageTest extends TestCase {
 
 	public function ours($ours) {
 		return '<p class="login message">'
-				. htmlspecialchars($ours) . '</p>';
+				. self::$lss->hsc_utf8($ours) . '</p>';
 	}
 
 	public function test_login_message__unset() {

@@ -1,0 +1,15 @@
+To: %a
+Subject: ATTAQUE SUR %a
+
+Votre site, %s, subi une attaque de type brute force.
+
+Au moins %d tentatives infructueuses de connexion au cours des dernières %d minutes ont utilisées les données suivantes:
+
+
+Composant                   Nombre     Valeur de la tentative courante
+------------------------     -----     --------------------------------
+Réseau IP                        4     1.2.38
+Nom d'utilisateur                4     test
+MD5 du mot de passe              %d    %s
+
+Le plugin %s pour WordPress pare l'attaque en ralentissant la réponse à chaque tentative échouée.

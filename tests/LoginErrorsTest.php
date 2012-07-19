@@ -60,6 +60,10 @@ class LoginErrorsTest extends TestCase {
 		unset($_REQUEST['action']);
 	}
 
+	protected function err($message) {
+		return self::$lss->hsc_utf8($message);
+	}
+
 
 	public function test_login_errors__nothing() {
 		global $errors, $user_name;
@@ -89,7 +93,8 @@ class LoginErrorsTest extends TestCase {
 
 		$actual = self::$lss->login_errors('input');
 
-		$this->assertEquals('Invalid username or password.',
+		$this->assertEquals(
+				$this->err(__("Invalid username or password.", self::ID)),
 				$actual, 'Output should have been modified.');
 		$this->assertArrayNotHasKey('log', $_POST, "POST log should be unset.");
 	}
@@ -102,7 +107,8 @@ class LoginErrorsTest extends TestCase {
 
 		$actual = self::$lss->login_errors('input');
 
-		$this->assertEquals('Invalid username or password.',
+		$this->assertEquals(
+				$this->err(__("Invalid username or password.", self::ID)),
 				$actual, 'Output should have been modified.');
 		$this->assertArrayNotHasKey('log', $_POST, "POST log should be unset.");
 	}
@@ -114,7 +120,9 @@ class LoginErrorsTest extends TestCase {
 
 		$actual = self::$lss->login_errors('input');
 
-		$this->assertEquals(__('Password reset is not allowed for this user'),
+		// This text is lifted directly from WordPress.
+		$this->assertEquals(
+				$this->err(__('Password reset is not allowed for this user')),
 				$actual, 'Output should have been modified.');
 		$this->assertArrayHasKey('log', $_POST, "POST log shouldn't be touched.");
 	}
@@ -126,7 +134,9 @@ class LoginErrorsTest extends TestCase {
 
 		$actual = self::$lss->login_errors('input');
 
-		$this->assertEquals(__('Password reset is not allowed for this user'),
+		// This text is lifted directly from WordPress.
+		$this->assertEquals(
+				$this->err(__('Password reset is not allowed for this user')),
 				$actual, 'Output should have been modified.');
 		$this->assertArrayHasKey('log', $_POST, "POST log shouldn't be touched.");
 	}

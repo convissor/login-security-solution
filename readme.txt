@@ -86,6 +86,12 @@ The tests have caught every password dictionary entry I've tried.
 * Monitors auth cookie failures
 * Clean, documented code
 * Unit tests covering 100% of the main class
+* Internationalized unit tests
+
+
+= Translations =
+
+* Français, français (fr_FR) by mermouy
 
 
 = Securing Your WordPress Site is Important =
@@ -266,7 +272,7 @@ attacks are fairly easy to initiate these days.  If someone really wants to
 shut down your site, they'll be able to do it without even touching this
 plugin's login failure process.
 
-= How do developers generate the POT translation file? =
+= How do developers generate the translation files? =
 
 Get the translation tools from `http://i18n.svn.wordpress.org/tools/trunk/`
 then `cd` into that directory and run:
@@ -275,8 +281,18 @@ then `cd` into that directory and run:
             ../login-security-solution \
             ../login-security-solution/languages/login-security-solution.pot
 
+To produce the machine readable translation used by WordPress' gettext
+implementation, do the following for each translation, adjusting the
+locale in the file name for each one, of course:
+
+        msgfmt -o login-security-solution-fr_FR.mo \
+            login-security-solution-fr_FR.po
 
 == Changelog ==
+
+= 0.21.0 =
+* Add the French translation.  Thanks mermouy!
+* Internationalize the unit tests.
 
 = 0.20.2 =
 * Ugh, update the translation pot file.

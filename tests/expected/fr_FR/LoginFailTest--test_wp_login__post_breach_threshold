@@ -1,0 +1,15 @@
+To: %a
+Subject: INTRUSION POSSIBLE A %a
+
+Votre site, %s, a peut-être été corrompu.
+
+Quelqu'un vient de se connecter avec les données qui suivent. Avant cela, plusieurs de ces éléments ont été utilisés parmi les %d tentatives de connexion au cours des %d dernières minutes:
+
+
+Composant                   Nombre     Valeur de la tentative courante
+------------------------     -----     --------------------------------
+Réseau IP                        4     1.2.38
+Nom d'utilisateur                4     test
+MD5 du mot de passe              %d    %s
+
+L'utilisateur à été déconnecté et il devra confirmer son identité via le processus de changement de mot de passe.

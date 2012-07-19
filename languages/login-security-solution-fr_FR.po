@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution v0.20.2\n"
+"Project-Id-Version: Login Security Solution 0.21.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2012-07-14 09:16:30+0000\n"
@@ -119,26 +119,20 @@ msgstr ""
 
 #: login-security-solution.php:958
 #@ login-security-solution
-msgid "Component               Count     Value from Current Attempt"
-msgstr "Composant               Nombre    Valeur de la tentative courante"
-
-#: login-security-solution.php:960
-#, php-format
-#@ login-security-solution
-msgid "Network IP              %5d       %s"
-msgstr "Réseau IP               %5d       %s"
-
-#: login-security-solution.php:962
-#, php-format
-#@ login-security-solution
-msgid "Username                %5d       %s"
-msgstr "Nom d'utilisateur       %5d       %s"
-
-#: login-security-solution.php:964
-#, php-format
-#@ login-security-solution
-msgid "Password MD5            %5d       %s"
-msgstr "MD5 du mot de passe     %5d       %s"
+msgid ""
+"\n"
+"Component                    Count     Value from Current Attempt\n"
+"------------------------     -----     --------------------------------\n"
+"Network IP                   %5d     %s\n"
+"Username                     %5d     %s\n"
+"Password MD5                 %5d     %s\n"
+msgstr ""
+"\n"
+"Composant                   Nombre     Valeur de la tentative courante\n"
+"------------------------     -----     --------------------------------\n"
+"Réseau IP                    %5d     %s\n"
+"Nom d'utilisateur            %5d     %s\n"
+"MD5 du mot de passe          %5d     %s\n"
 
 #: login-security-solution.php:1761
 #: login-security-solution.php:1798

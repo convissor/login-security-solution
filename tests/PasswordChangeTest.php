@@ -74,6 +74,10 @@ class PasswordChangeTest extends TestCase {
 		$this->assertGreaterThan(0, $actual, 'Grace period should not be cleared.');
 	}
 
+	protected function err($message) {
+		return self::$lss->err($message);
+	}
+
 
 	/*
 	 * HASHES / REUSED
@@ -262,7 +266,7 @@ class PasswordChangeTest extends TestCase {
 		$actual = self::$lss->user_profile_update_errors($errors, 1, $this->user);
 		$this->assertFalse($actual, 'Bad return value.');
 		$this->assertEquals(
-			"<strong>ERROR</strong>: Passwords can not be reused.",
+			$this->err(__("Passwords can not be reused.", self::ID)),
 			$errors->get_error_message()
 		);
 
@@ -295,7 +299,7 @@ class PasswordChangeTest extends TestCase {
 		$actual = self::$lss->user_profile_update_errors($errors, 0, $this->user);
 		$this->assertFalse($actual, 'Bad return value.');
 		$this->assertEquals(
-			"<strong>ERROR</strong>: Password is too short.",
+			$this->err(__("Password is too short.", self::ID)),
 			$errors->get_error_message()
 		);
 
