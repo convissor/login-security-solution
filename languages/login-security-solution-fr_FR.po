@@ -22,7 +22,7 @@ msgstr ""
 #: login-security-solution.php:499
 #@ login-security-solution
 msgid "Invalid username or password."
-msgstr "Nom d'utilisateur ou mot de passe incorrect."
+msgstr "Identifiant ou mot de passe incorrect."
 
 #: login-security-solution.php:505
 #: tests/LoginErrorsTest.php:117
@@ -131,7 +131,7 @@ msgstr ""
 "Composant                   Nombre     Valeur de la tentative courante\n"
 "------------------------     -----     --------------------------------\n"
 "Réseau IP                    %5d     %s\n"
-"Nom d'utilisateur            %5d     %s\n"
+"Identifiant                  %5d     %s\n"
 "MD5 du mot de passe          %5d     %s\n"
 
 #: login-security-solution.php:1761
