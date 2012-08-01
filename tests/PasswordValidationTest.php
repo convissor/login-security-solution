@@ -311,9 +311,13 @@ class PasswordValidationTest extends TestCase {
 			"aA1!",
 			"aAb",
 			"aA!",
-			"БбƤƥ",  // Bicameral UTF-8.
-			"חح",  // Unicameral UTF-8.
 		);
+
+		if (self::$mbstring_available) {
+			$tests[] = "БбƤƥ";  // Bicameral UTF-8.
+			$tests[] = "חح";  // Unicameral UTF-8.
+		}
+
 		foreach ($tests as $pw) {
 			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
 			$this->assertFalse($actual, "Should have passed: '$pw'");
@@ -637,6 +641,10 @@ class PasswordValidationTest extends TestCase {
 	}
 
 	public function test_validate_pw__good() {
+		if (!self::$mbstring_available) {
+			$this->markTestSkipped('mbstring not available');
+		}
+
 		$errors = new WP_Error;
 		$actual = self::$lss->validate_pw($this->user, $errors);
 		$this->assertTrue($actual,
