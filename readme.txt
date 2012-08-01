@@ -294,6 +294,7 @@ implementation, use the script I made for generating all of the .mo files:
 * Add the French translation.  Thanks mermouy!
 * Internationalize the unit tests.
 * Rename admin.inc to admin.php.
+* Rename temporary files holding actual test results. (Bug #1552 redux)
 
 = 0.20.2 =
 * Ugh, update the translation pot file.

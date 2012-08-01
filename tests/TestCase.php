@@ -355,7 +355,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 			throw new Exception('wp_mail() called at unexpected time'
 					. ' (mail_file_basename was not set).');
 		}
-		self::$mail_file = self::$temp_dir . '/' . self::$mail_file_basename;
+		$basename = str_replace('::', '--', self::$mail_file_basename);
+		self::$mail_file = self::$temp_dir . '/' . $basename;
 
 		$contents = 'To: ' . implode(', ', (array) $to) . "\n"
 				. "Subject: $subject\n\n$message";
