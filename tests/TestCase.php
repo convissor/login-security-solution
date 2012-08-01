@@ -226,7 +226,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 
 		$this->user = new WP_User;
 		$this->user->data = new StdClass;
-		$this->user->ID = 9999999999;
+		$this->user->ID = 9999999;
 		$this->user->user_login = 'aaaa';
 		$this->user->user_email = 'bbbb';
 		$this->user->user_url = 'cccc';
