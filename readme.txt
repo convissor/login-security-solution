@@ -292,10 +292,13 @@ implementation, use the script I made for generating all of the .mo files:
 
 = 0.21.0 =
 * Fix is_pw_outside_ascii() to permit spaces.
+* Get all unit tests to pass when mbstring isn't enabled.
 * Add the French translation.  Thanks mermouy!
 * Internationalize the unit tests.
 * Rename admin.inc to admin.php.
 * Rename temporary files holding actual test results. (Bug #1552 redux)
+* Unit tests pass using PHP 5.4.5-dev, 5.3.16-dev, and 5.2.18-dev.
+* Also tested on Windows 7 using PHP 5.4.5 and WordPress 3.4.1.
 
 = 0.20.2 =
 * Ugh, update the translation pot file.
