@@ -291,6 +291,7 @@ implementation, use the script I made for generating all of the .mo files:
 == Changelog ==
 
 = 0.21.0 =
+* Fix is_pw_outside_ascii() to permit spaces.
 * Add the French translation.  Thanks mermouy!
 * Internationalize the unit tests.
 * Rename admin.inc to admin.php.

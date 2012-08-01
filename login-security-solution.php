@@ -1446,7 +1446,7 @@ Password MD5                 %5d     %s
 	 * @return bool
 	 */
 	protected function is_pw_outside_ascii($pw) {
-		return !preg_match('/^[!-~]+$/u', $pw);
+		return !preg_match('/^[!-~ ]+$/u', $pw);
 	}
 
 	/**

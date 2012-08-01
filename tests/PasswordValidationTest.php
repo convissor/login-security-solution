@@ -227,6 +227,7 @@ class PasswordValidationTest extends TestCase {
 		$tests = array(
 			"aba!123",
 			"aba~123",
+			"aba 123",
 		);
 		foreach ($tests as $pw) {
 			$actual = self::$lss->is_pw_outside_ascii($pw);
