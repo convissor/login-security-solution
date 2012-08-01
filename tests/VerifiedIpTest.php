@@ -124,7 +124,7 @@ class VerifiedIpTest extends TestCase {
 
 		// Check the outcome.
 		$actual = self::$lss->get_verified_ips($this->user->ID);
-		$this->assertSame(array($ip), $actual, 'Expected IP missing.');
+		$this->assertSame(array($ip), $actual, 'Expected IP was not found.');
 
 		$wpdb->query('ROLLBACK TO empty');
 		wp_cache_reset();
@@ -151,6 +151,6 @@ class VerifiedIpTest extends TestCase {
 
 		// Check the outcome.
 		$actual = self::$lss->get_verified_ips($this->user->ID);
-		$this->assertSame(array($ip), $actual, 'Expected IP missing.');
+		$this->assertSame(array($ip), $actual, 'Expected IP was not found.');
 	}
 }
