@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Login Security Solution 0.21.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/login-security-solution\n"
-"POT-Creation-Date: 2012-07-17 13:00:44+00:00\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-solution\n"
+"POT-Creation-Date: 2012-08-01 12:08:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -387,7 +387,7 @@ msgid ""
 "characters long."
 msgstr ""
 
-#: login-security-solution.php:658 tests/PasswordChangeTest.php:269
+#: login-security-solution.php:658 tests/PasswordChangeTest.php:277
 msgid "Passwords can not be reused."
 msgstr ""
 
@@ -472,61 +472,61 @@ msgid ""
 "failures take a very long time."
 msgstr ""
 
-#: login-security-solution.php:2196 tests/PasswordValidationTest.php:445
+#: login-security-solution.php:2196 tests/PasswordValidationTest.php:450
 msgid "Password not set."
 msgstr ""
 
-#: login-security-solution.php:2211 tests/PasswordValidationTest.php:456
+#: login-security-solution.php:2211 tests/PasswordValidationTest.php:461
 msgid "Passwords must be strings."
 msgstr ""
 
-#: login-security-solution.php:2229 tests/PasswordValidationTest.php:469
+#: login-security-solution.php:2229 tests/PasswordValidationTest.php:474
 msgid "Passwords must use ASCII characters."
 msgstr ""
 
-#: login-security-solution.php:2248 tests/PasswordChangeTest.php:302
-#: tests/PasswordValidationTest.php:486 tests/PasswordValidationTest.php:500
+#: login-security-solution.php:2248 tests/PasswordChangeTest.php:310
+#: tests/PasswordValidationTest.php:491 tests/PasswordValidationTest.php:505
 msgid "Password is too short."
 msgstr ""
 
-#: login-security-solution.php:2257 tests/PasswordValidationTest.php:526
+#: login-security-solution.php:2257 tests/PasswordValidationTest.php:531
 msgid "Passwords must either contain numbers or be %d characters long."
 msgstr ""
 
-#: login-security-solution.php:2266 tests/PasswordValidationTest.php:513
+#: login-security-solution.php:2266 tests/PasswordValidationTest.php:518
 msgid ""
 "Passwords must either contain punctuation marks / symbols or be %d "
 "characters long."
 msgstr ""
 
-#: login-security-solution.php:2275 tests/PasswordValidationTest.php:539
+#: login-security-solution.php:2275 tests/PasswordValidationTest.php:544
 msgid ""
 "Passwords must either contain upper-case and lower-case letters or be %d "
 "characters long."
 msgstr ""
 
-#: login-security-solution.php:2285 tests/PasswordValidationTest.php:552
+#: login-security-solution.php:2285 tests/PasswordValidationTest.php:557
 msgid "Passwords can't be sequential keys."
 msgstr ""
 
-#: login-security-solution.php:2294 tests/PasswordValidationTest.php:565
+#: login-security-solution.php:2294 tests/PasswordValidationTest.php:570
 msgid "Passwords can't have that many sequential characters."
 msgstr ""
 
-#: login-security-solution.php:2310 tests/PasswordValidationTest.php:578
-#: tests/PasswordValidationTest.php:591
+#: login-security-solution.php:2310 tests/PasswordValidationTest.php:583
+#: tests/PasswordValidationTest.php:596
 msgid "Passwords can't contain user data."
 msgstr ""
 
-#: login-security-solution.php:2321 tests/PasswordValidationTest.php:604
+#: login-security-solution.php:2321 tests/PasswordValidationTest.php:609
 msgid "Passwords can't contain site info."
 msgstr ""
 
-#: login-security-solution.php:2330 tests/PasswordValidationTest.php:617
+#: login-security-solution.php:2330 tests/PasswordValidationTest.php:622
 msgid "Password is too common."
 msgstr ""
 
-#: login-security-solution.php:2339 tests/PasswordValidationTest.php:633
+#: login-security-solution.php:2339 tests/PasswordValidationTest.php:638
 msgid "Passwords can't be variations of dictionary words."
 msgstr ""
 
