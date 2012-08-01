@@ -33,7 +33,11 @@ class PasswordChangeTest extends TestCase {
 		parent::$db_needed = true;
 		parent::set_up_before_class();
 
-		self::$pass_1 = self::USER_PASS;
+		if (extension_loaded('mbstring')) {
+			self::$pass_1 = self::USER_PASS;
+		} else {
+			self::$pass_1 = 'Some ASCII Only PW 4 You!';
+		}
 		self::$pass_2 = '!AJd81aasjk2@';
 		self::$hash_1 = wp_hash_password(self::$pass_1);
 		self::$hash_2 = wp_hash_password(self::$pass_2);
@@ -47,6 +51,10 @@ class PasswordChangeTest extends TestCase {
 		$options['pw_length'] = 8;
 		$options['pw_reuse_count'] = 3;
 		self::$lss->options = $options;
+
+		if (!extension_loaded('mbstring')) {
+			$this->user->user_pass = self::$pass_1;
+		}
 
 		self::$lss->set_pw_force_change($this->user->ID);
 		$actual = self::$lss->get_pw_force_change($this->user->ID);

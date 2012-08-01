@@ -642,7 +642,7 @@ class PasswordValidationTest extends TestCase {
 
 	public function test_validate_pw__good() {
 		if (!self::$mbstring_available) {
-			$this->markTestSkipped('mbstring not available');
+			$this->user->user_pass = 'Some ASCII Only PW 4 You!';
 		}
 
 		$errors = new WP_Error;
