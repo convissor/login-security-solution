@@ -640,7 +640,8 @@ class PasswordValidationTest extends TestCase {
 		$errors = new WP_Error;
 		$actual = self::$lss->validate_pw($this->user, $errors);
 		$this->assertTrue($actual,
-				"'" . $this->user->user_pass . "' should have passed.");
+				"'" . $this->user->user_pass . "' should have passed, but got: "
+				. $errors->get_error_message());
 		$this->assertEmpty($errors->get_error_message());
 	}
 
@@ -650,7 +651,8 @@ class PasswordValidationTest extends TestCase {
 		$errors = new WP_Error;
 		$actual = self::$lss->validate_pw($this->user, $errors);
 		$this->assertTrue($actual,
-				"'" . $this->user->user_pass . "' should have passed.");
+				"'" . $this->user->user_pass . "' should have passed, but got: "
+				. $errors->get_error_message());
 		$this->assertEmpty($errors->get_error_message());
 	}
 
