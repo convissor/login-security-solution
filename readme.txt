@@ -293,6 +293,8 @@ implementation, use the script I made for generating all of the .mo files:
 = 0.21.0 =
 * Fix is_pw_outside_ascii() to permit spaces.
 * In multisite mode, send notifications to network admin, not blog admin.
+* Add "Notifiations To" setting for admins to specify the email addresses
+the failure and breach notifications get sent to. (Request #1560)
 * Get all unit tests to pass when mbstring isn't enabled.
 * Add the French translation.  Thanks mermouy!
 * Internationalize the unit tests.

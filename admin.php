@@ -286,6 +286,12 @@ class login_security_solution_admin extends login_security_solution {
 				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be > Delay Tier 2.", self::ID), 25, 60),
 				'type' => 'int',
 			),
+			'admin_email' => array(
+				'group' => 'login',
+				'label' => __("Notifications To", self::ID),
+				'text' => __("The email address(es) the failure and breach notifications should be sent to. For multiple addresses, separate them with commas. WordPress' 'admin_email' setting is used if none is provided here.", self::ID),
+				'type' => 'string',
+			),
 			'login_fail_notify' => array(
 				'group' => 'login',
 				'label' => __("Failure Notification", self::ID),
@@ -494,6 +500,9 @@ class login_security_solution_admin extends login_security_solution {
 			case 'int':
 				$this->input_int($name);
 				break;
+			case 'string':
+				$this->input_string($name);
+				break;
 		}
 	}
 
@@ -525,6 +534,21 @@ class login_security_solution_admin extends login_security_solution {
 			. $this->hsc_utf8($this->option_name)
 			. '[' . $this->hsc_utf8($name) . ']"'
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
+		echo $this->hsc_utf8($this->fields[$name]['text']
+				. ' ' . __('Default:', self::ID) . ' '
+				. $this->options_default[$name] . '.');
+	}
+
+	/**
+	 * Renders the text input boxes for editing strings
+	 * @return void
+	 */
+	protected function input_string($name) {
+		echo '<input type="text" size="75" name="'
+			. $this->hsc_utf8($this->option_name)
+			. '[' . $this->hsc_utf8($name) . ']"'
+			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
+		echo '<br />';
 		echo $this->hsc_utf8($this->fields[$name]['text']
 				. ' ' . __('Default:', self::ID) . ' '
 				. $this->options_default[$name] . '.');

@@ -106,6 +106,7 @@ class login_security_solution {
 	 * @var array
 	 */
 	protected $options_default = array(
+		'admin_email' => '',
 		'deactivate_deletes_data' => 0,
 		'disable_logins' => 0,
 		'idle_timeout' => 15,
@@ -833,6 +834,18 @@ class login_security_solution {
 		$error = $this->hsc_utf8(__("ERROR"));
 		$message = $this->hsc_utf8($message);
 		return "<strong>$error</strong>: $message";
+	}
+
+	/**
+	 * Obtains the email addresses the notifications should go to
+	 * @return string
+	 */
+	protected function get_admin_email() {
+		$email = $this->options['admin_email'];
+		if (!$email) {
+			$email = get_site_option('admin_email');
+		}
+		return $email;
 	}
 
 	/**
@@ -1757,7 +1770,7 @@ Password MD5                 %5d     %s
 	{
 		$this->load_plugin_textdomain();
 
-		$to = $this->sanitize_whitespace(get_site_option('admin_email'));
+		$to = $this->sanitize_whitespace($this->get_admin_email());
 
 		$blog = get_option('blogname');
 		$subject = sprintf(__("POTENTIAL INTRUSION AT %s", self::ID), $blog);
@@ -1804,7 +1817,7 @@ Password MD5                 %5d     %s
 			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site is being attacked.", self::ID), $user->user_login, get_option('siteurl')) . "\n\n"
 			. __("IF IT WAS NOT YOU, please do the following right away:", self::ID) . "\n\n"
 			. sprintf(__("1) Log into %s and change your password.", self::ID), wp_login_url()) . "\n\n"
-			. sprintf(__("2) Send an email to %s letting them know it was not you who logged in.", self::ID), get_site_option('admin_email')) . "\n";
+			. sprintf(__("2) Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n";
 
 		return wp_mail($to, $subject, $message);
 	}
@@ -1827,7 +1840,7 @@ Password MD5                 %5d     %s
 	{
 		$this->load_plugin_textdomain();
 
-		$to = $this->sanitize_whitespace(get_site_option('admin_email'));
+		$to = $this->sanitize_whitespace($this->get_admin_email());
 
 		$blog = get_option('blogname');
 		$subject = sprintf(__("ATTACK HAPPENING TO %s", self::ID), $blog);
