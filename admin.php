@@ -480,7 +480,7 @@ class login_security_solution_admin extends login_security_solution {
 	 *
 	 * @uses login_security_solution_admin::input_radio()  for rendering
 	 *       radio buttons
-	 * @uses login_security_solution_admin::input_text()  for rendering
+	 * @uses login_security_solution_admin::input_int()  for rendering
 	 *       text input boxes
 	 */
 	public function __call($name, $params) {
@@ -492,7 +492,7 @@ class login_security_solution_admin extends login_security_solution {
 				$this->input_radio($name);
 				break;
 			case 'int':
-				$this->input_text($name);
+				$this->input_int($name);
 				break;
 		}
 	}
@@ -517,10 +517,10 @@ class login_security_solution_admin extends login_security_solution {
 	}
 
 	/**
-	 * Renders the text input boxes
+	 * Renders the text input boxes for editing integers
 	 * @return void
 	 */
-	protected function input_text($name) {
+	protected function input_int($name) {
 		echo '<input type="text" size="3" name="'
 			. $this->hsc_utf8($this->option_name)
 			. '[' . $this->hsc_utf8($name) . ']"'
