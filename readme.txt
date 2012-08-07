@@ -295,12 +295,14 @@ implementation, use the script I made for generating all of the .mo files:
 * In multisite mode, send notifications to network admin, not blog admin.
 * Add "Notifiations To" setting for admins to specify the email addresses
 the failure and breach notifications get sent to. (Request #1560)
+* Clarify that the Change All Passwords link just goes to the UI.
 * Get all unit tests to pass when mbstring isn't enabled.
 * Add the French translation.  Thanks mermouy!
 * Internationalize the unit tests.
 * Rename admin.inc to admin.php.
 * Rename temporary files holding actual test results. (Bug #1552 redux)
 * Unit tests pass using PHP 5.4.5-dev, 5.3.16-dev, and 5.2.18-dev.
+* Tested under WordPress 3.4.1 using regular and multisite.
 * Also tested on Windows 7 using PHP 5.4.5 and WordPress 3.4.1.
 
 = 0.20.2 =
