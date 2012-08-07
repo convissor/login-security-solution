@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Login Security Solution 0.21.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-solution\n"
-"POT-Creation-Date: 2012-08-03 15:46:11+00:00\n"
+"POT-Creation-Date: 2012-08-07 15:10:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -324,14 +324,20 @@ msgstr ""
 #: admin.php:883
 msgid ""
 "Speaking of which, do YOU have a strong password? Make sure by changing "
-"yours once you've submitted the Change All Passwords form."
+"yours too."
 msgstr ""
 
-#: admin.php:912
+#: admin.php:887
+msgid ""
+"The following link leads to a user interface where you can either require "
+"all passwords to be reset or disable this notice."
+msgstr ""
+
+#: admin.php:917
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin.php:918
+#: admin.php:923
 msgid "$user_ID variable not set. Another plugin is misbehaving."
 msgstr ""
 

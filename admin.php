@@ -123,7 +123,7 @@ class login_security_solution_admin extends login_security_solution {
 
 		// NON-STANDARD: This is for the password change page.
 		$this->option_pw_force_change_name = self::ID . '-pw-force-change-done';
-		$this->text_pw_force_change = __('Change All Passwords', self::ID);
+		$this->text_pw_force_change = __("Change All Passwords", self::ID);
 		$this->text_button_remind = __("Do not remind me about this", self::ID);
 		$this->text_button_require = __("Require All Passwords Be Changed", self::ID);
 	}
@@ -880,15 +880,20 @@ class login_security_solution_admin extends login_security_solution {
 		echo '</strong></p>';
 
 		echo '<p><strong>';
-		echo $this->hsc_utf8(__("Speaking of which, do YOU have a strong password? Make sure by changing yours once you've submitted the Change All Passwords form.", self::ID));
+		echo $this->hsc_utf8(__("Speaking of which, do YOU have a strong password? Make sure by changing yours too.", self::ID));
 		echo '</strong></p>';
 
-		echo '<p><strong><a href="' . $this->hsc_utf8($this->page_options)
-			. '?page=' . $this->hsc_utf8($this->option_pw_force_change_name)
-			. '">' . $this->hsc_utf8($this->text_pw_force_change)
-			. "</a></strong></p>\n";
+		echo '<p><strong>';
+		echo $this->hsc_utf8(__("The following link leads to a user interface where you can either require all passwords to be reset or disable this notice.", self::ID));
+		echo '</strong></p>';
 
-		echo "</div>\n";
+		echo '<p><strong>';
+		echo '<a href="' . $this->hsc_utf8($this->page_options)
+			. '?page=' . $this->hsc_utf8($this->option_pw_force_change_name)
+			. '">' . $this->hsc_utf8($this->text_pw_force_change) . '</a>';
+		echo '</strong></p>';
+
+		echo "\n</div>\n";
 	}
 
 	/**
