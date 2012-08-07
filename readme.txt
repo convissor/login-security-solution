@@ -290,6 +290,9 @@ implementation, use the script I made for generating all of the .mo files:
 
 == Changelog ==
 
+= 0.22.0 =
+* Add the French translation.  Thanks mermouy!
+
 = 0.21.0 =
 * Fix is_pw_outside_ascii() to permit spaces.
 * In multisite mode, send notifications to network admin, not blog admin.
@@ -297,7 +300,6 @@ implementation, use the script I made for generating all of the .mo files:
 the failure and breach notifications get sent to. (Request #1560)
 * Clarify that the Change All Passwords link just goes to the UI.
 * Get all unit tests to pass when mbstring isn't enabled.
-* Add the French translation.  Thanks mermouy!
 * Internationalize the unit tests.
 * Rename admin.inc to admin.php.
 * Rename temporary files holding actual test results. (Bug #1552 redux)
