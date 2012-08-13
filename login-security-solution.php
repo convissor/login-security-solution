@@ -849,8 +849,7 @@ class login_security_solution {
 	}
 
 	/**
-	 * Obtains the IP address from $_SERVER['HTTP_X_FORWARDED_FOR'] (if
-	 * provided) or $_SERVER['REMOTE_ADDR']
+	 * Obtains the IP address from $_SERVER['REMOTE_ADDR']
 	 *
 	 * Also performs basic sanity checks on the addresses.
 	 *
@@ -859,17 +858,11 @@ class login_security_solution {
 	 * @uses login_security_solution::normalize_ip()  to clean up addresses
 	 */
 	protected function get_ip() {
-		if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			if (!is_scalar($ip)) {
-				return '';
-			}
-			return $this->normalize_ip(
-				preg_replace('/^([^,]+).*$/', '\1', $ip));
-		} elseif (!empty($_SERVER['REMOTE_ADDR'])) {
-			return $this->normalize_ip($_SERVER['REMOTE_ADDR']);
+		if (empty($_SERVER['REMOTE_ADDR'])) {
+			return '';
 		}
-		return '';
+
+		return $this->normalize_ip($_SERVER['REMOTE_ADDR']);
 	}
 
 	/**

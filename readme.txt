@@ -30,7 +30,6 @@ legitimate users or administrators
       All without intervention by an administrator.
     + Can notify the administrator of attacks and breaches
     + Supports IPv6
-    + Supports WP installs behind load balancers and proxies
 
 * Thoroughly examines and enforces password strength.  Includes full
 UTF-8 character set support if PHP's `mbstring` extension is enabled.
@@ -85,7 +84,6 @@ The tests have caught every password dictionary entry I've tried.
 * No advertising, promotions, or beacons
 * Proper internationalization support
 * Monitors auth cookie failures
-* Supports WP installs behind load balancers and proxies
 * Clean, documented code
 * Unit tests covering 100% of the main class
 * Internationalized unit tests
@@ -127,6 +125,16 @@ conflicts during program execution.  Please read the FAQ!
 == Installation ==
 
 1. Before installing this plugin, read the FAQ!
+
+1. If your WP install is behind a proxy or load balancer, please be aware
+    that this plugin uses the `REMOTE_ADDR` provided by the web server
+    (as does WordPress' new comment functionality and the Akismet plugin).
+    If you want our brute force tracking to work, we advise adjusting your
+    `wp-config.php` file to manually set the `REMOTE_ADDR` to a data
+    source appropriate for your environment.  For example:
+
+            $_SERVER['REMOTE_ADDR'] = preg_replace('/^([^,]+).*$/', '\1',
+                $_SERVER['HTTP_X_FORWARDED_FOR']);
 
 1. Download the Login Security Solution zip file from WordPress' plugin
     site: `http://wordpress.org/extend/plugins/login-security-solution/`
@@ -293,7 +301,6 @@ implementation, use the script I made for generating all of the .mo files:
 == Changelog ==
 
 = 0.22.0 =
-* Support brute force tracking for proxies and load balancers.
 * Add the French translation.  Thanks mermouy!
 
 = 0.21.0 =
