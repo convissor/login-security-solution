@@ -106,11 +106,6 @@ class IpTest extends TestCase {
 		$actual = self::$lss->get_ip();
 		$this->assertEquals($expect, $actual);
 	}
-	public function test_get_ip__ipv4_array() {
-		$_SERVER['REMOTE_ADDR'] = array('foo');
-		$actual = self::$lss->get_ip();
-		$this->assertEquals('', $actual);
-	}
 	/**
 	 * @dataProvider data_ipv6
 	 */
@@ -120,12 +115,54 @@ class IpTest extends TestCase {
 		$actual = self::$lss->get_ip();
 		$this->assertEquals($expect, $actual);
 	}
+
+	public function test_get_ip__ipv4_array() {
+		$_SERVER['REMOTE_ADDR'] = array('foo');
+		$actual = self::$lss->get_ip();
+		$this->assertEquals('', $actual);
+	}
+	public function test_get_ip__ipv4_proxy() {
+		$expect = '34.42.53.65';
+		$_SERVER['HTTP_X_FORWARDED_FOR'] = $expect;
+		$_SERVER['REMOTE_ADDR'] = '6.5.4.3';
+		$actual = self::$lss->get_ip();
+		$this->assertEquals($expect, $actual);
+	}
+	public function test_get_ip__ipv6_proxy() {
+		$expect = 'ffff:d1d1:3:4:5:6:7:8';
+		$_SERVER['HTTP_X_FORWARDED_FOR'] = $expect;
+		$_SERVER['REMOTE_ADDR'] = '6.5.4.3';
+		$actual = self::$lss->get_ip();
+		$this->assertEquals($expect, $actual);
+	}
+	public function test_get_ip__ipv4_proxy_chained() {
+		$expect = '3.4.5.6';
+		$_SERVER['HTTP_X_FORWARDED_FOR'] = $expect . ', 70.6.5.4, 8.1.2.80';
+		$_SERVER['REMOTE_ADDR'] = '6.5.4.3';
+		$actual = self::$lss->get_ip();
+		$this->assertEquals($expect, $actual);
+	}
+	public function test_get_ip__ipv6_proxy_chained() {
+		$expect = 'ffff:d1d1:3:4:5:6:7:8';
+		$_SERVER['HTTP_X_FORWARDED_FOR'] = $expect . ', 1:88:2::8:3';
+		$_SERVER['REMOTE_ADDR'] = '6.5.4.3';
+		$actual = self::$lss->get_ip();
+		$this->assertEquals($expect, $actual);
+	}
+	public function test_get_ip__ipv4_proxy_array() {
+		$_SERVER['HTTP_X_FORWARDED_FOR'] = array('1.3.2.8');
+		$_SERVER['REMOTE_ADDR'] = '6.5.4.3';
+		$actual = self::$lss->get_ip();
+		$_SERVER['HTTP_X_FORWARDED_FOR'] = '';
+		$this->assertEquals('', $actual);
+	}
 	/**#@- **/
 
 	/**#@+
 	 * get_network_ip()
 	 */
 	public function test_get_network_ip__empty() {
+		$_SERVER['HTTP_X_FORWARDED_FOR'] = '';
 		$_SERVER['REMOTE_ADDR'] = '';
 		$actual = self::$lss->get_network_ip();
 		$this->assertEquals('', $actual);
