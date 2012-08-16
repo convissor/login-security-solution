@@ -317,8 +317,18 @@ class login_security_solution {
 	 *       and slow down the response as necessary
 	 */
 	public function auth_cookie_bad($cookie_elements) {
-		$this->process_login_fail(@$cookie_elements['username'],
-				@$cookie_elements['hmac']);
+		if (empty($cookie_elements['username'])) {
+			$username = '';
+		} else {
+			$username = $cookie_elements['username'];
+		}
+		if (empty($cookie_elements['hmac'])) {
+			$hmac = '';
+		} else {
+			$hmac = $cookie_elements['hmac'];
+		}
+		###$this->log("auth_cookie_bad: $username, $hmac");
+		$this->process_login_fail($username, $hmac);
 	}
 
 	/**
