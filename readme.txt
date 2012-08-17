@@ -315,7 +315,7 @@ implementation, use the script I made for generating all of the .mo files:
 * Track a given IP, user name, password combination only once.
 * Prevent "not a valid MySQL-Link resource" on auth cookie failure.
 * Increase default value of login_fail_notify from 20 to 50.
-* Add the French translation.  Thanks mermouy!
+* Add partial French translation.  Settings page needs doing.  Thanks mermouy!
 
 = 0.21.0 =
 * Fix is_pw_outside_ascii() to permit spaces.
