@@ -250,6 +250,17 @@ news is we provide more robust protection in those areas and the Better WP
 Security "Settings" page lets you disable those features in their plugin.
 This way you get to enjoy even better security than either plugin alone.
 
+= Why should I pick a user name other than "admin"? =
+
+The WordPress installation process (currently) defaults to having the
+main administrator's user's name be "admin."  Many people don't change it.
+Attackers know this, so now all they need to do to get into such sites is
+guess the password.
+
+In addition, if you try to log in while your site is being attacked, this
+plugin will send you through the password reset process in order to verify
+your identity.  While not the end of the world, it's inconvenient.
+
 = Where should I report bugs and feature requests? =
 
 Report bugs and submit feature requests by opening a ticket in WordPress'
