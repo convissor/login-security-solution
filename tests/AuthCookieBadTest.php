@@ -60,6 +60,9 @@ class AuthCookieBadTest extends TestCase {
 
 
 	public function test_direct() {
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+
 		$input = array(
 			'username' => $this->user_name,
 			'hmac' => $this->pass_md5,
@@ -67,6 +70,9 @@ class AuthCookieBadTest extends TestCase {
 		self::$lss->auth_cookie_bad($input);
 		$pass = self::$lss->md5($this->pass_md5);
 		$this->check_fail_record($this->ip, $this->user_name, $pass);
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
 	}
 
 	/**
@@ -79,11 +85,17 @@ class AuthCookieBadTest extends TestCase {
 		$parts[0] = 'thisusercannotpossiblyexist';
 		$_COOKIE[AUTH_COOKIE] = implode('|', $parts);
 
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+
 		$result = wp_validate_auth_cookie();
 		$this->assertFalse($result);
 
 		$pass = self::$lss->md5($parts[2]);
 		$this->check_fail_record($this->ip, $parts[0], $pass);
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
 	}
 
 	/**
@@ -96,10 +108,16 @@ class AuthCookieBadTest extends TestCase {
 		$parts[2] = 'badpassword';
 		$_COOKIE[AUTH_COOKIE] = implode('|', $parts);
 
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+
 		$result = wp_validate_auth_cookie();
 		$this->assertFalse($result);
 
 		$pass = self::$lss->md5($parts[2]);
 		$this->check_fail_record($this->ip, $parts[0], $pass);
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
 	}
 }

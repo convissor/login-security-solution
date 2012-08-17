@@ -328,7 +328,13 @@ class login_security_solution {
 			$hmac = $cookie_elements['hmac'];
 		}
 		###$this->log("auth_cookie_bad: $username, $hmac");
-		$this->process_login_fail($username, $hmac);
+
+		// Remove cookies to prevent further mayhem.
+		wp_clear_auth_cookie();
+
+		// The auth cookie process happens so early that we can't close the
+		// database connection yet.
+		$this->process_login_fail($username, $hmac, false);
 	}
 
 	/**
@@ -1907,6 +1913,7 @@ Password MD5                 %5d     %s
 	 *
 	 * @param string $user_name  the user name from the current login form
 	 * @param string $user_pass  the unhashed new password
+	 * @param bool $close_db  should mysql_close() be called?
 	 * @return int  the number of seconds sleep()'ed (for use by unit tests)
 	 *
 	 * @uses login_security_solution::get_ip()  to get the IP address
@@ -1917,7 +1924,9 @@ Password MD5                 %5d     %s
 	 *       they're over the limit
 	 * @uses login_security_solution::notify_fail()  to warn of an attack
 	 */
-	protected function process_login_fail($user_name, $user_pass) {
+	protected function process_login_fail($user_name, $user_pass,
+			$close_db = true)
+	{
 		global $wpdb;
 
 		$ip = $this->get_ip();
@@ -1955,7 +1964,9 @@ Password MD5                 %5d     %s
 			}
 
 			// Keep login failures from becoming denial of service attacks.
-			mysql_close($wpdb->dbh);
+			if ($close_db) {
+				mysql_close($wpdb->dbh);
+			}
 
 			// Increasingly slow down attackers to the point they'll give up.
 			sleep($sleep);
