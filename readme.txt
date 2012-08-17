@@ -312,6 +312,7 @@ implementation, use the script I made for generating all of the .mo files:
 == Changelog ==
 
 = 0.22.0 =
+* Increase default value of login_fail_notify from 20 to 50.
 * Add the French translation.  Thanks mermouy!
 
 = 0.21.0 =

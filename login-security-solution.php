@@ -113,7 +113,7 @@ class login_security_solution {
 		'login_fail_minutes' => 120,
 		'login_fail_tier_2' => 5,
 		'login_fail_tier_3' => 10,
-		'login_fail_notify' => 20,
+		'login_fail_notify' => 50,
 		'login_fail_breach_notify' => 6,
 		'login_fail_breach_pw_force_change' => 6,
 		'pw_change_days' => 0,
