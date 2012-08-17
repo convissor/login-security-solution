@@ -1205,6 +1205,36 @@ Password MD5                 %5d     %s
 	}
 
 	/**
+	 * Does the current login failure exactly match an earlier failure
+	 * in the period specified by login_fail_minutes?
+	 *
+	 * @param string $ip  a prior result from get_ip()
+	 * @param string $user_name  the user name from the current login form
+	 * @param string $pass_md5  the md5 hashed new password
+	 * @return bool
+	 *
+	 * @uses login_security_solution::$options  for the login_fail_minutes
+	 *       setting
+	 */
+	protected function is_login_fail_exact_match($ip, $user_name, $pass_md5) {
+		global $wpdb;
+
+		$wpdb->escape_by_ref($ip);
+		$wpdb->escape_by_ref($user_name);
+		$wpdb->escape_by_ref($pass_md5);
+
+		$sql = "SELECT COUNT(*) AS total
+				FROM `$this->table_fail`
+				WHERE (ip = '$ip'
+					AND user_login = '$user_name'
+					AND pass_md5 = '$pass_md5')
+					AND date_failed > DATE_SUB(NOW(), INTERVAL "
+					. (int) $this->options['login_fail_minutes'] . " MINUTE)";
+
+		return (bool) $wpdb->get_var($sql);
+	}
+
+	/**
 	 * Does this password show up in the "dict" program?
 	 *
 	 * @param string $pw  the password to examine
@@ -1893,6 +1923,11 @@ Password MD5                 %5d     %s
 		$ip = $this->get_ip();
 		$network_ip = $this->get_network_ip($ip);
 		$pass_md5 = $this->md5($user_pass);
+
+		if ($this->is_login_fail_exact_match($ip, $user_name, $pass_md5)) {
+			// Don't track duplicates, user is trying bad pw over and over.
+			return -1;
+		}
 
 		$this->insert_fail($ip, $user_name, $pass_md5);
 

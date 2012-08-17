@@ -74,6 +74,17 @@ class LoginFailTest extends TestCase {
 	/**
 	 * @depends test_insert_fail
 	 */
+	public function test_is_login_fail_exact_match() {
+		$actual = self::$lss->is_login_fail_exact_match($this->ip, $this->user_name, $this->pass_md5);
+		$this->assertTrue($actual, 'Expect match.');
+
+		$actual = self::$lss->is_login_fail_exact_match($this->ip, $this->user_name, 'no match');
+		$this->assertFalse($actual, 'Expect no match.');
+	}
+
+	/**
+	 * @depends test_insert_fail
+	 */
 	public function test_get_login_fail() {
 		$expected = array(
 			'total' => '2',
@@ -140,10 +151,20 @@ class LoginFailTest extends TestCase {
 	public function test_process_login_fail__pre_threshold() {
 		global $wpdb;
 
-		self::$lss->process_login_fail($this->user_name, $this->pass_md5);
+		self::$lss->process_login_fail($this->user_name, 'reed');
 
 		$this->assertInternalType('integer', $wpdb->insert_id,
 				'This should be an insert id.');
+	}
+
+	/**
+	 * @depends test_get_login_fail
+	 */
+	public function test_process_login_fail__exact_match() {
+		global $wpdb;
+
+		$actual = self::$lss->process_login_fail($this->user_name, 'reed');
+		$this->assertEquals(-1, $actual);
 	}
 
 	public function test_wp_login__null() {
