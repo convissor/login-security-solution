@@ -1074,12 +1074,21 @@ Password MD5                 %5d     %s
 		if (!$string) {
 			return false;
 		}
-		if (stripos($pw, $string) !== false) {
-			return true;
+
+		$split_pw = $this->split_types($pw, 4);
+		foreach ($split_pw as $element) {
+			if (stripos($string, $element) !== false) {
+				return true;
+			}
 		}
-		if (stripos($string, $pw) !== false) {
-			return true;
+
+		$split_string = $this->split_types($string, 4);
+		foreach ($split_string as $element) {
+			if (stripos($pw, $element) !== false) {
+				return true;
+			}
 		}
+
 		return false;
 	}
 
@@ -1571,46 +1580,18 @@ Password MD5                 %5d     %s
 	 */
 	protected function is_pw_sequential_file($pw) {
 		// First, determine offsets where character type changes occur.
-		$split = preg_split('/(?<=[^[:punct:]])([[:punct:]])|(?<=[^[:alpha:]])([[:alpha:]])|(?<=\D)(\d)/', $pw, -1, PREG_SPLIT_OFFSET_CAPTURE|PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
+		$split = $this->split_types($pw);
 
-		if (count($split) == 1) {
-			// All one character type.
-			$parts_fwd = array($pw);
-			$parts_rev = array($this->strrev($pw));
-		} else {
-			// Multiple character types.
-
-			// Don't want info from first element.
-			array_shift($split);
-
-			$parts_fwd = array();
-			$parts_rev = array();
-			$start = 0;
-
-			// Now use those offsets to extract the character type blocks.
-			foreach ($split as $part) {
-				if ($this->strlen($part[0]) == 1) {
-					$length = $part[1] - $start;
-					if ($length > 2) {
-						// Only examine blocks with 3 or more characters.
-						$fwd = $this->substr($pw, $start, $length);
-						$parts_fwd[] = $fwd;
-						$parts_rev[] = $this->strrev($fwd);
-					}
-					$start = $part[1];
-				}
-			}
-			$length = $this->strlen($pw) - $start;
-			if ($length > 2) {
-				// Only add the last block if it's 3 or more characters.
-				$fwd = $this->substr($pw, $start, $length);
-				$parts_fwd[] = $fwd;
-				$parts_rev[] = $this->strrev($fwd);
-			}
+		if (!$split) {
+			return false;
 		}
 
-		if (!$parts_fwd) {
-			return false;
+		$parts_fwd = array();
+		$parts_rev = array();
+
+		foreach ($split as $part) {
+			$parts_fwd[] = $part;
+			$parts_rev[] = $this->strrev($part);
 		}
 
 		$dir = new DirectoryIterator($this->dir_sequences);
@@ -2194,6 +2175,52 @@ Password MD5                 %5d     %s
 	 */
 	protected function split($pw) {
 		return preg_split('/(?<!^)(?!$)/u', $pw);
+	}
+
+	/**
+	 * Breaks string up into blocks of words, numbers, and punctuation
+	 *
+	 * @param string $in  the string to process
+	 * @param int $minimum  the minimum length string to keep (must be >= 3)
+	 * @return array
+	 */
+	protected function split_types($in, $minimum = 3) {
+		$split = preg_split('/(?<=[^[:punct:]])([[:punct:]])|(?<=[^[:alpha:]])([[:alpha:]])|(?<=\D)(\d)/', $in, -1, PREG_SPLIT_OFFSET_CAPTURE|PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
+
+		$out = array();
+		if (!count($split)) {
+			// Return empty array, already defined.
+		} elseif (count($split) == 1) {
+			// All one character type.
+			$out[] = trim($in);
+		} else {
+			// Multiple character types.
+
+			// Ignore meta data about first match.
+			// Don't worry, the string will be obtained.
+			array_shift($split);
+
+			$start = 0;
+
+			// Now use those offsets to extract the character type blocks.
+			foreach ($split as $part) {
+				if ($this->strlen($part[0]) == 1) {
+					$length = $part[1] - $start;
+					$tmp = trim($this->substr($in, $start, $length));
+					if ($this->strlen($tmp) >= $minimum) {
+						$out[] = $tmp;
+					}
+					$start = $part[1];
+				}
+			}
+			$length = $this->strlen($in) - $start;
+			$tmp = trim($this->substr($in, $start, $length));
+			if ($this->strlen($tmp) >= $minimum) {
+				$out[] = $tmp;
+			}
+		}
+
+		return $out;
 	}
 
 	/**

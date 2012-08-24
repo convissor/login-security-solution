@@ -427,6 +427,39 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 
+	public function test_split_types_default3() {
+		$tests = array(
+			"^&*()" => array("^&*()"),
+			"ad" => array("ad"),
+			"asd" => array("asd"),
+			"1234" => array("1234"),
+			"adgi!15yYui5889" => array("adgi", "yYui", "5889"),
+			"adgi!1365yYui5" => array("adgi", "1365", "yYui"),
+			"adgi!1365yYui59" => array("adgi", "1365", "yYui"),
+			"adgi 1365 yYui" => array("adgi", "1365", "yYui"),
+			"adgi song yYui" => array("adgi", "song", "yYui"),
+		);
+		foreach ($tests as $pw => $expected) {
+			$actual = self::$lss->split_types($pw);
+			$this->assertEquals($expected, $actual);
+		}
+	}
+
+	public function test_split_types_5() {
+		$tests = array(
+			"^&*()" => array("^&*()"),
+			"ad" => array("ad"),
+			"asd" => array("asd"),
+			"1234" => array("1234"),
+			"adgiii!.^#--?133655yaaYui" => array("adgiii", "!.^#--?", "133655", "yaaYui"),
+			"adgi!13355yYui59" => array("13355"),
+		);
+		foreach ($tests as $pw => $expected) {
+			$actual = self::$lss->split_types($pw, 5);
+			$this->assertEquals($expected, $actual);
+		}
+	}
+
 	public function test_strip_nonword_chars() {
 		$tests = array(
 			"^a&*b()c2" => "abc2",

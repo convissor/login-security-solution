@@ -310,6 +310,9 @@ implementation, use the script I made for generating all of the .mo files:
 
 == Changelog ==
 
+= 0.23.0 =
+* Split user and site info into components before comparing them.
+
 = 0.22.0 =
 * Track a given IP, user name, password combination only once.
 * Prevent "not a valid MySQL-Link resource" on auth cookie failure.
