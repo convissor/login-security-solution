@@ -119,7 +119,7 @@ class login_security_solution {
 		'pw_change_days' => 0,
 		'pw_change_grace_period_minutes' => 15,
 		'pw_complexity_exemption_length' => 20,
-		'pw_length' => 8,
+		'pw_length' => 10,
 		'pw_reuse_count' => 0,
 	);
 
@@ -296,8 +296,8 @@ class login_security_solution {
 		if ($this->options['pw_complexity_exemption_length'] < 20) {
 			$this->options['pw_complexity_exemption_length'] = 20;
 		}
-		if ($this->options['pw_length'] < 8) {
-			$this->options['pw_length'] = 8;
+		if ($this->options['pw_length'] < 10) {
+			$this->options['pw_length'] = 10;
 		}
 	}
 

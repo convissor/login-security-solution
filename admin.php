@@ -314,9 +314,9 @@ class login_security_solution_admin extends login_security_solution {
 			'pw_length' => array(
 				'group' => 'pw',
 				'label' => __("Length", self::ID),
-				'text' => sprintf(__("How long must passwords be? Must be >= %d.", self::ID), 8),
+				'text' => sprintf(__("How long must passwords be? Must be >= %d.", self::ID), 10),
 				'type' => 'int',
-				'greater_than' => 8,
+				'greater_than' => 10,
 			),
 			'pw_complexity_exemption_length' => array(
 				'group' => 'pw',

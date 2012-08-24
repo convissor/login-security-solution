@@ -312,6 +312,7 @@ implementation, use the script I made for generating all of the .mo files:
 
 = 0.23.0 =
 * Split user and site info into components before comparing them.
+* Increase minimum password length to 10 characters.
 
 = 0.22.0 =
 * Track a given IP, user name, password combination only once.
@@ -491,6 +492,7 @@ You can also [view our existing tickets](https://plugins.trac.wordpress.org/quer
     + [Consumer Password Worst Practices](http://www.imperva.com/docs/WP_Consumer_Password_Worst_Practices.pdf), Imperva
     + [Preventing Brute Force Attacks on your Web Login](http://www.bryanrite.com/preventing-brute-force-attacks-on-your-web-login/), Bryan Rite
     + [Password Strength](http://xkcd.com/936/), Randall Munroe
+    + [Why passwords have never been weaker -- and crackers have never been stronger](http://arstechnica.com/security/2012/08/passwords-under-assault/), Dan Goodin
 
 * Technical Info
     + [The Extreme UTF-8 Table](http://doc.infosnel.nl/extreme_utf-8.html), infosnel.nl
