@@ -37,9 +37,8 @@ The tests have caught every password dictionary entry I've tried.
     + Minimum length (customizable)
     + Doesn't match blog info
     + Doesn't match user data
-    + Must either have numbers in it or be very long
-    + Must either have punctuation, upper and lower case characters or be
-      very long
+    + Must either have numbers, punctuation, upper and lower case characters
+      or be very long
     + Non-sequential codepoints
     + Non-sequential keystrokes (custom sequence files can be added)
     + Not in the password dictionary files you've provided (if any)
