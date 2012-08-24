@@ -87,6 +87,13 @@ The tests have caught every password dictionary entry I've tried.
 * Unit tests covering 100% of the main class
 * Internationalized unit tests
 
+For reference, the similar plugins include:
+
+* [Better WP Security](http://wordpress.org/extend/plugins/better-wp-security/)
+* [Login Lock](http://wordpress.org/extend/plugins/login-lock/)
+* [PMC Lockdown](http://wordpress.org/extend/plugins/pmc-lockdown/)
+* [Simple Login Lockdown](http://wordpress.org/extend/plugins/simple-login-lockdown/)
+
 
 = Translations =
 
