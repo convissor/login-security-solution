@@ -95,6 +95,12 @@ For reference, the similar plugins include:
 * [Simple Login Lockdown](http://wordpress.org/extend/plugins/simple-login-lockdown/)
 
 
+= Compatability with Other Plugins =
+
+Some plugins provide similar functionality.  These overlaps can lead to
+conflicts during program execution.  Please read the FAQ!
+
+
 = Translations =
 
 * Français, français (French, France) (fr_FR) by mermouy
@@ -120,12 +126,6 @@ your reputation gets sullied, security software flags your site as dangerous,
 and worst of all, you've inadvertently helped infect the computers of your
 clients and friends.  Oh, and if the attack involves malware, that malware
 has probably gotten itself into your computer.
-
-
-= Compatability with Other Plugins =
-
-Some plugins provide similar functionality.  These overlaps can lead to
-conflicts during program execution.  Please read the FAQ!
 
 
 == Installation ==
