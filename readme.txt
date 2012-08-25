@@ -90,6 +90,7 @@ The tests have caught every password dictionary entry I've tried.
 For reference, the similar plugins include:
 
 * [Better WP Security](http://wordpress.org/extend/plugins/better-wp-security/)
+* [Limit Login Attempts](http://wordpress.org/extend/plugins/limit-login-attempts/)
 * [Login Lock](http://wordpress.org/extend/plugins/login-lock/)
 * [Login LockDown](http://wordpress.org/extend/plugins/login-lockdown/)
 * [PMC Lockdown](http://wordpress.org/extend/plugins/pmc-lockdown/)
