@@ -91,6 +91,7 @@ For reference, the similar plugins include:
 
 * [Better WP Security](http://wordpress.org/extend/plugins/better-wp-security/)
 * [Login Lock](http://wordpress.org/extend/plugins/login-lock/)
+* [Login LockDown](http://wordpress.org/extend/plugins/login-lockdown/)
 * [PMC Lockdown](http://wordpress.org/extend/plugins/pmc-lockdown/)
 * [Simple Login Lockdown](http://wordpress.org/extend/plugins/simple-login-lockdown/)
 
