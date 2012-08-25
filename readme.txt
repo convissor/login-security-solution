@@ -103,7 +103,7 @@ conflicts during program execution.  Please read the FAQ!
 
 = Translations =
 
-* Français, français (French, France) (fr_FR) by mermouy
+* Français, français (French, France) (fr_FR) by [mermouy](http://wordpress.org/support/profile/mermouy)
 
 
 = Securing Your WordPress Site is Important =
@@ -325,7 +325,8 @@ implementation, use the script I made for generating all of the .mo files:
 * Track a given IP, user name, password combination only once.
 * Prevent "not a valid MySQL-Link resource" on auth cookie failure.
 * Increase default value of login_fail_notify from 20 to 50.
-* Add partial French translation.  Settings page needs doing.  Thanks mermouy!
+* Add partial French translation.  Settings page needs doing.  Thanks
+[mermouy](http://wordpress.org/support/profile/mermouy)!
 
 = 0.21.0 =
 * Fix is_pw_outside_ascii() to permit spaces.
@@ -358,19 +359,23 @@ the failure and breach notifications get sent to. (Request #1560)
 against their user name.
 
 = 0.17.0 =
-* Fix network IP query in get_login_fail(). (Bug #1553, deanmarktaylor)
-* Rename files holding expected test results. (Bug #1552, deanmarktaylor)
+* Fix network IP query in get_login_fail(). (Bug #1553,
+[deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
+* Rename files holding expected test results. (Bug #1552,
+[deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
 
 = 0.16.0 =
 * Have shell script gracefully handle value already being the desired value.
 
 = 0.15.0 =
 * Log auth cookie failures too.
-* Clean up sleep logic. (Bug #1549, deanmarktaylor)
+* Clean up sleep logic. (Bug #1549,
+[deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
 
 = 0.14.0 =
 * Fix emails being mistakenly sent in multisite mode that say "There have
-been at least 0 failed attempts to log in".  (Bug #1548, deanmarktaylor)
+been at least 0 failed attempts to log in".  (Bug #1548,
+[deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
 * Add an `.htaccess` file that blocks access to this plugin's directory.
 
 = 0.13.0 =
@@ -381,7 +386,7 @@ command line.
 * Display a notice on top of admin pages when our maintenance mode is enabled.
 
 = 0.11.0 =
-* Use POST value for `$user_name` in `login_errors()` because global value
+* Use `POST` value for `$user_name` in `login_errors()` because global value
 isn't always set.
 * Add some more (commented out) log() calls to help users help me help them.
 
