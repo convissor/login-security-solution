@@ -71,6 +71,8 @@ The tests have caught every password dictionary entry I've tried.
 = Improvements Over Similar WordPress Plugins =
 
 * Multisite network support
+* Monitors auth cookies for bad user names and hashes
+* Adjusts WordPress' password policy user interfaces
 * Takes security seriously so the plugin itself does not open your site
   to SQL, HTML, or header injection vulnerabilities
 * Notice-free code means no information disclosures if `display_errors`
@@ -82,7 +84,6 @@ The tests have caught every password dictionary entry I've tried.
 * Uses WordPress' features rather than fighting or overriding them
 * No advertising, promotions, or beacons
 * Proper internationalization support
-* Monitors auth cookie failures
 * Clean, documented code
 * Unit tests covering 100% of the main class
 * Internationalized unit tests
