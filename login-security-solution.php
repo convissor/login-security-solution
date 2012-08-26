@@ -189,7 +189,7 @@ class login_security_solution {
 		add_action('user_profile_update_errors',
 				array(&$this, 'user_profile_update_errors'), 999, 3);
 
-		add_action('login_form_resetpass', array(&$this, 'pw_policy_add_filter'));
+		add_action('login_form_resetpass', array(&$this, 'pw_policy_establish'));
 
 		add_filter('login_errors', array(&$this, 'login_errors'));
 		add_filter('login_message', array(&$this, 'login_message'));
@@ -229,8 +229,8 @@ class login_security_solution {
 			add_action($admin_menu, array(&$admin, 'admin_menu'));
 			add_action('admin_init', array(&$admin, 'admin_init'));
 			add_filter($plugin_action_links, array(&$admin, 'plugin_action_links'));
-			add_action('personal_options', array(&$admin, 'pw_policy_add_filter'));
-			add_action('user_new_form_tag', array(&$admin, 'pw_policy_add_filter'));
+			add_action('personal_options', array(&$admin, 'pw_policy_establish'));
+			add_action('user_new_form_tag', array(&$admin, 'pw_policy_establish'));
 
 			if ($this->options['disable_logins']) {
 				add_action('admin_notices', array(&$admin, 'admin_notices_disable_logins'));
@@ -610,15 +610,17 @@ class login_security_solution {
 	}
 
 	/**
-	 * Declares our password policy gettext filter
+	 * Declares our password policy gettext filter and deactivates the
+	 * password strength indicator script
 	 *
 	 * NOTE: This method is automatically called by WordPress
 	 * on the wp-login.php, user-new.php, and user-edit.php pages.
 	 *
 	 * @return void
 	 */
-	public function pw_policy_add_filter() {
+	public function pw_policy_establish() {
 		add_filter('gettext', array(&$this, 'pw_policy_rewrite'), 11, 2);
+		wp_deregister_script('password-strength-meter');
 	}
 
 	/**

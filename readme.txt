@@ -320,6 +320,7 @@ implementation, use the script I made for generating all of the .mo files:
 == Changelog ==
 
 = 0.24.0 =
+* Keep the password strength indicator from being enabled.
 * Narrow down when the password policy text filter is enabled.
 
 = 0.23.0 =
