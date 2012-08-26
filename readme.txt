@@ -319,6 +319,9 @@ implementation, use the script I made for generating all of the .mo files:
 
 == Changelog ==
 
+= 0.24.0 =
+* Narrow down when the password policy text filter is enabled.
+
 = 0.23.0 =
 * Split user and site info into components before comparing them.
 * Increase minimum password length to 10 characters.
