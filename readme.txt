@@ -488,21 +488,9 @@ problems under PHP 5.4.
 * Tested under WordPress 3.3.1.
 
 
-== To Do ==
+== Other Notes ==
 
-* Delete old data in the `fail` table.
-* Provide a user interface to the `fail` table.
-
-
-== Bugs and Feature Requests ==
-
-Report bugs and submit feature requests by opening a ticket in WordPress'
-[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
-
-You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
-
-
-== Inspiration and References ==
+= Inspiration and References =
 
 * Password Research
     + [You can never have too many passwords: techniques for evaluating a huge corpus](http://www.cl.cam.ac.uk/~jcb82/doc/B12-IEEESP-evaluating_a_huge_password_corpus.pdf), Joseph Bonneau
@@ -520,3 +508,15 @@ You can also [view our existing tickets](https://plugins.trac.wordpress.org/quer
     + [Dazzlepod Password List](http://dazzlepod.com/site_media/txt/passwords.txt), Dazzlepod
     + [Common Passwords](http://www.searchlores.org/commonpass1.htm), Fravia
     + [The Top 500 Worst Passwords of All Time](http://www.whatsmypass.com/the-top-500-worst-passwords-of-all-time), Mark Burnett
+
+= To Do =
+
+* Delete old data in the `fail` table.
+* Provide a user interface to the `fail` table.
+
+= Bugs and Feature Requests =
+
+Report bugs and submit feature requests by opening a ticket in WordPress'
+[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
+
+You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
