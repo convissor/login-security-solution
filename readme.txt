@@ -491,8 +491,7 @@ problems under PHP 5.4.
 == To Do ==
 
 * Delete old data in the `fail` table.
-* Add some JS/AJAX magic to make users' lives easier by also validating
-  passwords on the front end prior to submission.  Patches welcome!
+* Provide a user interface to the `fail` table.
 
 
 == Bugs and Feature Requests ==
