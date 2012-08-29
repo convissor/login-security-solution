@@ -641,7 +641,7 @@ class login_security_solution {
 
 		if ($original == $policy) {
 			$this->load_plugin_textdomain();
-			$translated = sprintf($this->hsc_utf8(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long.", self::ID)), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']);
+			$translated = sprintf($this->hsc_utf8(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", self::ID)), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']);
 		}
 
 		return $translated;

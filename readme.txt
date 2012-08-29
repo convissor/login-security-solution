@@ -344,6 +344,8 @@ implementation, use the script I made for generating all of the .mo files:
 
 = 0.25.0 =
 * Load text domain for password policy on password reset page.
+* Have password policy mention that it can't contain words related to
+the user or the website.
 
 = 0.24.0 =
 * Keep the password strength indicator from being enabled.
