@@ -133,6 +133,26 @@ clients and friends.  Oh, and if the attack involves malware, that malware
 has probably gotten itself into your computer.
 
 
+= Why Strong, Unique Passwords Are Important =
+
+Yeah, creating, storing/remembering, and using a _different_, _strong_
+password for each site you use is a hassle.  _But it is absolutely
+necessary._
+
+Password lists get stolen on a regular basis from big name sites (like
+Linkedin for example!).  Criminals then have unlimited time to decode the
+passwords.  In general, 50% of those passwords are so weak they get figured
+out in a matter of seconds.  Plus there are computers on the Internet
+dedicated to pounding the sites with login attempts, hoping to get lucky.
+
+Many people use the same password for multiple sites.  Once an attacker
+figures out your password on one site, they'll try it on your accounts at
+other sites.  It gets ugly very fast.
+
+But don't despair!  There are good, free tools that make doing the right
+thing a piece of cake.  For example, [KeePass](http://keepass.info/).
+
+
 == Installation ==
 
 1. Before installing this plugin, read the FAQ!
@@ -495,12 +515,12 @@ problems under PHP 5.4.
 = Inspiration and References =
 
 * Password Research
+    + [Why passwords have never been weaker -- and crackers have never been stronger](http://arstechnica.com/security/2012/08/passwords-under-assault/), Dan Goodin
     + [You can never have too many passwords: techniques for evaluating a huge corpus](http://www.cl.cam.ac.uk/~jcb82/doc/B12-IEEESP-evaluating_a_huge_password_corpus.pdf), Joseph Bonneau
     + [Analyzing Password Strength](http://www.cs.ru.nl/bachelorscripties/2010/Martin_Devillers___0437999___Analyzing_password_strength.pdf), Martin Devillers
     + [Consumer Password Worst Practices](http://www.imperva.com/docs/WP_Consumer_Password_Worst_Practices.pdf), Imperva
     + [Preventing Brute Force Attacks on your Web Login](http://www.bryanrite.com/preventing-brute-force-attacks-on-your-web-login/), Bryan Rite
     + [Password Strength](http://xkcd.com/936/), Randall Munroe
-    + [Why passwords have never been weaker -- and crackers have never been stronger](http://arstechnica.com/security/2012/08/passwords-under-assault/), Dan Goodin
 
 * Technical Info
     + [The Extreme UTF-8 Table](http://doc.infosnel.nl/extreme_utf-8.html), infosnel.nl
