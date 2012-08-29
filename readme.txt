@@ -38,7 +38,9 @@ The tests have caught every password dictionary entry I've tried.
     + Doesn't match blog info
     + Doesn't match user data
     + Must either have numbers, punctuation, upper and lower case characters
-      or be very long
+      or be very long.  Note: alphabets with only one case (e.g. Arabic,
+      Hebrew, etc.) are automatically exempted from the upper/lower case
+      requirement.
     + Non-sequential codepoints
     + Non-sequential keystrokes (custom sequence files can be added)
     + Not in the password dictionary files you've provided (if any)
