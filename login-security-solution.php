@@ -640,6 +640,7 @@ class login_security_solution {
 		$policy = 'Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).';
 
 		if ($original == $policy) {
+			$this->load_plugin_textdomain();
 			$translated = sprintf($this->hsc_utf8(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long.", self::ID)), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']);
 		}
 
