@@ -502,7 +502,7 @@ problems under PHP 5.4.
 
 = Why Strong, Unique Passwords Are Important =
 
-Yeah, creating, storing/remembering, and using a _different_, _strong_
+Yeah, creating, storing/remembering, and using a __different__, __strong__
 password for each site you use is a hassle.  _But it is absolutely
 necessary._
 
@@ -521,6 +521,11 @@ thing a piece of cake.  For example:
 * [KeePassX](http://www.keepassx.org/)
 * [KeePass](http://keepass.info/)
 * [1Password](https://agilebits.com/onepassword)
+
+And if you're wondering, "Who cares about this rinky-dink website?",
+please read the "Securing Your WordPress Site is Important" section
+at the bottom of [this plugin's description
+page](http://wordpress.org/extend/plugins/login-security-solution/).
 
 = Inspiration and References =
 
