@@ -133,29 +133,6 @@ clients and friends.  Oh, and if the attack involves malware, that malware
 has probably gotten itself into your computer.
 
 
-= Why Strong, Unique Passwords Are Important =
-
-Yeah, creating, storing/remembering, and using a _different_, _strong_
-password for each site you use is a hassle.  _But it is absolutely
-necessary._
-
-Password lists get stolen on a regular basis from big name sites (like
-Linkedin for example!).  Criminals then have unlimited time to decode the
-passwords.  In general, 50% of those passwords are so weak they get figured
-out in a matter of seconds.  Plus there are computers on the Internet
-dedicated to pounding the sites with login attempts, hoping to get lucky.
-
-Many people use the same password for multiple sites.  Once an attacker
-figures out your password on one site, they'll try it on your accounts at
-other sites.  It gets ugly very fast.
-
-But don't despair!  There are good, free tools that make doing the right
-thing a piece of cake.  For example:
-* [KeePassX](http://www.keepassx.org/)
-* [KeePass](http://keepass.info/)
-* [1Password](https://agilebits.com/onepassword)
-
-
 == Installation ==
 
 1. Before installing this plugin, read the FAQ!
@@ -519,6 +496,28 @@ problems under PHP 5.4.
 
 
 == Other Notes ==
+
+= Why Strong, Unique Passwords Are Important =
+
+Yeah, creating, storing/remembering, and using a _different_, _strong_
+password for each site you use is a hassle.  _But it is absolutely
+necessary._
+
+Password lists get stolen on a regular basis from big name sites (like
+Linkedin for example!).  Criminals then have unlimited time to decode the
+passwords.  In general, 50% of those passwords are so weak they get figured
+out in a matter of seconds.  Plus there are computers on the Internet
+dedicated to pounding the sites with login attempts, hoping to get lucky.
+
+Many people use the same password for multiple sites.  Once an attacker
+figures out your password on one site, they'll try it on your accounts at
+other sites.  It gets ugly very fast.
+
+But don't despair!  There are good, free tools that make doing the right
+thing a piece of cake.  For example:
+* [KeePassX](http://www.keepassx.org/)
+* [KeePass](http://keepass.info/)
+* [1Password](https://agilebits.com/onepassword)
 
 = Inspiration and References =
 
