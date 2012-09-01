@@ -322,6 +322,9 @@ implementation, use the script I made for generating all of the .mo files:
 
 == Changelog ==
 
+= 0.26.0 =
+* Put a link in the password policy to an explanation of why it's necessary.
+
 = 0.25.0 =
 * Load text domain for password policy on password reset page.
 * Have password policy mention that it can't contain words related to
