@@ -150,7 +150,10 @@ figures out your password on one site, they'll try it on your accounts at
 other sites.  It gets ugly very fast.
 
 But don't despair!  There are good, free tools that make doing the right
-thing a piece of cake.  For example, [KeePass](http://keepass.info/).
+thing a piece of cake.  For example:
+* [KeePassX](http://www.keepassx.org/)
+* [KeePass](http://keepass.info/)
+* [1Password](https://agilebits.com/onepassword)
 
 
 == Installation ==
