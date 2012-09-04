@@ -111,6 +111,28 @@ conflicts during program execution.  Please read the FAQ!
 * Français, français (French, France) (fr_FR) by [mermouy](http://wordpress.org/support/profile/mermouy)
 
 
+= Why Strong, Unique Passwords Are Important =
+
+Yeah, creating, storing/remembering, and using a __different__, __strong__
+password for each site you use is a hassle.  _But it is absolutely
+necessary._
+
+Password lists get stolen on a regular basis from big name sites (like
+Linkedin for example!).  Criminals then have unlimited time to decode the
+passwords.  In general, 50% of those passwords are so weak they get figured
+out in a matter of seconds.  Plus there are computers on the Internet
+dedicated to pounding the sites with login attempts, hoping to get lucky.
+
+Many people use the same password for multiple sites.  Once an attacker
+figures out your password on one site, they'll try it on your accounts at
+other sites.  It gets ugly very fast.
+
+But don't despair!  There are good, free tools that make doing the right
+thing a piece of cake.  For example: [KeePassX](http://www.keepassx.org/),
+[KeePass](http://keepass.info/),
+or [1Password](https://agilebits.com/onepassword)
+
+
 = Securing Your WordPress Site is Important =
 
 You're probably thinking "There's nothing valuable on my website. No one
@@ -502,33 +524,6 @@ problems under PHP 5.4.
 
 
 == Other Notes ==
-
-= Why Strong, Unique Passwords Are Important =
-
-Yeah, creating, storing/remembering, and using a __different__, __strong__
-password for each site you use is a hassle.  _But it is absolutely
-necessary._
-
-Password lists get stolen on a regular basis from big name sites (like
-Linkedin for example!).  Criminals then have unlimited time to decode the
-passwords.  In general, 50% of those passwords are so weak they get figured
-out in a matter of seconds.  Plus there are computers on the Internet
-dedicated to pounding the sites with login attempts, hoping to get lucky.
-
-Many people use the same password for multiple sites.  Once an attacker
-figures out your password on one site, they'll try it on your accounts at
-other sites.  It gets ugly very fast.
-
-But don't despair!  There are good, free tools that make doing the right
-thing a piece of cake.  For example:
-* [KeePassX](http://www.keepassx.org/)
-* [KeePass](http://keepass.info/)
-* [1Password](https://agilebits.com/onepassword)
-
-And if you're wondering, "Who cares about this rinky-dink website?",
-please read the "Securing Your WordPress Site is Important" section
-at the bottom of [this plugin's description
-page](http://wordpress.org/extend/plugins/login-security-solution/).
 
 = Inspiration and References =
 
