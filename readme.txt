@@ -322,6 +322,9 @@ implementation, use the script I made for generating all of the .mo files:
 
 == Changelog ==
 
+= 0.27.0 =
+* Remove the password policy explanation link added in 0.26.0.
+
 = 0.26.0 =
 * Put a link in the password policy to an explanation of why it's necessary.
 

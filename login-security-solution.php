@@ -642,7 +642,6 @@ class login_security_solution {
 		if ($original == $policy) {
 			$this->load_plugin_textdomain();
 			$translated = $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", self::ID), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
-			$translated .= sprintf(' <a href="http://wordpress.org/extend/plugins/login-security-solution/other_notes/">%s</a>', $this->hsc_utf8(__("(Why is this necessary?)")));
 		}
 
 		return $translated;
