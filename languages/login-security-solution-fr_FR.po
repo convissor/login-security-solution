@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.22.0\n"
+"Project-Id-Version: Login Security Solution 0.27.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2012-09-01 11:42:28+00:00\n"
@@ -659,13 +659,3 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://www.analysisandsolutions.com/"
 msgstr ""
-
-# @ login-security-solution
-#~ msgid ""
-#~ "The password should either be: A) at least %d characters long and contain "
-#~ "upper and lower case letters plus numbers and punctuation, or B) at least "
-#~ "%d characters long."
-#~ msgstr ""
-#~ "Le mot de passe doit, soit A) comporter au moins %d caractères et "
-#~ "contenir à la fois des majuscules, des minuscules, des chiffres et de la "
-#~ "ponctuation; soit B) comporter %d caractères."
