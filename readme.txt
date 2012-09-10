@@ -109,6 +109,7 @@ conflicts during program execution.  Please read the FAQ!
 = Translations =
 
 * Français, français (French, France) (fr_FR) by [mermouy](http://wordpress.org/support/profile/mermouy)
+* Português, Brasil (Portugese, Brazil) (pt_BR) by Valdir Trombini
 
 
 = Why Strong, Unique Passwords Are Important =
