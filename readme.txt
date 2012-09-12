@@ -345,33 +345,33 @@ implementation, use the script I made for generating all of the .mo files:
 
 == Changelog ==
 
-= 0.27.0 =
+= 0.27.0 (2012-09-04) =
 * Remove the password policy explanation link added in 0.26.0.
 
-= 0.26.0 =
+= 0.26.0 (2012-09-01) =
 * Put a link in the password policy to an explanation of why it's necessary.
 
-= 0.25.0 =
+= 0.25.0 (2012-08-30) =
 * Load text domain for password policy on password reset page.
 * Have password policy mention that it can't contain words related to
 the user or the website.
 
-= 0.24.0 =
+= 0.24.0 (2012-08-29) =
 * Keep the password strength indicator from being enabled.
 * Narrow down when the password policy text filter is enabled.
 
-= 0.23.0 =
+= 0.23.0 (2012-08-24) =
 * Split user and site info into components before comparing them.
 * Increase minimum password length to 10 characters.
 
-= 0.22.0 =
+= 0.22.0 (2012-08-17) =
 * Track a given IP, user name, password combination only once.
 * Prevent "not a valid MySQL-Link resource" on auth cookie failure.
 * Increase default value of login_fail_notify from 20 to 50.
 * Add partial French translation.  Settings page needs doing.  Thanks
 [mermouy](http://wordpress.org/support/profile/mermouy)!
 
-= 0.21.0 =
+= 0.21.0 (2012-08-07) =
 * Fix is_pw_outside_ascii() to permit spaces.
 * In multisite mode, send notifications to network admin, not blog admin.
 * Add "Notifiations To" setting for admins to specify the email addresses
@@ -385,60 +385,60 @@ the failure and breach notifications get sent to. (Request #1560)
 * Tested under WordPress 3.4.1 using regular and multisite.
 * Also tested on Windows 7 using PHP 5.4.5 and WordPress 3.4.1.
 
-= 0.20.2 =
+= 0.20.2 (2012-07-12) =
 * Ugh, update the translation pot file.
 
-= 0.20.1 =
+= 0.20.1 (2012-07-12) =
 * Add "numbers" to the password policy text.
 
-= 0.20.0 =
+= 0.20.0 (2012-07-12) =
 * Replace WP's password policy text with our own.
 
-= 0.19.0 =
+= 0.19.0 (2012-07-11) =
 * Remove inadvertent log call added in 0.17.0.
 
-= 0.18.0 =
+= 0.18.0 (2012-07-11) =
 * Keep legit user from having to repeatedly reset pw during active attacks
 against their user name.
 
-= 0.17.0 =
+= 0.17.0 (2012-07-09) =
 * Fix network IP query in get_login_fail(). (Bug #1553,
 [deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
 * Rename files holding expected test results. (Bug #1552,
 [deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
 
-= 0.16.0 =
+= 0.16.0 (2012-07-08) =
 * Have shell script gracefully handle value already being the desired value.
 
-= 0.15.0 =
+= 0.15.0 (2012-07-06) =
 * Log auth cookie failures too.
 * Clean up sleep logic. (Bug #1549,
 [deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
 
-= 0.14.0 =
+= 0.14.0 (2012-07-05) =
 * Fix emails being mistakenly sent in multisite mode that say "There have
 been at least 0 failed attempts to log in".  (Bug #1548,
 [deanmarktaylor](http://wordpress.org/support/profile/deanmarktaylor))
 * Add an `.htaccess` file that blocks access to this plugin's directory.
 
-= 0.13.0 =
+= 0.13.0 (2012-07-01) =
 * Add a script for turning our "Disable Logins" feature on and off from the
 command line.
 
-= 0.12.0 =
+= 0.12.0 (2012-06-30) =
 * Display a notice on top of admin pages when our maintenance mode is enabled.
 
-= 0.11.0 =
+= 0.11.0 (2012-06-28) =
 * Use `POST` value for `$user_name` in `login_errors()` because global value
 isn't always set.
 * Add some more (commented out) log() calls to help users help me help them.
 
-= 0.10.0 =
+= 0.10.0 (2012-06-16) =
 * Catch $user_ID not being set during "Change All Passwords" submission.
 * Add (commented out) log() calls in important spots. Enables users to
 help me help them.
 
-= 0.9.0 =
+= 0.9.0 (2012-06-16) =
 * Fix change that prevented users from logging in after using the password
 reset process with an insecure password. Users can now pick a better
 password right on the spot.
@@ -446,28 +446,28 @@ password right on the spot.
 * Tested under WordPress 3.3.2 and 3.4RC3, both using regular and multisite.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.8.0 =
+= 0.8.0 (2012-04-29) =
 * Fix logging user out a second time after WordPress expires cookies.
 * It turns out this plugin requires WordPress 3.3, not 3.0.
 * Tested under WordPress 3.3.2 regular and 3.4beta2 multisite.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.7.0 =
+= 0.7.0 (2012-04-25) =
 * The "lost your password" process now validates passwords.
 * Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.6.1 =
+= 0.6.1 (2012-04-19) =
 * Minor wording adjustments.
 
-= 0.6.0 =
+= 0.6.0 (2012-04-18) =
 * Use `ENT_QUOTES` instead of `ENT_COMPAT` in `htmlspecialchars()` calls
 because WordPress mixes and matches the double and single quotes to
 delimit attributes.
 * Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.5.0 =
+= 0.5.0 (2012-04-18) =
 * Have multisite network mode use the saved options instead of the defaults.
 * Close more HTML injection vectors.  (One would think WordPress' built in
 functions would already do this.  Alas...)
@@ -477,32 +477,32 @@ Network Admin page.
 * Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.4.0 =
+= 0.4.0 (2012-04-17) =
 * Add multisite network support.
 * Keep unit tests from deleting settings.  Note: removes the ability to
 run the unit tests without activating the plugin.
 * Tested under WordPress 3.3.1 regular and 3.4beta2 multisite.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.3.0 =
+= 0.3.0 (2012-04-04) =
 * Use UTF-8 encoding for `htmlspecialchars()` instead of `DB_CHARSET`.
 * Tested under WordPress 3.3.1.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.2.1 =
+= 0.2.1 (2012-04-03) =
 * Ensure all files are in the state I intended.  Needed because
 WordPress' plugin site automatically rolls releases.
 
-= 0.2.0 =
+= 0.2.0 (2012-04-03) =
 * Utilize the $encoding parameter of `htmlspecialchars()` to avoid
 problems under PHP 5.4.
 * Tested under WordPress 3.3.1.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.1.0 =
+= 0.1.0 (2012-03-26) =
 * Beta release.
 
-= 0.0.4 =
+= 0.0.4 (2012-03-22) =
 * Initial import to `plugins.svn.wordpress.org`.
 
 = 0.0.3 =
@@ -519,7 +519,7 @@ problems under PHP 5.4.
 * Tested under WordPress 3.3.1.
 * Unit tests pass using PHP 5.4.0RC8-dev, 5.3.11-dev, and 5.2.18-dev.
 
-= 0.0.1 =
+= 0.0.1 (2012-03-19) =
 * Post the code for public review.
 * Tested under WordPress 3.3.1.
 
