@@ -672,8 +672,13 @@ class login_security_solution {
 	 *       kosher
 	 * @uses login_security_solution::process_pw_metadata()  to update user
 	 *       metadata
+	 * @uses login_security_solution::save_verified_ip()  to store good IPs
 	 */
 	public function user_profile_update_errors(&$errors, $update, $user) {
+		if (!empty($user->ID) && $user->ID == get_current_user_id()) {
+			$this->save_verified_ip($user->ID, $this->get_ip());
+		}
+
 		if ($update) {
 			if (empty($user->user_pass) || empty($user->ID)) {
 				// Password is not being changed.
@@ -693,9 +698,6 @@ class login_security_solution {
 		// Empty ID means an admin is adding a new user.
 		if (!empty($user->ID) && !$errors->get_error_codes()) {
 			$this->process_pw_metadata($user->ID, $user->user_pass);
-			if ($user->ID == get_current_user_id()) {
-				$this->save_verified_ip($user->ID, $this->get_ip());
-			}
 		}
 
 		return $answer;

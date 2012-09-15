@@ -349,6 +349,9 @@ implementation, use the script I made for generating all of the .mo files:
 * Remove loophole:  slow down successful logins as well (for non-verified
 IP addresses).  Keeps attackers from using timeouts to skip our delayed
 responses to failed login attempts.
+* Reduce false positives for breach notifications and password resets:
+    - Add user's current IP to their verified IP list whenever they save
+      their profile page, not just when they change their password.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin noficiation emails.
 
