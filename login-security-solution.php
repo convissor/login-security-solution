@@ -1677,7 +1677,8 @@ Password MD5                 %5d     %s
 		if (!is_scalar($msg)) {
 			$msg = var_export($msg, true);
 		}
-		file_put_contents('/var/tmp/' . self::ID . '.log', "$msg\n", FILE_APPEND);
+		file_put_contents('/var/tmp/' . self::ID . '.log',
+			date('Y-m-d H:i:s') . ": $msg\n", FILE_APPEND);
 	}
 
 	/**
