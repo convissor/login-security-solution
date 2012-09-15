@@ -73,7 +73,7 @@ The tests have caught every password dictionary entry I've tried.
 = Improvements Over Similar WordPress Plugins =
 
 * Multisite network support
-* Monitors auth cookies for bad user names and hashes
+* Monitors authentication cookies for bad user names and hashes
 * Adjusts WordPress' password policy user interfaces
 * Takes security seriously so the plugin itself does not open your site
   to SQL, HTML, or header injection vulnerabilities
@@ -100,7 +100,7 @@ For reference, the similar plugins include:
 * [Simple Login Lockdown](http://wordpress.org/extend/plugins/simple-login-lockdown/)
 
 
-= Compatability with Other Plugins =
+= Compatibility with Other Plugins =
 
 Some plugins provide similar functionality.  These overlaps can lead to
 conflicts during program execution.  Please read the FAQ!
@@ -369,7 +369,7 @@ responses to failed login attempts.
     - Add user's current IP to their verified IP list whenever they save
       their profile page, not just when they change their password.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
-* Put plugin version number in admin noficiation emails.
+* Put plugin version number in admin notification emails.
 
 = 0.27.0 (2012-09-04) =
 * Remove the password policy explanation link added in 0.26.0.
@@ -400,7 +400,7 @@ the user or the website.
 = 0.21.0 (2012-08-07) =
 * Fix is_pw_outside_ascii() to permit spaces.
 * In multisite mode, send notifications to network admin, not blog admin.
-* Add "Notifiations To" setting for admins to specify the email addresses
+* Add "Notifications To" setting for admins to specify the email addresses
 the failure and breach notifications get sent to. (Request #1560)
 * Clarify that the Change All Passwords link just goes to the UI.
 * Get all unit tests to pass when mbstring isn't enabled.
