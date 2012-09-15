@@ -552,10 +552,10 @@ msgstr ""
 # @ login-security-solution
 #: login-security-solution.php:1889
 msgid ""
-"The %s plugin for WordPress is repelling the attack by making their login "
+"The %s plugin (%s) for WordPress is repelling the attack by making their login "
 "failures take a very long time."
 msgstr ""
-"Le plugin %s pour WordPress pare l'attaque en ralentissant la réponse à "
+"Le plugin %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à "
 "chaque tentative échouée."
 
 # @ login-security-solution

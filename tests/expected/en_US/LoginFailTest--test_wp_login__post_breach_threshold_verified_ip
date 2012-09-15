@@ -13,6 +13,8 @@ Username                         4     test
 Password MD5                     %d    %s
 
 The user's current IP address is one they have verified with your site in the past.  Therefore, the user will NOT be required to confirm their identity via the password reset process.  An email will be sent to them, just in case this actually was a breach.
+
+This message is from the Login Security Solution plugin (%s) for WordPress.
 To: %a
 Subject: POTENTIAL INTRUSION AT %a
 

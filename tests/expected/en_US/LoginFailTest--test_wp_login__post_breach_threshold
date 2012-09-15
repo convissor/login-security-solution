@@ -13,3 +13,5 @@ Username                         4     test
 Password MD5                     %d    %s
 
 The user has been logged out and will be required to confirm their identity via the password reset functionality.
+
+This message is from the Login Security Solution plugin (%s) for WordPress.

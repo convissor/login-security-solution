@@ -612,10 +612,10 @@ msgstr ""
 
 #: login-security-solution.php:1889
 msgid ""
-"The %s plugin for WordPress is repelling the attack by making their login "
+"The %s plugin (%s) for WordPress is repelling the attack by making their login "
 "failures take a very long time."
 msgstr ""
-"O plugin %s para o WordPress está repelindo ao ataque de força bruta, na "
+"O plugin %s (%s) para o WordPress está repelindo ao ataque de força bruta, na "
 "tentativa de descobrir o seu login, fazendo demorar um tempo muito longo "
 "entre as falhas."
 

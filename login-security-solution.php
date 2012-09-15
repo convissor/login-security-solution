@@ -7,6 +7,7 @@
  *
  * Plugin URI: http://wordpress.org/extend/plugins/login-security-solution/
  * Version: 0.27.0
+ *         (Remember to change the VERSION constant, below, as well!)
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
@@ -37,6 +38,11 @@ class login_security_solution {
 	 * This plugin's name
 	 */
 	const NAME = 'Login Security Solution';
+
+	/**
+	 * This plugin's version
+	 */
+	const VERSION = '0.27.0';
 
 	/**
 	 * This plugin's table name prefix
@@ -1846,10 +1852,13 @@ Password MD5                 %5d     %s
 			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails);
 
 		if ($verified_ip) {
-			$message .= __("The user's current IP address is one they have verified with your site in the past.  Therefore, the user will NOT be required to confirm their identity via the password reset process.  An email will be sent to them, just in case this actually was a breach.", self::ID) . "\n";
+			$message .= __("The user's current IP address is one they have verified with your site in the past.  Therefore, the user will NOT be required to confirm their identity via the password reset process.  An email will be sent to them, just in case this actually was a breach.", self::ID) . "\n\n";
 		} else {
-			$message .= __("The user has been logged out and will be required to confirm their identity via the password reset functionality.", self::ID) . "\n";
+			$message .= __("The user has been logged out and will be required to confirm their identity via the password reset functionality.", self::ID) . "\n\n";
 		}
+
+		$message .= sprintf(__("This message is from the %s plugin (%s) for WordPress.", self::ID),
+			self::NAME, self::VERSION) . "\n";
 
 		return wp_mail($to, $subject, $message);
 	}
@@ -1915,8 +1924,8 @@ Password MD5                 %5d     %s
 
 			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails)
 
-			. sprintf(__("The %s plugin for WordPress is repelling the attack by making their login failures take a very long time.", self::ID),
-				self::NAME) . "\n";
+			. sprintf(__("The %s plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.", self::ID),
+				self::NAME, self::VERSION) . "\n";
 
 		return wp_mail($to, $subject, $message);
 	}
