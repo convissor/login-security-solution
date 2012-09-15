@@ -373,6 +373,7 @@ responses to failed login attempts.
       their profile page, not just when they change their password.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin notification emails.
+* Update password policy in the fr_FR translation.
 
 = 0.27.0 (2012-09-04) =
 * Remove the password policy explanation link added in 0.26.0.
