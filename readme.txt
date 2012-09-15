@@ -381,7 +381,7 @@ responses to failed login attempts.
     - Change subject line of user notification emails to differentiate them
       from emails sent to admins.
     - Reword user notification email and have it explain how to reduce
-      future hastles.
+      future hassles.
 * Remove URIs from user notification email to avoid phishing imitations.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin notification emails.

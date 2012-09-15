@@ -1895,7 +1895,7 @@ Password MD5                 %5d     %s
 			. __(" 1) Log into the site and change your password.", self::ID) . "\n"
 			. sprintf(__(" 2) Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n\n"
 
-			. sprintf(__("If it WAS YOU, future hastles can be reduced by logging into the site, going to your profile page, and clicking the '%s' button.  The site will remember your IP address as being legitimate.", self::ID), __('Update Profile')) . "\n";
+			. sprintf(__("If it WAS YOU, future hassles can be reduced by logging into the site, going to your profile page, and clicking the '%s' button.  The site will remember your IP address as being legitimate.", self::ID), __('Update Profile')) . "\n";
 
 		return wp_mail($to, $subject, $message);
 	}
