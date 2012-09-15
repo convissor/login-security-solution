@@ -108,7 +108,7 @@ class login_security_solution_admin extends login_security_solution {
 		$this->initialize();
 		$this->set_fields();
 
-		// Combine plugin's name with translation already in WP.
+		// Translation already in WP combined with plugin's name.
 		$this->text_settings = self::NAME . ' ' . __('Settings');
 
 		if (is_multisite()) {
@@ -357,6 +357,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return array
 	 */
 	public function plugin_action_links($links) {
+		// Translation already in WP.
 		$links[] = '<a href="' . $this->hsc_utf8($this->page_options)
 				. '?page=' . self::ID . '">'
 				. $this->hsc_utf8(__('Settings')) . '</a>';
@@ -797,7 +798,7 @@ class login_security_solution_admin extends login_security_solution {
 								$this->hsc_utf8($this->option_pw_force_change_name),
 								$this->hsc_utf8(sprintf($confirm, "No thanks")));
 					} else {
-						// Translaton already in WP.
+						// Translation already in WP.
 						add_settings_error($this->option_pw_force_change_name,
 								$this->hsc_utf8($this->option_pw_force_change_name),
 								$this->hsc_utf8(__("Success!")),
@@ -817,7 +818,7 @@ class login_security_solution_admin extends login_security_solution {
 					} else {
 						$result = $this->force_change_for_all();
 						if ($result === true) {
-							// Translaton already in WP.
+							// Translation already in WP.
 							add_settings_error($this->option_pw_force_change_name,
 									$this->hsc_utf8($this->option_pw_force_change_name),
 									$this->hsc_utf8(__("Success!")), 'updated');
@@ -913,7 +914,7 @@ class login_security_solution_admin extends login_security_solution {
 		global $user_ID, $wpdb;
 
 		if (!current_user_can($this->capability_required)) {
-			// Translaton already in WP.
+			// Translation already in WP.
 			return __('You do not have sufficient permissions to access this page.');
 		}
 
