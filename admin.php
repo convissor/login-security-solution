@@ -140,7 +140,7 @@ class login_security_solution_admin extends login_security_solution {
 		global $wpdb;
 
 		if (is_multisite() && !is_network_admin()) {
-			die($this->hsc_utf8(sprintf(__("%s must be activated via the Network Admin interface when WordPress is in multistie network mode."), self::NAME)));
+			die($this->hsc_utf8(sprintf(__("%s must be activated via the Network Admin interface when WordPress is in multistie network mode.", self::ID), self::NAME)));
 		}
 
 		/*
