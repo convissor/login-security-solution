@@ -536,7 +536,7 @@ msgstr "Si ce n'était PAS VOUS, veuillez suivre ces consignes au plus vite:"
 # @ login-security-solution
 #: login-security-solution.php:1895
 msgid " 1) Log into the site and change your password."
-msgstr " 1) Connectez vous à %s et changez votre mot de passe."
+msgstr " 1) Connectez vous à le site et changez votre mot de passe."
 
 # @ login-security-solution
 #: login-security-solution.php:1896
