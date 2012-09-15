@@ -378,6 +378,8 @@ responses to failed login attempts.
       NOT verified instead of if the IP address IS verified.  Duh.
     - Don't notify administrators of a successful login if the user is
       coming in from a verified IP address.
+    - Change subject line of user notification emails to differentiate them
+      from emails sent to admins.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin notification emails.
 * Update password policy in the fr_FR translation.

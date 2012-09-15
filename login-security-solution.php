@@ -1885,7 +1885,7 @@ Password MD5                 %5d     %s
 		$to = $this->sanitize_whitespace($user->user_email);
 
 		$blog = get_option('blogname');
-		$subject = sprintf(__("POTENTIAL INTRUSION AT %s", self::ID), $blog);
+		$subject = sprintf(__("VERIFY YOU LOGGED IN TO %s", self::ID), $blog);
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =

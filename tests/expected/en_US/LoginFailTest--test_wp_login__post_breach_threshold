@@ -16,7 +16,7 @@ The user has been logged out and will be required to confirm their identity via 
 
 This message is from the Login Security Solution plugin (%s) for WordPress.
 To: %a
-Subject: POTENTIAL INTRUSION AT %a
+Subject: VERIFY YOU LOGGED IN TO %a
 
 Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site is being attacked.
 
