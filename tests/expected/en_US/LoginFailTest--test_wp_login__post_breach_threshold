@@ -21,7 +21,7 @@ Subject: VERIFY YOU LOGGED IN TO %a
 Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.
 
 If it was NOT YOU, please do the following right away:
- 1) Log into %s and change your password.
+ 1) Log into the site and change your password.
  2) Send an email to %s letting them know it was not you who logged in.
 
 If it WAS YOU, future hastles can be reduced by logging into the site, going to your profile page, and clicking the 'Update Profile' button.  The site will remember your IP address as being legitimate.

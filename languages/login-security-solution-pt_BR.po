@@ -590,7 +590,7 @@ msgid "If it was NOT YOU, please do the following right away:"
 msgstr "Se NÃO for VOCÊ, por favor, faça o seguinte imediatamente:"
 
 #: login-security-solution.php:1893
-msgid " 1) Log into %s and change your password."
+msgid " 1) Log into the site and change your password."
 msgstr " 1) Entre no %s e altere imediatamente a sua senha."
 
 #: login-security-solution.php:1894
