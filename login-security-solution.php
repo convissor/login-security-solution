@@ -739,7 +739,7 @@ class login_security_solution {
 
 		/*
 		 * Keep legitimate users from having to repeatedly reset passwords
-		 * during active attacks against their user name (password ).  Do this
+		 * during active attacks against their user name (password).  Do this
 		 * if the user's current IP address is not involved with any of the
 		 * recent failed logins and the current IP address has been verified.
 		 */
