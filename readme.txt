@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danie
 Tags: login, password, passwords, strength, strong, strong passwords, password strength, idle, timeout, maintenance, security, attack, hack, lock, lockdown, ban, brute force, brute, force, authentication, auth, cookie, users
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 0.28.0
+Stable tag: 0.28.1
 
 Security against brute force attacks by tracking IP, name, password; requiring very strong passwords. Idle timeout. Maintenance mode lockdown.
 
@@ -364,6 +364,9 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 == Changelog ==
 
+= 0.28.1 (2012-09-15) =
+* Update `.mo` translation files.
+
 = 0.28.0 (2012-09-15) =
 * Remove loophole:  slow down successful logins as well (for non-verified
 IP addresses).  Keeps attackers from using timeouts to skip our delayed
@@ -391,7 +394,8 @@ password parsing problem on Windows.
 * Add date to log() messages.
 * Unit tests pass using PHP 5.4.5-dev, 5.3.16-dev, and 5.2.18-dev.
 * Tested under WordPress 3.4.2 using regular and multisite.
-* Also tested on Windows 7 using PHP 5.4.5 and WordPress 3.4.1.
+* Also tested on Windows 7 using WordPress 3.4.1 and PHP 5.4.5 with mbstring
+enabled and disabled.
 
 = 0.27.0 (2012-09-04) =
 * Remove the password policy explanation link added in 0.26.0.
