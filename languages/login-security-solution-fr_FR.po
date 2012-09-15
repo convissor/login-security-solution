@@ -21,6 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
 
+# Translation from WordPress.
 #: admin.php:112 admin.php:362
 msgid "Settings"
 msgstr ""
@@ -313,6 +314,7 @@ msgid ""
 "before hitting the submit button."
 msgstr ""
 
+# Translation from WordPress.
 #: admin.php:803 admin.php:823
 msgid "Success!"
 msgstr ""
@@ -343,6 +345,7 @@ msgid ""
 "all passwords to be reset or disable this notice."
 msgstr ""
 
+# Translation from WordPress.
 #: admin.php:917
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
@@ -357,6 +360,7 @@ msgstr ""
 msgid "Invalid username or password."
 msgstr "Identifiant ou mot de passe incorrect."
 
+# Translation from WordPress.
 # @ default
 #: login-security-solution.php:534 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
@@ -440,6 +444,7 @@ msgstr ""
 msgid "Passwords can not be reused."
 msgstr "D'anciens mots de passe ne peuvent être ré-utilisés."
 
+# Translation from WordPress.
 # @ default
 #: login-security-solution.php:894
 msgid "ERROR"

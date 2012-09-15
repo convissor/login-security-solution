@@ -21,9 +21,10 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
+# Translation from WordPress.
 #: admin.php:112 admin.php:362
 msgid "Settings"
-msgstr "Configurações"
+msgstr ""
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -381,9 +382,10 @@ msgstr ""
 "verificação na '%s' caixa de seleção (Não, obrigado!), antes de clicar no "
 "botão enviar."
 
+# Translation from WordPress.
 #: admin.php:803 admin.php:823
 msgid "Success!"
-msgstr "Sucesso!"
+msgstr ""
 
 #: admin.php:855
 msgid ""
@@ -422,9 +424,10 @@ msgstr ""
 "O link a seguir conduz à uma interface de usuário onde você pode exigir que "
 "todas as senhas sejam redefinidas ou desativar este aviso."
 
+# Translation from WordPress.
 #: admin.php:917
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Você não tem permissões suficientes para acessar esta página."
+msgstr ""
 
 #: admin.php:923
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -436,10 +439,11 @@ msgstr ""
 msgid "Invalid username or password."
 msgstr "Nome de usuário ou senha inválido."
 
+# Translation from WordPress.
 #: login-security-solution.php:534 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
-msgstr "Redefinição de senha não é permitida para este usuário"
+msgstr ""
 
 #: login-security-solution.php:559 tests/LoginMessageTest.php:66
 msgid "It has been over %d minutes since your last action."
@@ -508,9 +512,10 @@ msgstr ""
 msgid "Passwords can not be reused."
 msgstr "As senhas não podem ser reutilizadas."
 
+# Translation from WordPress.
 #: login-security-solution.php:894
 msgid "ERROR"
-msgstr "ERRO"
+msgstr ""
 
 #: login-security-solution.php:1031
 msgid ""
