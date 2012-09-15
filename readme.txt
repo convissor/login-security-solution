@@ -303,6 +303,22 @@ interface:
 * Regular sites:  Plugins
 * Sites using multisite networks:  My Sites | Network Admin | Plugins
 
+= I just got hit with 500 failed logins! Why isn't this plugin working?!? =
+
+Let's turn the question around: "How long did it take to get in those 500
+hits?"  Chances are it took hours.  (Six hours if they're attacking with one
+thread, 2 hours if they're coming at you with three threads, etc.)  If this
+plugin wasn't working, they'd have pulled it off under a minute.  Similarly,
+without the slowed responses this plugin provides, an attacker given six
+hours against your site could probably get in over 170,000 hits.
+
+Anyway, my real question for you is "Did they get in?"  I'll bet not.  The
+strong passwords this plugin requires from your users lowers the chances of
+someone breaking in to just about zero.
+
+And even if they _do_ get in, Login Security Solution realizes they're
+miscreants and kicks them right out.
+
 = Why use slowdowns instead of lockouts? =
 
 The best way to go here is a subject open to debate.  (Hey what isn't?)
