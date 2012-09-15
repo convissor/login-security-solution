@@ -525,7 +525,7 @@ class login_security_solution {
 
 		$codes_to_cloak = array('invalid_email', 'invalidcombo');
 		if (array_intersect($error_codes, $codes_to_cloak)) {
-			// This text is lifted directly from WordPress.
+			// Translation already in WP.
 			return $this->hsc_utf8(__('Password reset is not allowed for this user'));
 		}
 
@@ -888,6 +888,7 @@ class login_security_solution {
 	 * @return string
 	 */
 	protected function err($message) {
+		// Translation already in WP.
 		$error = $this->hsc_utf8(__("ERROR"));
 		$message = $this->hsc_utf8($message);
 		return "<strong>$error</strong>: $message";
