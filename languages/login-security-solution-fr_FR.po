@@ -517,7 +517,7 @@ msgstr ""
 
 #: login-security-solution.php:1888
 msgid "VERIFY YOU LOGGED IN TO %s"
-msgstr ""
+msgstr "ASSUREZ VOUS D'ÊTRE CONNECTÉ À %s"
 
 # @ login-security-solution
 #: login-security-solution.php:1892
@@ -551,6 +551,9 @@ msgid ""
 "to your profile page, and clicking the '%s' button.  The site will remember "
 "your IP address as being legitimate."
 msgstr ""
+"si C'ÉTAIT VOUS, pour évitez les soucis connectez vous au site, rendez vous "
+"sur votre page de profil, et cliquez sur le bouton '%s'. Le site "
+"enregistrera votre adresse IP comme légitime."
 
 # Translation from WordPress.
 #: login-security-solution.php:1898
