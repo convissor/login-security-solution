@@ -525,8 +525,8 @@ msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
 "in?  We are asking because the site happens to be under attack at the moment."
 msgstr ""
-"Quelqu'un a %s vient de se connecter en tant que '%s'. Était-ce vous? Nous "
-"vous posons la question parce que le site semble subir une attaque."
+"Quelqu'un a %2$s vient de se connecter en tant que '%1$s'. Était-ce vous? "
+"Nous vous posons la question parce que le site semble subir une attaque."
 
 # @ login-security-solution
 #: login-security-solution.php:1894
