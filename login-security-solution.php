@@ -788,7 +788,7 @@ $this->log($fails);
 			###$this->log("wp_login(): Breach notify.");
 			$this->notify_breach($network_ip, $user_name, $pass_md5, $fails,
 					$verified_ip);
-			if ($verified_ip) {
+			if (!$verified_ip) {
 				$this->notify_breach_user($user);
 			}
 			$return += 4;

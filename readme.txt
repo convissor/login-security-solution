@@ -374,6 +374,8 @@ responses to failed login attempts.
       behavior was to do so only if the Network IP failure count was 0.
     - Add user's current IP to their verified IP list whenever they save
       their profile page, not just when they change their password.
+    - Fix when user notifications are sent.  Do so if the IP address is
+      NOT verified instead of if the IP address IS verified.  Duh.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin notification emails.
 * Update password policy in the fr_FR translation.

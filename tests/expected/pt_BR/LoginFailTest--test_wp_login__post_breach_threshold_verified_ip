@@ -15,13 +15,3 @@ Senha MD5                        %d    %s
 O utilizador atual já teve o seu endereço IP verificado anteriormente. Portanto, o usuário não será obrigado a confirmar sua identidade através do processo de redefinição de senha. Um e-mail será enviado para ele, apenas no caso de se tratar realmente de uma violação.
 
 Esta mensagem é proveniente do plugin Login Security Solution (%s) do seu WordPress.
-To: %a
-Subject: INVASÃO EM POTENCIAL %s
-
-Alguém acabou logado em sua '%s' conta em %s. É você que está logado? Estamos pedindo essa informação, pois o site está sendo atacado.
-
-SE NÃO FOR VOCÊ, por favor, faça o seguinte imediatamente:
-
-1) Entre no %s e altere imediatamente a sua senha.
-
-2) Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez o acesso.
