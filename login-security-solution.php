@@ -742,6 +742,7 @@ class login_security_solution {
 		$return = 1;
 		$sleep = 0;
 		$fails = $this->get_login_fail($network_ip, $user_name, $pass_md5);
+$this->log($fails);
 
 		if (!$fails['total']) {
 			return $return;
@@ -750,12 +751,15 @@ class login_security_solution {
 		/*
 		 * Keep legitimate users from having to repeatedly reset passwords
 		 * during active attacks against their user name (password).  Do this
-		 * if the user's current IP address is not involved with any of the
+		 * if the user's current IP address is not involved with the
 		 * recent failed logins and the current IP address has been verified.
 		 */
-		if (!$fails['network_ip']
+		if ($fails['network_ip'] <= $this->options['login_fail_breach_pw_force_change']
 			&& in_array($ip, $this->get_verified_ips($user->ID)))
 		{
+			// Use <= instead of <, above, in case
+			// login_fail_breach_pw_force_change = 0.
+
 			###$this->log("wp_login(): verified IP.");
 			$return += 8;
 			$verified_ip = true;

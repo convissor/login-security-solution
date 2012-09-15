@@ -369,6 +369,9 @@ implementation, use the scripts I made for generating all of the `.po` and
 IP addresses).  Keeps attackers from using timeouts to skip our delayed
 responses to failed login attempts.
 * Reduce false positives for breach notifications and password resets:
+    - Allow users through without incident if the user's Network IP failure
+      count is less than the "Breach Email Confirm" setting.  The old
+      behavior was to do so only if the Network IP failure count was 0.
     - Add user's current IP to their verified IP list whenever they save
       their profile page, not just when they change their password.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
