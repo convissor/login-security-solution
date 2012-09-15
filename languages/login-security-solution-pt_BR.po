@@ -71,13 +71,13 @@ msgstr ""
 
 #: admin.php:258
 msgid "Off, let all users log in."
-msgstr "Off, deixar que todos os usuários possam fazer login"
+msgstr "Off, deixar que todos os usuários possam fazer login."
 
 #: admin.php:259
 msgid "On, disable comments and only let administrators log in."
 msgstr ""
 "On, desativar os comentários e somente permitir que os administradores "
-"possam fazer login"
+"possam fazer login."
 
 #: admin.php:263
 msgid "Deactivation"
@@ -208,7 +208,7 @@ msgid ""
 "Must be >= %d."
 msgstr ""
 "Por quanto tempo devem ser isentas as senhas dos requisitos de complexidade? "
-"Devem ser de: >= %d"
+"Devem ser de: >= %d."
 
 #: admin.php:330
 msgid "Aging"
@@ -234,7 +234,7 @@ msgid ""
 msgstr ""
 "Uma vez sabendo, tendo conhecimento que sua senha expirou, quantos minutos o "
 "usuário tem para alterar a sua senha efetivamente? Esse período deve ser de: "
-">= %d"
+">= %d."
 
 #: admin.php:343
 msgid "History"
@@ -323,7 +323,7 @@ msgstr "portanto, se o valor for omitido."
 
 #: admin.php:611
 msgid "must be an integer,"
-msgstr "precisa ser um número inteiro, "
+msgstr "precisa ser um número inteiro,"
 
 #: admin.php:714
 msgid "There may be cases where everyone's password should be reset."
