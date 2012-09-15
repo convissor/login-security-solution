@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2012-09-15 02:40:36+00:00\n"
-"PO-Revision-Date: 2012-09-08 20:38-0300\n"
+"PO-Revision-Date: 2012-09-15 12:56:00-04:00\n"
 "Last-Translator: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "Language-Team: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -578,23 +578,23 @@ msgstr ""
 
 #: login-security-solution.php:1888
 msgid "VERIFY YOU LOGGED IN TO %s"
-msgstr ""
+msgstr "VERIFIQUE SE VOCÊ ESTÁ CONECTADO PARA %s"
 
 #: login-security-solution.php:1892
 msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
 "in?  We are asking because the site happens to be under attack at the moment."
 msgstr ""
-"Alguém acabou logado em sua '%s' conta em %s. É você que está logado? "
-"Estamos pedindo essa informação, pois o site está sendo atacado."
+"Alguém acaba de se conectar em sua conta '%s'. Foi você que se conectou %s? "
+"Estamos perguntando porque o site pode estar sob ataque neste momento"
 
 #: login-security-solution.php:1894
 msgid "If it was NOT YOU, please do the following right away:"
-msgstr "Se NÃO for VOCÊ, por favor, faça o seguinte imediatamente:"
+msgstr "Se NÃO é VOCÊ, por favor, faça o seguinte de imediato:"
 
 #: login-security-solution.php:1895
 msgid " 1) Log into the site and change your password."
-msgstr " 1) Entre no %s e altere imediatamente a sua senha."
+msgstr " 1) Efetue login no site e altere a sua senha."
 
 #: login-security-solution.php:1896
 msgid " 2) Send an email to %s letting them know it was not you who logged in."
@@ -608,6 +608,9 @@ msgid ""
 "to your profile page, and clicking the '%s' button.  The site will remember "
 "your IP address as being legitimate."
 msgstr ""
+"Se FOI VOCÊ, pode ser reduzido os aborrecimentos futuros para entrar no "
+"site, vá para página do seu prefil e clique no botão '%s'. O site vai se "
+"lembrar do seu endereço IP como sendo legítimo."
 
 # Translation from WordPress.
 #: login-security-solution.php:1898
