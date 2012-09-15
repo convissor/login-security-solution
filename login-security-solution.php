@@ -2085,7 +2085,7 @@ Password MD5                 %5d     %s
 	 * @return string  the cleaned string
 	 */
 	protected function sanitize_whitespace($in) {
-		return preg_replace('/\s+/', ' ', $in);
+		return preg_replace('/\s+/u', ' ', $in);
 	}
 
 	/**
@@ -2229,7 +2229,7 @@ Password MD5                 %5d     %s
 	 * @return array
 	 */
 	protected function split_types($in, $minimum = 3) {
-		$split = preg_split('/(?<=[^[:punct:]])([[:punct:]])|(?<=[^[:alpha:]])([[:alpha:]])|(?<=\D)(\d)/', $in, -1, PREG_SPLIT_OFFSET_CAPTURE|PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
+		$split = preg_split('/(?<=[^[:punct:]])([[:punct:]])|(?<=[^[:alpha:]])([[:alpha:]])|(?<=\D)(\d)/u', $in, -1, PREG_SPLIT_OFFSET_CAPTURE|PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 
 		$out = array();
 		if (!count($split)) {

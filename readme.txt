@@ -386,6 +386,8 @@ responses to failed login attempts.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin notification emails.
 * Update the fr_FR translation: update password policy, add settings page.
+* Put Unicode flag on the two preg calls that didn't have it.  Fixes
+password parsing problem on Windows.
 * Add date to log() messages.
 
 = 0.27.0 (2012-09-04) =
