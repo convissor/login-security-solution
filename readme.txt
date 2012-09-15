@@ -295,13 +295,6 @@ In addition, if you try to log in while your site is being attacked, this
 plugin will send you through the password reset process in order to verify
 your identity.  While not the end of the world, it's inconvenient.
 
-= Where should I report bugs and feature requests? =
-
-Report bugs and submit feature requests by opening a ticket in WordPress'
-[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
-
-You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
-
 = Where did the "Change All Passwords" interface go? =
 
 A link to the page is found in this plugin's entry in the "Plugins" admin
@@ -326,6 +319,13 @@ situations) before sleeping.  But remember, distributed denial of service
 attacks are fairly easy to initiate these days.  If someone really wants to
 shut down your site, they'll be able to do it without even touching this
 plugin's login failure process.
+
+= Where should I report bugs and feature requests? =
+
+Report bugs and submit feature requests by opening a ticket in WordPress'
+[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
+
+You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
 
 = How do developers generate the translation files? =
 
