@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2012-09-15 02:40:36+00:00\n"
-"PO-Revision-Date: 2012-09-14 10:47:00+00:00\n"
+"PO-Revision-Date: 2012-09-15 06:21:00+0100\n"
 "Last-Translator: mermouy <mermouy@gmail.com>\n"
 "Language-Team: mermouy <mermouy@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -28,97 +28,112 @@ msgstr ""
 
 #: admin.php:126
 msgid "Change All Passwords"
-msgstr ""
+msgstr "Changer tous les mots de passe"
 
 #: admin.php:127
 msgid "Do not remind me about this"
-msgstr ""
+msgstr "Ne pas me le rappeler"
 
 #: admin.php:128
 msgid "Require All Passwords Be Changed"
-msgstr ""
+msgstr "Tous les mots de passe doivent être changés"
 
 #: admin.php:143
 msgid ""
 "%s must be activated via the Network Admin interface when WordPress is in "
 "multistie network mode."
 msgstr ""
+"%s doit être activé via l'interface d'administration réseau lorsque "
+"WordPress est en mode multi-site."
 
 #: admin.php:249
 msgid "Idle Timeout"
-msgstr ""
+msgstr "Temps d'inactivité"
 
 #: admin.php:250
 msgid ""
 "Close inactive sessions after this many minutes. 0 disables this feature."
 msgstr ""
+"Temps (en minutes) après lequel fermer les session inactives? 0 désactive "
+"cette fonctionnalité."
 
 #: admin.php:255
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "Mode maintenance"
 
 #: admin.php:256
 msgid ""
 "Disable logins from users who are not administrators and disable posting of "
 "comments?"
 msgstr ""
+"Désactiver la connexion pour les utilisateurs non-administrateurs et "
+"désactiver l'envoi de commentaires?"
 
 #: admin.php:258
 msgid "Off, let all users log in."
-msgstr ""
+msgstr "Désactivé, permet à tous les utilisateurs de se connecter."
 
 #: admin.php:259
 msgid "On, disable comments and only let administrators log in."
 msgstr ""
+"Activé, désactive les commentaires et n'autorise que les administrateurs à "
+"se connecter."
 
 #: admin.php:263
 msgid "Deactivation"
-msgstr ""
+msgstr "Désactivation"
 
 #: admin.php:264
 msgid ""
 "Should deactivating the plugin remove all of the plugin's data and settings?"
 msgstr ""
+"Supprimer les paramètres et données enregistrées lors de la désactivation du "
+"plugin?"
 
 #: admin.php:266
 msgid "No, preserve the data for future use."
-msgstr ""
+msgstr "Non, garder les données pour une prochaine utilisation."
 
 #: admin.php:267
 msgid "Yes, delete the damn data."
-msgstr ""
+msgstr "Oui, supprimer ces foutues données."
 
 #: admin.php:272
 msgid "Match Time"
-msgstr ""
+msgstr "Temps de comparaisons"
 
 #: admin.php:273
 msgid "How far back, in minutes, should login failures look for matching data?"
 msgstr ""
+"Les échecs de connexion doivent être comparés combien de minutes en arrière?"
 
 #: admin.php:278
 msgid "Delay Tier 2"
-msgstr ""
+msgstr "Tiers temps 2"
 
 #: admin.php:279
 msgid ""
 "How many matching login failures should it take to get into this (%d - %d "
 "second) Delay Tier? Must be >= %d."
 msgstr ""
+"Combien de tentatives infructueuses de connexion faut-il pour ce (%d - %d "
+"second) tiers temps? Doit être >= %d."
 
 #: admin.php:285
 msgid "Delay Tier 3"
-msgstr ""
+msgstr "Tiers temps 3"
 
 #: admin.php:286
 msgid ""
 "How many matching login failures should it take to get into this (%d - %d "
 "second) Delay Tier? Must be > Delay Tier 2."
 msgstr ""
+"Combien de tentatives infructueuses de connexion faut-il pour ce (%d - %d "
+"second) tiers temps? Doit être > Tiers temps 2."
 
 #: admin.php:291
 msgid "Notifications To"
-msgstr ""
+msgstr "Notifier"
 
 #: admin.php:292
 msgid ""
@@ -126,30 +141,38 @@ msgid ""
 "to. For multiple addresses, separate them with commas. WordPress' "
 "'admin_email' setting is used if none is provided here."
 msgstr ""
+"L(es)'adresse(s) email où envoyer les notifications d'échec et d'attaques. "
+"Pour envoyer à plusieurs adresses, séparez les avec des virgules. L'adresse "
+"email de l'administration WordPress sera utilisée si aucune n'est renseignée "
+"ici."
 
 #: admin.php:297
 msgid "Failure Notification"
-msgstr ""
+msgstr "Notifications d'échec"
 
 #: admin.php:298
 msgid ""
 "Notify the administrator upon every x matching login failures. 0 disables "
 "this feature."
 msgstr ""
+"Alerter l'administrateur pour chaque x tentatives infructueuses. 0 Désactive "
+"cette fonctionnalité."
 
 #: admin.php:303
 msgid "Breach Notification"
-msgstr ""
+msgstr "Alerte de violation"
 
 #: admin.php:304
 msgid ""
 "Notify the administrator if a successful login uses data matching x login "
 "failures. 0 disables this feature."
 msgstr ""
+"Alerter l'administrateur si une connexion réussie après x tentatives "
+"infructueuses. 0 Désactive cette fonctionnalité."
 
 #: admin.php:309
 msgid "Breach Email Confirm"
-msgstr ""
+msgstr "Confirmation de violation d'email"
 
 #: admin.php:310
 msgid ""
@@ -157,162 +180,195 @@ msgid ""
 "the user out and require them to use WordPress' lost password process. 0 "
 "disables this feature."
 msgstr ""
+"Si une connexion réussie après x tentatives infructueuses, déconnecter "
+"l'utilisateur immédiatement et le rediriger vers le processus de mot de "
+"passe perdu de WordPress. 0 Désactive cette fonctionnalité."
 
 #: admin.php:316
 msgid "Length"
-msgstr ""
+msgstr "Longueur"
 
 #: admin.php:317
 msgid "How long must passwords be? Must be >= %d."
-msgstr ""
+msgstr "Nombre de caractères minimum des mots de passe? Doit être >= %d."
 
 #: admin.php:323
 msgid "Complexity Exemption"
-msgstr ""
+msgstr "Dérogation à la difficulté"
 
 #: admin.php:324
 msgid ""
 "How long must passwords be to be exempt from the complexity requirements? "
 "Must be >= %d."
 msgstr ""
+"Nombre de caractères minimum des mots de passe pour être dispensé de la "
+"règle de difficulté? Doit être >= %d."
 
 #: admin.php:330
 msgid "Aging"
-msgstr ""
+msgstr "Äge"
 
 #: admin.php:331
 msgid ""
 "How many days old can a password be before requiring it be changed? Not "
 "recommended. 0 disables this feature."
 msgstr ""
+"Au bout de combien de jours les mots de passe doivent-ils être changés? Non "
+"recommandé. 0 Désactive cette fonctionnalité."
 
 #: admin.php:336
 msgid "Grace Period"
-msgstr ""
+msgstr "Période de grâce"
 
 #: admin.php:337
 msgid ""
 "How many minutes should a user have to change their password once they know "
 "it has expired? Must be >= %d."
 msgstr ""
+"De combien de minutes un utilisateur dispose-t-il pour changer son mot de "
+"passe une fois qu'ils savent que celui-ci a expiré? Doit être >= %d."
 
 #: admin.php:343
 msgid "History"
-msgstr ""
+msgstr "Historique"
 
 #: admin.php:344
 msgid ""
 "How many passwords should be remembered? Prevents reuse of old passwords. 0 "
 "disables this feature."
 msgstr ""
+"Combien de mots de passe doivent être archivés? Prévient la réutilisation "
+"d'anciens mots de passe. 0 Désactive cette fonctionnalité."
 
 #: admin.php:406
 msgid "Login Failure Policies"
-msgstr ""
+msgstr "Politique des tentatives infructueuses"
 
 # @ login-security-solution
 #: admin.php:412
 msgid "Password Policies"
-msgstr ""
+msgstr "Règles des mots de passe"
 
 #: admin.php:418
 msgid "Miscellaneous Policies"
-msgstr ""
+msgstr "Politiques diverses"
 
 #: admin.php:468
 msgid ""
 "This plugin stores the IP address, username and password for each failed log "
 "in attempt."
 msgstr ""
+"Cette extension enregistre l'adresse IP, l'identifiant et le mot de passe "
+"pour chaque tentative infructueuse de connexion."
 
 #: admin.php:470
 msgid ""
 "The data from future login failures are compared against the historical data."
 msgstr ""
+"Les prochaines tentatives infructueuses seront comparées aux données "
+"enregistrées."
 
 #: admin.php:472
 msgid ""
 "If any of the data points match, the plugin delays printing out the failure "
 "message."
 msgstr ""
+"Si des données correspondent, l'extension retarde l'affichage du message "
+"d'échec."
 
 #: admin.php:474
 msgid ""
 "The goal is for the responses to take so long that the attackers give up and "
 "go find an easier target."
 msgstr ""
+"Le but est simplement de ralentir les réponses à tel point que l'attaquant "
+"finisse par abandonner et cherche une autre cible moins protégée."
 
 #: admin.php:476
 msgid "The length of the delay is broken up into three tiers."
-msgstr ""
+msgstr "Le délai est divisé en trois tiers temps."
 
 #: admin.php:478
 msgid "The amount of the delay increases in higher tiers."
-msgstr ""
+msgstr "Le délai augmente dans les derniers tiers temps."
 
 #: admin.php:480
 msgid ""
 "The delay time within each tier is randomized to complicate profiling by "
 "attackers."
 msgstr ""
+"Le délai dans chaque tiers temps est choisi au hasard pour éviter le "
+"\"profiling\" par les attaquants."
 
 #: admin.php:539 admin.php:554
 msgid "Default:"
-msgstr ""
+msgstr "Défaut:"
 
 #: admin.php:578
 msgid "must be >= '%s',"
-msgstr ""
+msgstr "Doit être >= '%s',"
 
 #: admin.php:579
 msgid "so we used the default value instead."
-msgstr ""
+msgstr "Donc on utilise la valeur par défaut à la place."
 
 #: admin.php:612
 msgid "must be an integer,"
-msgstr ""
+msgstr "doit être un entier"
 
 #: admin.php:715
 msgid "There may be cases where everyone's password should be reset."
 msgstr ""
+"Dans certains cas, les mots de passe de tous les utilisateurs devraient être "
+"changés."
 
 #: admin.php:717
 msgid "This page, provided by the %s plugin, offers that functionality."
-msgstr ""
+msgstr "Cette page, de l’extension %s, vous permet de le faire."
 
 #: admin.php:721
 msgid ""
 "Submitting this form sets a flag that forces all users to utilize WordPress' "
 "built in password reset functionality."
 msgstr ""
+"Cocher cette case obligera tous les utilisateurs à utiliser le processus de "
+"changement de mot de passe de WordPress."
 
 #: admin.php:723
 msgid ""
 "Users who are presently logged in will be logged out the next time they view "
 "a page that requires authentication."
 msgstr ""
+"Les utilisateurs actuellement connectés seront déconnectés à l'ouverture de "
+"la prochaine page nécessitant une authentification."
 
 #: admin.php:735
 msgid ""
 "Confirm that you want to force all users to change their passwords by "
 "checking this box, then click the button, below."
 msgstr ""
+"Cochez cette case pour forcer tous les utilisateurs à changer leur mot de "
+"passe, puis cliquez sur le bouton ci-dessous."
 
 #: admin.php:754
 msgid "No thanks. I know what I'm doing. Please don't remind me about this."
-msgstr ""
+msgstr "Non merci, je sais ce que je fais. Ne plus me le rappeler."
 
 #: admin.php:786
 msgid ""
 "You have checked a box that does not correspond with the button you pressed. "
 "Please check and press buttons inside the same section."
 msgstr ""
+"Vous avez cocher une case qui ne correspond pas au bouton cliqué. Vérifiez "
+"et appuyez sur les boutons d'une même section."
 
 #: admin.php:788
 msgid ""
 "Please confirm that you really want to do this. Put a check in the '%s' box "
 "before hitting the submit button."
 msgstr ""
+"Vous voulez vraiment faire cela? Cochez la boîte '%s' avant de cliquer sur "
+"le bouton de soumission."
 
 # Translation from WordPress.
 #: admin.php:804 admin.php:824
@@ -324,6 +380,8 @@ msgid ""
 "WARNING: The site is in maintenance mode. DO NOT TOUCH ANYTHING! Your "
 "changes may get overwritten!"
 msgstr ""
+"ATTENTION: Le site est en mode maintenance. NE TOUCHEZ À RIEN! Vos "
+"changements pourraient être écrasés!"
 
 #: admin.php:880
 msgid ""
@@ -332,18 +390,28 @@ msgid ""
 "protect your site from brute force attacks. Please improve security for "
 "everyone on the Internet by making all users pick new, strong, passwords."
 msgstr ""
+"Vous n'avez pas demandé à vos utilisateurs de changer leur mot de passe "
+"depuis que l(extension à été activée. La plupart des utilisateurs utilisent "
+"des mots de passe fragiles. Les politiques de mots de passe de cette "
+"extension vous protègent des attaques de type 'brute force'. Aidez à "
+"améliorer la sécurité de chacun sur internet en forçant tous les "
+"utilisateurs à utiliser des nouveaux mots de passe sécurisés."
 
 #: admin.php:884
 msgid ""
 "Speaking of which, do YOU have a strong password? Make sure by changing "
 "yours too."
 msgstr ""
+"En parlant de cela avez-vous un mot de passe sécurisé? Assurez-vous en, "
+"changez votre mot de passe aussi."
 
 #: admin.php:888
 msgid ""
 "The following link leads to a user interface where you can either require "
 "all passwords to be reset or disable this notice."
 msgstr ""
+"Le lien suivant conduit à une interface où vous pourrez soit forcer le "
+"changement de tous les mots de passe ou désactiver cette notification. "
 
 # Translation from WordPress.
 #: admin.php:918
@@ -352,7 +420,7 @@ msgstr ""
 
 #: admin.php:924
 msgid "$user_ID variable not set. Another plugin is misbehaving."
-msgstr ""
+msgstr "variable $user_ID non déclarée. Un autre plugin est en conflit."
 
 # @ login-security-solution
 #: login-security-solution.php:523 tests/LoginErrorsTest.php:97
@@ -668,11 +736,11 @@ msgstr "Les mots de passe ne peuvent être issus du dictionnaire."
 
 #. Plugin Name of the plugin/theme
 msgid "Login Security Solution"
-msgstr ""
+msgstr "Login Security Solution"
 
 #. Plugin URI of the plugin/theme
 msgid "http://wordpress.org/extend/plugins/login-security-solution/"
-msgstr ""
+msgstr "http://wordpress.org/extend/plugins/login-security-solution/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -681,11 +749,17 @@ msgid ""
 "attacks and breaches, permits administrators to disable logins for "
 "maintenance or emergency reasons and reset all passwords."
 msgstr ""
+"Il vérifie ainsi la qualité des mots de passe, repousse les attaques de type "
+"'brute force' à la connexion, empêche la divulgation des données de "
+"connexion, fait expirer les sessions inactives, alerte les administrateurs "
+"des attaques et failles éventuelles, permet aux administrateurs de "
+"désactiver les connexions pour diverses raisons de maintenance ou d'urgence "
+"et de réinitialiser tous les mots de passe."
 
 #. Author of the plugin/theme
 msgid "Daniel Convissor"
-msgstr ""
+msgstr "Daniel Convissor"
 
 #. Author URI of the plugin/theme
 msgid "http://www.analysisandsolutions.com/"
-msgstr ""
+msgstr "http://www.analysisandsolutions.com/"

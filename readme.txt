@@ -385,7 +385,7 @@ responses to failed login attempts.
 * Remove URIs from user notification email to avoid phishing imitations.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin notification emails.
-* Update password policy in the fr_FR translation.
+* Update the fr_FR translation: update password policy, add settings page.
 * Add date to log() messages.
 
 = 0.27.0 (2012-09-04) =
