@@ -742,7 +742,6 @@ class login_security_solution {
 		$return = 1;
 		$sleep = 0;
 		$fails = $this->get_login_fail($network_ip, $user_name, $pass_md5);
-$this->log($fails);
 
 		if (!$fails['total']) {
 			return $return;
