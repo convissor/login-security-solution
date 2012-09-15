@@ -13,3 +13,5 @@ Nom d'utilisateur                4     test
 MD5 du mot de passe              %d    %s
 
 L'utilisateur à été déconnecté et il devra confirmer son identité via le processus de changement de mot de passe.
+
+Ce message provient du plugin Login Security Solution (%s) pour WordPress.

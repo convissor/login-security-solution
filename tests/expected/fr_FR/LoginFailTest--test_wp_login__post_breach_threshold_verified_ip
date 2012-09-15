@@ -13,6 +13,8 @@ Nom d'utilisateur                4     test
 MD5 du mot de passe              %d    %s
 
 L'adresse IP utilisée à déjà été vérifiée auparavant. C'est pourquoi l'utilisateur ne devra PAS nécessairement confirmer son identité via le processus de changement de mot de passe. Un email lui sera envoyé, au cas où ce serait effectivement un intrusion.
+
+Ce message provient du plugin Login Security Solution (%s) pour WordPress.
 To: %a
 Subject: INTRUSION POSSIBLE A %a
 

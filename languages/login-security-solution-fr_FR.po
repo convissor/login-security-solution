@@ -503,6 +503,7 @@ msgstr ""
 #: login-security-solution.php:1865
 msgid "This message is from the %s plugin (%s) for WordPress."
 msgstr ""
+"Ce message provient du plugin Login Security Solution (%s) pour WordPress."
 
 # @ login-security-solution
 #: login-security-solution.php:1891
