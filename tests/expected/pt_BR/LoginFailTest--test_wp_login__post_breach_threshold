@@ -20,8 +20,6 @@ Subject: INVASÃO EM POTENCIAL %s
 
 Alguém acabou logado em sua '%s' conta em %s. É você que está logado? Estamos pedindo essa informação, pois o site está sendo atacado.
 
-SE NÃO FOR VOCÊ, por favor, faça o seguinte imediatamente:
-
-1) Entre no %s e altere imediatamente a sua senha.
-
-2) Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez o acesso.
+Se NÃO for VOCÊ, por favor, faça o seguinte imediatamente:
+ 1) Entre no %s e altere imediatamente a sua senha.
+ 2) Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez o acesso.

@@ -586,18 +586,18 @@ msgstr ""
 "Estamos pedindo essa informação, pois o site está sendo atacado."
 
 #: login-security-solution.php:1892
-msgid "IF IT WAS NOT YOU, please do the following right away:"
-msgstr "SE NÃO FOR VOCÊ, por favor, faça o seguinte imediatamente:"
+msgid "If it was NOT YOU, please do the following right away:"
+msgstr "Se NÃO for VOCÊ, por favor, faça o seguinte imediatamente:"
 
 #: login-security-solution.php:1893
-msgid "1) Log into %s and change your password."
-msgstr "1) Entre no %s e altere imediatamente a sua senha."
+msgid " 1) Log into %s and change your password."
+msgstr " 1) Entre no %s e altere imediatamente a sua senha."
 
 #: login-security-solution.php:1894
-msgid "2) Send an email to %s letting them know it was not you who logged in."
+msgid " 2) Send an email to %s letting them know it was not you who logged in."
 msgstr ""
-"2) Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez "
-"o acesso."
+" 2) Enviar um e-mail para %s, deixando que ele saiba que não foi você que "
+"fez o acesso."
 
 #: login-security-solution.php:1920
 msgid "ATTACK HAPPENING TO %s"

@@ -1889,10 +1889,13 @@ Password MD5                 %5d     %s
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =
-			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site is being attacked.", self::ID), $user->user_login, get_option('siteurl')) . "\n\n"
-			. __("IF IT WAS NOT YOU, please do the following right away:", self::ID) . "\n\n"
-			. sprintf(__("1) Log into %s and change your password.", self::ID), wp_login_url()) . "\n\n"
-			. sprintf(__("2) Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n";
+			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.", self::ID), $user->user_login, get_option('siteurl')) . "\n\n"
+
+			. __("If it was NOT YOU, please do the following right away:", self::ID) . "\n"
+			. sprintf(__(" 1) Log into %s and change your password.", self::ID), wp_login_url()) . "\n"
+			. sprintf(__(" 2) Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n\n"
+
+			. sprintf(__("If it WAS YOU, future hastles can be reduced by logging into the site, going to your profile page, and clicking the '%s' button.  The site will remember your IP address as being legitimate.", self::ID), __('Update Profile')) . "\n";
 
 		return wp_mail($to, $subject, $message);
 	}

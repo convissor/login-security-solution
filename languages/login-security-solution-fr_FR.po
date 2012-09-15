@@ -526,19 +526,19 @@ msgstr ""
 
 # @ login-security-solution
 #: login-security-solution.php:1892
-msgid "IF IT WAS NOT YOU, please do the following right away:"
-msgstr "SI CE N'ÉTAIT PAS VOUS, veuillez suivre ces consignes au plus vite:"
+msgid "If it was NOT YOU, please do the following right away:"
+msgstr "Si ce n'était PAS VOUS, veuillez suivre ces consignes au plus vite:"
 
 # @ login-security-solution
 #: login-security-solution.php:1893
-msgid "1) Log into %s and change your password."
-msgstr "1) Connectez vous à %s et changez votre mot de passe."
+msgid " 1) Log into %s and change your password."
+msgstr " 1) Connectez vous à %s et changez votre mot de passe."
 
 # @ login-security-solution
 #: login-security-solution.php:1894
-msgid "2) Send an email to %s letting them know it was not you who logged in."
+msgid " 2) Send an email to %s letting them know it was not you who logged in."
 msgstr ""
-"2) Envoyez un message à %s pour les prévenir que ce n'était pas vous qui "
+" 2) Envoyez un message à %s pour les prévenir que ce n'était pas vous qui "
 "vous êtes connecté récemment."
 
 # @ login-security-solution

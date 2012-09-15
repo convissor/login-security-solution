@@ -18,10 +18,10 @@ This message is from the Login Security Solution plugin (%s) for WordPress.
 To: %a
 Subject: VERIFY YOU LOGGED IN TO %a
 
-Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site is being attacked.
+Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.
 
-IF IT WAS NOT YOU, please do the following right away:
+If it was NOT YOU, please do the following right away:
+ 1) Log into %s and change your password.
+ 2) Send an email to %s letting them know it was not you who logged in.
 
-1) Log into %s and change your password.
-
-2) Send an email to %s letting them know it was not you who logged in.
+If it WAS YOU, future hastles can be reduced by logging into the site, going to your profile page, and clicking the 'Update Profile' button.  The site will remember your IP address as being legitimate.
