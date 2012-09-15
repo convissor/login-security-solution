@@ -353,9 +353,12 @@ To update the POT file, do this:
 * `./makepot.sh`
 
 To produce the machine readable translations used by WordPress' gettext
-implementation, use the script I made for generating all of the .mo files:
+implementation, use the scripts I made for generating all of the `.po` and
+`.mo` files:
 
 * `cd languages`
+* `./makepot.sh`
+* `./updatepos.sh`
 * `./makemos.sh`
 
 
