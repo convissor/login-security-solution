@@ -54,7 +54,7 @@ msgstr "Tempo limite de ociosidade (inativo)"
 msgid ""
 "Close inactive sessions after this many minutes. 0 disables this feature."
 msgstr ""
-"Fechar sessões inativas após esta quantidade de minutos. 0 (Zero) desativa "
+"Fechar sessões inativas após esta quantidade de minutos. 0 desativa "
 "este recurso."
 
 #: admin.php:255
@@ -160,7 +160,7 @@ msgid ""
 "this feature."
 msgstr ""
 "Notificar o administrador sobre cada (x = número de vezes) que tenha "
-"correspondência com falhas de login verificadas. 0 (Zero) desativa este "
+"correspondência com falhas de login verificadas. 0 desativa este "
 "recurso."
 
 #: admin.php:303
@@ -174,7 +174,7 @@ msgid ""
 msgstr ""
 "Notificar o administrador se o login bem-sucedido utiliza dados "
 "correspondentes (x = número de vezes) e se houve alguma falhas de login. 0 "
-"(Zero) desativa este recurso."
+"desativa este recurso."
 
 #: admin.php:309
 msgid "Breach Email Confirm"
@@ -188,7 +188,7 @@ msgid ""
 msgstr ""
 "Se um login bem-sucedido usar dados correspondentes x quantidade de falhas "
 "de login, imediatamente desconectará o usuário e os obrigará a usar o "
-"processo senha perdida do WordPress. 0 (Zero) desativa este recurso."
+"processo senha perdida do WordPress. 0 desativa este recurso."
 
 #: admin.php:316
 msgid "Length"
@@ -220,7 +220,7 @@ msgid ""
 "recommended. 0 disables this feature."
 msgstr ""
 "Quanto tempo de uso, em dias, pode ter uma senha, antes de exigir que ela "
-"deva ser mudada (substituição da senha)? Não é recomendado! 0 (Zero) "
+"deva ser mudada (substituição da senha)? Não é recomendado! 0 "
 "desativa este recurso."
 
 #: admin.php:336
@@ -246,7 +246,7 @@ msgid ""
 "disables this feature."
 msgstr ""
 "Qual é a quantidade de senhas antigas que devem ser lembradas? Esse recurso "
-"impede a reutilização de senhas usadas anteriormente. 0 (Zero) desativa este "
+"impede a reutilização de senhas usadas anteriormente. 0 desativa este "
 "recurso."
 
 #: admin.php:405
