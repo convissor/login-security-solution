@@ -346,9 +346,9 @@ implementation, use the script I made for generating all of the .mo files:
 == Changelog ==
 
 = 0.28.0 (2012-09-) =
-* Remove loophole by slowing down successful logins for non-verified IP
-addresses.  Keeps attackers from using short timeouts to skip the slowdowns
-from login failures.
+* Remove loophole:  slow down successful logins as well (for non-verified
+IP addresses).  Keeps attackers from using timeouts to skip our delayed
+responses to failed login attempts.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 
 = 0.27.0 (2012-09-04) =
