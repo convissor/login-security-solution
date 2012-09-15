@@ -376,6 +376,8 @@ responses to failed login attempts.
       their profile page, not just when they change their password.
     - Fix when user notifications are sent.  Do so if the IP address is
       NOT verified instead of if the IP address IS verified.  Duh.
+    - Don't notify administrators of a successful login if the user is
+      coming in from a verified IP address.
 * Add pt_BR translation.  Thanks to Valdir Trombini.
 * Put plugin version number in admin notification emails.
 * Update password policy in the fr_FR translation.

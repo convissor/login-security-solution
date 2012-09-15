@@ -232,7 +232,6 @@ class LoginFailTest extends TestCase {
 	 */
 	public function test_wp_login__post_breach_threshold_verified_ip() {
 		global $wpdb;
-		self::$mail_file_basename = __METHOD__;
 
 		$wpdb->query('SAVEPOINT pre_verified_ip');
 
@@ -248,15 +247,13 @@ class LoginFailTest extends TestCase {
 		} catch (Exception $e) {
 			$this->fail($e->getMessage());
 		}
-		$this->assertSame(13, $actual, 'Bad return value.');
+		$this->assertSame(9, $actual, 'Bad return value.');
 		$this->assertSame(0, self::$lss->test_sleep, 'Sleep should be 0.');
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertFalse($actual, 'get_pw_force_change() return value...');
 
 		$wpdb->query('ROLLBACK TO pre_verified_ip');
-
-		$this->check_mail_file();
 	}
 
 	/**
