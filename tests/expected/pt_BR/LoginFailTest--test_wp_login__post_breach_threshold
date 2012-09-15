@@ -1,0 +1,17 @@
+To: %a
+Subject: INVASÃO EM POTENCIAL %s
+
+Seu website,%s, pode ter sido arrombado e invadido.
+
+Alguém acabou logado com os seguintes componentes. Antes disso, uma combinação desses componentes eram uma parte de %d tentativas para iniciar sessão durante os últimos %d minutos:
+
+
+Componente               o valor é     Valor da tentativa atual
+------------------------     -----     --------------------------------
+O IP da rede                     4     1.2.38
+Nome do usuário                  4     test
+Senha MD5                        %d    %s
+
+O usuário foi desconectado e será obrigado a confirmar sua identidade através da funcionalidade de redefinição de senha.
+
+This message is from the Login Security Solution plugin (%s) for WordPress.
