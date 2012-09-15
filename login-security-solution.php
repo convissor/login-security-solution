@@ -782,6 +782,23 @@ class login_security_solution {
 	 */
 
 	/**
+	 * Determines how long the current request should sleep() for
+	 *
+	 * @param int $fails_total  how many falures have taken place
+	 * @return int  the number of seconds to sleep
+	 */
+	protected function calculate_sleep($fails_total) {
+		if ($fails_total < $this->options['login_fail_tier_2']) {
+			// Use random, overlapping sleep times to complicate profiling.
+			return rand(1, 7);
+		} elseif ($fails_total < $this->options['login_fail_tier_3']) {
+			return rand(4, 30);
+		} else {
+			return rand(25, 60);
+		}
+	}
+
+	/**
 	 * Examines and manipulates password grace periods as needed
 	 *
 	 * @param int $user_ID  the current user's ID number
@@ -1907,6 +1924,7 @@ Password MD5                 %5d     %s
 	 * @uses login_security_solution::get_login_fail()  to see if
 	 *       they're over the limit
 	 * @uses login_security_solution::notify_fail()  to warn of an attack
+	 * @uses login_security_solution::calculate_sleep()  to set sleep length
 	 */
 	protected function process_login_fail($user_name, $user_pass,
 			$close_db = true)
@@ -1932,14 +1950,7 @@ Password MD5                 %5d     %s
 			$this->notify_fail($network_ip, $user_name, $pass_md5, $fails);
 		}
 
-		if ($fails['total'] < $this->options['login_fail_tier_2']) {
-			// Use random, overlapping sleep times to complicate profiling.
-			$sleep = rand(1, 7);
-		} elseif ($fails['total'] < $this->options['login_fail_tier_3']) {
-			$sleep = rand(4, 30);
-		} else {
-			$sleep = rand(25, 60);
-		}
+		$sleep = $this->calculate_sleep($fails['total']);
 
 		if (!defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
 			if (is_multisite()) {
