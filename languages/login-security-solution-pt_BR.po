@@ -580,7 +580,7 @@ msgstr ""
 #: login-security-solution.php:1891
 msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
-"in?  We are asking because the site is being attacked."
+"in?  We are asking because the site happens to be under attack at the moment."
 msgstr ""
 "Alguém acabou logado em sua '%s' conta em %s. É você que está logado? "
 "Estamos pedindo essa informação, pois o site está sendo atacado."
