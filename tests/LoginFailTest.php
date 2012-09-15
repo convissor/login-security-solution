@@ -56,6 +56,8 @@ class LoginFailTest extends TestCase {
 		$options['login_fail_breach_notify'] = 4;
 		$options['login_fail_breach_pw_force_change'] = 4;
 		self::$lss->options = $options;
+
+		self::$lss->test_sleep = null;
 	}
 
 
@@ -151,7 +153,8 @@ class LoginFailTest extends TestCase {
 	public function test_process_login_fail__pre_threshold() {
 		global $wpdb;
 
-		self::$lss->process_login_fail($this->user_name, 'reed');
+		$sleep = self::$lss->process_login_fail($this->user_name, 'reed');
+		$this->assertGreaterThan(0, $sleep, 'Sleep was not set.');
 
 		$this->assertInternalType('integer', $wpdb->insert_id,
 				'This should be an insert id.');
@@ -178,6 +181,7 @@ class LoginFailTest extends TestCase {
 	public function test_wp_login__pre_breach_threshold() {
 		$actual = self::$lss->wp_login($this->user_name, $this->user);
 		$this->assertSame(1, $actual, 'wp_login() return value...');
+		$this->assertGreaterThan(0, self::$lss->test_sleep, 'Sleep not set.');
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertFalse($actual, 'get_pw_force_change() return value...');
@@ -191,12 +195,13 @@ class LoginFailTest extends TestCase {
 
 		try {
 			// Do THE deed.
-			self::$lss->process_login_fail($this->user_name, $this->pass_md5);
+			$sleep = self::$lss->process_login_fail($this->user_name, $this->pass_md5);
 		} catch (Exception $e) {
 			$this->fail($e->getMessage());
 		}
 
 		$this->check_mail_file();
+		$this->assertGreaterThan(0, $sleep, 'Sleep was not set.');
 	}
 
 	/**
@@ -212,6 +217,7 @@ class LoginFailTest extends TestCase {
 			$this->fail($e->getMessage());
 		}
 		$this->assertSame(7, $actual, 'Bad return value.');
+		$this->assertGreaterThan(0, self::$lss->test_sleep, 'Sleep not set.');
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertTrue($actual, 'get_pw_force_change() return value...');
@@ -243,6 +249,7 @@ class LoginFailTest extends TestCase {
 			$this->fail($e->getMessage());
 		}
 		$this->assertSame(13, $actual, 'Bad return value.');
+		$this->assertSame(0, self::$lss->test_sleep, 'Sleep should be 0.');
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertFalse($actual, 'get_pw_force_change() return value...');
@@ -270,6 +277,7 @@ class LoginFailTest extends TestCase {
 			$this->fail($e->getMessage());
 		}
 		$this->assertSame(5, $actual, 'Bad return value.');
+		$this->assertGreaterThan(0, self::$lss->test_sleep, 'Sleep not set.');
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertFalse($actual, 'get_pw_force_change() return value...');
@@ -298,6 +306,7 @@ class LoginFailTest extends TestCase {
 			$this->fail($e->getMessage());
 		}
 		$this->assertSame(3, $actual, 'Bad return value.');
+		$this->assertGreaterThan(0, self::$lss->test_sleep, 'Sleep not set.');
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertTrue($actual, 'get_pw_force_change() return value...');
@@ -320,7 +329,8 @@ class LoginFailTest extends TestCase {
 		} catch (Exception $e) {
 			$this->fail($e->getMessage());
 		}
-		$this->assertSame(-1, $actual, 'Bad return value.');
+		$this->assertSame(1, $actual, 'Bad return value.');
+		$this->assertGreaterThan(0, self::$lss->test_sleep, 'Sleep not set.');
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertFalse($actual, 'get_pw_force_change() return value...');

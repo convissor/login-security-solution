@@ -136,6 +136,12 @@ class login_security_solution {
 	protected $table_fail;
 
 	/**
+	 * How many seconds would have been slept
+	 * @var int
+	 */
+	protected $test_sleep;
+
+	/**
 	 * Our usermeta key for tracking when passwords were changed
 	 * @var string
 	 */
@@ -191,6 +197,7 @@ class login_security_solution {
 
 		add_action('login_form_resetpass', array(&$this, 'pw_policy_establish'));
 
+		add_action('wp_login', array(&$this, 'wp_login'), 1, 2);
 		add_filter('login_errors', array(&$this, 'login_errors'));
 		add_filter('login_message', array(&$this, 'login_message'));
 
@@ -202,12 +209,6 @@ class login_security_solution {
 			add_action('wp_login', array(&$this, 'delete_last_active'));
 			add_action('wp_logout', array(&$this, 'delete_last_active'));
 			add_action('auth_cookie_expired', array(&$this, 'auth_cookie_expired'));
-		}
-
-		if ($this->options['login_fail_breach_notify']
-			|| $this->options['login_fail_breach_pw_force_change'])
-		{
-			add_action('wp_login', array(&$this, 'wp_login'), 10, 2);
 		}
 
 		if (is_admin()) {
@@ -719,15 +720,11 @@ class login_security_solution {
 	 * @uses login_security_solution::set_pw_force_change() to keep atackers
 	 *       from doing damage or changing the account's email address
 	 * @uses login_security_solution::notify_breach()  to warn of the breach
+	 * @uses login_security_solution::calculate_sleep()  to set sleep length
 	 */
 	public function wp_login($user_name, $user) {
 		if (!$user_name) {
 			return;
-		}
-		if (!$this->options['login_fail_breach_notify']
-			&& !$this->options['login_fail_breach_pw_force_change'])
-		{
-			return -1;
 		}
 
 		$ip = $this->get_ip();
@@ -735,7 +732,12 @@ class login_security_solution {
 		$pass_md5 = $this->md5(empty($_POST['pwd']) ? '' : $_POST['pwd']);
 
 		$return = 1;
+		$sleep = 0;
 		$fails = $this->get_login_fail($network_ip, $user_name, $pass_md5);
+
+		if (!$fails['total']) {
+			return $return;
+		}
 
 		/*
 		 * Keep legitimate users from having to repeatedly reset passwords
@@ -746,11 +748,17 @@ class login_security_solution {
 		if (!$fails['network_ip']
 			&& in_array($ip, $this->get_verified_ips($user->ID)))
 		{
+			###$this->log("wp_login(): verified IP.");
 			$return += 8;
 			$verified_ip = true;
 		} else {
+			###$this->log("wp_login(): non-verified IP.");
 			$verified_ip = false;
+			// Need to also slow down successful logins so attackers can't use
+			// short timeouts to skip the slowdowns from login failures.
+			$sleep = $this->calculate_sleep($fails['total']);
 		}
+		$this->test_sleep = $sleep;
 
 		if ($this->options['login_fail_breach_pw_force_change']
 			&& $fails['total'] >= $this->options['login_fail_breach_pw_force_change']
@@ -772,6 +780,11 @@ class login_security_solution {
 				$this->notify_breach_user($user);
 			}
 			$return += 4;
+		}
+
+		if ($sleep && !defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
+			###$this->log("wp_login(): sleep for $sleep seconds.");
+			sleep($sleep);
 		}
 
 		return $return;
