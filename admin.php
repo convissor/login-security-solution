@@ -151,6 +151,8 @@ class login_security_solution_admin extends login_security_solution {
 
 		// Note: dbDelta() requires two spaces after "PRIMARY KEY".  Werid.
 		// WP's insert/prepare/etc don't handle NULL's (at least in 3.3).
+		// It also requires the keys to be named and there to be no space
+		// the column name and the key length.
 		$sql = "CREATE TABLE `$this->table_fail` (
 				fail_id BIGINT(20) NOT NULL AUTO_INCREMENT,
 				ip VARCHAR(39) NOT NULL DEFAULT '',
@@ -158,9 +160,9 @@ class login_security_solution_admin extends login_security_solution {
 				pass_md5 varchar(64) NOT NULL DEFAULT '',
 				date_failed TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				PRIMARY KEY  (fail_id),
-				KEY (ip (9)),
-				KEY (user_login (5)),
-				KEY (pass_md5 (10))
+				KEY ip (ip(9)),
+				KEY user_login (user_login(5)),
+				KEY pass_md5 (pass_md5(10))
 				)";
 
 		dbDelta($sql);

@@ -364,6 +364,11 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 == Changelog ==
 
+= 0.29.0 () =
+* Adjust formatting of the `CREATE TABLE` statement in `activate()` to prevent
+WordPress' `dbDelta()` from creating duplicate keys each time the plugin is
+activated.
+
 = 0.28.1 (2012-09-15) =
 * Update `.mo` translation files.
 
