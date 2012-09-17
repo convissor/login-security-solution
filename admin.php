@@ -798,7 +798,7 @@ class login_security_solution_admin extends login_security_solution {
 					} elseif (empty($in[$this->key_checkbox_remind])) {
 						add_settings_error($this->option_pw_force_change_name,
 								$this->hsc_utf8($this->option_pw_force_change_name),
-								$this->hsc_utf8(sprintf($confirm, "No thanks")));
+								$this->hsc_utf8(sprintf($confirm, __("No thanks", self::ID))));
 					} else {
 						// Translation already in WP.
 						add_settings_error($this->option_pw_force_change_name,
@@ -816,7 +816,7 @@ class login_security_solution_admin extends login_security_solution {
 					} elseif (empty($in[$this->key_checkbox_require])) {
 						add_settings_error($this->option_pw_force_change_name,
 								$this->hsc_utf8($this->option_pw_force_change_name),
-								$this->hsc_utf8(sprintf($confirm, "Confirm")));
+								$this->hsc_utf8(sprintf($confirm, __("Confirm", self::ID))));
 					} else {
 						$result = $this->force_change_for_all();
 						if ($result === true) {

@@ -364,6 +364,9 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 == Changelog ==
 
+= 0.30.0 (2012-09-17) =
+* Translate "Confirm" and "No thanks" phrases on the settings screen.
+
 = 0.29.0 (2012-09-17) =
 * Adjust formatting of the `CREATE TABLE` statement in `activate()` to prevent
 WordPress' `dbDelta()` from creating duplicate keys each time the plugin is
