@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2012-09-17 12:20:40+00:00\n"
-"PO-Revision-Date: 2012-09-15 21:49:00-04:00\n"
+"PO-Revision-Date: 2012-09-17 08:55:00-04:00\n"
 "Last-Translator: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "Language-Team: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -219,8 +219,7 @@ msgid ""
 "recommended. 0 disables this feature."
 msgstr ""
 "Quanto tempo de uso, em dias, pode ter uma senha, antes de exigir que ela "
-"deva ser mudada (substituição da senha)? Não é recomendado! 0 desativa este "
-"recurso."
+"deva ser mudada? Não é recomendado! 0 desativa este recurso."
 
 #: admin.php:338
 msgid "Grace Period"
@@ -360,7 +359,7 @@ msgstr ""
 #: admin.php:756
 msgid "No thanks. I know what I'm doing. Please don't remind me about this."
 msgstr ""
-"Não, obrigado! Eu sei o que estou fazendo. Por favor, não me lembre sobre "
+"Não, obrigado. Eu sei o que estou fazendo. Por favor, não me lembre sobre "
 "isso."
 
 #: admin.php:788
@@ -378,8 +377,7 @@ msgid ""
 "before hitting the submit button."
 msgstr ""
 "Por favor, confirme que você realmente quer fazer isso. Coloque uma "
-"verificação na '%s' caixa de seleção (Não, obrigado!), antes de clicar no "
-"botão enviar."
+"verificação na '%s' caixa de seleção antes de clicar no botão enviar."
 
 #: admin.php:801
 msgid "No thanks"
@@ -510,7 +508,7 @@ msgid ""
 "not contain words related to you or this website."
 msgstr ""
 "A senha deve conter as seguintes especificações, para maior segurança: A)  "
-"pelo menos, %d caracteres de comprimento e conter letras MAIÚSCULAS e "
+"pelo menos, %d caracteres de comprimento e conter letras maiúsculas e "
 "minúsculas (exceto idiomas que têm apenas um caso), além de números e sinais "
 "de pontuação, ou B) pelo menos a quantidade de %d caracteres de comprimento. "
 "A senha não pode conter palavras relacionadas a você ou a este site."
@@ -566,7 +564,7 @@ msgid ""
 "just in case this actually was a breach."
 msgstr ""
 "O utilizador atual já teve o seu endereço IP verificado anteriormente. "
-"Portanto, o usuário não será obrigado a confirmar sua identidade através do "
+"Portanto, o usuário NÃO será obrigado a confirmar sua identidade através do "
 "processo de redefinição de senha. Um e-mail será enviado para ele, apenas no "
 "caso de se tratar realmente de uma violação."
 
@@ -580,9 +578,7 @@ msgstr ""
 
 #: login-security-solution.php:1865
 msgid "This message is from the %s plugin (%s) for WordPress."
-msgstr ""
-"Esta mensagem é proveniente do plugin Login Security Solution (%s) do seu "
-"WordPress."
+msgstr "Esta mensagem é proveniente do plugin %s (%s) do seu WordPress."
 
 #: login-security-solution.php:1887
 msgid "VERIFY YOU LOGGED IN TO %s"
@@ -690,9 +686,7 @@ msgstr ""
 
 #: login-security-solution.php:2425 tests/PasswordValidationTest.php:590
 msgid "Passwords can't be sequential keys."
-msgstr ""
-"As senhas não podem ser chaves seqüenciais (repetição do mesmo número, "
-"pontuação, letra etc.)."
+msgstr "As senhas não podem ser chaves seqüenciais."
 
 #: login-security-solution.php:2434 tests/PasswordValidationTest.php:603
 msgid "Passwords can't have that many sequential characters."
@@ -733,11 +727,10 @@ msgid ""
 "maintenance or emergency reasons and reset all passwords."
 msgstr ""
 "Exige senhas muito fortes, repele ataques de login por força bruta, impede a "
-"divulgação de informações de login, expira ( encerra) as sessões ociosas, "
-"notifica (por e-mail) os administradores de ataques e violações, permite aos "
+"divulgação de informações de login, expira as sessões ociosas, "
+"notifica os administradores de ataques e violações, permite aos "
 "administradores desabilitar logins por razões de manutenção, ou por uma "
-"emergência qualquer e redefinir (alterar) todas as senhas em prazo "
-"predeterminado."
+"emergência qualquer e redefinir todas as senhas em prazo predeterminado."
 
 #. Author of the plugin/theme
 msgid "Daniel Convissor"
