@@ -1,7 +1,7 @@
 To: %a
 Subject: INVASÃO EM POTENCIAL %s
 
-Seu website,%s, pode ter sido arrombado e invadido.
+Seu website, %s, pode ter sido arrombado e invadido.
 
 Alguém acabou logado com os seguintes componentes. Antes disso, uma combinação desses componentes eram uma parte de %d tentativas para iniciar sessão durante os últimos %d minutos:
 
@@ -16,10 +16,12 @@ O usuário foi desconectado e será obrigado a confirmar sua identidade através
 
 Esta mensagem é proveniente do plugin Login Security Solution (%s) do seu WordPress.
 To: %a
-Subject: INVASÃO EM POTENCIAL %s
+Subject: VERIFIQUE SE VOCÊ ESTÁ CONECTADO PARA %a
 
-Alguém acabou logado em sua '%s' conta em %s. É você que está logado? Estamos pedindo essa informação, pois o site está sendo atacado.
+Alguém acaba de se conectar em sua conta '%s'. Foi você que se conectou %s? Estamos perguntando porque o site pode estar sob ataque neste momento.
 
-Se NÃO for VOCÊ, por favor, faça o seguinte imediatamente:
- 1) Entre no %s e altere imediatamente a sua senha.
+Se NÃO é VOCÊ, por favor, faça o seguinte de imediato:
+ 1) Efetue login no site e altere a sua senha.
  2) Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez o acesso.
+
+Se FOI VOCÊ, pode ser reduzido os aborrecimentos futuros para entrar no site, vá para página do seu prefil e clique no botão '%s'. O site vai se lembrar do seu endereço IP como sendo legítimo.

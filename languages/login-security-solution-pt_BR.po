@@ -538,7 +538,7 @@ msgstr "INVASÃO EM POTENCIAL %s"
 
 #: login-security-solution.php:1852
 msgid "Your website, %s, may have been broken in to."
-msgstr "Seu website,%s, pode ter sido arrombado e invadido."
+msgstr "Seu website, %s, pode ter sido arrombado e invadido."
 
 #: login-security-solution.php:1855
 msgid ""
@@ -586,7 +586,7 @@ msgid ""
 "in?  We are asking because the site happens to be under attack at the moment."
 msgstr ""
 "Alguém acaba de se conectar em sua conta '%s'. Foi você que se conectou %s? "
-"Estamos perguntando porque o site pode estar sob ataque neste momento"
+"Estamos perguntando porque o site pode estar sob ataque neste momento."
 
 #: login-security-solution.php:1894
 msgid "If it was NOT YOU, please do the following right away:"

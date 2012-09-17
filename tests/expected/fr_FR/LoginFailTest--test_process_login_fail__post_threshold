@@ -9,7 +9,7 @@ Au moins %d tentatives infructueuses de connexion au cours des dernières %d min
 Composant                   Nombre     Valeur de la tentative courante
 ------------------------     -----     --------------------------------
 Réseau IP                        4     1.2.38
-Nom d'utilisateur                4     test
+Identifiant                      4     test
 MD5 du mot de passe              %d    %s
 
 Le plugin %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à chaque tentative échouée.
