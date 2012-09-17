@@ -338,10 +338,14 @@ plugin's login failure process.
 
 = Where should I report bugs and feature requests? =
 
-Report bugs and submit feature requests by opening a ticket in WordPress'
-[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
+Development of this plugin happens on
+[GitHub](https://github.com/convissor/login-security-solution).
+Please submit
+[bug and feature requests](https://github.com/convissor/login-security-solution/issues),
+[pull requests](https://github.com/convissor/login-security-solution/pulls),
+[wiki entries](https://github.com/convissor/login-security-solution/wiki)
+on our GitHub.
 
-You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
 
 = How do developers generate the translation files? =
 
@@ -366,6 +370,8 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 = 0.30.0 (2012-09-17) =
 * Translate "Confirm" and "No thanks" phrases on the settings screen.
+* Adjust readme to indicate that development has moved to
+[GitHub](https://github.com/convissor/login-security-solution).
 
 = 0.29.0 (2012-09-17) =
 * Adjust formatting of the `CREATE TABLE` statement in `activate()` to prevent
@@ -610,9 +616,19 @@ problems under PHP 5.4.
 * Delete old data in the `fail` table.
 * Provide a user interface to the `fail` table.
 
-= Bugs and Feature Requests =
+= Source Code, Bugs, and Feature Requests =
 
-Report bugs and submit feature requests by opening a ticket in WordPress'
-[plugins Trac website](https://plugins.trac.wordpress.org/newticket?component=login-security-solution).
+Development of this plugin happens on
+[GitHub](https://github.com/convissor/login-security-solution).
+Releases are then squashed and pushed to WordPress'
+[Plugins SVN repository](http://plugins.svn.wordpress.org/login-security-solution/).
+This division is necessary due having being chastized that "the Plugins SVN
+repository is a release system, not a development system."
 
-You can also [view our existing tickets](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id) there.
+Please submit
+[bug and feature requests](https://github.com/convissor/login-security-solution/issues),
+[pull requests](https://github.com/convissor/login-security-solution/pulls),
+[wiki entries](https://github.com/convissor/login-security-solution/wiki)
+there.
+
+Old tickets are in the [Plugins Trac](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id).
