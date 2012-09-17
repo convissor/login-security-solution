@@ -112,7 +112,7 @@ conflicts during program execution.  Please read the FAQ!
 * Português, Brasil (Portugese, Brazil) (pt_BR) by Valdir Trombini
 
 
-= Why Strong, Unique Passwords Are Important =
+= Strong, Unique Passwords Are Important =
 
 Yeah, creating, storing/remembering, and using a __different__, __strong__
 password for each site you use is a hassle.  _But it is absolutely
