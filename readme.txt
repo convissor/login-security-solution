@@ -92,12 +92,16 @@ The tests have caught every password dictionary entry I've tried.
 
 For reference, the similar plugins include:
 
+* [6Scan Security](http://wordpress.org/extend/plugins/6scan-protection/)
 * [Better WP Security](http://wordpress.org/extend/plugins/better-wp-security/)
+* [Enforce Strong Password](http://wordpress.org/extend/plugins/enforce-strong-password/)
+* [Force Strong Passwords](http://wordpress.org/extend/plugins/force-strong-passwords/)
 * [Limit Login Attempts](http://wordpress.org/extend/plugins/limit-login-attempts/)
 * [Login Lock](http://wordpress.org/extend/plugins/login-lock/)
 * [Login LockDown](http://wordpress.org/extend/plugins/login-lockdown/)
 * [PMC Lockdown](http://wordpress.org/extend/plugins/pmc-lockdown/)
 * [Simple Login Lockdown](http://wordpress.org/extend/plugins/simple-login-lockdown/)
+* [Wordfence Security](http://wordpress.org/extend/plugins/wordfence/)
 
 
 = Compatibility with Other Plugins =
