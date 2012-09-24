@@ -372,6 +372,10 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 == Changelog ==
 
+= 0.31.0 (2012-09-) =
+* Have breach notification emails detail the exact situation depending on
+the system's settings.
+
 = 0.30.0 (2012-09-17) =
 * Translate "Confirm" and "No thanks" phrases on the settings screen.
 * Adjust readme to indicate that development has moved to

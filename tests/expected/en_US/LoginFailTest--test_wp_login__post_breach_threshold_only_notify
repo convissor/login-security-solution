@@ -12,7 +12,9 @@ Network IP                       4     1.2.38
 Username                         4     test
 Password MD5                     %d    %s
 
-The user has been logged out and will be required to confirm their identity via the password reset functionality.
+WARNING: The 'Breach Email Confirm' setting you chose means this person has NOT been logged out and will NOT be required to confirm their identity.
+
+A notification about this potential breach has been sent to the user.
 
 This message is from the Login Security Solution plugin (%s) for WordPress.
 To: %a
@@ -20,9 +22,8 @@ Subject: VERIFY YOU LOGGED IN TO %a
 
 Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.
 
-To ensure your account is not being hijacked, you will have go through the 'Lost your password?' process before logging in again.
-
 If it was NOT YOU, please do the following right away:
+ * Log into the site and change your password.
  * Send an email to %s letting them know it was not you who logged in.
 
 If it WAS YOU, future hassles can be reduced by logging into the site, going to your profile page, and clicking the 'Update Profile' button.  The site will remember your IP address as being legitimate.

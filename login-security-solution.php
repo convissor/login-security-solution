@@ -777,6 +777,7 @@ class login_security_solution {
 		{
 			###$this->log("wp_login(): Breach force change.");
 			$this->set_pw_force_change($user->ID);
+			// NOTE: This value is used by the notify method calls, below.
 			$return += 2;
 		}
 
@@ -786,8 +787,8 @@ class login_security_solution {
 		{
 			###$this->log("wp_login(): Breach notify.");
 			$this->notify_breach($network_ip, $user_name, $pass_md5, $fails,
-					$verified_ip);
-			$this->notify_breach_user($user);
+					$return & 2);
+			$this->notify_breach_user($user, $return & 2);
 			$return += 4;
 		}
 
@@ -1830,14 +1831,14 @@ Password MD5                 %5d     %s
 	 * @param string $user_name  the user name from the current login form
 	 * @param string $pass_md5  the md5 hashed new password
 	 * @param array $fails  the data from get_login_fail()
-	 * @param bool $verified_ip  is the user coming form a verified ip?
+	 * @param bool $pw_force_change  was password force change just called?
 	 * @return bool
 	 *
 	 * @uses login_security_solution::get_notify_counts()  for some shared text
 	 * @uses wp_mail()  to send the messages
 	 */
 	protected function notify_breach($network_ip, $user_name, $pass_md5,
-			$fails, $verified_ip)
+			$fails, $pw_force_change)
 	{
 		$this->load_plugin_textdomain();
 
@@ -1856,10 +1857,12 @@ Password MD5                 %5d     %s
 
 			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails);
 
-		if ($verified_ip) {
-			$message .= __("The user's current IP address is one they have verified with your site in the past.  Therefore, the user will NOT be required to confirm their identity via the password reset process.  An email will be sent to them, just in case this actually was a breach.", self::ID) . "\n\n";
-		} else {
+		if ($pw_force_change) {
 			$message .= __("The user has been logged out and will be required to confirm their identity via the password reset functionality.", self::ID) . "\n\n";
+		} else {
+			$message .= sprintf(__("WARNING: The '%s' setting you chose means this person has NOT been logged out and will NOT be required to confirm their identity.", self::ID), __("Breach Email Confirm", self::ID)) . "\n\n"
+
+				. __("A notification about this potential breach has been sent to the user.", self::ID) . "\n\n";
 		}
 
 		$message .= sprintf(__("This message is from the %s plugin (%s) for WordPress.", self::ID),
@@ -1873,11 +1876,12 @@ Password MD5                 %5d     %s
 	 * may have occurred
 	 *
 	 * @param WP_User $user  the current user
+	 * @param bool $pw_force_change  was password force change just called?
 	 * @return bool
 	 *
 	 * @uses wp_mail()  to send the messages
 	 */
-	protected function notify_breach_user($user)
+	protected function notify_breach_user($user, $pw_force_change)
 	{
 		$this->load_plugin_textdomain();
 
@@ -1888,13 +1892,23 @@ Password MD5                 %5d     %s
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =
-			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.", self::ID), $user->user_login, $blog) . "\n\n"
+			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.", self::ID), $user->user_login, $blog) . "\n\n";
 
-			. __("If it was NOT YOU, please do the following right away:", self::ID) . "\n"
-			. __(" 1) Log into the site and change your password.", self::ID) . "\n"
-			. sprintf(__(" 2) Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n\n"
+		if ($pw_force_change) {
+			// Translation already in WP (partial).
+			$message .= sprintf(__("To ensure your account is not being hijacked, you will have go through the '%s' process before logging in again.", self::ID), __('Lost your password?')) . "\n\n";
+		}
 
-			. sprintf(__("If it WAS YOU, future hassles can be reduced by logging into the site, going to your profile page, and clicking the '%s' button.  The site will remember your IP address as being legitimate.", self::ID), __('Update Profile')) . "\n";
+		$message .= __("If it was NOT YOU, please do the following right away:", self::ID) . "\n";
+
+		if (!$pw_force_change) {
+			$message .= __(" * Log into the site and change your password.", self::ID) . "\n";
+		}
+
+		$message .= sprintf(__(" * Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n\n";
+
+		// Translation already in WP (partial).
+		$message .= sprintf(__("If it WAS YOU, future hassles can be reduced by logging into the site, going to your profile page, and clicking the '%s' button.  The site will remember your IP address as being legitimate.", self::ID), __('Update Profile')) . "\n";
 
 		return wp_mail($to, $subject, $message);
 	}

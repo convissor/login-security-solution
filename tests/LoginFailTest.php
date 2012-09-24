@@ -260,12 +260,13 @@ class LoginFailTest extends TestCase {
 	 * @depends test_process_login_fail__post_threshold
 	 */
 	public function test_wp_login__post_breach_threshold_only_notify() {
+		self::$mail_file_basename = __METHOD__;
+
 		$options = self::$lss->options;
 		$options['login_fail_breach_pw_force_change'] = 0;
 		self::$lss->options = $options;
 
 		self::$lss->delete_pw_force_change($this->user->ID);
-		self::$mail_file_basename = 'LoginFailTest::test_wp_login__post_breach_threshold';
 
 		try {
 			// Do THE deed.
