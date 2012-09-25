@@ -372,7 +372,7 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 == Changelog ==
 
-= 0.31.0 (2012-09-) =
+= 0.31.0 (2012-09-25) =
 * Have breach notification emails detail the exact situation depending on
 the system's settings.
 
