@@ -12,7 +12,9 @@ O IP da rede                     4     1.2.38
 Nome do usuário                  4     test
 Senha MD5                        %d    %s
 
-O usuário foi desconectado e será obrigado a confirmar sua identidade através da funcionalidade de redefinição de senha.
+ATENÇÃO: A configuração 'Confirmação por e-mail de violação', que você escolheu significa que esta pessoa NÃO foi desconectada e NÃO será necessário isso para confirmar a sua identidade.
+
+Uma notificação sobre uma violação em potencial foi enviada para o usuário.
 
 Esta mensagem é proveniente do plugin Login Security Solution (%s) do seu WordPress.
 To: %a
@@ -20,9 +22,8 @@ Subject: VERIFIQUE SE VOCÊ ESTÁ CONECTADO PARA %a
 
 Alguém acaba de se conectar em sua conta '%s'. Foi você que se conectou %s? Estamos perguntando porque o site pode estar sob ataque neste momento.
 
-Para garantir que sua conta não esteja sendo seqüestrada, você vai ter que passar pelo processo de 'Perdeu a senha?' antes de efetuar login novamente.
-
 Se NÃO é VOCÊ, por favor, faça o seguinte de imediato:
+ * Efetue login no site e altere a sua senha.
  * Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez o acesso.
 
 Se FOI VOCÊ, pode ser reduzido os aborrecimentos futuros para entrar no site, vá para página do seu prefil e clique no botão '%s'. O site vai se lembrar do seu endereço IP como sendo legítimo.
