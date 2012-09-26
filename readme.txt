@@ -320,8 +320,8 @@ Anyway, my real question for you is "Did they get in?"  I'll bet not.  The
 strong passwords this plugin requires from your users lowers the chances of
 someone breaking in to just about zero.
 
-And even if they _do_ get in, Login Security Solution realizes they're
-miscreants and kicks them right out.
+And even if they _do_ get lucky and figure out a password, Login Security
+Solution realizes they're miscreants and kicks them out.
 
 = Why use slowdowns instead of lockouts? =
 
