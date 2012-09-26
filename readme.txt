@@ -260,6 +260,8 @@ The plugin needs to be installed and activated before running the tests.
 To execute the tests, `cd` into this plugin's directory and
 call `phpunit tests`
 
+Translations can be tested by changing the `WPLANG` value in `wp-config.php`.
+
 Please note that the tests make extensive use of database transactions.
 Many tests will be skipped if your `wp_options` and `wp_usermeta` tables
 are not using the `InnoDB` storage engine.
