@@ -704,7 +704,8 @@ class login_security_solution {
 	}
 
 	/**
-	 * Removes the current user's last active time metadata
+	 * Examines if a successful login is coming from an attacker and takes
+	 * action if it is
 	 *
 	 * NOTE: This method is automatically called by WordPress when users
 	 * successfully log in.
