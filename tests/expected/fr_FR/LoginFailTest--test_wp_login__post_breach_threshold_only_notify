@@ -25,5 +25,3 @@ Quelqu'un a %s vient de se connecter en tant que '%s'. Était-ce vous? Nous vous
 Si ce n'était PAS VOUS, veuillez suivre ces consignes au plus vite:
  * Connectez vous à le site et changez votre mot de passe.
  * Envoyez un message à %s pour les prévenir que ce n'était pas vous qui vous êtes connecté récemment.
-
-si C'ÉTAIT VOUS, pour évitez les soucis connectez vous au site, rendez vous sur votre page de profil, et cliquez sur le bouton '%s'. Le site enregistrera votre adresse IP comme légitime.

@@ -374,6 +374,10 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 == Changelog ==
 
+= 0.32.0 (2012-09) =
+* Remove the (supurfluous) "If it WAS YOU..." part of the user notification
+emails.
+
 = 0.31.0 (2012-09-25) =
 * Have breach notification emails detail the exact situation depending on
 the system's settings.

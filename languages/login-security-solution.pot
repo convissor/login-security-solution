@@ -499,17 +499,6 @@ msgstr ""
 msgid " * Send an email to %s letting them know it was not you who logged in."
 msgstr ""
 
-#: login-security-solution.php:1911
-msgid ""
-"If it WAS YOU, future hassles can be reduced by logging into the site, going "
-"to your profile page, and clicking the '%s' button.  The site will remember "
-"your IP address as being legitimate."
-msgstr ""
-
-#: login-security-solution.php:1911
-msgid "Update Profile"
-msgstr ""
-
 #: login-security-solution.php:1937
 msgid "ATTACK HAPPENING TO %s"
 msgstr ""

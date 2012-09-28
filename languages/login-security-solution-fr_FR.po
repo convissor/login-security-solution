@@ -636,21 +636,6 @@ msgstr ""
 " * Envoyez un message à %s pour les prévenir que ce n'était pas vous qui "
 "vous êtes connecté récemment."
 
-#: login-security-solution.php:1911
-msgid ""
-"If it WAS YOU, future hassles can be reduced by logging into the site, going "
-"to your profile page, and clicking the '%s' button.  The site will remember "
-"your IP address as being legitimate."
-msgstr ""
-"si C'ÉTAIT VOUS, pour évitez les soucis connectez vous au site, rendez vous "
-"sur votre page de profil, et cliquez sur le bouton '%s'. Le site "
-"enregistrera votre adresse IP comme légitime."
-
-# Translation from WordPress.
-#: login-security-solution.php:1911
-msgid "Update Profile"
-msgstr ""
-
 # @ login-security-solution
 #: login-security-solution.php:1937
 msgid "ATTACK HAPPENING TO %s"

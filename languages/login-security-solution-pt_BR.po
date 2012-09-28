@@ -621,21 +621,6 @@ msgstr ""
 " * Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez "
 "o acesso."
 
-#: login-security-solution.php:1911
-msgid ""
-"If it WAS YOU, future hassles can be reduced by logging into the site, going "
-"to your profile page, and clicking the '%s' button.  The site will remember "
-"your IP address as being legitimate."
-msgstr ""
-"Se FOI VOCÊ, pode ser reduzido os aborrecimentos futuros para entrar no "
-"site, vá para página do seu prefil e clique no botão '%s'. O site vai se "
-"lembrar do seu endereço IP como sendo legítimo."
-
-# Translation from WordPress.
-#: login-security-solution.php:1911
-msgid "Update Profile"
-msgstr ""
-
 #: login-security-solution.php:1937
 msgid "ATTACK HAPPENING TO %s"
 msgstr "ATAQUE ACONTECENDO NO %s"
