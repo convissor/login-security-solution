@@ -1,0 +1,15 @@
+To: %a
+Subject: ATTACK HAPPENING TO %a
+
+Your website, %s, is undergoing a brute force attack.
+
+There have been at least 6 failed attempts to log in during the past 60 minutes that used one or more of the following components:
+
+
+Component                    Count     Value from Current Attempt
+------------------------     -----     --------------------------------
+Network IP                       6     1.2.38
+Username                         6     test
+Password MD5                     1     %s
+
+The Login Security Solution plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.

@@ -1,0 +1,15 @@
+To: %a
+Subject: ATAQUE ACONTECENDO NO %s
+
+Seu website, %s, está passando por um ataque de força bruta.
+
+Houve pelo menos 6 tentativas para iniciar sessão durante os últimos 60 minutos, que usaram um ou mais dos seguintes componentes:
+
+
+Componente               o valor é     Valor da tentativa atual
+------------------------     -----     --------------------------------
+O IP da rede                     6     1.2.38
+Nome do usuário                  6     test
+Senha MD5                        1     %s
+
+O plugin %s (%s) para o WordPress está repelindo ao ataque de força bruta, na tentativa de descobrir o seu login, fazendo demorar um tempo muito longo entre as falhas.

@@ -120,6 +120,7 @@ class login_security_solution {
 		'login_fail_tier_2' => 5,
 		'login_fail_tier_3' => 10,
 		'login_fail_notify' => 50,
+		'login_fail_notify_multiple' => 0,
 		'login_fail_breach_notify' => 6,
 		'login_fail_breach_pw_force_change' => 6,
 		'pw_change_days' => 0,
@@ -1989,7 +1990,11 @@ Password MD5                 %5d     %s
 		if ($this->options['login_fail_notify']
 			&& ! ($fails['total'] % $this->options['login_fail_notify']))
 		{
-			$this->notify_fail($network_ip, $user_name, $pass_md5, $fails);
+			if ($fails['total'] == $this->options['login_fail_notify']
+				|| $this->options['login_fail_notify_multiple'])
+			{
+				$this->notify_fail($network_ip, $user_name, $pass_md5, $fails);
+			}
 		}
 
 		$sleep = $this->calculate_sleep($fails['total']);

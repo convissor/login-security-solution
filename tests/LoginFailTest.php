@@ -51,6 +51,7 @@ class LoginFailTest extends TestCase {
 		$options = self::$lss->options;
 		$options['login_fail_minutes'] = 60;
 		$options['login_fail_notify'] = 4;
+		$options['login_fail_notify_multiple'] = 0;
 		$options['login_fail_tier_2'] = 3;
 		$options['login_fail_tier_3'] = 4;
 		$options['login_fail_breach_notify'] = 4;
@@ -196,6 +197,7 @@ class LoginFailTest extends TestCase {
 		try {
 			// Do THE deed.
 			$sleep = self::$lss->process_login_fail($this->user_name, $this->pass_md5);
+			// Count is now 4.
 		} catch (Exception $e) {
 			$this->fail($e->getMessage());
 		}
@@ -205,7 +207,77 @@ class LoginFailTest extends TestCase {
 	}
 
 	/**
-	 * @depends test_process_login_fail__post_threshold
+	 * @depends test_process_login_fail__pre_threshold
+	 */
+	public function test_process_login_fail__post_threshold_not_modulus() {
+		global $wpdb;
+
+		$wpdb->query('SAVEPOINT pre_not_modulus');
+
+		try {
+			// Do THE deed.
+			$sleep = self::$lss->process_login_fail($this->user_name, __FUNCTION__);
+			// Count is now 5.
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertGreaterThan(0, $sleep, 'Sleep was not set.');
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold_not_modulus
+	 */
+	public function test_process_login_fail__post_threshold_multiple_on() {
+		global $wpdb;
+
+		$wpdb->query('SAVEPOINT pre_multiple');
+
+		self::$mail_file_basename = __METHOD__;
+
+		$options = self::$lss->options;
+		$options['login_fail_notify'] = 2;
+		$options['login_fail_notify_multiple'] = 1;
+		self::$lss->options = $options;
+
+		try {
+			// Do THE deed.
+			$sleep = self::$lss->process_login_fail($this->user_name, __FUNCTION__);
+			// Count is now 6.
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+
+		$this->check_mail_file();
+		$this->assertGreaterThan(0, $sleep, 'Sleep was not set.');
+
+		$wpdb->query('ROLLBACK TO pre_multiple');
+		// Count is now 5.
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold_multiple_on
+	 */
+	public function test_process_login_fail__post_threshold_multiple_off() {
+		global $wpdb;
+
+		$options = self::$lss->options;
+		$options['login_fail_notify'] = 2;
+		self::$lss->options = $options;
+
+		try {
+			// Do THE deed.
+			$sleep = self::$lss->process_login_fail($this->user_name, __FUNCTION__);
+			// Count is now 6.
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertGreaterThan(0, $sleep, 'Sleep was not set.');
+
+		$wpdb->query('ROLLBACK TO pre_not_modulus');
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold_multiple_off
 	 */
 	public function test_wp_login__post_breach_threshold() {
 		self::$mail_file_basename = __METHOD__;
@@ -257,7 +329,7 @@ class LoginFailTest extends TestCase {
 	}
 
 	/**
-	 * @depends test_process_login_fail__post_threshold
+	 * @depends test_wp_login__post_breach_threshold_verified_ip
 	 */
 	public function test_wp_login__post_breach_threshold_only_notify() {
 		self::$mail_file_basename = __METHOD__;

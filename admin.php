@@ -297,8 +297,16 @@ class login_security_solution_admin extends login_security_solution {
 			'login_fail_notify' => array(
 				'group' => 'login',
 				'label' => __("Failure Notification", self::ID),
-				'text' => __("Notify the administrator upon every x matching login failures. 0 disables this feature.", self::ID),
+				'text' => __("Notify the administrator about login failures. 0 disables this feature.", self::ID),
 				'type' => 'int',
+			),
+			'login_fail_notify_multiple' => array(
+				'group' => 'login',
+				'label' => __("Multiple Failure Notifications", self::ID),
+				'text' => __("Should multiple failure notifications be sent to the administrators?", self::ID),
+				'type' => 'bool',
+				'bool0' => __("No, just notify them the first time that x matching login failures happen.", self::ID),
+				'bool1' => __("Yes, notify them upon every x matching login failures.", self::ID),
 			),
 			'login_fail_breach_notify' => array(
 				'group' => 'login',
