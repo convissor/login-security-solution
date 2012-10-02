@@ -297,7 +297,7 @@ class login_security_solution_admin extends login_security_solution {
 			'login_fail_notify' => array(
 				'group' => 'login',
 				'label' => __("Failure Notification", self::ID),
-				'text' => __("Notify the administrator about login failures. 0 disables this feature.", self::ID),
+				'text' => __("Notify the administrator after x matching login failures. 0 disables this feature.", self::ID),
 				'type' => 'int',
 			),
 			'login_fail_notify_multiple' => array(
