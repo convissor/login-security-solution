@@ -412,12 +412,14 @@ implementation, use the scripts I made for generating all of the `.po` and
 
 == Changelog ==
 
-= 0.32.0 (2012-10-03) =
+= 0.32.0 (2012-10-04) =
 * SIGNIFICANT CHANGE:  Reduce the number of emails sent to administrators:
 add the "Multiple Failure Notifications" setting and make the default "No."
 * Remove the (supurfluous) "If it WAS YOU..." part of the user notification
 emails.
 * Use `wp_cache_flush()` in unit tests, `wp_cache_reset()` deprecated in 3.5.
+* Unit tests pass using PHP 5.4.5-dev, 5.3.16-dev.
+* Tested under WordPress 3.4.2 and 3.5beta1 using regular and multisite.
 
 = 0.31.0 (2012-09-25) =
 * Have breach notification emails detail the exact situation depending on
