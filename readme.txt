@@ -332,39 +332,39 @@ If you look at it the right way, Login Security Solution provides lockouts
 of the attack handling logic used by Limit Login Attempts and Login Security
 Solution.
 
-    __Limit Login Attempts__
+__Limit Login Attempts__
 
-    * _Invalid or Valid Credentials by Attacker or Actual User_
+* _Invalid or Valid Credentials by Attacker or Actual User_
 
-        1) Process authentication request (check IP address)
-        1) Error message: "Too many failed login attempts." (ACCESS DENIED.)
+    1) Process authentication request (check IP address)
+    1) Error message: "Too many failed login attempts." (ACCESS DENIED.)
 
-    Note, this approach means an actual user can be denied access for 12 hours after making 4 mistakes.
+Note, this approach means an actual user can be denied access for 12 hours after making 4 mistakes.
 
 
-    __Login Security Solution__
+__Login Security Solution__
 
-    * _Invalid Credentials by Attacker or Actual User_
+* _Invalid Credentials by Attacker or Actual User_
 
-        1) Process authentication request (check IP, user name, and password)
-        1) Slow down the response
-        1) Error message: "Incorrect username or password." (ACCESS DENIED.)
+    1) Process authentication request (check IP, user name, and password)
+    1) Slow down the response
+    1) Error message: "Incorrect username or password." (ACCESS DENIED.)
 
-    * _Valid Credentials by Attacker_
+* _Valid Credentials by Attacker_
 
-        1) Process authentication request (check IP, user name, and password)
-        1) Slow down the response
-        1) Set force password change flag for user
-        1) Error message: "Your password must be reset. Please submit this form to reset it." (ACCESS DENIED.)
+    1) Process authentication request (check IP, user name, and password)
+    1) Slow down the response
+    1) Set force password change flag for user
+    1) Error message: "Your password must be reset. Please submit this form to reset it." (ACCESS DENIED.)
 
-    * _Valid Credentials by Actual User_
+* _Valid Credentials by Actual User_
 
-        1) Process authentication request (check IP, user name, and password)
-        1) (If user is coming from their verified IP address, let them in, END)
-        1) Slow down the response
-        1) Error message: "Your password must be reset. Please submit this form to reset it." (ACCESS DENIED.)
-        1) On subsequent request... user verifies their identity via password reset process
-        1) User's IP address is added to their verified IP list for future reference
+    1) Process authentication request (check IP, user name, and password)
+    1) (If user is coming from their verified IP address, let them in, END)
+    1) Slow down the response
+    1) Error message: "Your password must be reset. Please submit this form to reset it." (ACCESS DENIED.)
+    1) On subsequent request... user verifies their identity via password reset process
+    1) User's IP address is added to their verified IP list for future reference
 
 So both plugins deny access to attackers. But Login Security Solution has
 the bonuses of letting legitimate users log in and slowing the attacks down.
