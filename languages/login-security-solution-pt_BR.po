@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.32.0\n"
+"Project-Id-Version: Login Security Solution 0.33.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
-"POT-Creation-Date: 2012-10-02 03:36:46+00:00\n"
-"PO-Revision-Date: 2012-10-02 04:53:00-03:00\n"
+"POT-Creation-Date: 2012-10-17 00:50:57+00:00\n"
+"PO-Revision-Date: 2012-10-17 12:23:54-03:00\n"
 "Last-Translator: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "Language-Team: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +169,8 @@ msgstr "Múltiplas notificações de falha"
 #: admin.php:306
 msgid "Should multiple failure notifications be sent to the administrators?"
 msgstr ""
-"Devem ser enviadas para os administradores as múltiplas notificações de falha?"
+"Devem ser enviadas para os administradores as múltiplas notificações de "
+"falha?"
 
 #: admin.php:308
 msgid ""
@@ -666,29 +667,45 @@ msgstr ""
 "na tentativa de descobrir o seu login, fazendo demorar um tempo muito longo "
 "entre as falhas."
 
-#: login-security-solution.php:2353 tests/PasswordValidationTest.php:483
+#: login-security-solution.php:1952
+msgid ""
+"This attacker will also be denied access in the event they stumble upon "
+"valid credentials."
+msgstr ""
+"Este atacante também terá o acesso negado no caso dele tropeçar nas "
+"credenciais válidas."
+
+#: login-security-solution.php:1958
+msgid ""
+"Further notifications about this attacker will only be sent if the attack "
+"stops for at least %d minutes and then resumes."
+msgstr ""
+"As futuras notificações sobre este atacante só serão enviadas, se o ataque "
+"parar por pelo menos %d minutos e depois recomeçar."
+
+#: login-security-solution.php:2363 tests/PasswordValidationTest.php:483
 msgid "Password not set."
 msgstr "A senha não está definida."
 
-#: login-security-solution.php:2368 tests/PasswordValidationTest.php:494
+#: login-security-solution.php:2378 tests/PasswordValidationTest.php:494
 msgid "Passwords must be strings."
 msgstr "As senhas devem ser seqüências de caracteres."
 
-#: login-security-solution.php:2386 tests/PasswordValidationTest.php:507
+#: login-security-solution.php:2396 tests/PasswordValidationTest.php:507
 msgid "Passwords must use ASCII characters."
 msgstr "As senhas devem usar caracteres ASCII."
 
-#: login-security-solution.php:2405 tests/PasswordChangeTest.php:310
+#: login-security-solution.php:2415 tests/PasswordChangeTest.php:310
 #: tests/PasswordValidationTest.php:524 tests/PasswordValidationTest.php:538
 msgid "Password is too short."
 msgstr "A senha é muito curta."
 
-#: login-security-solution.php:2414 tests/PasswordValidationTest.php:564
+#: login-security-solution.php:2424 tests/PasswordValidationTest.php:564
 msgid "Passwords must either contain numbers or be %d characters long."
 msgstr ""
 "As senhas devem conter números ou estar %d num conjunto de caracteres longo."
 
-#: login-security-solution.php:2423 tests/PasswordValidationTest.php:551
+#: login-security-solution.php:2433 tests/PasswordValidationTest.php:551
 msgid ""
 "Passwords must either contain punctuation marks / symbols or be %d "
 "characters long."
@@ -696,7 +713,7 @@ msgstr ""
 "As senhas devem conter sinais de pontuação/símbolos ou estar %d num conjunto "
 "de caracteres longo."
 
-#: login-security-solution.php:2432 tests/PasswordValidationTest.php:577
+#: login-security-solution.php:2442 tests/PasswordValidationTest.php:577
 msgid ""
 "Passwords must either contain upper-case and lower-case letters or be %d "
 "characters long."
@@ -704,28 +721,28 @@ msgstr ""
 "As senhas devem conter letras maiúsculas e minúsculas ou estar %d num "
 "conjunto de caracteres longo."
 
-#: login-security-solution.php:2442 tests/PasswordValidationTest.php:590
+#: login-security-solution.php:2452 tests/PasswordValidationTest.php:590
 msgid "Passwords can't be sequential keys."
 msgstr "As senhas não podem ser chaves seqüenciais."
 
-#: login-security-solution.php:2451 tests/PasswordValidationTest.php:603
+#: login-security-solution.php:2461 tests/PasswordValidationTest.php:603
 msgid "Passwords can't have that many sequential characters."
 msgstr "As senhas não podem ter muitos caracteres iguais e em seqüenciais."
 
-#: login-security-solution.php:2467 tests/PasswordValidationTest.php:616
+#: login-security-solution.php:2477 tests/PasswordValidationTest.php:616
 #: tests/PasswordValidationTest.php:629
 msgid "Passwords can't contain user data."
 msgstr "As senhas não podem conter dados pessoais do usuário."
 
-#: login-security-solution.php:2478 tests/PasswordValidationTest.php:642
+#: login-security-solution.php:2488 tests/PasswordValidationTest.php:642
 msgid "Passwords can't contain site info."
 msgstr "As senhas não podem conter informações do site."
 
-#: login-security-solution.php:2487 tests/PasswordValidationTest.php:655
+#: login-security-solution.php:2497 tests/PasswordValidationTest.php:655
 msgid "Password is too common."
 msgstr "A senha não pode ser muito comum."
 
-#: login-security-solution.php:2496 tests/PasswordValidationTest.php:671
+#: login-security-solution.php:2506 tests/PasswordValidationTest.php:671
 msgid "Passwords can't be variations of dictionary words."
 msgstr ""
 "As senhas não podem ser variações de palavras de dicionários, seja ele qual "

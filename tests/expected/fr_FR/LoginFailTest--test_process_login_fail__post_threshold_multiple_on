@@ -12,4 +12,4 @@ Réseau IP                        6     1.2.38
 Identifiant                      6     test
 MD5 du mot de passe              1     %s
 
-Le plugin %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à chaque tentative échouée.
+Le plugin %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à chaque tentative échouée.  Cet attaquant sera également refusé l'accès dans le cas où ils tombent sur des informations d'identification valides.

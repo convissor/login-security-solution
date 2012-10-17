@@ -12,6 +12,6 @@ O IP da rede                     4     1.2.38
 Nome do usuário                  4     test
 Senha MD5                        1     %s
 
-O plugin %s (%s) para o WordPress está repelindo ao ataque de força bruta, na tentativa de descobrir o seu login, fazendo demorar um tempo muito longo entre as falhas.  Este atacante também terá o acesso negado no caso dele tropeçar nas credenciais válidas.
+O plugin %s (%s) para o WordPress está repelindo ao ataque de força bruta, na tentativa de descobrir o seu login, fazendo demorar um tempo muito longo entre as falhas.
 
 As futuras notificações sobre este atacante só serão enviadas, se o ataque parar por pelo menos %d minutos e depois recomeçar.
