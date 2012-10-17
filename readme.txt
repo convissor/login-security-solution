@@ -414,6 +414,7 @@ and `.mo` files:
 
 = 0.33.0 =
 * Add text to failure alerts saying the attacker will be denied access.
+* Have failure alerts say there won't be further emails.
 
 = 0.32.0 (2012-10-04) =
 * SIGNIFICANT CHANGE:  Reduce the number of emails sent to administrators:

@@ -1954,6 +1954,10 @@ Password MD5                 %5d     %s
 
 		$message .= "\n";
 
+		if (!$this->options['login_fail_notify_multiple']) {
+			$message .= "\n" . sprintf(__("Further notifications about this attacker will only be sent if the attack stops for at least %d minutes and then resumes.", self::ID), $this->options['login_fail_minutes']) . "\n";
+		}
+
 		return wp_mail($to, $subject, $message);
 	}
 

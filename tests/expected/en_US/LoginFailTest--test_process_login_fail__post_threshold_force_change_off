@@ -13,3 +13,5 @@ Username                         4     test
 Password MD5                     1     %s
 
 The Login Security Solution plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.
+
+Further notifications about this attacker will only be sent if the attack stops for at least %d minutes and then resumes.
