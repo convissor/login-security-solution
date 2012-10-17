@@ -412,6 +412,9 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.33.0 =
+* Add text to failure alerts saying the attacker will be denied access.
+
 = 0.32.0 (2012-10-04) =
 * SIGNIFICANT CHANGE:  Reduce the number of emails sent to administrators:
 add the "Multiple Failure Notifications" setting and make the default "No."

@@ -1946,7 +1946,13 @@ Password MD5                 %5d     %s
 			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails)
 
 			. sprintf(__("The %s plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.", self::ID),
-				self::NAME, self::VERSION) . "\n";
+				self::NAME, self::VERSION);
+
+		if ($this->options['login_fail_breach_pw_force_change']) {
+			$message .= '  ' . __("This attacker will also be denied access in the event they stumble upon valid credentials.", self::ID);
+		}
+
+		$message .= "\n";
 
 		return wp_mail($to, $subject, $message);
 	}

@@ -192,7 +192,36 @@ class LoginFailTest extends TestCase {
 	 * @depends test_process_login_fail__pre_threshold
 	 */
 	public function test_process_login_fail__post_threshold() {
+		global $wpdb;
+
+		$wpdb->query('SAVEPOINT pre_post_threshold');
+
 		self::$mail_file_basename = __METHOD__;
+
+		try {
+			// Do THE deed.
+			$sleep = self::$lss->process_login_fail($this->user_name, $this->pass_md5);
+			// Count is now 4.
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+
+		$wpdb->query('ROLLBACK TO pre_post_threshold');
+		// Count is now 3.
+
+		$this->check_mail_file();
+		$this->assertGreaterThan(0, $sleep, 'Sleep was not set.');
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold
+	 */
+	public function test_process_login_fail__post_threshold_force_change_off() {
+		self::$mail_file_basename = __METHOD__;
+
+		$options = self::$lss->options;
+		$options['login_fail_breach_pw_force_change'] = 0;
+		self::$lss->options = $options;
 
 		try {
 			// Do THE deed.
@@ -207,7 +236,7 @@ class LoginFailTest extends TestCase {
 	}
 
 	/**
-	 * @depends test_process_login_fail__pre_threshold
+	 * @depends test_process_login_fail__post_threshold_force_change_off
 	 */
 	public function test_process_login_fail__post_threshold_not_modulus() {
 		global $wpdb;

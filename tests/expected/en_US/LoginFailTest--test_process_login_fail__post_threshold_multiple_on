@@ -12,4 +12,4 @@ Network IP                       6     1.2.38
 Username                         6     test
 Password MD5                     1     %s
 
-The Login Security Solution plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.
+The Login Security Solution plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.  This attacker will also be denied access in the event they stumble upon valid credentials.
