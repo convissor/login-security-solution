@@ -412,7 +412,7 @@ and `.mo` files:
 
 == Changelog ==
 
-= 0.33.0 =
+= 0.33.0 (2012-10-18) =
 * Add text to failure alerts saying the attacker will be denied access.
 * Have failure alerts say there won't be further emails.
 
