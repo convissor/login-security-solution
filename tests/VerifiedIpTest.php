@@ -78,7 +78,7 @@ class VerifiedIpTest extends TestCase {
 		$this->assertEquals(array(self::$ip_1), $actual);
 
 		$wpdb->query('ROLLBACK TO empty');
-		wp_cache_flush();
+		wp_cache_init();
 
 		$actual = self::$lss->get_verified_ips($this->user->ID);
 		$this->assertSame(array(), $actual);
@@ -107,7 +107,7 @@ class VerifiedIpTest extends TestCase {
 		$this->assertEquals($expected, $actual);
 
 		$wpdb->query('ROLLBACK TO empty');
-		wp_cache_flush();
+		wp_cache_init();
 	}
 
 	/**
@@ -127,7 +127,7 @@ class VerifiedIpTest extends TestCase {
 		$this->assertSame(array($ip), $actual, 'Expected IP was not found.');
 
 		$wpdb->query('ROLLBACK TO empty');
-		wp_cache_flush();
+		wp_cache_init();
 	}
 
 	/**
