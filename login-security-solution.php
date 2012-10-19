@@ -1232,6 +1232,31 @@ Password MD5                 %5d     %s
 	}
 
 	/**
+	 * Determines if PHP's exec() function is usable
+	 * @return bool
+	 */
+	protected function is_exec_available() {
+		static $available;
+
+		if (!isset($available)) {
+			$available = true;
+			if (ini_get('safe_mode')) {
+				$available = false;
+			} else {
+				$string = ini_get('disable_functions');
+				if ($string) {
+					$array = preg_split('/,\s*/', $string);
+					if (in_array('exec', $array)) {
+						$available = false;
+					}
+				}
+			}
+		}
+
+		return $available;
+	}
+
+	/**
 	 * Examines how long ago the current user last interacted with the
 	 * site and takes appropriate action
 	 *
@@ -1306,7 +1331,7 @@ Password MD5                 %5d     %s
 			return null;
 		}
 
-		if (ini_get('safe_mode')) {
+		if (!$this->is_exec_available()) {
 			$this->available_dict = false;
 			return null;
 		}
@@ -1384,7 +1409,7 @@ Password MD5                 %5d     %s
 			return null;
 		}
 
-		if (ini_get('safe_mode')) {
+		if (!$this->is_exec_available()) {
 			$this->available_grep = false;
 			return null;
 		}
