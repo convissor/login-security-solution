@@ -412,6 +412,9 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.34.0 =
+* Skip `exec()` calls if `safe_mode` is on.
+
 = 0.33.0 (2012-10-18) =
 * Add text to failure alerts saying the attacker will be denied access.
 * Have failure alerts say there won't be further emails.

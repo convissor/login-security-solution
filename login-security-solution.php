@@ -1306,6 +1306,11 @@ Password MD5                 %5d     %s
 			return null;
 		}
 
+		if (ini_get('safe_mode')) {
+			$this->available_dict = false;
+			return null;
+		}
+
 		$term = escapeshellarg($pw);
 		exec("dict -m -s exact $term 2>&1", $output, $result);
 		if (!$result) {
@@ -1376,6 +1381,11 @@ Password MD5                 %5d     %s
 	 */
 	protected function is_pw_dictionary__grep($pw) {
 		if ($this->available_grep === false) {
+			return null;
+		}
+
+		if (ini_get('safe_mode')) {
+			$this->available_grep = false;
 			return null;
 		}
 
