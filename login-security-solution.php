@@ -1243,9 +1243,10 @@ Password MD5                 %5d     %s
 			if (ini_get('safe_mode')) {
 				$available = false;
 			} else {
-				$string = ini_get('disable_functions');
-				if ($string) {
-					$array = preg_split('/,\s*/', $string);
+				$d = ini_get('disable_functions');
+				$s = ini_get('suhosin.executor.func.blacklist');
+				if ("$d$s") {
+					$array = preg_split('/,\s*/', "$d,$s");
 					if (in_array('exec', $array)) {
 						$available = false;
 					}
