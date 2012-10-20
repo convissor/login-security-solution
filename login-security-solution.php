@@ -501,7 +501,7 @@ class login_security_solution {
 	 *       and slow down the response as necessary
 	 */
 	public function login_errors($out = '') {
-		global $errors, $user_name;
+		global $errors, $wp_error, $user_name;
 
 		if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'register') {
 			// Do not alter "invalid_username" or "invalid_email" messages
@@ -509,7 +509,13 @@ class login_security_solution {
 			return $out;
 		}
 
-		$error_codes = $errors->get_error_codes();
+		if (is_wp_error($errors)) {
+			$error_codes = $errors->get_error_codes();
+		} elseif (is_wp_error($wp_error)) {
+			$error_codes = $wp_error->get_error_codes();
+		} else {
+			return $out;
+		}
 
 		$codes_to_cloak = array('incorrect_password', 'invalid_username');
 		if (array_intersect($error_codes, $codes_to_cloak)) {

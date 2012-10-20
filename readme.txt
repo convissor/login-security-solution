@@ -413,6 +413,7 @@ and `.mo` files:
 == Changelog ==
 
 = 0.34.0 =
+* Have `login_errors` filter check `$wp_error` also, not just `$errors.`
 * Skip `exec()` calls if `safe_mode` is on.
 
 = 0.33.0 (2012-10-18) =
