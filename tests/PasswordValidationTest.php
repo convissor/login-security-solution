@@ -250,6 +250,8 @@ class PasswordValidationTest extends TestCase {
 			"aA1!",
 			"123",
 			"ةيب8رعلا",
+			"a२c",  // Devanagari number 2.
+			"a୨c",  // Oriya number 2.
 		);
 		foreach ($tests as $pw) {
 			$actual = self::$lss->is_pw_missing_numeric($pw);
