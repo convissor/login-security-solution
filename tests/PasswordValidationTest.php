@@ -267,6 +267,7 @@ class PasswordValidationTest extends TestCase {
 			"a!a!",
 			"A!A!",
 			"aA!",
+			"aבc",  // Hebrew letter number 2.
 			"ةيبرعلا",
 		);
 		foreach ($tests as $pw) {
