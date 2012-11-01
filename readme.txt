@@ -274,10 +274,9 @@ are not using the `InnoDB` storage engine.
     click the "Settings" link for this plugin.  In the "Deactivate" entry,
     click the "Yes, delete the damn data" button and save the form.
 
-1. Use WordPress' "Plugins" admin interface to and click the "Deactivate"
-    link.
+1. Use WordPress' "Plugins" admin interface to click the "Deactivate" link
 
-1. Remove the `login-security-solution` directory.
+1. Remove the `login-security-solution` directory from the server
 
 
 == Frequently Asked Questions ==
