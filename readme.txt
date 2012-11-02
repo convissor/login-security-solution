@@ -422,7 +422,7 @@ and `.mo` files:
 = 0.32.0 (2012-10-04) =
 * SIGNIFICANT CHANGE:  Reduce the number of emails sent to administrators:
 add the "Multiple Failure Notifications" setting and make the default "No."
-* Remove the (supurfluous) "If it WAS YOU..." part of the user notification
+* Remove the (superfluous) "If it WAS YOU..." part of the user notification
 emails.
 * Use `wp_cache_flush()` in unit tests, `wp_cache_reset()` deprecated in 3.5.
 * Unit tests pass using PHP 5.4.5-dev, 5.3.16-dev.
@@ -686,7 +686,7 @@ Development of this plugin happens on
 [GitHub](https://github.com/convissor/login-security-solution).
 Releases are then squashed and pushed to WordPress'
 [Plugins SVN repository](http://plugins.svn.wordpress.org/login-security-solution/).
-This division is necessary due having being chastized that "the Plugins SVN
+This division is necessary due having being chastised that "the Plugins SVN
 repository is a release system, not a development system."
 
 Please submit
