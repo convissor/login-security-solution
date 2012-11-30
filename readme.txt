@@ -3,7 +3,7 @@ Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: login, password, passwords, strength, strong, strong passwords, password strength, idle, timeout, maintenance, security, attack, hack, lock, lockdown, ban, brute force, brute, force, authentication, auth, cookie, users
 Requires at least: 3.3
-Tested up to: 3.5beta1
+Tested up to: 3.5RC2
 Stable tag: trunk
 
 Security against brute force attacks by tracking IP, name, password; requiring very strong passwords. Idle timeout. Maintenance mode lockdown.
@@ -414,6 +414,7 @@ and `.mo` files:
 = 0.34.0 (2012-10-21) =
 * Have `login_errors` filter check `$wp_error` also, not just `$errors.`
 * Skip `exec()` calls if `safe_mode` is on.
+* Unit tests pass using WordPress 3.5 RC2 under PHP 5.4.5-dev and 5.3.19-dev.
 
 = 0.33.0 (2012-10-18) =
 * Add text to failure alerts saying the attacker will be denied access.
