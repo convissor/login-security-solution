@@ -116,6 +116,23 @@ conflicts during program execution.  Please read the FAQ!
 * Português, Brasil (Portugese, Brazil) (pt_BR) by Valdir Trombini
 
 
+= Source Code, Bugs, and Feature Requests =
+
+Development of this plugin happens on
+[GitHub](https://github.com/convissor/login-security-solution).
+Please submit
+[bug and feature requests](https://github.com/convissor/login-security-solution/issues),
+[pull requests](https://github.com/convissor/login-security-solution/pulls),
+[wiki entries](https://github.com/convissor/login-security-solution/wiki)
+there.
+Releases are then squashed and pushed to WordPress'
+[Plugins SVN repository](http://plugins.svn.wordpress.org/login-security-solution/).
+This division is necessary due having being chastised that "the Plugins SVN
+repository is a release system, not a development system."
+
+Old tickets are in the [Plugins Trac](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id).
+
+
 = Strong, Unique Passwords Are Important =
 
 Yeah, creating, storing/remembering, and using a __different__, __strong__
@@ -680,20 +697,3 @@ problems under PHP 5.4.
 
 * Delete old data in the `fail` table.
 * Provide a user interface to the `fail` table.
-
-= Source Code, Bugs, and Feature Requests =
-
-Development of this plugin happens on
-[GitHub](https://github.com/convissor/login-security-solution).
-Releases are then squashed and pushed to WordPress'
-[Plugins SVN repository](http://plugins.svn.wordpress.org/login-security-solution/).
-This division is necessary due having being chastised that "the Plugins SVN
-repository is a release system, not a development system."
-
-Please submit
-[bug and feature requests](https://github.com/convissor/login-security-solution/issues),
-[pull requests](https://github.com/convissor/login-security-solution/pulls),
-[wiki entries](https://github.com/convissor/login-security-solution/wiki)
-there.
-
-Old tickets are in the [Plugins Trac](https://plugins.trac.wordpress.org/query?status=assigned&status=closed&status=new&status=reopened&component=login-security-solution&col=id&col=summary&col=status&col=owner&col=type&col=priority&col=component&desc=1&order=id).
