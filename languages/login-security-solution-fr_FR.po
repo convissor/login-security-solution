@@ -4,27 +4,26 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2012-10-17 00:50:57+00:00\n"
-"PO-Revision-Date: 2012-10-17 19:52:00-04:00\n"
-"Last-Translator: translate.google.com\n"
+"PO-Revision-Date: 2012-12-02 18:58+0100\n"
+"Last-Translator: FxB <fx@fxbenard.com>\n"
 "Language-Team: mermouy <mermouy@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
 "X-Poedit-Basepath: ../\n"
-"X-Poedit-Bookmarks: \n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
+"Language: fr_FR\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SearchPath-0: .\n"
 
 # Translation from WordPress.
 #: admin.php:112 admin.php:373
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -67,7 +66,7 @@ msgid ""
 "comments?"
 msgstr ""
 "Désactiver la connexion pour les utilisateurs non-administrateurs et "
-"désactiver l'envoi de commentaires?"
+"désactiver l'envoi de commentaires ?"
 
 #: admin.php:260
 msgid "Off, let all users log in."
@@ -226,7 +225,7 @@ msgstr ""
 
 #: admin.php:340
 msgid "Aging"
-msgstr "Äge"
+msgstr "Âge"
 
 #: admin.php:341
 msgid ""
@@ -322,7 +321,7 @@ msgstr ""
 
 #: admin.php:549 admin.php:564
 msgid "Default:"
-msgstr "Défaut:"
+msgstr "Par défaut :"
 
 #: admin.php:588
 msgid "must be >= '%s',"
@@ -397,7 +396,7 @@ msgstr "Non merci"
 # Translation from WordPress.
 #: admin.php:814 admin.php:834
 msgid "Success!"
-msgstr ""
+msgstr "Quel succès&nbsp;!"
 
 #: admin.php:827
 msgid "Confirm"
@@ -408,8 +407,8 @@ msgid ""
 "WARNING: The site is in maintenance mode. DO NOT TOUCH ANYTHING! Your "
 "changes may get overwritten!"
 msgstr ""
-"ATTENTION: Le site est en mode maintenance. NE TOUCHEZ À RIEN! Vos "
-"changements pourraient être écrasés!"
+"ATTENTION: Le site est en mode maintenance. NE TOUCHEZ À RIEN ! Vos "
+"changements pourraient être écrasés !"
 
 #: admin.php:890
 msgid ""
@@ -419,7 +418,7 @@ msgid ""
 "everyone on the Internet by making all users pick new, strong, passwords."
 msgstr ""
 "Vous n'avez pas demandé à vos utilisateurs de changer leur mot de passe "
-"depuis que l(extension à été activée. La plupart des utilisateurs utilisent "
+"depuis que l'extension à été activée. La plupart des utilisateurs utilisent "
 "des mots de passe fragiles. Les politiques de mots de passe de cette "
 "extension vous protègent des attaques de type 'brute force'. Aidez à "
 "améliorer la sécurité de chacun sur internet en forçant tous les "
@@ -444,7 +443,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:928
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "Vous n'avez pas les droits suffisants pour accéder à cette page."
 
 #: admin.php:934
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -462,6 +461,8 @@ msgstr "Identifiant ou mot de passe incorrect."
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
 msgstr ""
+"La réinitialisation du mot de passe n&rsquo;est pas autorisée pour cet "
+"utilisateur"
 
 # @ login-security-solution
 #: login-security-solution.php:555 tests/LoginMessageTest.php:66
@@ -544,7 +545,7 @@ msgstr "D'anciens mots de passe ne peuvent être ré-utilisés."
 # @ default
 #: login-security-solution.php:896
 msgid "ERROR"
-msgstr ""
+msgstr "ERREUR"
 
 # @ login-security-solution
 #: login-security-solution.php:1033
@@ -598,7 +599,7 @@ msgid ""
 "WARNING: The '%s' setting you chose means this person has NOT been logged "
 "out and will NOT be required to confirm their identity."
 msgstr ""
-"ATTENTION: Le paramètre '%s' que vous avez choisi signifie que cette "
+"ATTENTION : Le paramètre '%s' que vous avez choisi signifie que cette "
 "personne n'a pas été déconnectée et ne sera donc pas obligée de confirmer "
 "son identité."
 
@@ -628,8 +629,8 @@ msgstr ""
 
 #: login-security-solution.php:1901
 msgid ""
-"To ensure your account is not being hijacked, you will have go through the '%"
-"s' process before logging in again."
+"To ensure your account is not being hijacked, you will have go through the "
+"'%s' process before logging in again."
 msgstr ""
 "Afin de s'assurer que votre compte n'a pas été piraté, vous devez utiliser "
 "le processus '%s' avant de vous connecter de nouveau."
@@ -637,7 +638,7 @@ msgstr ""
 # Translation from WordPress.
 #: login-security-solution.php:1901
 msgid "Lost your password?"
-msgstr ""
+msgstr "Mot de passe oublié&nbsp;?"
 
 # @ login-security-solution
 #: login-security-solution.php:1904
