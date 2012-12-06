@@ -109,7 +109,7 @@ class login_security_solution_admin extends login_security_solution {
 		$this->set_fields();
 
 		// Translation already in WP combined with plugin's name.
-		$this->text_settings = self::NAME . ' ' . __('Settings');
+		$this->text_settings = self::NAME . ' ' . __( 'Settings', self::ID );
 
 		if (is_multisite()) {
 			$this->capability_required = 'manage_network_options';

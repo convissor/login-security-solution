@@ -1,30 +1,29 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.33.0\n"
+"Project-Id-Version: Login Security Solution 0.34.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2012-10-17 00:50:57+00:00\n"
-"PO-Revision-Date: 2012-10-17 19:52:00-04:00\n"
-"Last-Translator: translate.google.com\n"
-"Language-Team: mermouy <mermouy@gmail.com>\n"
+"PO-Revision-Date: 2012-12-05 17:18+0100\n"
+"Last-Translator: FxB <fx@fxbenard.com>\n"
+"Language-Team: FxB <fx@fxbenard.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
 "X-Poedit-Basepath: ../\n"
-"X-Poedit-Bookmarks: \n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
+"Language: fr_FR\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SearchPath-0: .\n"
 
 # Translation from WordPress.
 #: admin.php:112 admin.php:373
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -32,7 +31,7 @@ msgstr "Changer tous les mots de passe"
 
 #: admin.php:127
 msgid "Do not remind me about this"
-msgstr "Ne pas me le rappeler"
+msgstr "Ne plus me le rappeler"
 
 #: admin.php:128
 msgid "Require All Passwords Be Changed"
@@ -54,7 +53,7 @@ msgstr "Temps d'inactivité"
 msgid ""
 "Close inactive sessions after this many minutes. 0 disables this feature."
 msgstr ""
-"Temps (en minutes) après lequel fermer les session inactives? 0 désactive "
+"Temps (en minutes) après lequel fermer les session inactives ? 0 désactive "
 "cette fonctionnalité."
 
 #: admin.php:257
@@ -67,7 +66,7 @@ msgid ""
 "comments?"
 msgstr ""
 "Désactiver la connexion pour les utilisateurs non-administrateurs et "
-"désactiver l'envoi de commentaires?"
+"désactiver l'envoi de commentaires ?"
 
 #: admin.php:260
 msgid "Off, let all users log in."
@@ -87,8 +86,8 @@ msgstr "Désactivation"
 msgid ""
 "Should deactivating the plugin remove all of the plugin's data and settings?"
 msgstr ""
-"Supprimer les paramètres et données enregistrées lors de la désactivation du "
-"plugin?"
+"Supprimer les paramètres et données enregistrées lors de la désactivation de "
+"l'extension ?"
 
 #: admin.php:268
 msgid "No, preserve the data for future use."
@@ -96,7 +95,7 @@ msgstr "Non, garder les données pour une prochaine utilisation."
 
 #: admin.php:269
 msgid "Yes, delete the damn data."
-msgstr "Oui, supprimer ces foutues données."
+msgstr "Oui, supprimer ces fichues données."
 
 #: admin.php:274
 msgid "Match Time"
@@ -105,7 +104,7 @@ msgstr "Temps de comparaisons"
 #: admin.php:275
 msgid "How far back, in minutes, should login failures look for matching data?"
 msgstr ""
-"Les échecs de connexion doivent être comparés combien de minutes en arrière?"
+"Les échecs de connexion doivent être comparés combien de minutes en arrière ?"
 
 #: admin.php:280
 msgid "Delay Tier 2"
@@ -117,7 +116,7 @@ msgid ""
 "second) Delay Tier? Must be >= %d."
 msgstr ""
 "Combien de tentatives infructueuses de connexion faut-il pour ce (%d - %d "
-"second) tiers temps? Doit être >= %d."
+"secondes) tiers temps ? Doit être >= %d."
 
 #: admin.php:287
 msgid "Delay Tier 3"
@@ -129,11 +128,11 @@ msgid ""
 "second) Delay Tier? Must be > Delay Tier 2."
 msgstr ""
 "Combien de tentatives infructueuses de connexion faut-il pour ce (%d - %d "
-"second) tiers temps? Doit être > Tiers temps 2."
+"secondes) tiers temps ? Doit être > Tiers temps 2."
 
 #: admin.php:293
 msgid "Notifications To"
-msgstr "Notifier"
+msgstr "Notifications à"
 
 #: admin.php:294
 msgid ""
@@ -141,9 +140,9 @@ msgid ""
 "to. For multiple addresses, separate them with commas. WordPress' "
 "'admin_email' setting is used if none is provided here."
 msgstr ""
-"L(es)'adresse(s) email où envoyer les notifications d'échec et d'attaques. "
-"Pour envoyer à plusieurs adresses, séparez les avec des virgules. L'adresse "
-"email de l'administration WordPress sera utilisée si aucune n'est renseignée "
+"L'(es) adresse(s) e-mail où envoyer les notifications d'échec et d'attaques. "
+"Pour envoyer à plusieurs adresses, séparez les par des virgules. L'adresse e-"
+"mail de l'administration WordPress sera utilisée si aucune n'est renseignée "
 "ici."
 
 #: admin.php:299
@@ -165,7 +164,8 @@ msgstr "Alertes des connexions infructueuses répétées"
 #: admin.php:306
 msgid "Should multiple failure notifications be sent to the administrators?"
 msgstr ""
-"Les échecs de connexion répétés doivent-ils être envoyés aux administrateurs?"
+"Les échecs de connexion répétés doivent-ils être envoyés aux "
+"administrateurs ?"
 
 #: admin.php:308
 msgid ""
@@ -176,7 +176,7 @@ msgstr ""
 
 #: admin.php:309
 msgid "Yes, notify them upon every x matching login failures."
-msgstr "Oui les signaler tous les x tentatives de connexions échouées."
+msgstr "Oui, signaler toutes les x tentatives de connexions échouées."
 
 #: admin.php:313
 msgid "Breach Notification"
@@ -192,7 +192,7 @@ msgstr ""
 
 #: admin.php:319 login-security-solution.php:1865
 msgid "Breach Email Confirm"
-msgstr "Confirmation de violation d'email"
+msgstr "Confirmation de violation d'e-mail"
 
 #: admin.php:320
 msgid ""
@@ -210,7 +210,7 @@ msgstr "Longueur"
 
 #: admin.php:327
 msgid "How long must passwords be? Must be >= %d."
-msgstr "Nombre de caractères minimum des mots de passe? Doit être >= %d."
+msgstr "Nombre de caractères minimum des mots de passe ? Doit être >= %d."
 
 #: admin.php:333
 msgid "Complexity Exemption"
@@ -222,18 +222,18 @@ msgid ""
 "Must be >= %d."
 msgstr ""
 "Nombre de caractères minimum des mots de passe pour être dispensé de la "
-"règle de difficulté? Doit être >= %d."
+"règle de difficulté ? Doit être >= %d."
 
 #: admin.php:340
 msgid "Aging"
-msgstr "Äge"
+msgstr "Ancienneté"
 
 #: admin.php:341
 msgid ""
 "How many days old can a password be before requiring it be changed? Not "
 "recommended. 0 disables this feature."
 msgstr ""
-"Au bout de combien de jours les mots de passe doivent-ils être changés? Non "
+"Au bout de combien de jours les mots de passe doivent-ils être changés ? Non "
 "recommandé. 0 Désactive cette fonctionnalité."
 
 #: admin.php:346
@@ -246,7 +246,7 @@ msgid ""
 "it has expired? Must be >= %d."
 msgstr ""
 "De combien de minutes un utilisateur dispose-t-il pour changer son mot de "
-"passe une fois qu'ils savent que celui-ci a expiré? Doit être >= %d."
+"passe une fois qu'ils savent que celui-ci a expiré ? Doit être >= %d."
 
 #: admin.php:353
 msgid "History"
@@ -257,7 +257,7 @@ msgid ""
 "How many passwords should be remembered? Prevents reuse of old passwords. 0 "
 "disables this feature."
 msgstr ""
-"Combien de mots de passe doivent être archivés? Prévient la réutilisation "
+"Combien de mots de passe doivent être archivés ? Prévient la réutilisation "
 "d'anciens mots de passe. 0 Désactive cette fonctionnalité."
 
 #: admin.php:416
@@ -322,7 +322,7 @@ msgstr ""
 
 #: admin.php:549 admin.php:564
 msgid "Default:"
-msgstr "Défaut:"
+msgstr "Par défaut :"
 
 #: admin.php:588
 msgid "must be >= '%s',"
@@ -387,7 +387,7 @@ msgid ""
 "Please confirm that you really want to do this. Put a check in the '%s' box "
 "before hitting the submit button."
 msgstr ""
-"Vous voulez vraiment faire cela? Cochez la boîte '%s' avant de cliquer sur "
+"Vous voulez vraiment faire cela ? Cochez la boîte '%s' avant de cliquer sur "
 "le bouton de soumission."
 
 #: admin.php:809
@@ -397,7 +397,7 @@ msgstr "Non merci"
 # Translation from WordPress.
 #: admin.php:814 admin.php:834
 msgid "Success!"
-msgstr ""
+msgstr "Succès !"
 
 #: admin.php:827
 msgid "Confirm"
@@ -408,8 +408,8 @@ msgid ""
 "WARNING: The site is in maintenance mode. DO NOT TOUCH ANYTHING! Your "
 "changes may get overwritten!"
 msgstr ""
-"ATTENTION: Le site est en mode maintenance. NE TOUCHEZ À RIEN! Vos "
-"changements pourraient être écrasés!"
+"ATTENTION : Le site est en mode maintenance. NE TOUCHEZ À RIEN ! Vos "
+"changements pourraient être écrasés !"
 
 #: admin.php:890
 msgid ""
@@ -430,8 +430,8 @@ msgid ""
 "Speaking of which, do YOU have a strong password? Make sure by changing "
 "yours too."
 msgstr ""
-"En parlant de cela avez-vous un mot de passe sécurisé? Assurez-vous en, "
-"changez votre mot de passe aussi."
+"En parlant de cela avez-vous un mot de passe sécurisé ? Assurez-vous en, "
+"changez aussi votre mot de passe."
 
 #: admin.php:898
 msgid ""
@@ -444,7 +444,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:928
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "Vous n'avez pas les droits suffisants pour accéder à cette page."
 
 #: admin.php:934
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -462,6 +462,8 @@ msgstr "Identifiant ou mot de passe incorrect."
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
 msgstr ""
+"La réinitialisation du mot de passe n&rsquo;est pas autorisée pour cet "
+"utilisateur"
 
 # @ login-security-solution
 #: login-security-solution.php:555 tests/LoginMessageTest.php:66
@@ -529,10 +531,10 @@ msgid ""
 "numbers and punctuation, or B) at least %d characters long. The password can "
 "not contain words related to you or this website."
 msgstr ""
-"Le mot de passe doit, soit: A) comporter au moins %d caractères et contenir "
+"Le mot de passe doit, soit : A) comporter au moins %d caractères et contenir "
 "à la fois des majuscules et des minuscules (sauf pour les langues qui "
-"n'auraient qu'un cas de figure), des chiffres et de la ponctuation, soit: B) "
-"comporter %d caractères. Le mot de passe ne peut contenir des mots en "
+"n'auraient qu'un cas de figure), des chiffres et de la ponctuation, soit : "
+"B) comporter %d caractères. Le mot de passe ne peut contenir des mots en "
 "relation avec ce site."
 
 # @ login-security-solution
@@ -544,7 +546,7 @@ msgstr "D'anciens mots de passe ne peuvent être ré-utilisés."
 # @ default
 #: login-security-solution.php:896
 msgid "ERROR"
-msgstr ""
+msgstr "ERREUR"
 
 # @ login-security-solution
 #: login-security-solution.php:1033
@@ -598,7 +600,7 @@ msgid ""
 "WARNING: The '%s' setting you chose means this person has NOT been logged "
 "out and will NOT be required to confirm their identity."
 msgstr ""
-"ATTENTION: Le paramètre '%s' que vous avez choisi signifie que cette "
+"ATTENTION : Le paramètre '%s' que vous avez choisi signifie que cette "
 "personne n'a pas été déconnectée et ne sera donc pas obligée de confirmer "
 "son identité."
 
@@ -623,13 +625,13 @@ msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
 "in?  We are asking because the site happens to be under attack at the moment."
 msgstr ""
-"Quelqu'un a %2$s vient de se connecter en tant que '%1$s'. Était-ce vous? "
+"Quelqu'un a %2$s vient de se connecter en tant que '%1$s'. Était-ce vous ? "
 "Nous vous posons la question parce que le site semble subir une attaque."
 
 #: login-security-solution.php:1901
 msgid ""
-"To ensure your account is not being hijacked, you will have go through the '%"
-"s' process before logging in again."
+"To ensure your account is not being hijacked, you will have go through the "
+"'%s' process before logging in again."
 msgstr ""
 "Afin de s'assurer que votre compte n'a pas été piraté, vous devez utiliser "
 "le processus '%s' avant de vous connecter de nouveau."
@@ -637,7 +639,7 @@ msgstr ""
 # Translation from WordPress.
 #: login-security-solution.php:1901
 msgid "Lost your password?"
-msgstr ""
+msgstr "Mot de passe oublié&nbsp;?"
 
 # @ login-security-solution
 #: login-security-solution.php:1904
@@ -681,8 +683,8 @@ msgid ""
 "The %s plugin (%s) for WordPress is repelling the attack by making their "
 "login failures take a very long time."
 msgstr ""
-"Le plugin %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à "
-"chaque tentative échouée."
+"L'extension %s (%s) pour WordPress pare l'attaque en ralentissant la réponse "
+"à chaque tentative échouée."
 
 #: login-security-solution.php:1952
 msgid ""
