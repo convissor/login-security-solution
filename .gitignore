@@ -16,3 +16,5 @@ Desktop.ini
 # Sublime
 *.sublime-project
 *.sublime-workspace
+
+.gitignore
