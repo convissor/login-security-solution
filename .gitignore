@@ -1,0 +1,18 @@
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Might be useful sometimes
+*.tmp
+
+#Translations
+*.mo
+
+# Mac crap
+.DS_Store
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
