@@ -24,7 +24,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:112 admin.php:373
 msgid "Settings"
-msgstr "Réglages"
+msgstr ""
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -397,7 +397,7 @@ msgstr "Non merci"
 # Translation from WordPress.
 #: admin.php:814 admin.php:834
 msgid "Success!"
-msgstr "Quel succès !"
+msgstr ""
 
 #: admin.php:827
 msgid "Confirm"
@@ -444,7 +444,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:928
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Vous n'avez pas les droits suffisants pour accéder à cette page."
+msgstr ""
 
 #: admin.php:934
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -462,7 +462,7 @@ msgstr "Identifiant ou mot de passe incorrect."
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
 msgstr ""
-"La réinitialisation du mot de passe n'est pas autorisée pour cet utilisateur"
+""
 
 # @ login-security-solution
 #: login-security-solution.php:555 tests/LoginMessageTest.php:66
@@ -545,7 +545,7 @@ msgstr "Les mots de passe ne peuvent pas être ré-utilisés."
 # @ default
 #: login-security-solution.php:896
 msgid "ERROR"
-msgstr "ERREUR"
+msgstr ""
 
 # @ login-security-solution
 #: login-security-solution.php:1033
@@ -639,7 +639,7 @@ msgstr ""
 # Translation from WordPress.
 #: login-security-solution.php:1901
 msgid "Lost your password?"
-msgstr "Mot de passe oublié ?"
+msgstr ""
 
 # @ login-security-solution
 #: login-security-solution.php:1904
