@@ -11,16 +11,6 @@
  * @copyright The Analysis and Solutions Company, 2012
  */
 
-/**
- * The user interface and activation/deactivation methods for administering
- * the Login Security Solution WordPress plugin
- *
- * @package login-security-solution
- * @link http://wordpress.org/extend/plugins/login-security-solution/
- * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
- * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012
- */
 class login_security_solution_admin extends login_security_solution {
 	/**
 	 * The WP privilege level required to use the admin interface
@@ -196,7 +186,7 @@ class login_security_solution_admin extends login_security_solution {
 
 			foreach ($result as $user) {
 				if (!$this->save_pw_hash($user['ID'], $user['user_pass'])) {
-					die(self::ID . ' could not save password hash.');
+					die(sprintf(__('%s could not save password hash.', self::ID), self::ID));
 				}
 			}
 		}

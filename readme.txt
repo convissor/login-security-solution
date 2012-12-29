@@ -114,6 +114,7 @@ conflicts during program execution.  Please read the FAQ!
 
 * Français, français (French, France) (fr_FR) by [mermouy](http://wordpress.org/support/profile/mermouy)
 * Português, Brasil (Portugese, Brazil) (pt_BR) by Valdir Trombini
+* Contribute Translations at [https://translate.foe-services.de/projects/login-security-solution](https://translate.foe-services.de/projects/login-security-solution)
 
 
 = Source Code, Bugs, and Feature Requests =
