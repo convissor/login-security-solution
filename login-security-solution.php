@@ -11,6 +11,9 @@
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
+ * 
+ * Text Domain:    login-security-solution
+ * Domain Path:    /languages
  * @package login-security-solution
  */
 
@@ -533,7 +536,7 @@ class login_security_solution {
 		$codes_to_cloak = array('invalid_email', 'invalidcombo');
 		if (array_intersect($error_codes, $codes_to_cloak)) {
 			// Translation already in WP.
-			return $this->hsc_utf8(__('Password reset is not allowed for this user'));
+			return $this->hsc_utf8(__('Password reset is not allowed for this user', self::ID));
 		}
 
 		return $out;
@@ -651,7 +654,7 @@ class login_security_solution {
 	 *       pw_complexity_exemption_length values
 	 */
 	public function pw_policy_rewrite($translated, $original) {
-		$policy = 'Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).';
+		$policy = __('Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).', self::ID);
 
 		if ($original == $policy) {
 			$this->load_plugin_textdomain();
