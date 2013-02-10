@@ -295,6 +295,17 @@ are not using the `InnoDB` storage engine.
 
 1. Remove the `login-security-solution` directory from the server
 
+In the event you didn't pick the "Yes, delete the damn data" option or
+you manually deleted the plugin, you can get rid of the settings by running
+three queries.  These  queries are exapmles, using the default table name
+prefix of, `wp_`.  If you have changed your database prefix, adjust the
+queries accordingly.
+
+        DROP TABLE wp_login_security_solution_fail;
+
+        DELETE FROM wp_options WHERE option_name LIKE 'login-security-solution%';
+
+        DELETE FROM wp_usermeta WHERE meta_key LIKE 'login-security-solution%';
 
 == Frequently Asked Questions ==
 
