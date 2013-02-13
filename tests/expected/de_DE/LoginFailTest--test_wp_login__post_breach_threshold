@@ -1,0 +1,26 @@
+To: %a
+Subject: MÖGLICHER EINBRUCH IN %a
+
+In deine Webseite, %s, scheint eingebrochen worden zu sein.
+
+Es hat sich gerade jemand eingeloggt, der die folgenden Komponenten genutzt hat. Davor wurden 4 fehlerhafte Logins während der letzten 60 Minuten registriert:
+
+
+Component                    Count     Value from Current Attempt
+------------------------     -----     --------------------------------
+Netzwerk IP                      4     1.2.38
+Benutzername                     4     test
+Passwort MD5                     %d    %s
+
+Der Benutzer wurde aus geloggt und muss seine Identität über die Passwort zurücksetzen Funktion bestätigen.
+
+Diese Nachricht ist vom Login Security Solution Plugin (%s) für WordPress.
+To: %a
+Subject: BESTÄTIGE, DASS DU DICH AUF %a EINGELOGGT HAST
+
+Jemand hat sich gerade mit deinem '%s' Account auf %s eingeloggt. Bist du das gewesen? Diese Sicherheitsanfrage wird gesendet, weil die Seite zur Zeit angegriffen wird.
+
+Um sicher zu gehen, dass dein Account nicht geknackt wurde, musst du den '%s' Prozess durchführen bevor du dich wieder einloggen kannst.
+
+Solltest es NICHT gewesen sein, führe bitte unverzüglich folgende Schritte aus:
+ * Seine eine E-Mail an %s um Sie wissen zu lassen, dass es nicht du warst, der sich eingeloggt hat.

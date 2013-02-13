@@ -1,0 +1,15 @@
+To: %a
+Subject: ATTACKE IST GEGEN %s GERICHTET
+
+Ihre Webseite, %s, steht unter einer Brute Force Attacke.
+
+Es wurden mindestens 6 fehlgeschlagene Loginversuche innerhalb der letzten 60 Minuten registriert, die eine oder mehrere der folgenden Komponenten enthielten:
+
+
+Component                    Count     Value from Current Attempt
+------------------------     -----     --------------------------------
+Netzwerk IP                      6     1.2.38
+Benutzername                     6     test
+Passwort MD5                     1     %s
+
+Das Login Security Solution Plugin (%s) für WordPress wehrt Attacken ab indem es die Antwort auf fehlerhafte Logins stark verzögert.  Diesem Angreifer wird der Zugriff verweigert, auch wenn er Zugriff auf gültige Zugangsdaten erlangen sollte.
