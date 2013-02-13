@@ -12,6 +12,6 @@ Réseau IP                        4     1.2.38
 Identifiant                      4     test
 MD5 du mot de passe              1     %s
 
-Le plugin %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à chaque tentative échouée.
+L'extension %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à chaque tentative échouée.
 
-D'autres notifications concernant cet attaquant ne sera envoyée que si l'attaque est interrompue pendant au moins %d minutes, puis recommence.
+D'autres notifications concernant cet attaquant ne seront envoyées que si l'attaque est interrompue pendant au moins %d minutes, puis recommence.

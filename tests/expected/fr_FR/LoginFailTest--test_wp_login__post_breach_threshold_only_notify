@@ -3,7 +3,7 @@ Subject: INTRUSION POSSIBLE A %a
 
 Votre site, %s, a peut-être été corrompu.
 
-Quelqu'un vient de se connecter avec les données qui suivent. Avant cela, plusieurs de ces éléments ont été utilisés parmi les %d tentatives de connexion au cours des %d dernières minutes:
+Quelqu'un vient de se connecter avec les données suivantes. Avant cela, plusieurs de ces éléments ont été utilisés parmi les %d tentatives de connexion au cours des %d dernières minutes:
 
 
 Composant                   Nombre     Valeur de la tentative courante
@@ -12,16 +12,16 @@ Réseau IP                        4     1.2.38
 Identifiant                      4     test
 MD5 du mot de passe              %d    %s
 
-ATTENTION: Le paramètre 'Confirmation de violation d'email' que vous avez choisi signifie que cette personne n'a pas été déconnectée et ne sera donc pas obligée de confirmer son identité.
+ATTENTION: Le réglage 'Confirmation de violation d'e-mail' que vous avez choisi signifie que cette personne n'a PAS été déconnectée et ne sera donc PAS obligée de confirmer son identité.
 
 Une notification de cette intrusion potentielle à été envoyée à l'utilisateur.
 
-Ce message provient du plugin Login Security Solution (%s) pour WordPress.
+Ce message provient de l'extension Login Security Solution (%s) pour WordPress.
 To: %a
 Subject: ASSUREZ VOUS D'ÊTRE CONNECTÉ À %a
 
 Quelqu'un a %s vient de se connecter en tant que '%s'. Était-ce vous? Nous vous posons la question parce que le site semble subir une attaque.
 
 Si ce n'était PAS VOUS, veuillez suivre ces consignes au plus vite:
- * Connectez vous à le site et changez votre mot de passe.
+ * Connectez vous au site et changez votre mot de passe.
  * Envoyez un message à %s pour les prévenir que ce n'était pas vous qui vous êtes connecté récemment.
