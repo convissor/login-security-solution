@@ -440,6 +440,11 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.35.0 (2013-02-13) =
+* Add German translation.
+* Update French translation.
+* Documentation improvements.
+
 = 0.34.0 (2012-10-21) =
 * Have `login_errors` filter check `$wp_error` also, not just `$errors.`
 * Skip `exec()` calls if `safe_mode` is on.
