@@ -300,6 +300,20 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Ensures no record was inserted into the fail table
+	 */
+	protected function check_no_fail_record($ip, $user_name, $pass_md5) {
+		global $wpdb;
+
+		$sql = 'SELECT *
+				FROM `' . self::$lss->table_fail . '`
+				WHERE ip = %s AND user_login = %s AND pass_md5 = %s';
+		$actual = $wpdb->get_row(
+				$wpdb->prepare($sql, $ip, $user_name, $pass_md5));
+		$this->assertEmpty($actual, 'Found record when none should be there');
+	}
+
+	/**
 	 * @see TestCase::were_expected_errors_found()
 	 */
 	protected function expected_errors($error_messages) {

@@ -320,25 +320,26 @@ class login_security_solution {
 	 * cookie has an invalid user name or password hash.
 	 *
 	 * @param array $cookie_elements  the auth cookie data
+	 * @return mixed  return values provided for unit testing
 	 *
 	 * @uses login_security_solution::process_login_fail()  to log the failure
 	 *       and slow down the response as necessary
 	 */
 	public function auth_cookie_bad($cookie_elements) {
+		// Remove cookies to prevent further mayhem.
+		wp_clear_auth_cookie();
+
 		if (empty($cookie_elements['username'])) {
-			$username = '';
+			return -1;
 		} else {
 			$username = $cookie_elements['username'];
 		}
 		if (empty($cookie_elements['hmac'])) {
-			$hmac = '';
+			return -2;
 		} else {
 			$hmac = $cookie_elements['hmac'];
 		}
 		###$this->log("auth_cookie_bad: $username, $hmac");
-
-		// Remove cookies to prevent further mayhem.
-		wp_clear_auth_cookie();
 
 		// The auth cookie process happens so early that we can't close the
 		// database connection yet.

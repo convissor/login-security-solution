@@ -441,6 +441,7 @@ and `.mo` files:
 == Changelog ==
 
 = 0.35.0 (2013-02-13) =
+* Don't track cookie failures if name or hash is empty.
 * Add German translation.
 * Update French translation.
 * Documentation improvements.

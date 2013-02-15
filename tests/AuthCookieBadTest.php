@@ -120,4 +120,40 @@ class AuthCookieBadTest extends TestCase {
 		$this->assertTrue($this->were_expected_errors_found(),
 				"Expected error not found: '$expected_error'");
 	}
+
+	public function test_empty_user() {
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+
+		$input = array(
+			'username' => '',
+			'hmac' => $this->pass_md5,
+		);
+		$result = self::$lss->auth_cookie_bad($input);
+		$this->assertEquals(-1, $result, 'Bad return value');
+
+		$pass = self::$lss->md5($this->pass_md5);
+		$this->check_no_fail_record($this->ip, '', $pass);
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
+	}
+
+	public function test_empty_pass() {
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+
+		$input = array(
+			'username' => $this->user_name,
+			'hmac' => '',
+		);
+		$result = self::$lss->auth_cookie_bad($input);
+		$this->assertEquals(-2, $result, 'Bad return value');
+
+		$pass = self::$lss->md5('');
+		$this->check_no_fail_record($this->ip, $this->user_name, $pass);
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
+	}
 }
