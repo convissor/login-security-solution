@@ -112,8 +112,9 @@ conflicts during program execution.  Please read the FAQ!
 
 = Translations =
 
-* Français, français (French, France) (fr_FR) by [mermouy](http://wordpress.org/support/profile/mermouy) and and Fx Bénard
 * Deutsche, Deutschland (German, Germany) (de_DE) by Christian Foellmann
+* Français, français (French, France) (fr_FR) by [mermouy](http://wordpress.org/support/profile/mermouy) and and Fx Bénard
+* Nederlands, Nederland (Dutch, Netherlands) (nl_NL) by Friso van Wieringen
 * Português, Brasil (Portugese, Brazil) (pt_BR) by Valdir Trombini
 
 
