@@ -51,6 +51,20 @@ class login_security_solution {
 	protected $prefix = 'login_security_solution_';
 
 
+	const E_ASCII = 'pw-ascii';
+	const E_CASE = 'pw-case';
+	const E_COMMON = 'pw-common';
+	const E_DICT = 'pw-dict';
+	const E_EMPTY = 'pw-empty';
+	const E_NUMBER = 'pw-number';
+	const E_PUNCT = 'pw-punct';
+	const E_SEQ_CHAR = 'pw-seqchar';
+	const E_SEQ_KEY = 'pw-seqkey';
+	const E_SHORT = 'pw-short';
+	const E_SITE = 'pw-site';
+	const E_STRING = 'pw-string';
+	const E_USER = 'pw-user';
+
 	/**
 	 * Is the dict command available?
 	 * @var bool  true/false if known, null if unknown
@@ -574,9 +588,10 @@ class login_security_solution {
 					$ours = __('Your password has expired. Please log and change it.', self::ID);
 					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $this->options['pw_change_grace_period_minutes']);
 					break;
-				case 'pw_reset_bad':
-					$ours = __('The password you tried to create is not secure. Please try again.', self::ID);
-					break;
+				default:
+					$code = str_replace(self::ID . '_', '',
+							$_GET[$this->key_login_msg]);
+					$ours .= $this->msg($code);
 			}
 		}
 
@@ -613,10 +628,13 @@ class login_security_solution {
 		}
 
 		$user->user_pass = $user_pass;
-		if (!$this->validate_pw($user)) {
+		$errors = new WP_Error;
+		if (!$this->validate_pw($user, $errors)) {
 			###$this->log("password_reset(): Invalid password chosen.");
 			$this->set_pw_force_change($user->ID);
-			$this->redirect_to_login('pw_reset_bad', false, 'rp');
+
+			$code = $errors->get_error_code();
+			$this->redirect_to_login($code, false, 'rp');
 			return -1;
 		}
 
@@ -1744,6 +1762,43 @@ Password MD5                 %5d     %s
 	}
 
 	/**
+	 * Retrieves the translated error string for the given constant
+	 *
+	 * @param string $code  the error code constant
+	 * @return string
+	 */
+	protected function msg($code) {
+		switch ($code) {
+			case self::E_ASCII:
+				return __("Passwords must use ASCII characters.", self::ID);
+			case self::E_CASE:
+				return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+			case self::E_COMMON:
+				return __("Password is too common.", self::ID);
+			case self::E_DICT:
+				return __("Passwords can't be variations of dictionary words.", self::ID);
+			case self::E_EMPTY:
+				return __("Password not set.", self::ID);
+			case self::E_NUMBER:
+				return sprintf(__("Passwords must either contain numbers or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+			case self::E_PUNCT:
+				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+			case self::E_SEQ_CHAR:
+				return __("Passwords can't have that many sequential characters.", self::ID);
+			case self::E_SEQ_KEY:
+				return __("Passwords can't be sequential keys.", self::ID);
+			case self::E_SHORT:
+				return __("Password is too short.", self::ID);
+			case self::E_STRING:
+				return __("Passwords must be strings.", self::ID);
+			case self::E_SITE:
+				return __("Passwords can't contain site info.", self::ID);
+			case self::E_USER:
+				return __("Passwords can't contain user data.", self::ID);
+		}
+	}
+
+	/**
 	 * Formats and sanity checks IP addresses
 	 *
 	 * @param string $ip  the IP address to check
@@ -2402,8 +2457,8 @@ Password MD5                 %5d     %s
 
 			if (empty($user->user_pass)) {
 				if ($errors !== null) {
-					$errors->add(self::ID,
-						$this->err(__("Password not set.", self::ID)),
+					$errors->add(self::ID . '_' . self::E_EMPTY,
+						$this->err($this->msg(self::E_EMPTY)),
 						array('form-field' => 'pass1')
 					);
 				}
@@ -2417,8 +2472,8 @@ Password MD5                 %5d     %s
 
 		if (!is_string($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Passwords must be strings.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_STRING,
+					$this->err($this->msg(self::E_STRING)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2435,8 +2490,8 @@ Password MD5                 %5d     %s
 			&& $this->is_pw_outside_ascii($pw))
 		{
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Passwords must use ASCII characters.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_ASCII,
+					$this->err($this->msg(self::E_ASCII)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2454,8 +2509,8 @@ Password MD5                 %5d     %s
 
 		if ($length < $this->options['pw_length']) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Password is too short.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_SHORT,
+					$this->err($this->msg(self::E_SHORT)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2463,8 +2518,8 @@ Password MD5                 %5d     %s
 		}
 		if ($enforce_complexity && $this->is_pw_missing_numeric($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(sprintf(__("Passwords must either contain numbers or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length'])),
+				$errors->add(self::ID . '_' . self::E_NUMBER,
+					$this->err($this->msg(self::E_NUMBER)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2472,8 +2527,8 @@ Password MD5                 %5d     %s
 		}
 		if ($enforce_complexity && $this->is_pw_missing_punct_chars($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length'])),
+				$errors->add(self::ID . '_' . self::E_PUNCT,
+					$this->err($this->msg(self::E_PUNCT)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2481,8 +2536,8 @@ Password MD5                 %5d     %s
 		}
 		if ($enforce_complexity && $this->is_pw_missing_upper_lower_chars($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length'])),
+				$errors->add(self::ID . '_' . self::E_CASE,
+					$this->err($this->msg(self::E_CASE)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2491,8 +2546,8 @@ Password MD5                 %5d     %s
 
 		if ($this->is_pw_sequential_file($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Passwords can't be sequential keys.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_SEQ_KEY,
+					$this->err($this->msg(self::E_SEQ_KEY)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2500,8 +2555,8 @@ Password MD5                 %5d     %s
 		}
 		if ($this->is_pw_sequential_codepoints($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Passwords can't have that many sequential characters.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_SEQ_CHAR,
+					$this->err($this->msg(self::E_SEQ_CHAR)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2516,8 +2571,8 @@ Password MD5                 %5d     %s
 				|| $this->is_pw_like_user_data($stripped, $user)))
 		{
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Passwords can't contain user data.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_USER,
+					$this->err($this->msg(self::E_USER)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2527,8 +2582,8 @@ Password MD5                 %5d     %s
 			|| $this->is_pw_like_bloginfo($stripped))
 		{
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Passwords can't contain site info.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_SITE,
+					$this->err($this->msg(self::E_SITE)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2536,8 +2591,8 @@ Password MD5                 %5d     %s
 		}
 		if ($all_tests && $this->is_pw_dictionary($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Password is too common.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_COMMON,
+					$this->err($this->msg(self::E_COMMON)),
 					array('form-field' => 'pass1')
 				);
 			}
@@ -2545,8 +2600,8 @@ Password MD5                 %5d     %s
 		}
 		if ($this->is_pw_dict_program($stripped)) {
 			if ($errors !== null) {
-				$errors->add(self::ID,
-					$this->err(__("Passwords can't be variations of dictionary words.", self::ID)),
+				$errors->add(self::ID . '_' . self::E_DICT,
+					$this->err($this->msg(self::E_DICT)),
 					array('form-field' => 'pass1')
 				);
 			}

@@ -441,6 +441,10 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.36.0 () =
+* Have the password reset page say why a password isn't strong enough.
+* Add Dutch translation.
+
 = 0.35.0 (2013-02-22) =
 * Don't track cookie failures if name or hash is empty.
 * Add German translation.

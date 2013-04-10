@@ -110,9 +110,9 @@ class LoginMessageTest extends TestCase {
 	}
 
 	public function test_login_message__pw_reset_bad() {
-		$_GET[self::$lss->key_login_msg] = 'pw_reset_bad';
+		$_GET[self::$lss->key_login_msg] = 'login-security-solution_pw-short';
 
-		$ours = __('The password you tried to create is not secure. Please try again.', self::ID);
+		$ours = __("Password is too short.", self::ID);
 
 		$actual = self::$lss->login_message('input');
 		$this->assertEquals('input' . $this->ours($ours), $actual,
