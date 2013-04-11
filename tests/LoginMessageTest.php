@@ -110,7 +110,7 @@ class LoginMessageTest extends TestCase {
 	}
 
 	public function test_login_message__pw_reset_bad() {
-		$_GET[self::$lss->key_login_msg] = 'login-security-solution_pw-short';
+		$_GET[self::$lss->key_login_msg] = 'pw-short';
 
 		$ours = __("Password is too short.", self::ID);
 
@@ -135,7 +135,7 @@ class LoginMessageTest extends TestCase {
 	}
 
 	public function test_login_message__disable_logins__key() {
-		$_GET[self::$lss->key_login_msg] = 'pw_grace';
+		$_GET[self::$lss->key_login_msg] = 'pw-ascii';
 
 		$options = self::$lss->options;
 		$options['disable_logins'] = 1;
@@ -143,9 +143,13 @@ class LoginMessageTest extends TestCase {
 
 		$ours = __('The site is undergoing maintenance.', self::ID);
 		$ours .= ' ' . __('Please try again later.', self::ID);
+		$final = $this->ours($ours);
+
+		$ours = __("Passwords must use ASCII characters.", self::ID);
+		$final .= $this->ours($ours);
 
 		$actual = self::$lss->login_message('input');
-		$this->assertEquals('input' . $this->ours($ours), $actual,
+		$this->assertEquals('input' . $final, $actual,
 				'Output should have been modified.');
 	}
 }

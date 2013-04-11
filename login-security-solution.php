@@ -589,15 +589,15 @@ class login_security_solution {
 					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $this->options['pw_change_grace_period_minutes']);
 					break;
 				default:
-					$code = str_replace(self::ID . '_', '',
-							$_GET[$this->key_login_msg]);
-					$ours .= $this->msg($code);
+					$ours .= $this->msg($_GET[$this->key_login_msg]);
 			}
 		}
 
 		if ($this->options['disable_logins']) {
-			$ours = __('The site is undergoing maintenance.', self::ID);
-			$ours .= ' ' . __('Please try again later.', self::ID);
+			$msg = __('The site is undergoing maintenance.', self::ID);
+			$msg .= ' ' . __('Please try again later.', self::ID);
+			$out .= '<p class="login message">'
+					. $this->hsc_utf8($msg) . '</p>';
 		}
 
 		if ($ours) {
@@ -634,6 +634,7 @@ class login_security_solution {
 			$this->set_pw_force_change($user->ID);
 
 			$code = $errors->get_error_code();
+			$code = str_replace(self::ID . '_', '', $code);
 			$this->redirect_to_login($code, false, 'rp');
 			return -1;
 		}
