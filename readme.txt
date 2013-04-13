@@ -441,7 +441,7 @@ and `.mo` files:
 
 == Changelog ==
 
-= 0.36.0 () =
+= 0.36.0 (2013-04-13) =
 * Have the password reset page say why a password isn't strong enough.
 * Add Dutch translation.
 
