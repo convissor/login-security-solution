@@ -1005,7 +1005,9 @@ class login_security_solution {
 					AND date_failed > DATE_SUB(NOW(), INTERVAL "
 					. (int) $this->options['login_fail_minutes'] . " MINUTE)";
 
-		return $wpdb->get_row($sql, ARRAY_A);
+		$result = $wpdb->get_row($sql, ARRAY_A);
+		###$this->log("get_login_fail():", $result);
+		return $result;
 	}
 
 	/**
@@ -1738,12 +1740,21 @@ Password MD5                 %5d     %s
 
 	/**
 	 * Sends a message to my debug log
+	 * @param string $msg  the message or description
+	 * @param array $data  the data, if any
 	 */
-	public function log($msg) {
+	public function log($msg, $data = array()) {
 		if (!is_scalar($msg)) {
-			$msg = var_export($msg, true);
+			$msg = json_encode($msg);
 		}
-		file_put_contents('/var/tmp/' . self::ID . '.log',
+		if ($data) {
+			if (is_scalar($data)) {
+				$msg .= " $data";
+			} else {
+				$msg .= " " . json_encode($data);
+			}
+		}
+		file_put_contents('/var/log/' . self::ID . '.log',
 			date('Y-m-d H:i:s') . ": $msg\n", FILE_APPEND);
 	}
 
