@@ -353,7 +353,7 @@ class login_security_solution {
 		} else {
 			$hmac = $cookie_elements['hmac'];
 		}
-		###$this->log("auth_cookie_bad: $username, $hmac");
+		###$this->log(__FUNCTION__, "$username, $hmac");
 
 		// The auth cookie process happens so early that we can't close the
 		// database connection yet.
@@ -417,7 +417,7 @@ class login_security_solution {
 		 */
 
 		if ($this->is_idle($user->ID)) {
-			###$this->log("check(): Idle.");
+			###$this->log(__FUNCTION__, "idle");
 			$this->redirect_to_login('idle', true);
 			return -5;
 		}
@@ -425,11 +425,11 @@ class login_security_solution {
 		if ($this->is_pw_expired($user->ID)) {
 			$grace = $this->check_pw_grace_period($user->ID);
 			if ($grace === true) {
-				###$this->log("check(): First time here since password expired.");
+				###$this->log(__FUNCTION__, "first since password expired");
 				$this->redirect_to_login('pw_grace', true);
 				return -1;
 			} elseif ($grace === false) {
-				###$this->log("check(): Grace period expired.");
+				###$this->log(__FUNCTION__, "grace period expired");
 				$this->redirect_to_login('pw_expired', false, 'retrievepassword');
 				return -2;
 			}
@@ -437,7 +437,7 @@ class login_security_solution {
 		}
 
 		if ($this->get_pw_force_change($user->ID)) {
-			###$this->log("check(): Password force change.");
+			###$this->log(__FUNCTION__, "password force change");
 			$this->redirect_to_login('pw_force', false, 'retrievepassword');
 			return -3;
 		}
@@ -445,7 +445,7 @@ class login_security_solution {
 		if ($this->options['disable_logins']
 			&& !current_user_can('administrator'))
 		{
-			###$this->log("check(): Disable logins.");
+			###$this->log(__FUNCTION__, "disable logins");
 			$this->redirect_to_login();
 			return -4;
 		}
@@ -479,12 +479,12 @@ class login_security_solution {
 
 		if (empty($user_ID)) {
 			if (empty($user_name)) {
-				###$this->log("delete_last_active(): Empty user_ID, user_name.");
+				###$this->log(__FUNCTION__, "empty user_ID, user_name");
 				return;
 			}
 			$user = get_user_by('login', $user_name);
 			if (! $user instanceof WP_User) {
-				###$this->log("delete_last_active(): Unknown user_name.");
+				###$this->log(__FUNCTION__, "unknown user_name");
 				return -1;
 			}
 			$user_ID = $user->ID;
@@ -539,7 +539,7 @@ class login_security_solution {
 			$user_pass = empty($_POST['pwd']) ? '' : $_POST['pwd'];
 			// Unset user name to avoid information disclosure.
 			unset($_POST['log']);
-			###$this->log("login_fail(): $user_name, $user_pass.");
+			###$this->log(__FUNCTION__, "$user_name, $user_pass");
 			$this->process_login_fail($user_name, $user_pass);
 			$this->load_plugin_textdomain();
 			return $this->hsc_utf8(__('Invalid username or password.', self::ID));
@@ -623,14 +623,14 @@ class login_security_solution {
 	 */
 	public function password_reset($user, $user_pass) {
 		if (empty($user->ID)) {
-			###$this->log("password_reset(): user->ID not set.");
+			###$this->log(__FUNCTION__, "user->ID not set");
 			return false;
 		}
 
 		$user->user_pass = $user_pass;
 		$errors = new WP_Error;
 		if (!$this->validate_pw($user, $errors)) {
-			###$this->log("password_reset(): Invalid password chosen.");
+			###$this->log(__FUNCTION__, "invalid password chosen");
 			$this->set_pw_force_change($user->ID);
 
 			$code = $errors->get_error_code();
@@ -787,11 +787,11 @@ class login_security_solution {
 			// Use <= instead of <, above, in case
 			// login_fail_breach_pw_force_change = 0.
 
-			###$this->log("wp_login(): verified IP.");
+			###$this->log(__FUNCTION__, "verified IP");
 			$return += 8;
 			$verified_ip = true;
 		} else {
-			###$this->log("wp_login(): non-verified IP.");
+			###$this->log(__FUNCTION__, "non-verified IP");
 			$verified_ip = false;
 			// Need to also slow down successful logins so attackers can't use
 			// short timeouts to skip the slowdowns from login failures.
@@ -803,7 +803,7 @@ class login_security_solution {
 			&& $fails['total'] >= $this->options['login_fail_breach_pw_force_change']
 			&& !$verified_ip)
 		{
-			###$this->log("wp_login(): Breach force change.");
+			###$this->log(__FUNCTION__, "breach force change");
 			$this->set_pw_force_change($user->ID);
 			// NOTE: This value is used by the notify method calls, below.
 			$return += 2;
@@ -813,7 +813,7 @@ class login_security_solution {
 			&& $fails['total'] >= $this->options['login_fail_breach_notify']
 			&& !$verified_ip)
 		{
-			###$this->log("wp_login(): Breach notify.");
+			###$this->log(__FUNCTION__, "breach notify");
 			$this->notify_breach($network_ip, $user_name, $pass_md5, $fails,
 					$return & 2);
 			$this->notify_breach_user($user, $return & 2);
@@ -821,7 +821,7 @@ class login_security_solution {
 		}
 
 		if ($sleep && !defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
-			###$this->log("wp_login(): sleep for $sleep seconds.");
+			###$this->log(__FUNCTION__, "sleep for $sleep seconds");
 			sleep($sleep);
 		}
 
@@ -1006,7 +1006,7 @@ class login_security_solution {
 					. (int) $this->options['login_fail_minutes'] . " MINUTE)";
 
 		$result = $wpdb->get_row($sql, ARRAY_A);
-		###$this->log("get_login_fail():", $result);
+		###$this->log(__FUNCTION__, '', $result);
 		return $result;
 	}
 
@@ -1740,22 +1740,17 @@ Password MD5                 %5d     %s
 
 	/**
 	 * Sends a message to my debug log
+	 *
+	 * @param string $function  the method calling this method
 	 * @param string $msg  the message or description
 	 * @param array $data  the data, if any
 	 */
-	public function log($msg, $data = array()) {
-		if (!is_scalar($msg)) {
-			$msg = json_encode($msg);
-		}
+	public function log($function, $msg, $data = array()) {
 		if ($data) {
-			if (is_scalar($data)) {
-				$msg .= " $data";
-			} else {
-				$msg .= " " . json_encode($data);
-			}
+			$msg .= ": " . json_encode($data);
 		}
 		file_put_contents('/var/log/' . self::ID . '.log',
-			date('Y-m-d H:i:s') . ": $msg\n", FILE_APPEND);
+			date('Y-m-d H:i:s') . " $function: $msg\n", FILE_APPEND);
 	}
 
 	/**
