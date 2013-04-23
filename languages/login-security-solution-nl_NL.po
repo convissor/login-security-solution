@@ -699,7 +699,7 @@ msgid ""
 "login failures take a very long time."
 msgstr ""
 "De %s plugin (%s) voor WordPress houdt de aanval af door de foutieve "
-"inlogpogingen te ernstig te vertragen."
+"inlogpogingen ernstig te vertragen."
 
 #: login-security-solution.php:2051
 msgid ""
