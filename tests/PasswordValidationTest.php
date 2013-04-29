@@ -206,11 +206,11 @@ class PasswordValidationTest extends TestCase {
 	}
 	public function test_like_user_data_true() {
 		$tests = array(
-			"aaaa",
+			"test",
 			"bbbbbbbb",
 			"cccccccc",
 			"dddddddd",
-			"eeeeeeee",
+			"aaaaaaaa",
 			"ffff",
 			"简化字的昨天今天和明天",
 			"hhhh",

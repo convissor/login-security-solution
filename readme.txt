@@ -1,7 +1,7 @@
 === Login Security Solution ===
 Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Tags: login, password, passwords, strength, strong, strong passwords, password strength, idle, timeout, maintenance, security, attack, hack, lock, lockdown, ban, brute force, brute, force, authentication, auth, cookie, users
+Tags: login, password, passwords, strength, strong, strong passwords, password strength, idle, timeout, maintenance, security, attack, hack, lock, lockdown, ban, brute force, brute, force, authentication, xml-rpc, auth, cookie, users
 Requires at least: 3.3
 Tested up to: 3.5.1
 Stable tag: trunk
@@ -17,7 +17,8 @@ WordPress installations.
 * Blocks brute force and dictionary attacks without inconveniencing
 legitimate users or administrators
     + Tracks IP addresses, usernames, and passwords
-    + Monitors logins made by form submissions and auth cookies
+    + Monitors logins made by form submissions, XML-RPC requests and
+      auth cookies
     + If a login failure uses data matching a past failure, the plugin
       slows down response times.  The more failures, the longer the delay.
       This limits attackers ability to effectively probe your site,
@@ -74,6 +75,7 @@ The tests have caught every password dictionary entry I've tried.
 
 * Multisite network support
 * Monitors authentication cookies for bad user names and hashes
+* Tracks logins from XML-RPC requests
 * Adjusts WordPress' password policy user interfaces
 * Takes security seriously so the plugin itself does not open your site
   to SQL, HTML, or header injection vulnerabilities
@@ -440,6 +442,9 @@ and `.mo` files:
 
 
 == Changelog ==
+
+= 0.37.0 (2013-04-29) =
+* Monitor login attempts from XML-RPC requests.
 
 = 0.36.0 (2013-04-13) =
 * Have the password reset page say why a password isn't strong enough.

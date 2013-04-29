@@ -48,6 +48,10 @@ class AuthCookieBadTest extends TestCase {
 		$this->user_name = 'test';
 		$this->pass_md5 = 'ababab';
 
+		// wp_validate_auth_cookie() operates on the original object.
+		global $login_security_solution;
+		$login_security_solution->set_sleep(null);
+
 		$options = self::$lss->options;
 		$options['login_fail_minutes'] = 60;
 		$options['login_fail_notify'] = 4;
@@ -67,7 +71,8 @@ class AuthCookieBadTest extends TestCase {
 			'username' => $this->user_name,
 			'hmac' => $this->pass_md5,
 		);
-		self::$lss->auth_cookie_bad($input);
+		$return = self::$lss->auth_cookie_bad($input);
+		$this->assertGreaterThan(0, $return, 'Bad return value');
 		$pass = self::$lss->md5($this->pass_md5);
 		$this->check_fail_record($this->ip, $this->user_name, $pass);
 

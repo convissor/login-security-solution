@@ -222,16 +222,22 @@ abstract class TestCase extends PHPUnit_Framework_TestCase {
 		self::$mail_file = null;
 		self::$mail_file_basename = null;
 
+		self::$lss->set_sleep(null);
+		self::$lss->is_xmlrpc = false;
+		self::$lss->skip_wp_login_failed = false;
+		self::$lss->user_pass = null;
+		self::$lss->xmlrpc_enabled = false;
+
 		$_SERVER['SERVER_PROTOCOL'] = 'http';
 
 		$this->user = new WP_User;
 		$this->user->data = new StdClass;
 		$this->user->ID = 9999999;
-		$this->user->user_login = 'aaaa';
+		$this->user->user_login = 'test';
 		$this->user->user_email = 'bbbb';
 		$this->user->user_url = 'cccc';
 		$this->user->first_name = 'dddd';
-		$this->user->last_name = 'eeee';
+		$this->user->last_name = 'aaaa';
 		$this->user->nickname = 'fff@1F*8ffff';
 		$this->user->display_name = '简化字';
 		$this->user->aim = 'hhhhhhhh';

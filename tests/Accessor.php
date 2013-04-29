@@ -20,9 +20,6 @@ require_once dirname(dirname(__FILE__)) . '/login-security-solution.php';
  */
 require_once dirname(dirname(__FILE__)) .  '/admin.php';
 
-// Remove automatically created object.
-unset($GLOBALS['login_security_solution']);
-
 /** Tell the system not to disconnect the database or do the slow downs. */
 define('LOGIN_SECURITY_SOLUTION_TESTING', true);
 
