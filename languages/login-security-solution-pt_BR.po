@@ -354,8 +354,8 @@ msgstr "Esta página, fornecida pelo plugin %s, oferece essa funcionalidade."
 
 #: admin.php:731
 msgid ""
-"Submitting this form sets a flag that forces all users to utilize WordPress' "
-"built in password reset functionality."
+"Submitting this form sets a flag that forces all users, except yourself, "
+"to utilize WordPress' built in password reset functionality."
 msgstr ""
 "Enviar este formulário, define um sinalizador que obriga todos os usuários "
 "que utilizam a plataforma WordPress em se concientizar que esse foi "

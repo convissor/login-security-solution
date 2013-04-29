@@ -348,8 +348,8 @@ msgstr "Cette page, de l’extension %s, vous permet de le faire."
 
 #: admin.php:731
 msgid ""
-"Submitting this form sets a flag that forces all users to utilize WordPress' "
-"built in password reset functionality."
+"Submitting this form sets a flag that forces all users, except yourself, "
+"to utilize WordPress' built in password reset functionality."
 msgstr ""
 "Cocher cette case obligera tous les utilisateurs à utiliser le processus de "
 "changement de mot de passe de WordPress."

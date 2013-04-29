@@ -289,8 +289,8 @@ msgstr ""
 
 #: admin.php:731
 msgid ""
-"Submitting this form sets a flag that forces all users to utilize WordPress' "
-"built in password reset functionality."
+"Submitting this form sets a flag that forces all users, except yourself, "
+"to utilize WordPress' built in password reset functionality."
 msgstr ""
 
 #: admin.php:733

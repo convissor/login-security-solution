@@ -443,6 +443,10 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.38.0 () =
+* Mention that the password force change process does not touch the admin
+that presses the button.
+
 = 0.37.0 (2013-04-29) =
 * Monitor login attempts from XML-RPC requests.
 * Fix "te ernstig te" in the Dutch translation (thanks fwieringen@github).

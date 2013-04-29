@@ -728,7 +728,7 @@ class login_security_solution_admin extends login_security_solution {
 		echo '</p>';
 
 		echo '<p>';
-		echo $this->hsc_utf8(__("Submitting this form sets a flag that forces all users to utilize WordPress' built in password reset functionality.", self::ID));
+		echo $this->hsc_utf8(__("Submitting this form sets a flag that forces all users, except yourself, to utilize WordPress' built in password reset functionality.", self::ID));
 		echo ' ';
 		echo $this->hsc_utf8(__("Users who are presently logged in will be logged out the next time they view a page that requires authentication.", self::ID));
 		echo '</p>';

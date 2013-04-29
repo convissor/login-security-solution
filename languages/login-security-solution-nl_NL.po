@@ -338,8 +338,8 @@ msgstr "Deze pagina, onderdeel van de %s plugin, biedt deze mogelijkheid."
 
 #: admin.php:731
 msgid ""
-"Submitting this form sets a flag that forces all users to utilize WordPress' "
-"built in password reset functionality."
+"Submitting this form sets a flag that forces all users, except yourself, "
+"to utilize WordPress' built in password reset functionality."
 msgstr ""
 "Door dit formulier in te sturen zullen alle gebruikers hun wachtwoord moeten "
 "veranderen d.m.v. Wordpress' ingebouwde wachtwoord reset funtionaliteit."
