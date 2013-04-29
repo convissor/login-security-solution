@@ -12,6 +12,6 @@ Netwerk IP                       4     1.2.38
 Gebruikersnaam                   4     test
 Wachtwoord MD5                   1     %s
 
-De Login Security Solution plugin (%s) voor WordPress houdt de aanval af door de foutieve inlogpogingen te ernstig te vertragen.  De aanvaller zal ook de toegang worden ontzegt wanneer hij met geldige gegevens inlogt.
+De Login Security Solution plugin (%s) voor WordPress houdt de aanval af door de foutieve inlogpogingen ernstig te vertragen.  De aanvaller zal ook de toegang worden ontzegt wanneer hij met geldige gegevens inlogt.
 
 Verdere meldingen over deze aanvaller zullen worden verstuurd wanneer de aanval gedurende %d minuten wordt onderbroken en weer verder gaat.

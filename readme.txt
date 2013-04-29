@@ -445,6 +445,7 @@ and `.mo` files:
 
 = 0.37.0 (2013-04-29) =
 * Monitor login attempts from XML-RPC requests.
+* Fix "te ernstig te" in the Dutch translation (thanks fwieringen@github).
 
 = 0.36.0 (2013-04-13) =
 * Have the password reset page say why a password isn't strong enough.
