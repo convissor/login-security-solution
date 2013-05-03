@@ -353,8 +353,9 @@ msgid ""
 "Submitting this form sets a flag that forces all users, except yourself, "
 "to utilize WordPress' built in password reset functionality."
 msgstr ""
-"Mit dem abschicken dieses Formulars zwingt alle Benutzer ihr Passwort über "
-"die interne WordPress-Funktion zurück zu setzen."
+"Mit dem Abschicken dieses Formulars werden alle Benutzer, außer dir selbst, "
+"dazu gewungen ihr Passwort über die interne WordPress-Funktion zurück zu "
+"setzen."
 
 #: admin.php:733
 msgid ""
