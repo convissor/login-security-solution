@@ -446,6 +446,7 @@ and `.mo` files:
 = 0.38.0 () =
 * Mention that the password force change process does not touch the admin
 that presses the button.
+* Remove HTML special characters when using WP's `blogname` setting.
 
 = 0.37.0 (2013-04-29) =
 * Monitor login attempts from XML-RPC requests.
