@@ -341,7 +341,7 @@ msgid ""
 "Submitting this form sets a flag that forces all users, except yourself, "
 "to utilize WordPress' built in password reset functionality."
 msgstr ""
-"Door dit formulier in te sturen zullen alle gebruikers hun wachtwoord moeten "
+"Door dit formulier in te sturen zullen alle gebruikers, behalve jezelf, hun wachtwoord moeten "
 "veranderen d.m.v. Wordpress' ingebouwde wachtwoord reset funtionaliteit."
 
 #: admin.php:733
@@ -350,7 +350,7 @@ msgid ""
 "a page that requires authentication."
 msgstr ""
 "Gebruikers die op dit moment zijn ingelogd zullen automatisch worden "
-"uitgelogd op het moment dat zij een pagina tonen waarvoor authenticatie "
+"uitgelogd op het moment dat zij een pagina openen waarvoor authenticatie "
 "nodig is."
 
 #: admin.php:745
