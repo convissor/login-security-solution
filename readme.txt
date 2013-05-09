@@ -104,6 +104,8 @@ For reference, the similar plugins include:
 * [PMC Lockdown](http://wordpress.org/extend/plugins/pmc-lockdown/)
 * [Simple Login Lockdown](http://wordpress.org/extend/plugins/simple-login-lockdown/)
 * [Wordfence Security](http://wordpress.org/extend/plugins/wordfence/)
+* [WP Login Security](http://wordpress.org/extend/plugins/wp-login-security/)
+* [WP Login Security 2](http://wordpress.org/extend/plugins/wp-login-security-2/)
 
 
 = Compatibility with Other Plugins =
