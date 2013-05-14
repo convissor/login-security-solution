@@ -864,6 +864,9 @@ class login_security_solution {
 		}
 		if ($this->user_pass === null) {
 			###$this->log(__FUNCTION__, "authenticate filter not called");
+			###global $wp_filter;
+			###$this->log(__FUNCTION__, 'authenticate filters', $wp_filter['authenticate']);
+			###$this->log(__FUNCTION__, 'backtrace', debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
 			die(self::NAME . ": authenticate filter not called");
 		}
 		###$this->log(__FUNCTION__, $user_name);
