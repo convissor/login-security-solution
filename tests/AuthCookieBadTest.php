@@ -48,6 +48,10 @@ class AuthCookieBadTest extends TestCase {
 		$this->user_name = 'test';
 		$this->pass_md5 = 'ababab';
 
+		// wp_validate_auth_cookie() operates on the original object.
+		global $login_security_solution;
+		$login_security_solution->set_sleep(null);
+
 		$options = self::$lss->options;
 		$options['login_fail_minutes'] = 60;
 		$options['login_fail_notify'] = 4;
@@ -67,7 +71,8 @@ class AuthCookieBadTest extends TestCase {
 			'username' => $this->user_name,
 			'hmac' => $this->pass_md5,
 		);
-		self::$lss->auth_cookie_bad($input);
+		$return = self::$lss->auth_cookie_bad($input);
+		$this->assertGreaterThan(0, $return, 'Bad return value');
 		$pass = self::$lss->md5($this->pass_md5);
 		$this->check_fail_record($this->ip, $this->user_name, $pass);
 
@@ -116,6 +121,42 @@ class AuthCookieBadTest extends TestCase {
 
 		$pass = self::$lss->md5($parts[2]);
 		$this->check_fail_record($this->ip, $parts[0], $pass);
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
+	}
+
+	public function test_empty_user() {
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+
+		$input = array(
+			'username' => '',
+			'hmac' => $this->pass_md5,
+		);
+		$result = self::$lss->auth_cookie_bad($input);
+		$this->assertEquals(-1, $result, 'Bad return value');
+
+		$pass = self::$lss->md5($this->pass_md5);
+		$this->check_no_fail_record($this->ip, '', $pass);
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
+	}
+
+	public function test_empty_pass() {
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+
+		$input = array(
+			'username' => $this->user_name,
+			'hmac' => '',
+		);
+		$result = self::$lss->auth_cookie_bad($input);
+		$this->assertEquals(-2, $result, 'Bad return value');
+
+		$pass = self::$lss->md5('');
+		$this->check_no_fail_record($this->ip, $this->user_name, $pass);
 
 		$this->assertTrue($this->were_expected_errors_found(),
 				"Expected error not found: '$expected_error'");

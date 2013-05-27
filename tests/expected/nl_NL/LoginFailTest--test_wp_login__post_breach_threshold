@@ -1,0 +1,26 @@
+To: %a
+Subject: MOGELIJKE INBRAAK OP %a
+
+Er is mogelijk ingebroken op %s.
+
+Er is zojuist ingelogd door iemand met de volgende kenmerken. Eerder daarvoor was een combinatie van deze kenmerken deel van 4 foutieve inlogpogingen in de afgelopen 60 minuten:
+
+
+Kenmerk                      Aantal    Waarde van huidige poging
+------------------------     -----     --------------------------------
+Netwerk IP                       4     1.2.38
+Gebruikersnaam                   4     test
+Wachtwoord MD5                   %d    %s
+
+De gebruiker is uitgelogd en dient zijn wachtwoord opnieuw in te stellen door gebruik te maken van de 'wachtwoord reset' functionaliteit.
+
+Deze melding is van de Login Security Solution plugin (%s) voor WordPress.
+To: %a
+Subject: VERIFIEER DAT JE BENT INGELOGD BIJ %a
+
+Er is zojuist ingelogd op jouw '%s' account op %s. Was jij dit? We vragen dit omdat de site mogelijk aangevallen wordt op dit moment.
+
+Om zeker te zijn dat je account niet wordt gekaapt dien je het 'Wachtwoord vergeten?' proces te volgen voordat je opnieuw kunt inloggen.
+
+Als jij dit NIET was, volg dan de volgende instructies direct:
+ * Stuur een e-mail naar %s om te laten weten dat jij niet probeerde in te loggen.

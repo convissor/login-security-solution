@@ -221,7 +221,8 @@ class PasswordChangeTest extends TestCase {
 		$this->expected_errors($expected_error);
 		self::$location_expected = get_option('siteurl')
 				. '/wp-login.php?action=rp&key=jk&login=ab&'
-				. self::$lss->key_login_msg . '=pw_reset_bad';
+				. self::$lss->key_login_msg
+				. '=pw-number';
 
 		$actual = self::$lss->password_reset($this->user, $bad_pw);
 		$this->assertEquals(-1, $actual, 'password_reset() return.');

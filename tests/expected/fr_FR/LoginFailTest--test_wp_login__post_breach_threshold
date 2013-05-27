@@ -3,7 +3,7 @@ Subject: INTRUSION POSSIBLE A %a
 
 Votre site, %s, a peut-être été corrompu.
 
-Quelqu'un vient de se connecter avec les données qui suivent. Avant cela, plusieurs de ces éléments ont été utilisés parmi les %d tentatives de connexion au cours des %d dernières minutes:
+Quelqu'un vient de se connecter avec les données suivantes. Avant cela, plusieurs de ces éléments ont été utilisés parmi les %d tentatives de connexion au cours des %d dernières minutes:
 
 
 Composant                   Nombre     Valeur de la tentative courante
@@ -12,15 +12,15 @@ Réseau IP                        4     1.2.38
 Identifiant                      4     test
 MD5 du mot de passe              %d    %s
 
-L'utilisateur à été déconnecté et il devra confirmer son identité via le processus de changement de mot de passe.
+L'utilisateur à été déconnecté et il devra confirmer son identité via le processus du changement de mot de passe.
 
-Ce message provient du plugin Login Security Solution (%s) pour WordPress.
+Ce message provient de l'extension Login Security Solution (%s) pour WordPress.
 To: %a
 Subject: ASSUREZ VOUS D'ÊTRE CONNECTÉ À %a
 
 Quelqu'un a %s vient de se connecter en tant que '%s'. Était-ce vous? Nous vous posons la question parce que le site semble subir une attaque.
 
-Afin de s'assurer que votre compte n'a pas été piraté, vous devez utiliser le processus 'Lost your password?' avant de vous connecter de nouveau.
+Afin de s'assurer que votre compte n'a pas été piraté, vous devez utiliser le processus 'Lost your password?' avant de vous connecter à nouveau.
 
 Si ce n'était PAS VOUS, veuillez suivre ces consignes au plus vite:
  * Envoyez un message à %s pour les prévenir que ce n'était pas vous qui vous êtes connecté récemment.
