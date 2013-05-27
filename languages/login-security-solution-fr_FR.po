@@ -1,31 +1,24 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.38.0\n"
+"Project-Id-Version: Login Security Solution 0.38\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2012-10-17 00:50:57+00:00\n"
-"PO-Revision-Date: 2012-10-17 19:52:00-04:00\n"
-"Last-Translator: FxB <fx@fxbenard.com>\n"
-=======
 "POT-Creation-Date: 2013-05-27 15:28:23+00:00\n"
-"PO-Revision-Date: 2013-05-26 16:32:54+02:00\n"
-"Last-Translator: MerMouY <mermouy@gmail.com>\n"
->>>>>>> 918c00f02ba92d26610460eb4c470e0e5ed22aec
-"Language-Team: FxB <fx@fxbenard.com>\n"
+"PO-Revision-Date: 2013-05-27 20:18+0100\n"
+"Last-Translator: FxB <traductions@fxbenard.com>\n"
+"Language-Team: FxB <traductions@fxbenard.com>\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
 "X-Poedit-Basepath: ../\n"
-"X-Poedit-Bookmarks: \n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-SearchPath-0: .\n"
 
 # Translation from WordPress.
 #: admin.php:112 admin.php:373
@@ -357,8 +350,8 @@ msgid ""
 "Submitting this form sets a flag that forces all users, except yourself, to "
 "utilize WordPress' built in password reset functionality."
 msgstr ""
-"Cocher cette case obligera tous les utilisateurs exepté vous, à utiliser le "
-"processus de changement de mot de passe de WordPress."
+"Cocher cette case obligera tous les utilisateurs excepté vous-même, à "
+"utiliser le processus de changement de mot de passe de WordPress."
 
 #: admin.php:733
 msgid ""
@@ -468,7 +461,6 @@ msgstr "Identifiant ou mot de passe incorrect."
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
 msgstr ""
-""
 
 # @ login-security-solution
 #: login-security-solution.php:673 tests/LoginMessageTest.php:66
@@ -511,18 +503,7 @@ msgid "We provide a %d minute grace period to do so."
 msgstr "Une période de %d minutes vous est allouée pour cela."
 
 # @ login-security-solution
-<<<<<<< HEAD
-#: login-security-solution.php:571 tests/LoginMessageTest.php:115
-msgid "The password you tried to create is not secure. Please try again."
-msgstr ""
-"Le mot de passe que vous voulez utiliser n'est pas suffisamment sécurisé. "
-"Veuillez ré-essayer."
-
-# @ login-security-solution
-#: login-security-solution.php:577 tests/LoginMessageTest.php:129
-=======
 #: login-security-solution.php:694 tests/LoginMessageTest.php:129
->>>>>>> 918c00f02ba92d26610460eb4c470e0e5ed22aec
 #: tests/LoginMessageTest.php:144
 msgid "The site is undergoing maintenance."
 msgstr "Le site est en cours de maintenance."
@@ -792,87 +773,6 @@ msgstr ""
 "D'autres notifications concernant cet attaquant ne seront envoyées que si "
 "l'attaque est interrompue pendant au moins %d minutes, puis recommence."
 
-<<<<<<< HEAD
-# @ login-security-solution
-#: login-security-solution.php:2363 tests/PasswordValidationTest.php:483
-msgid "Password not set."
-msgstr "Mot de passe non défini."
-
-# @ login-security-solution
-#: login-security-solution.php:2378 tests/PasswordValidationTest.php:494
-msgid "Passwords must be strings."
-msgstr "Les mots de passe ne peuvent pas comporter d'espace."
-
-# @ login-security-solution
-#: login-security-solution.php:2396 tests/PasswordValidationTest.php:507
-msgid "Passwords must use ASCII characters."
-msgstr "Les mots de passe ne doivent contenir que des caractères ASCII."
-
-# @ login-security-solution
-#: login-security-solution.php:2415 tests/PasswordChangeTest.php:310
-#: tests/PasswordValidationTest.php:524 tests/PasswordValidationTest.php:538
-msgid "Password is too short."
-msgstr "Le mot de passe est trop court."
-
-# @ login-security-solution
-#: login-security-solution.php:2424 tests/PasswordValidationTest.php:564
-msgid "Passwords must either contain numbers or be %d characters long."
-msgstr ""
-"Le mot de passe doit, soit contenir des chiffres soit contenir %d caractères."
-
-# @ login-security-solution
-#: login-security-solution.php:2433 tests/PasswordValidationTest.php:551
-msgid ""
-"Passwords must either contain punctuation marks / symbols or be %d "
-"characters long."
-msgstr ""
-"Les mots de passe doivent contenir des symboles/ponctuations ou contenir %d "
-"caractères."
-
-# @ login-security-solution
-#: login-security-solution.php:2442 tests/PasswordValidationTest.php:577
-msgid ""
-"Passwords must either contain upper-case and lower-case letters or be %d "
-"characters long."
-msgstr ""
-"Les mots de passe doivent contenir des majuscules et des minuscules ou "
-"contenir %d caractères."
-
-# @ login-security-solution
-#: login-security-solution.php:2452 tests/PasswordValidationTest.php:590
-msgid "Passwords can't be sequential keys."
-msgstr "Les mots de passe ne peuvent pas être des touches séquentielles."
-
-# @ login-security-solution
-#: login-security-solution.php:2461 tests/PasswordValidationTest.php:603
-msgid "Passwords can't have that many sequential characters."
-msgstr ""
-"Les mots de passe ne peuvent pas contenir autant de caractères séquentiels."
-
-# @ login-security-solution
-#: login-security-solution.php:2477 tests/PasswordValidationTest.php:616
-#: tests/PasswordValidationTest.php:629
-msgid "Passwords can't contain user data."
-msgstr ""
-"Les mots de passe ne peuvent pas contenir des informations d'utilisateur."
-
-# @ login-security-solution
-#: login-security-solution.php:2488 tests/PasswordValidationTest.php:642
-msgid "Passwords can't contain site info."
-msgstr "Les mots de passe ne peuvent pas contenir des informations du site."
-
-# @ login-security-solution
-#: login-security-solution.php:2497 tests/PasswordValidationTest.php:655
-msgid "Password is too common."
-msgstr "Le mot de passe est trop banal."
-
-# @ login-security-solution
-#: login-security-solution.php:2506 tests/PasswordValidationTest.php:671
-msgid "Passwords can't be variations of dictionary words."
-msgstr "Les mots de passe ne peuvent pas être des mots du dictionnaire."
-
-=======
->>>>>>> 918c00f02ba92d26610460eb4c470e0e5ed22aec
 #. Plugin Name of the plugin/theme
 msgid "Login Security Solution"
 msgstr "Login Security Solution"
