@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Login Security Solution 0.36.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
-"POT-Creation-Date: 2013-04-13 01:34:40+00:00\n"
+"POT-Creation-Date: 2013-05-27 15:28:23+00:00\n"
 "PO-Revision-Date: 2012-10-17 12:23:54-03:00\n"
 "Last-Translator: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "Language-Team: Valdir Trombini <valdirtrombini@hotmail.com>\n"
@@ -196,7 +196,7 @@ msgstr ""
 "correspondentes (x = número de vezes) e se houve alguma falhas de login. 0 "
 "desativa este recurso."
 
-#: admin.php:319 login-security-solution.php:1964
+#: admin.php:319 login-security-solution.php:2071
 msgid "Breach Email Confirm"
 msgstr "Confirmação por e-mail de violação"
 
@@ -354,8 +354,8 @@ msgstr "Esta página, fornecida pelo plugin %s, oferece essa funcionalidade."
 
 #: admin.php:731
 msgid ""
-"Submitting this form sets a flag that forces all users, except yourself, "
-"to utilize WordPress' built in password reset functionality."
+"Submitting this form sets a flag that forces all users, except yourself, to "
+"utilize WordPress' built in password reset functionality."
 msgstr ""
 "Enviar este formulário, define um sinalizador que obriga todos os usuários "
 "que utilizam a plataforma WordPress em se concientizar que esse foi "
@@ -460,62 +460,62 @@ msgid "$user_ID variable not set. Another plugin is misbehaving."
 msgstr ""
 "$user_ID variável não definida. Um outro plugin está se comportando mal."
 
-#: login-security-solution.php:545 tests/LoginErrorsTest.php:97
+#: login-security-solution.php:640 tests/LoginErrorsTest.php:97
 #: tests/LoginErrorsTest.php:111
 msgid "Invalid username or password."
 msgstr "Nome de usuário ou senha inválido."
 
 # Translation from WordPress.
-#: login-security-solution.php:551 tests/LoginErrorsTest.php:125
+#: login-security-solution.php:647 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
 msgstr ""
 
-#: login-security-solution.php:576 tests/LoginMessageTest.php:66
+#: login-security-solution.php:673 tests/LoginMessageTest.php:66
 msgid "It has been over %d minutes since your last action."
 msgstr "Já faz mais de %d minutos desde a sua última ação."
 
-#: login-security-solution.php:577 tests/LoginMessageTest.php:67
+#: login-security-solution.php:674 tests/LoginMessageTest.php:67
 msgid "Please log back in."
 msgstr "Por favor efetue login para entrar novamente."
 
-#: login-security-solution.php:580 tests/LoginMessageTest.php:77
+#: login-security-solution.php:677 tests/LoginMessageTest.php:77
 msgid "The grace period for changing your password has expired."
 msgstr "O período de tolerância para você mudar a sua senha expirou."
 
-#: login-security-solution.php:581 tests/LoginMessageTest.php:78
+#: login-security-solution.php:678 tests/LoginMessageTest.php:78
 msgid "Please submit this form to reset your password."
 msgstr ""
 "Para redefinir a sua senha, por favor, preencha e envie este formulário."
 
-#: login-security-solution.php:584 tests/LoginMessageTest.php:88
+#: login-security-solution.php:681 tests/LoginMessageTest.php:88
 msgid "Your password must be reset."
 msgstr "Sua senha deve ser redefinida."
 
-#: login-security-solution.php:585 tests/LoginMessageTest.php:89
+#: login-security-solution.php:682 tests/LoginMessageTest.php:89
 msgid "Please submit this form to reset it."
 msgstr "Por favor envie este formulário para redefini-la."
 
-#: login-security-solution.php:588 tests/LoginMessageTest.php:104
+#: login-security-solution.php:685 tests/LoginMessageTest.php:104
 msgid "Your password has expired. Please log and change it."
 msgstr "Sua senha expirou. Por favor, efetue login para alterar."
 
-#: login-security-solution.php:589 tests/LoginMessageTest.php:105
+#: login-security-solution.php:686 tests/LoginMessageTest.php:105
 msgid "We provide a %d minute grace period to do so."
 msgstr ""
 "Nós fornecemos um período de tolerância de %d minutos para você fazer isso."
 
-#: login-security-solution.php:597 tests/LoginMessageTest.php:129
+#: login-security-solution.php:694 tests/LoginMessageTest.php:129
 #: tests/LoginMessageTest.php:144
 msgid "The site is undergoing maintenance."
 msgstr "O site neste instante, está passando por manutenção."
 
-#: login-security-solution.php:598 tests/LoginMessageTest.php:130
+#: login-security-solution.php:695 tests/LoginMessageTest.php:130
 #: tests/LoginMessageTest.php:145
 msgid "Please try again later."
 msgstr "Por favor, tente novamente mais tarde."
 
-#: login-security-solution.php:678
+#: login-security-solution.php:775
 msgid ""
 "The password should either be: A) at least %d characters long and contain "
 "upper and lower case letters (except languages that only have one case) plus "
@@ -528,16 +528,16 @@ msgstr ""
 "de pontuação, ou B) pelo menos a quantidade de %d caracteres de comprimento. "
 "A senha não pode conter palavras relacionadas a você ou a este site."
 
-#: login-security-solution.php:717 tests/PasswordChangeTest.php:278
+#: login-security-solution.php:814 tests/PasswordChangeTest.php:278
 msgid "Passwords can not be reused."
 msgstr "As senhas não podem ser reutilizadas."
 
 # Translation from WordPress.
-#: login-security-solution.php:922
+#: login-security-solution.php:1012
 msgid "ERROR"
 msgstr ""
 
-#: login-security-solution.php:1059
+#: login-security-solution.php:1159
 msgid ""
 "\n"
 "Component                    Count     Value from Current Attempt\n"
@@ -553,12 +553,12 @@ msgstr ""
 "Nome do usuário              %5d     %s\n"
 "Senha MD5                    %5d     %s\n"
 
-#: login-security-solution.php:1774 tests/LoginMessageTest.php:148
+#: login-security-solution.php:1881 tests/LoginMessageTest.php:148
 #: tests/PasswordValidationTest.php:510
 msgid "Passwords must use ASCII characters."
 msgstr "As senhas devem usar caracteres ASCII."
 
-#: login-security-solution.php:1776 tests/PasswordValidationTest.php:580
+#: login-security-solution.php:1883 tests/PasswordValidationTest.php:580
 msgid ""
 "Passwords must either contain upper-case and lower-case letters or be %d "
 "characters long."
@@ -566,26 +566,26 @@ msgstr ""
 "As senhas devem conter letras maiúsculas e minúsculas ou estar %d num "
 "conjunto de caracteres longo."
 
-#: login-security-solution.php:1778 tests/PasswordValidationTest.php:658
+#: login-security-solution.php:1885 tests/PasswordValidationTest.php:658
 msgid "Password is too common."
 msgstr "A senha não pode ser muito comum."
 
-#: login-security-solution.php:1780 tests/PasswordValidationTest.php:674
+#: login-security-solution.php:1887 tests/PasswordValidationTest.php:674
 msgid "Passwords can't be variations of dictionary words."
 msgstr ""
 "As senhas não podem ser variações de palavras de dicionários, seja ele qual "
 "for."
 
-#: login-security-solution.php:1782 tests/PasswordValidationTest.php:486
+#: login-security-solution.php:1889 tests/PasswordValidationTest.php:486
 msgid "Password not set."
 msgstr "A senha não está definida."
 
-#: login-security-solution.php:1784 tests/PasswordValidationTest.php:567
+#: login-security-solution.php:1891 tests/PasswordValidationTest.php:567
 msgid "Passwords must either contain numbers or be %d characters long."
 msgstr ""
 "As senhas devem conter números ou estar %d num conjunto de caracteres longo."
 
-#: login-security-solution.php:1786 tests/PasswordValidationTest.php:554
+#: login-security-solution.php:1893 tests/PasswordValidationTest.php:554
 msgid ""
 "Passwords must either contain punctuation marks / symbols or be %d "
 "characters long."
@@ -593,42 +593,42 @@ msgstr ""
 "As senhas devem conter sinais de pontuação/símbolos ou estar %d num conjunto "
 "de caracteres longo."
 
-#: login-security-solution.php:1788 tests/PasswordValidationTest.php:606
+#: login-security-solution.php:1895 tests/PasswordValidationTest.php:606
 msgid "Passwords can't have that many sequential characters."
 msgstr "As senhas não podem ter muitos caracteres iguais e em seqüenciais."
 
-#: login-security-solution.php:1790 tests/PasswordValidationTest.php:593
+#: login-security-solution.php:1897 tests/PasswordValidationTest.php:593
 msgid "Passwords can't be sequential keys."
 msgstr "As senhas não podem ser chaves seqüenciais."
 
-#: login-security-solution.php:1792 tests/LoginMessageTest.php:115
+#: login-security-solution.php:1899 tests/LoginMessageTest.php:115
 #: tests/PasswordChangeTest.php:311 tests/PasswordValidationTest.php:527
 #: tests/PasswordValidationTest.php:541
 msgid "Password is too short."
 msgstr "A senha é muito curta."
 
-#: login-security-solution.php:1794 tests/PasswordValidationTest.php:497
+#: login-security-solution.php:1901 tests/PasswordValidationTest.php:497
 msgid "Passwords must be strings."
 msgstr "As senhas devem ser seqüências de caracteres."
 
-#: login-security-solution.php:1796 tests/PasswordValidationTest.php:645
+#: login-security-solution.php:1903 tests/PasswordValidationTest.php:645
 msgid "Passwords can't contain site info."
 msgstr "As senhas não podem conter informações do site."
 
-#: login-security-solution.php:1798 tests/PasswordValidationTest.php:619
+#: login-security-solution.php:1905 tests/PasswordValidationTest.php:619
 #: tests/PasswordValidationTest.php:632
 msgid "Passwords can't contain user data."
 msgstr "As senhas não podem conter dados pessoais do usuário."
 
-#: login-security-solution.php:1949
+#: login-security-solution.php:2056
 msgid "POTENTIAL INTRUSION AT %s"
 msgstr "INVASÃO EM POTENCIAL %s"
 
-#: login-security-solution.php:1953
+#: login-security-solution.php:2060
 msgid "Your website, %s, may have been broken in to."
 msgstr "Seu website, %s, pode ter sido arrombado e invadido."
 
-#: login-security-solution.php:1956
+#: login-security-solution.php:2063
 msgid ""
 "Someone just logged in using the following components. Prior to that, some "
 "combination of those components were a part of %d failed attempts to log in "
@@ -638,7 +638,7 @@ msgstr ""
 "combinação desses componentes eram uma parte de %d tentativas para iniciar "
 "sessão durante os últimos %d minutos:"
 
-#: login-security-solution.php:1962
+#: login-security-solution.php:2069
 msgid ""
 "The user has been logged out and will be required to confirm their identity "
 "via the password reset functionality."
@@ -646,7 +646,7 @@ msgstr ""
 "O usuário foi desconectado e será obrigado a confirmar sua identidade "
 "através da funcionalidade de redefinição de senha."
 
-#: login-security-solution.php:1964
+#: login-security-solution.php:2071
 msgid ""
 "WARNING: The '%s' setting you chose means this person has NOT been logged "
 "out and will NOT be required to confirm their identity."
@@ -655,20 +655,20 @@ msgstr ""
 "NÃO foi desconectada e NÃO será necessário isso para confirmar a sua "
 "identidade."
 
-#: login-security-solution.php:1966
+#: login-security-solution.php:2073
 msgid "A notification about this potential breach has been sent to the user."
 msgstr ""
 "Uma notificação sobre uma violação em potencial foi enviada para o usuário."
 
-#: login-security-solution.php:1969
+#: login-security-solution.php:2076
 msgid "This message is from the %s plugin (%s) for WordPress."
 msgstr "Esta mensagem é proveniente do plugin %s (%s) do seu WordPress."
 
-#: login-security-solution.php:1992
+#: login-security-solution.php:2099
 msgid "VERIFY YOU LOGGED IN TO %s"
 msgstr "VERIFIQUE SE VOCÊ ESTÁ CONECTADO PARA %s"
 
-#: login-security-solution.php:1996
+#: login-security-solution.php:2103
 msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
 "in?  We are asking because the site happens to be under attack at the moment."
@@ -676,7 +676,7 @@ msgstr ""
 "Alguém acaba de se conectar em sua conta '%s'. Foi você que se conectou %s? "
 "Estamos perguntando porque o site pode estar sob ataque neste momento."
 
-#: login-security-solution.php:2000
+#: login-security-solution.php:2107
 msgid ""
 "To ensure your account is not being hijacked, you will have go through the '%"
 "s' process before logging in again."
@@ -685,33 +685,33 @@ msgstr ""
 "passar pelo processo de '%s' antes de efetuar login novamente."
 
 # Translation from WordPress.
-#: login-security-solution.php:2000
+#: login-security-solution.php:2107
 msgid "Lost your password?"
 msgstr ""
 
-#: login-security-solution.php:2003
+#: login-security-solution.php:2110
 msgid "If it was NOT YOU, please do the following right away:"
 msgstr "Se NÃO é VOCÊ, por favor, faça o seguinte de imediato:"
 
-#: login-security-solution.php:2006
+#: login-security-solution.php:2113
 msgid " * Log into the site and change your password."
 msgstr " * Efetue login no site e altere a sua senha."
 
-#: login-security-solution.php:2009
+#: login-security-solution.php:2116
 msgid " * Send an email to %s letting them know it was not you who logged in."
 msgstr ""
 " * Enviar um e-mail para %s, deixando que ele saiba que não foi você que fez "
 "o acesso."
 
-#: login-security-solution.php:2035
+#: login-security-solution.php:2142
 msgid "ATTACK HAPPENING TO %s"
 msgstr "ATAQUE ACONTECENDO NO %s"
 
-#: login-security-solution.php:2039
+#: login-security-solution.php:2146
 msgid "Your website, %s, is undergoing a brute force attack."
 msgstr "Seu website, %s, está passando por um ataque de força bruta."
 
-#: login-security-solution.php:2042
+#: login-security-solution.php:2149
 msgid ""
 "There have been at least %d failed attempts to log in during the past %d "
 "minutes that used one or more of the following components:"
@@ -719,7 +719,7 @@ msgstr ""
 "Houve pelo menos %d tentativas para iniciar sessão durante os últimos %d "
 "minutos, que usaram um ou mais dos seguintes componentes:"
 
-#: login-security-solution.php:2047
+#: login-security-solution.php:2154
 msgid ""
 "The %s plugin (%s) for WordPress is repelling the attack by making their "
 "login failures take a very long time."
@@ -728,7 +728,7 @@ msgstr ""
 "na tentativa de descobrir o seu login, fazendo demorar um tempo muito longo "
 "entre as falhas."
 
-#: login-security-solution.php:2051
+#: login-security-solution.php:2158
 msgid ""
 "This attacker will also be denied access in the event they stumble upon "
 "valid credentials."
@@ -736,7 +736,7 @@ msgstr ""
 "Este atacante também terá o acesso negado no caso dele tropeçar nas "
 "credenciais válidas."
 
-#: login-security-solution.php:2057
+#: login-security-solution.php:2164
 msgid ""
 "Further notifications about this attacker will only be sent if the attack "
 "stops for at least %d minutes and then resumes."
