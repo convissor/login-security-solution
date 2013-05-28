@@ -351,8 +351,8 @@ msgid ""
 "Submitting this form sets a flag that forces all users, except yourself, to "
 "utilize WordPress' built in password reset functionality."
 msgstr ""
-"Cocher cette case obligera tous les utilisateurs exepté vous, à utiliser le "
-"processus de changement de mot de passe de WordPress."
+"Cocher cette case obligera tous les utilisateurs excepté vous-même, à "
+"utiliser le processus de changement de mot de passe de WordPress."
 
 #: admin.php:733
 msgid ""
