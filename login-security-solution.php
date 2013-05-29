@@ -1876,6 +1876,7 @@ Password MD5                 %5d     %s
 	 * @return string
 	 */
 	protected function msg($code) {
+		$this->load_plugin_textdomain();
 		switch ($code) {
 			case self::E_ASCII:
 				return __("Passwords must use ASCII characters.", self::ID);
@@ -2647,8 +2648,6 @@ Password MD5                 %5d     %s
 	 * @return bool
 	 */
 	public function validate_pw($user, &$errors = null) {
-		$this->load_plugin_textdomain();
-
 		if (is_object($user)) {
 			$all_tests = true;
 
