@@ -445,6 +445,9 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.39.0 (2013-05-29) =
+* Enforce password history during password reset process.
+
 = 0.38.0 (2013-05-27) =
 * Mention that the password force change process does not touch the admin
 that presses the button.

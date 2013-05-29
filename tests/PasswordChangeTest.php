@@ -202,12 +202,34 @@ class PasswordChangeTest extends TestCase {
 		$actual = self::$lss->get_pw_changed_time($this->user->ID);
 		$this->assertGreaterThan(0, $actual, 'Changed time should be > 0.');
 
-		$actual = self::$lss->is_pw_reused(self::$pass_1, $this->user->ID);
-		$this->assertTrue($actual, 'Password should show up as reused');
-
 		$this->ensure_grace_and_force_are_empty();
+	}
+
+	/**
+	 * @depends test_password_reset__normal
+	 */
+	public function test_password_reset__reused_pw() {
+		global $wpdb;
+
+		$_GET['key'] = 'jk';
+		$_GET['login'] = 'ab';
+
+		$expected_error = 'Cannot modify header information';
+		$this->expected_errors($expected_error);
+		self::$location_expected = get_option('siteurl')
+				. '/wp-login.php?action=rp&key=jk&login=ab&'
+				. self::$lss->key_login_msg
+				. '=pw-reused';
+
+		$actual = self::$lss->password_reset($this->user, self::$pass_1);
+		$this->assertEquals(-2, $actual, 'password_reset() return.');
 
 		$wpdb->query('ROLLBACK TO empty');
+
+		$this->assertTrue($this->were_expected_errors_found(),
+				"Expected error not found: '$expected_error'");
+		$this->assertEquals(self::$location_expected, self::$location_actual,
+				'wp_redirect() produced unexpected location header.');
 	}
 
 	public function test_password_reset__bad_pw() {

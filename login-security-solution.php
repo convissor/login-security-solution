@@ -58,6 +58,7 @@ class login_security_solution {
 	const E_EMPTY = 'pw-empty';
 	const E_NUMBER = 'pw-number';
 	const E_PUNCT = 'pw-punct';
+	const E_REUSED = 'pw-reused';
 	const E_SEQ_CHAR = 'pw-seqchar';
 	const E_SEQ_KEY = 'pw-seqkey';
 	const E_SHORT = 'pw-short';
@@ -736,6 +737,12 @@ class login_security_solution {
 			return -1;
 		}
 
+		if ($this->is_pw_reused($user_pass, $user->ID)) {
+			###$this->log(__FUNCTION__, "password reused");
+			$this->redirect_to_login(self::E_REUSED, false, 'rp');
+			return -2;
+		}
+
 		$this->save_verified_ip($user->ID, $this->get_ip());
 		$this->process_pw_metadata($user->ID, $user_pass);
 	}
@@ -809,9 +816,8 @@ class login_security_solution {
 				return null;
 			}
 			if ($this->is_pw_reused($user->user_pass, $user->ID)) {
-				$this->load_plugin_textdomain();
 				$errors->add(self::ID,
-					$this->err(__("Passwords can not be reused.", self::ID)),
+					$this->err($this->msg(self::E_REUSED)),
 					array('form-field' => 'pass1')
 				);
 				return false;
@@ -1892,6 +1898,8 @@ Password MD5                 %5d     %s
 				return sprintf(__("Passwords must either contain numbers or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
 			case self::E_PUNCT:
 				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+			case self::E_REUSED:
+				return __("Passwords can not be reused.", self::ID);
 			case self::E_SEQ_CHAR:
 				return __("Passwords can't have that many sequential characters.", self::ID);
 			case self::E_SEQ_KEY:
