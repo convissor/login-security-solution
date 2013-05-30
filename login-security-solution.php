@@ -1195,6 +1195,18 @@ Password MD5                 %5d     %s
 	}
 
 	/**
+	 * Gets the server's request time
+	 *
+	 * Provided for overloading by unit tests so they can create multiple
+	 * entries in one request.
+	 *
+	 * @return int  $_SERVER['REQUEST_TIME']
+	 */
+	protected function get_time() {
+		return $_SERVER['REQUEST_TIME'];
+	}
+
+	/**
 	 * Lists IP addresses known to be good for the user
 	 *
 	 * @param int $user_ID  the current user's ID number
@@ -2443,11 +2455,13 @@ Password MD5                 %5d     %s
 	/**
 	 * Stores the user's current IP address
 	 *
-	 * Note: saves up to 10 adddresses, duplicates are not stored.
+	 * Note: saves up to 20 adddresses, duplicates are not stored.
+	 *
+	 * Note: storing IP's in array values for backwards compatibility.
 	 *
 	 * @param int $user_ID  the user's id number
 	 * @param string $new_ip  the ip address to add
-	 * @return mixed  true on success, 1 if IP is already stored, -1 if IP empty
+	 * @return mixed  true on success, -1 if IP empty
 	 */
 	protected function save_verified_ip($user_ID, $new_ip) {
 		if (!$new_ip) {
@@ -2455,16 +2469,19 @@ Password MD5                 %5d     %s
 		}
 
 		$ips = $this->get_verified_ips($user_ID);
+		$time = array_search($new_ip, $ips);
 
-		if (in_array($new_ip, $ips)) {
-			return 1;
+		if ($time !== false) {
+			// Replace time stamp.
+			unset($ips[$time]);
 		}
+		$ips[$this->get_time()] = $new_ip;
 
-		$ips[] = $new_ip;
-
-		$cut = count($ips) - 10;
-		if ($cut > 0) {
-			array_splice($ips, 0, $cut);
+		if (count($ips) > 20) {
+			// Drop oldest (first) element to keep array from getting to big.
+			// Can't use array_shift() because it reindexes the array
+			$first_key = key($ips);
+			unset($ips[$first_key]);
 		}
 
 		update_user_meta($user_ID, $this->umk_verified_ips, $ips);

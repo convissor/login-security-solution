@@ -34,6 +34,10 @@ class VerifiedIpTest extends TestCase {
 
 	public function setUp() {
 		parent::setUp();
+		// Because arrays naturally start at index 0, force our IP array to
+		// start indexing at 10 to ensure tests do what we really expect
+		// than passing by getting lucky.
+		self::$lss->time_overload = 10;
 	}
 
 
@@ -65,7 +69,7 @@ class VerifiedIpTest extends TestCase {
 	 */
 	public function test_save_verified_ip__exists() {
 		$actual = self::$lss->save_verified_ip($this->user->ID, self::$ip_1);
-		$this->assertSame(1, $actual);
+		$this->assertTrue($actual);
 	}
 
 	/**
@@ -75,7 +79,7 @@ class VerifiedIpTest extends TestCase {
 		global $wpdb;
 
 		$actual = self::$lss->get_verified_ips($this->user->ID);
-		$this->assertEquals(array(self::$ip_1), $actual);
+		$this->assertEquals(array(10 => self::$ip_1), $actual);
 
 		$wpdb->query('ROLLBACK TO empty');
 		wp_cache_init();
@@ -101,8 +105,20 @@ class VerifiedIpTest extends TestCase {
 		self::$lss->save_verified_ip($this->user->ID, 'i');
 		self::$lss->save_verified_ip($this->user->ID, 'j');
 		self::$lss->save_verified_ip($this->user->ID, 'k');
+		self::$lss->save_verified_ip($this->user->ID, 'l');
+		self::$lss->save_verified_ip($this->user->ID, 'm');
+		self::$lss->save_verified_ip($this->user->ID, 'n');
+		self::$lss->save_verified_ip($this->user->ID, 'o');
+		self::$lss->save_verified_ip($this->user->ID, 'p');
+		self::$lss->save_verified_ip($this->user->ID, 'q');
+		self::$lss->save_verified_ip($this->user->ID, 'r');
+		self::$lss->save_verified_ip($this->user->ID, 's');
+		self::$lss->save_verified_ip($this->user->ID, 't');
+		self::$lss->save_verified_ip($this->user->ID, 'u');
 
-		$expected = range('b', 'k');
+		$expected_keys = range(11, 30);
+		$expected_values = range('b', 'u');
+		$expected = array_combine($expected_keys, $expected_values);
 		$actual = self::$lss->get_verified_ips($this->user->ID);
 		$this->assertEquals($expected, $actual);
 
@@ -124,7 +140,7 @@ class VerifiedIpTest extends TestCase {
 
 		// Check the outcome.
 		$actual = self::$lss->get_verified_ips($this->user->ID);
-		$this->assertSame(array($ip), $actual, 'Expected IP was not found.');
+		$this->assertSame(array(10 => $ip), $actual, 'Expected IP was not found.');
 
 		$wpdb->query('ROLLBACK TO empty');
 		wp_cache_init();
@@ -151,6 +167,6 @@ class VerifiedIpTest extends TestCase {
 
 		// Check the outcome.
 		$actual = self::$lss->get_verified_ips($this->user->ID);
-		$this->assertSame(array($ip), $actual, 'Expected IP was not found.');
+		$this->assertSame(array(10 => $ip), $actual, 'Expected IP was not found.');
 	}
 }
