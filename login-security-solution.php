@@ -68,9 +68,11 @@ class login_security_solution {
 
 	const LOGIN_FORCE_PW_CHANGE = 2;
 	const LOGIN_NOTIFY = 4;
-	const LOGIN_VERIFIED_IP = 8;
+	const LOGIN_VERIFIED_IP_SAFE = 8;
 	const LOGIN_UNKNOWN_IP = 16;
 	const LOGIN_CLEAN = 32;
+	const LOGIN_VERIFIED_IP_NEW = 64;
+	const LOGIN_VERIFIED_IP_OLD = 128;
 
 	/**
 	 * Is the dict command available?
@@ -846,7 +848,7 @@ class login_security_solution {
 	 * @uses login_security_solution::process_login_success()  to, uh, process
 	 */
 	public function wp_login($user_name, $user) {
-		###$this->log(__FUNCTION__, $user_name);
+		###$this->log(__FUNCTION__, is_object($user) ? $user->user_name : 'ERROR: non-object');
 		return $this->process_login_success($user);
 	}
 
@@ -994,6 +996,7 @@ class login_security_solution {
 	 * @return bool
 	 */
 	protected function delete_pw_force_change($user_ID) {
+		###$this->log(__FUNCTION__, $user_ID);
 		return delete_user_meta($user_ID, $this->umk_pw_force_change);
 	}
 
@@ -1191,6 +1194,7 @@ Password MD5                 %5d     %s
 	 * @return bool  does the user need to change their password?
 	 */
 	protected function get_pw_force_change($user_ID) {
+		###$this->log(__FUNCTION__, $user_ID);
 		return (bool) get_user_meta($user_ID, $this->umk_pw_force_change, true);
 	}
 
@@ -2290,15 +2294,34 @@ Password MD5                 %5d     %s
 		 * if the user's current IP address is not involved with the
 		 * recent failed logins and the current IP address has been verified.
 		 */
-		if ($fails['network_ip'] <= $this->options['login_fail_breach_pw_force_change']
-			&& in_array($ip, $this->get_verified_ips($user->ID)))
-		{
-			// Use <= instead of <, above, in case
-			// login_fail_breach_pw_force_change = 0.
 
-			###$this->log(__FUNCTION__, "$user->user_login verified IP");
-			$flag += self::LOGIN_VERIFIED_IP;
-			$verified_ip = true;
+		$ip_time = array_search($ip, $this->get_verified_ips($user->ID));
+		###$this->log(__FUNCTION__, 'ip_time', $ip_time ? $ip_time : 'false');
+		if ($ip_time !== false) {
+			if ($fails['network_ip'] <= $this->options['login_fail_breach_pw_force_change'])
+			{
+				// Use <= instead of <, above, in case
+				// login_fail_breach_pw_force_change = 0.
+
+				// Not part of attack.
+				###$this->log(__FUNCTION__, "$user->user_login verified IP, not part of attack");
+				$flag += self::LOGIN_VERIFIED_IP_SAFE;
+				$verified_ip = true;
+			} else {
+				$age = $this->get_time() - $ip_time;
+				$max_age_permitted = $this->options['login_fail_minutes'] * 60;
+				if ($age < $max_age_permitted) {
+					// Same IP as "attacker," but IP verified recently.
+					###$this->log(__FUNCTION__, "$user->user_login, part of attack, but newly verified IP ($age < $max_age_permitted)");
+					$flag += self::LOGIN_VERIFIED_IP_NEW;
+					$verified_ip = true;
+				} else {
+					// Same IP as "attacker," and IP verified a while ago.
+					###$this->log(__FUNCTION__, "$user->user_login, part of attack, old verified IP ($age >= $max_age_permitted)");
+					$flag += self::LOGIN_VERIFIED_IP_OLD;
+					$verified_ip = false;
+				}
+			}
 		} else {
 			###$this->log(__FUNCTION__, "$user->user_login non-verified IP");
 			$flag += self::LOGIN_UNKNOWN_IP;
@@ -2537,6 +2560,7 @@ Password MD5                 %5d     %s
 	 *                   if error
 	 */
 	protected function set_pw_force_change($user_ID) {
+		###$this->log(__FUNCTION__, $user_ID);
 		return update_user_meta($user_ID, $this->umk_pw_force_change, 1);
 	}
 

@@ -445,6 +445,12 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.40.0 (2013-06-22) =
+* Track the age of verified IP's and use that to prevent users being locked
+out by "attacks" from one's own IP address.
+* Unit tests pass using PHP 5.3.27-dev, 5.4.17-dev, 5.5.0-dev
+* Tested under WordPress 3.4.2, 3.5.2 and 3.6beta4 using regular and multisite.
+
 = 0.39.0 (2013-05-29) =
 * Enforce password history during password reset process.
 
