@@ -870,6 +870,10 @@ class login_security_solution {
 			$this->skip_wp_login_failed = false;
 			return -1;
 		}
+		if (!$user_name) {
+			###$this->log(__FUNCTION__, "empty user_name");
+			return -2;
+		}
 		if ($this->user_pass === null) {
 			###$this->log(__FUNCTION__, "authenticate filter not called");
 			###global $wp_filter;

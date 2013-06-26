@@ -445,6 +445,9 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.41.0 (2013-06-26) =
+* Fix "authenticate filter not called" when auth process lacks a user name.
+
 = 0.40.0 (2013-06-22) =
 * Track the age of verified IP's and use that to prevent users being locked
 out by "attacks" from one's own IP address.
