@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Login Security Solution 0.36.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
-"POT-Creation-Date: 2013-06-29 20:59:10+00:00\n"
+"POT-Creation-Date: 2013-06-29 21:06:42+00:00\n"
 "PO-Revision-Date: 2012-10-17 12:23:54-03:00\n"
 "Last-Translator: Valdir Trombini <valdirtrombini@hotmail.com>\n"
 "Language-Team: Valdir Trombini <valdirtrombini@hotmail.com>\n"
@@ -413,13 +413,26 @@ msgstr ""
 msgid "Confirm"
 msgstr "Confirme"
 
+#: admin.php:873
+msgid "an administrator"
+msgstr ""
+
+#: admin.php:884
+msgid ""
+"NOTICE: you turned on Maintenance Mode at some point. It disables new "
+"comments and keeps non-administrators from logging in."
+msgstr ""
+
+#: admin.php:886
+msgid ""
+"WARNING: the site in Maintenance Mode. Talk to %s before making any changes."
+msgstr ""
+
 #: admin.php:892
 msgid ""
-"WARNING: The site is in maintenance mode. DO NOT TOUCH ANYTHING! Your "
-"changes may get overwritten!"
+"To turn this off, go to Settings | Login Security Solution | Maintenance "
+"Mode."
 msgstr ""
-"Aviso: O site está em modo de manutenção. NÃO TOQUE EM NADA! As suas "
-"alterações podem ser sobrescritas!"
 
 #: admin.php:917
 msgid ""

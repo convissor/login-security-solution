@@ -635,7 +635,12 @@ class login_security_solution_admin extends login_security_solution {
 					}
 					break;
 			}
-			$out[$name] = $in[$name];
+
+			if ($name == 'disable_logins' && $in[$name] == 1) {
+				$out[$name] = wp_get_current_user()->display_name;
+			} else {
+				$out[$name] = $in[$name];
+			}
 		}
 
 		// Special check to make sure Delay Tier 3 > Delay Tier 2.
@@ -862,9 +867,31 @@ class login_security_solution_admin extends login_security_solution {
 
 		echo '<div class="error">';
 
+		$self = false;
+		if (ctype_digit($this->options['disable_logins'])) {
+			// The setting's value in older versions was 0 or 1.
+			$user = __('an administrator', self::ID);
+		} else {
+			// Version 0.42.0 began putting user's name into the setting.
+			$user = $this->options['disable_logins'];
+			if ($user == wp_get_current_user()->display_name) {
+				$self = true;
+			}
+		}
+
 		echo '<p><strong>';
-		echo $this->hsc_utf8(__("WARNING: The site is in maintenance mode. DO NOT TOUCH ANYTHING! Your changes may get overwritten!", self::ID));
+		if ($self) {
+			echo $this->hsc_utf8(__("NOTICE: you turned on Maintenance Mode at some point. It disables new comments and keeps non-administrators from logging in.", self::ID));
+		} else {
+			echo $this->hsc_utf8(sprintf(__("WARNING: the site in Maintenance Mode. Talk to %s before making any changes.", self::ID), $user));
+		}
 		echo '</strong></p>';
+
+		if (current_user_can('administrator')) {
+			echo '<p><strong>';
+			echo $this->hsc_utf8(__("To turn this off, go to Settings | Login Security Solution | Maintenance Mode.", self::ID));
+			echo '</strong></p>';
+		}
 
 		echo "</div>\n";
 	}

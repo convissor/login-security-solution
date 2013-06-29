@@ -445,6 +445,9 @@ and `.mo` files:
 
 == Changelog ==
 
+= 0.42.0 () =
+* Have Maintenence Mode messaging say who turned it on and how to turn it off.
+
 = 0.41.0 (2013-06-26) =
 * Fix "authenticate filter not called" when auth process lacks a user name.
 
