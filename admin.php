@@ -398,7 +398,7 @@ class login_security_solution_admin extends login_security_solution {
 		add_submenu_page(
 			$this->page_options,
 			$this->text_settings,
-			self::NAME,
+			$this->hsc_utf8(__("Login Security Solution", self::ID)),
 			$this->capability_required,
 			self::ID,
 			array(&$this, 'page_settings')
