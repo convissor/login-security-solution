@@ -24,11 +24,6 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( ! class_exists('login_security_solution') ) {
 	
 	/**
-	 * The instantiated version of this plugin's class
-	 */
-	$GLOBALS['login_security_solution'] = new login_security_solution;
-
-	/**
 	 * The Login Security Solution plugin enhances WordPress' security
 	 *
 	 * @package login-security-solution
@@ -2869,5 +2864,10 @@ if ( ! class_exists('login_security_solution') ) {
 			return true;
 		}
 	} // END class login_security_solution
+	
+	/**
+	 * The instantiated version of this plugin's class
+	 */
+	$GLOBALS['login_security_solution'] = new login_security_solution;
 
 } // END if class_exists
