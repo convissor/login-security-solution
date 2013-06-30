@@ -21,6 +21,14 @@
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
  * @copyright The Analysis and Solutions Company, 2012
  */
+
+//avoid direct calls to this file
+if ( ! function_exists( 'add_filter' ) ) {
+	header('Status: 403 Forbidden');
+	header('HTTP/1.1 403 Forbidden');
+	exit();
+}
+
 class login_security_solution_admin extends login_security_solution {
 	/**
 	 * The WP privilege level required to use the admin interface
@@ -390,7 +398,7 @@ class login_security_solution_admin extends login_security_solution {
 		add_submenu_page(
 			$this->page_options,
 			$this->text_settings,
-			self::NAME,
+			$this->hsc_utf8(__("Login Security Solution", self::ID)),
 			$this->capability_required,
 			self::ID,
 			array(&$this, 'page_settings')
@@ -453,7 +461,8 @@ class login_security_solution_admin extends login_security_solution {
 			// so force it to happen for now.
 			include_once ABSPATH . 'wp-admin/options-head.php';
 		}
-
+		
+		screen_icon( 'options-general' );
 		echo '<h2>' . $this->hsc_utf8($this->text_settings) . '</h2>';
 		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
 		settings_fields($this->option_name);
