@@ -21,6 +21,14 @@
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
  * @copyright The Analysis and Solutions Company, 2012
  */
+
+//avoid direct calls to this file
+if ( ! function_exists( 'add_filter' ) ) {
+	header('Status: 403 Forbidden');
+	header('HTTP/1.1 403 Forbidden');
+	exit();
+}
+
 class login_security_solution_admin extends login_security_solution {
 	/**
 	 * The WP privilege level required to use the admin interface
