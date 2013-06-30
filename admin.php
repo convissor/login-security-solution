@@ -461,7 +461,8 @@ class login_security_solution_admin extends login_security_solution {
 			// so force it to happen for now.
 			include_once ABSPATH . 'wp-admin/options-head.php';
 		}
-
+		
+		screen_icon( 'options-general' );
 		echo '<h2>' . $this->hsc_utf8($this->text_settings) . '</h2>';
 		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
 		settings_fields($this->option_name);
