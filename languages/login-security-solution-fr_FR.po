@@ -1,16 +1,19 @@
+#
+# MerMouY <mermouy@gmail.com>, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Login Security Solution 0.38.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2013-06-29 21:06:42+00:00\n"
-"PO-Revision-Date: 2013-05-26 16:32:54+02:00\n"
+"PO-Revision-Date: 2013-07-01 20:42+0200\n"
 "Last-Translator: MerMouY <mermouy@gmail.com>\n"
-"Language-Team: FxB <fx@fxbenard.com>\n"
+"Language-Team: français <boardgametrans@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -24,7 +27,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:112 admin.php:373
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -397,7 +400,7 @@ msgstr "Non merci"
 # Translation from WordPress.
 #: admin.php:819 admin.php:839
 msgid "Success!"
-msgstr ""
+msgstr "Succès!"
 
 #: admin.php:832
 msgid "Confirm"
@@ -405,24 +408,31 @@ msgstr "Cochez"
 
 #: admin.php:873
 msgid "an administrator"
-msgstr ""
+msgstr "un administrator"
 
 #: admin.php:884
 msgid ""
 "NOTICE: you turned on Maintenance Mode at some point. It disables new "
 "comments and keeps non-administrators from logging in."
 msgstr ""
+"REMARQUE: le mode maintenance semble avoir été activé quelque part. Il "
+"désactive les nouveaux commentaires et ne permet la connexion qu'aux "
+"administrateurs."
 
 #: admin.php:886
 msgid ""
 "WARNING: the site in Maintenance Mode. Talk to %s before making any changes."
 msgstr ""
+"ATTENTION: le site est en mode maintenance. Contactez %s avant toute "
+"modification."
 
 #: admin.php:892
 msgid ""
 "To turn this off, go to Settings | Login Security Solution | Maintenance "
 "Mode."
 msgstr ""
+"Pour désactiver ceci, allez vers Paramètres | Login Security Solution | Mode "
+"Maintenance."
 
 #: admin.php:917
 msgid ""
@@ -457,7 +467,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:955
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "Vous n'avez pas les permissions suffisantes pour accéder à cette page."
 
 #: admin.php:961
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -474,7 +484,7 @@ msgstr "Identifiant ou mot de passe incorrect."
 #: login-security-solution.php:650 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
-msgstr ""
+msgstr "Ré initialisation du mot de passe interdite pour cet utilisateur"
 
 # @ login-security-solution
 #: login-security-solution.php:676 tests/LoginMessageTest.php:66
@@ -545,7 +555,7 @@ msgstr ""
 # @ default
 #: login-security-solution.php:1025
 msgid "ERROR"
-msgstr ""
+msgstr "ERREUR"
 
 # @ login-security-solution
 #: login-security-solution.php:1172
@@ -715,8 +725,8 @@ msgstr ""
 
 #: login-security-solution.php:2136
 msgid ""
-"To ensure your account is not being hijacked, you will have go through the '%"
-"s' process before logging in again."
+"To ensure your account is not being hijacked, you will have go through the "
+"'%s' process before logging in again."
 msgstr ""
 "Afin de s'assurer que votre compte n'a pas été piraté, vous devez utiliser "
 "le processus '%s' avant de vous connecter à nouveau."
@@ -724,7 +734,7 @@ msgstr ""
 # Translation from WordPress.
 #: login-security-solution.php:2136
 msgid "Lost your password?"
-msgstr ""
+msgstr "Mot de passe perdu?"
 
 # @ login-security-solution
 #: login-security-solution.php:2139
