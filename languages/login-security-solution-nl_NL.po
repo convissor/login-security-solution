@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2013-06-29 21:06:42+00:00\n"
-"PO-Revision-Date: 2013-05-03 08:54:55+03:00\n"
+"PO-Revision-Date: 2013-07-03 20:45+0100\n"
 "Last-Translator: Friso van Wieringen\n"
 "Language-Team: Friso van Wieringen\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:112 admin.php:373
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -106,8 +106,8 @@ msgid ""
 "second) Delay Tier? Must be >= %d."
 msgstr ""
 "Hoe veel foutieve gerelateerde inlogpogingen moeten er worden gedaan om in "
-"deze (%d - %d seconden) vertragingslaag te komen? Dit moet groter zijn dan %"
-"d."
+"deze (%d - %d seconden) vertragingslaag te komen? Dit moet groter zijn dan "
+"%d."
 
 #: admin.php:287
 msgid "Delay Tier 3"
@@ -389,7 +389,7 @@ msgstr "Nee bedankt"
 # Translation from WordPress.
 #: admin.php:819 admin.php:839
 msgid "Success!"
-msgstr ""
+msgstr "Succes!"
 
 #: admin.php:832
 msgid "Confirm"
@@ -397,24 +397,30 @@ msgstr "Bevestig"
 
 #: admin.php:873
 msgid "an administrator"
-msgstr ""
+msgstr "een beheerder"
 
 #: admin.php:884
 msgid ""
 "NOTICE: you turned on Maintenance Mode at some point. It disables new "
 "comments and keeps non-administrators from logging in."
 msgstr ""
+"LET OP: je hebt de Onderhoudsmodus aangezet. Dit voorkomt nieuwe commentaren "
+"en zorgt ervoor dat niet-beheerders niet kunnen inloggen."
 
 #: admin.php:886
 msgid ""
 "WARNING: the site in Maintenance Mode. Talk to %s before making any changes."
 msgstr ""
+"WAARSCHUWING: de site is in Onderhoudsmodus. Neem contact op met %s voordat "
+"je wijzigingen doorvoert."
 
 #: admin.php:892
 msgid ""
 "To turn this off, go to Settings | Login Security Solution | Maintenance "
 "Mode."
 msgstr ""
+"Om dit uit te schakelen, ga naar Instellingen | Login Security Solution | "
+"Onderhoudsmodus."
 
 #: admin.php:917
 msgid ""
@@ -448,7 +454,7 @@ msgstr ""
 # Translation from WordPress.
 #: admin.php:955
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "Je hebt onvoldoende rechten om deze pagina te openen."
 
 #: admin.php:961
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -464,7 +470,7 @@ msgstr "Ongeldige gebruikersnaam of wachtwoord."
 #: login-security-solution.php:650 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
-msgstr ""
+msgstr "Wachtwoord resetten is niet toegestaan voor deze gebruiker"
 
 #: login-security-solution.php:676 tests/LoginMessageTest.php:66
 msgid "It has been over %d minutes since your last action."
@@ -515,15 +521,15 @@ msgid ""
 "numbers and punctuation, or B) at least %d characters long. The password can "
 "not contain words related to you or this website."
 msgstr ""
-"Het wachtwoord moet tenminste aan één van deze eisen voldoen: A) ten minste %"
-"d karakters lang en moet hoofdletters, kleine letters, nummers en vreemde "
+"Het wachtwoord moet tenminste aan één van deze eisen voldoen: A) ten minste "
+"%d karakters lang en moet hoofdletters, kleine letters, nummers en vreemde "
 "tekens bevatten, of B) ten minste %d karakters lang. Het wachtwoord mag geen "
 "woorden gerelateerd aan jou of deze website bevatten."
 
 # Translation from WordPress.
 #: login-security-solution.php:1025
 msgid "ERROR"
-msgstr ""
+msgstr "FOUT"
 
 #: login-security-solution.php:1172
 msgid ""
@@ -664,8 +670,8 @@ msgstr ""
 
 #: login-security-solution.php:2136
 msgid ""
-"To ensure your account is not being hijacked, you will have go through the '%"
-"s' process before logging in again."
+"To ensure your account is not being hijacked, you will have go through the "
+"'%s' process before logging in again."
 msgstr ""
 "Om zeker te zijn dat je account niet wordt gekaapt dien je het '%s' proces "
 "te volgen voordat je opnieuw kunt inloggen."
@@ -673,7 +679,7 @@ msgstr ""
 # Translation from WordPress.
 #: login-security-solution.php:2136
 msgid "Lost your password?"
-msgstr ""
+msgstr "Wachtwoord kwijt?"
 
 #: login-security-solution.php:2139
 msgid "If it was NOT YOU, please do the following right away:"
