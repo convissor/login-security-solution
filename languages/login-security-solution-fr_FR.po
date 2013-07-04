@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.38.0\n"
+"Project-Id-Version: Login Security Solution 0.42.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2013-06-29 21:06:42+00:00\n"
-"PO-Revision-Date: 2013-05-26 16:32:54+02:00\n"
+"PO-Revision-Date: 2013-07-01 20:42:00+02:00\n"
 "Last-Translator: MerMouY <mermouy@gmail.com>\n"
 "Language-Team: FxB <fx@fxbenard.com>\n"
 "MIME-Version: 1.0\n"
@@ -405,24 +405,31 @@ msgstr "Cochez"
 
 #: admin.php:873
 msgid "an administrator"
-msgstr ""
+msgstr "un administrator"
 
 #: admin.php:884
 msgid ""
 "NOTICE: you turned on Maintenance Mode at some point. It disables new "
 "comments and keeps non-administrators from logging in."
 msgstr ""
+"REMARQUE: le mode maintenance semble avoir été activé quelque part. Il "
+"désactive les nouveaux commentaires et ne permet la connexion qu'aux "
+"administrateurs."
 
 #: admin.php:886
 msgid ""
 "WARNING: the site in Maintenance Mode. Talk to %s before making any changes."
 msgstr ""
+"ATTENTION: le site est en mode maintenance. Contactez %s avant toute "
+"modification."
 
 #: admin.php:892
 msgid ""
 "To turn this off, go to Settings | Login Security Solution | Maintenance "
 "Mode."
 msgstr ""
+"Pour désactiver ceci, allez vers Paramètres | Login Security Solution | Mode "
+"Maintenance."
 
 #: admin.php:917
 msgid ""
