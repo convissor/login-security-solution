@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.38.0\n"
+"Project-Id-Version: Login Security Solution 0.42.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2013-06-29 21:06:42+00:00\n"
-"PO-Revision-Date: 2013-05-03 08:54:55+03:00\n"
+"PO-Revision-Date: 2013-07-03 20:45:00+01:00\n"
 "Last-Translator: Friso van Wieringen\n"
 "Language-Team: Friso van Wieringen\n"
 "MIME-Version: 1.0\n"
@@ -397,24 +397,30 @@ msgstr "Bevestig"
 
 #: admin.php:873
 msgid "an administrator"
-msgstr ""
+msgstr "een beheerder"
 
 #: admin.php:884
 msgid ""
 "NOTICE: you turned on Maintenance Mode at some point. It disables new "
 "comments and keeps non-administrators from logging in."
 msgstr ""
+"LET OP: je hebt de Onderhoudsmodus aangezet. Dit voorkomt nieuwe commentaren "
+"en zorgt ervoor dat niet-beheerders niet kunnen inloggen."
 
 #: admin.php:886
 msgid ""
 "WARNING: the site in Maintenance Mode. Talk to %s before making any changes."
 msgstr ""
+"WAARSCHUWING: de site is in Onderhoudsmodus. Neem contact op met %s voordat "
+"je wijzigingen doorvoert."
 
 #: admin.php:892
 msgid ""
 "To turn this off, go to Settings | Login Security Solution | Maintenance "
 "Mode."
 msgstr ""
+"Om dit uit te schakelen, ga naar Instellingen | Login Security Solution | "
+"Onderhoudsmodus."
 
 #: admin.php:917
 msgid ""
