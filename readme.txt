@@ -423,24 +423,49 @@ Please submit
 [wiki entries](https://github.com/convissor/login-security-solution/wiki)
 on our GitHub.
 
+= Information for Translators =
 
-= How do developers generate the translation files? =
+1. __Do not__ commit the `.mo` files!  They get created as part of the
+    release process.
+1. Translation commits and pull requests should __only__ touch the `.po`
+    file.  If you have other changes you wish to see made, please do so
+    via separate commits in separate pull requests.
+1. When translating a new feature, please make that one commit.  If other
+    parts of the translation need updating, please make them in a separate
+    commit.
+1. Please don't change formatting inside the `.po` file
+1. __Run `git diff` before all commits.__  Ensure only expected changes
+    are being made.
+1. Do not translate items that have a comment above them saying
+    `Translation from WordPress.`  Those phrases are already translated
+    in Wordporess' core.  Leaving them untranslated here ensures
+    consistency with the rest of WordPress.
 
-To update the POT file, do this:
+= Translation Information for Developers =
 
-* cd into the directory above this one.
-* `svn checkout http://i18n.svn.wordpress.org/tools/trunk/ makepot`
-* `cd login-security-solution/languages`
-* `./makepot.sh`
+* To update the `.pot` file:
 
-To produce the machine readable translations used by WordPress' gettext
-implementation, use the scripts I made for generating all of the `.po`
-and `.mo` files:
+    1. WordPress' `makepot` utility directory should be in the same directory
+        as the `login-security-solution` directory.  If you don't have this
+        setup, here's what to do:
+        * cd into the directory above this one.
+        * `svn checkout http://i18n.svn.wordpress.org/tools/trunk/ makepot`
+        * So, now you'll have:
 
-* `cd languages`
-* `./makepot.sh`
-* `./updatepos.sh`
-* `./makemos.sh`
+            <parent dir>
+                |- login-security-solution/
+                |- makepot/
+
+    1. `cd login-security-solution/languages`
+    1. `./makepot.sh`
+
+* Then, bringing the `.po` files up to date is as easy as:
+
+    1. `./updatepos.sh`
+
+* Finally, to update the `.mo` files for testing or release:
+
+    1. `./makemos.sh`
 
 
 == Changelog ==
