@@ -470,7 +470,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.42.0 () =
+= 0.42.0 (2013-07-06) =
 * Have Maintenence Mode messaging say who turned it on and how to turn it off.
 * Added pw_sequence for German T1 keyboard layout. (cfoellmann)
 
