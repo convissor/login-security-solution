@@ -357,9 +357,9 @@ msgid ""
 "Submitting this form sets a flag that forces all users, except yourself, to "
 "utilize WordPress' built in password reset functionality."
 msgstr ""
-"Enviar este formulário, define um sinalizador que obriga todos os usuários "
-"que utilizam a plataforma WordPress em se concientizar que esse foi "
-"construído com funcionalidades de redefinição de senha."
+"Enviar este formulário, define um sinalizador que obriga todos os usuários, "
+"exceto a si mesmo, que utilizam a plataforma WordPress em se concientizar que "
+"esse foi construído com funcionalidades de redefinição de senha."
 
 #: admin.php:738
 msgid ""
