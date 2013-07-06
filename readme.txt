@@ -452,9 +452,9 @@ on our GitHub.
         * `svn checkout http://i18n.svn.wordpress.org/tools/trunk/ makepot`
         * So, now you'll have:
 
-            <parent dir>
-                |- login-security-solution/
-                |- makepot/
+                parent dir
+                    |- login-security-solution/
+                    |- makepot/
 
     1. `cd login-security-solution/languages`
     1. `./makepot.sh`
