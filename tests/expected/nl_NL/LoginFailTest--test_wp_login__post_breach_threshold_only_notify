@@ -8,9 +8,11 @@ Er is zojuist ingelogd door iemand met de volgende kenmerken. Eerder daarvoor wa
 
 Kenmerk                      Aantal    Waarde van huidige poging
 ------------------------     -----     --------------------------------
-Netwerk IP                       4     1.2.38
+Netwerk IP                       4     1.2.38.*
 Gebruikersnaam                   4     test
 Wachtwoord MD5                   %d    %s
+
+Ze ingelogd van de volgende IP-adres: 1.2.38.4
 
 WAARSCHUWING: De 'E-mailbevestiging van succesvolle inbraak' instelling die je hebt gekozen betekent dat personen NIET worden uitgelogd en NIET een nieuw wachtwoord moeten kiezen.
 

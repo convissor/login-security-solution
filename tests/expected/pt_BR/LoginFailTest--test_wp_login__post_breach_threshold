@@ -8,9 +8,11 @@ Alguém acabou logado com os seguintes componentes. Antes disso, uma combinaçã
 
 Componente               o valor é     Valor da tentativa atual
 ------------------------     -----     --------------------------------
-O IP da rede                     4     1.2.38
+O IP da rede                     4     1.2.38.*
 Nome do usuário                  4     test
 Senha MD5                        %d    %s
+
+Eles logado no seguinte endereço IP: 1.2.38.4
 
 O usuário foi desconectado e será obrigado a confirmar sua identidade através da funcionalidade de redefinição de senha.
 

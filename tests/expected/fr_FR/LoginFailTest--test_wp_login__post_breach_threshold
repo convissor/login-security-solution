@@ -8,9 +8,11 @@ Quelqu'un vient de se connecter avec les données suivantes. Avant cela, plusieu
 
 Composant                   Nombre     Valeur de la tentative courante
 ------------------------     -----     --------------------------------
-Réseau IP                        4     1.2.38
+Réseau IP                        4     1.2.38.*
 Identifiant                      4     test
 MD5 du mot de passe              %d    %s
+
+Ils se sont connectés à l'adresse IP suivante: 1.2.38.4
 
 L'utilisateur à été déconnecté et il devra confirmer son identité via le processus du changement de mot de passe.
 

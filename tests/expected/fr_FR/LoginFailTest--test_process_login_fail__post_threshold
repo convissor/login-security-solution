@@ -8,9 +8,11 @@ Au moins %d tentatives infructueuses de connexion au cours des dernières %d min
 
 Composant                   Nombre     Valeur de la tentative courante
 ------------------------     -----     --------------------------------
-Réseau IP                        4     1.2.38
+Réseau IP                        4     1.2.38.*
 Identifiant                      4     test
 MD5 du mot de passe              1     %s
+
+La tentative la plus récente provenant de l'adresse IP suivante: 1.2.38.4
 
 L'extension %s (%s) pour WordPress pare l'attaque en ralentissant la réponse à chaque tentative échouée.  Cet attaquant se verra également refusé l'accès dans le cas où ils tombent sur des informations d'identification valides.
 

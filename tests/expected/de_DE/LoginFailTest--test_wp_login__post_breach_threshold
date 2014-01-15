@@ -8,9 +8,11 @@ Es hat sich gerade jemand eingeloggt, der die folgenden Komponenten genutzt hat.
 
 Component                    Count     Value from Current Attempt
 ------------------------     -----     --------------------------------
-Netzwerk IP                      4     1.2.38
+Netzwerk IP                      4     1.2.38.*
 Benutzername                     4     test
 Passwort MD5                     %d    %s
+
+Sie angemeldet sind aus der folgenden IP-Adresse: 1.2.38.4
 
 Der Benutzer wurde aus geloggt und muss seine Identität über die Passwort zurücksetzen Funktion bestätigen.
 

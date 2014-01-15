@@ -8,9 +8,11 @@ Houve pelo menos %d tentativas para iniciar sessão durante os últimos %d minut
 
 Componente               o valor é     Valor da tentativa atual
 ------------------------     -----     --------------------------------
-O IP da rede                     4     1.2.38
+O IP da rede                     4     1.2.38.*
 Nome do usuário                  4     test
 Senha MD5                        1     %s
+
+A tentativa mais recente veio do seguinte endereço IP: 1.2.38.4
 
 O plugin %s (%s) para o WordPress está repelindo ao ataque de força bruta, na tentativa de descobrir o seu login, fazendo demorar um tempo muito longo entre as falhas.
 

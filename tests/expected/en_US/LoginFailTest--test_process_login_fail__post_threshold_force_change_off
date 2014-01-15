@@ -8,9 +8,11 @@ There have been at least 4 failed attempts to log in during the past 60 minutes 
 
 Component                    Count     Value from Current Attempt
 ------------------------     -----     --------------------------------
-Network IP                       4     1.2.38
+Network IP                       4     1.2.38.*
 Username                         4     test
 Password MD5                     1     %s
+
+The most recent attempt came from the following IP address: 1.2.38.4
 
 The Login Security Solution plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.
 

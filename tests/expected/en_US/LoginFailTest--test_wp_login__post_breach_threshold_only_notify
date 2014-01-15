@@ -8,9 +8,11 @@ Someone just logged in using the following components. Prior to that, some combi
 
 Component                    Count     Value from Current Attempt
 ------------------------     -----     --------------------------------
-Network IP                       4     1.2.38
+Network IP                       4     1.2.38.*
 Username                         4     test
 Password MD5                     %d    %s
+
+They logged in from the following IP address: 1.2.38.4
 
 WARNING: The 'Breach Email Confirm' setting you chose means this person has NOT been logged out and will NOT be required to confirm their identity.
 

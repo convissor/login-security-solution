@@ -8,9 +8,11 @@ Er is zojuist ingelogd door iemand met de volgende kenmerken. Eerder daarvoor wa
 
 Kenmerk                      Aantal    Waarde van huidige poging
 ------------------------     -----     --------------------------------
-Netwerk IP                       4     1.2.38
+Netwerk IP                       4     1.2.38.*
 Gebruikersnaam                   4     test
 Wachtwoord MD5                   %d    %s
+
+Ze ingelogd van de volgende IP-adres: 1.2.38.4
 
 De gebruiker is uitgelogd en dient zijn wachtwoord opnieuw in te stellen door gebruik te maken van de 'wachtwoord reset' functionaliteit.
 

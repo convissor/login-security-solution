@@ -8,9 +8,11 @@ Es wurden mindestens 4 fehlgeschlagene Loginversuche innerhalb der letzten 60 Mi
 
 Component                    Count     Value from Current Attempt
 ------------------------     -----     --------------------------------
-Netzwerk IP                      4     1.2.38
+Netzwerk IP                      4     1.2.38.*
 Benutzername                     4     test
 Passwort MD5                     1     %s
+
+Der jüngste Versuch kam aus der folgenden IP-Adresse: 1.2.38.4
 
 Das Login Security Solution Plugin (%s) für WordPress wehrt Attacken ab indem es die Antwort auf fehlerhafte Logins stark verzögert.
 
