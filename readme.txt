@@ -470,7 +470,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.43.0 () =
+= 0.43.0 (2014-01-16) =
 * By popular demand, notification emails now include the full IP address.
 
 = 0.42.0 (2013-07-06) =
