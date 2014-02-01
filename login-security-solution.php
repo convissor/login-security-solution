@@ -1878,8 +1878,8 @@ Password MD5                 %5d     %s
 	 * @param array $data  the data, if any
 	 * @return void
 	 */
-	public function log($function, $msg, $data = array()) {
-		if ($data) {
+	public function log($function, $msg, $data = 'please allow logging empty stuff') {
+		if ($data != 'please allow logging empty stuff') {
 			$msg .= ": " . json_encode($data);
 		}
 		file_put_contents('/var/log/' . self::ID . '.log',
