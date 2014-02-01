@@ -56,6 +56,9 @@ class PasswordChangeTest extends TestCase {
 			$this->user->user_pass = self::$pass_1;
 		}
 
+		// First remove it.  Some bug in WP 3.8 causes set or get to fail.
+		self::$lss->delete_pw_force_change($this->user->ID);
+
 		self::$lss->set_pw_force_change($this->user->ID);
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertTrue($actual, 'Problem setting up force change.');
