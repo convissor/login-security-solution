@@ -8,7 +8,7 @@
  * @link http://wordpress.org/extend/plugins/login-security-solution/
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012
+ * @copyright The Analysis and Solutions Company, 2012-2014
  */
 
 $option_name = 'login-security-solution-options';

@@ -5,7 +5,7 @@
  *
  * @package login-security-solution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012
+ * @copyright The Analysis and Solutions Company, 2012-2014
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  */
 
@@ -28,7 +28,7 @@ define('LOGIN_SECURITY_SOLUTION_TESTING', true);
  *
  * @package login-security-solution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012
+ * @copyright The Analysis and Solutions Company, 2012-2014
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  */
 class Accessor extends login_security_solution_admin {

@@ -6,7 +6,7 @@
  *
  * @package login-security-solution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012
+ * @copyright The Analysis and Solutions Company, 2012-2014
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  */
 
@@ -88,7 +88,7 @@ require_once 'PHPUnit/Autoload.php';
  *
  * @package login-security-solution
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012
+ * @copyright The Analysis and Solutions Company, 2012-2014
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  */
 abstract class TestCase extends PHPUnit_Framework_TestCase {
