@@ -1089,6 +1089,16 @@ class login_security_solution {
 	protected function get_login_fail($network_ip, $user_name, $pass_md5) {
 		global $wpdb;
 
+		if (!$this->options['login_fail_minutes']) {
+			###$this->log(__FUNCTION__, 'Login failure tracking disabled');
+			return array(
+				'total' => '0',
+				'network_ip' => null,
+				'user_name' => null,
+				'pass_md5' => null,
+			);
+		}
+
 		$wpdb->escape_by_ref($user_name);
 		$wpdb->escape_by_ref($pass_md5);
 
@@ -1465,6 +1475,11 @@ Password MD5                 %5d     %s
 	 */
 	protected function is_login_fail_exact_match($ip, $user_name, $pass_md5) {
 		global $wpdb;
+
+		if (!$this->options['login_fail_minutes']) {
+			###$this->log(__FUNCTION__, 'Login failure tracking disabled');
+			return false;
+		}
 
 		$wpdb->escape_by_ref($ip);
 		$wpdb->escape_by_ref($user_name);

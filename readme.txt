@@ -470,6 +470,11 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.44.0 () =
+* Indicate that setting "Match Time" to 0 disables slowdowns, notifications,
+and breach confirmations.
+* If "Match Time" is 0, return empty values rather than running queries.
+
 = 0.43.0 (2014-01-16) =
 * By popular demand, notification emails now include the full IP address.
 

@@ -77,6 +77,18 @@ class LoginFailTest extends TestCase {
 	/**
 	 * @depends test_insert_fail
 	 */
+	public function test_is_login_fail_exact_match__login_fail_minutes_disabled() {
+		$options = self::$lss->options;
+		$options['login_fail_minutes'] = 0;
+		self::$lss->options = $options;
+
+		$actual = self::$lss->is_login_fail_exact_match($this->ip, $this->user_name, $this->pass_md5);
+		$this->assertFalse($actual, 'Expect no match, feature disabled.');
+	}
+
+	/**
+	 * @depends test_insert_fail
+	 */
 	public function test_is_login_fail_exact_match() {
 		$actual = self::$lss->is_login_fail_exact_match($this->ip, $this->user_name, $this->pass_md5);
 		$this->assertTrue($actual, 'Expect match.');
@@ -482,6 +494,26 @@ class LoginFailTest extends TestCase {
 
 		$actual = self::$lss->get_pw_force_change($this->user->ID);
 		$this->assertTrue($actual, 'get_pw_force_change() return value...');
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold
+	 */
+	public function test_wp_login__login_fail_minutes_disabled() {
+		$options = self::$lss->options;
+		$options['login_fail_minutes'] = 0;
+		self::$lss->options = $options;
+
+		$expected = array(
+			'total' => '0',
+			'network_ip' => null,
+			'user_name' => null,
+			'pass_md5' => null,
+		);
+
+		$actual = self::$lss->get_login_fail('1.2.3', 'nunca', 'nada');
+
+		$this->assertEquals($expected, $actual);
 	}
 
 	/**
