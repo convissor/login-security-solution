@@ -460,7 +460,7 @@ class login_security_solution {
 			return $user;
 		}
 
-		$process = $this->process_login_success($user);
+		$this->process_login_success($user);
 
 		if ($this->check(null, $user) !== true) {
 			###$this->log(__FUNCTION__, "$user_name check failed");
