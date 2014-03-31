@@ -252,6 +252,12 @@ class login_security_solution_admin extends login_security_solution {
 				'text' => __("Close inactive sessions after this many minutes. 0 disables this feature.", self::ID),
 				'type' => 'int',
 			),
+            'session_limit' => array(
+                'group' => 'misc',
+                'label' => __("Concurrent Session Limit", self::ID),
+                'text' => __("The number of concurent sessions per user. NOTE: This feature only works when Idle Timeout is enabled. 0 disables this feature.", self::ID),
+                'type' => 'int',
+            ),
 			'disable_logins' => array(
 				'group' => 'misc',
 				'label' => __("Maintenance Mode", self::ID),
