@@ -145,7 +145,7 @@ class login_security_solution {
 		'deactivate_deletes_data' => 0,
 		'disable_logins' => 0,
 		'idle_timeout' => 15,
-        'session_limit' => 1,
+		'session_limit' => 1,
 		'login_fail_minutes' => 120,
 		'login_fail_tier_2' => 5,
 		'login_fail_tier_3' => 10,
@@ -233,17 +233,17 @@ class login_security_solution {
 	protected $xmlrpc_enabled = false;
 
 
-    /**
-     * Our usermeta key for tracking user sessions
-     * @var array
-     */
-    protected $umk_session_ids;
+	/**
+	 * Our usermeta key for tracking user sessions
+	 * @var array
+	 */
+	protected $umk_session_ids;
 
-    /**
-     * The user's session id for this session
-     * @var string
-     */
-    protected $user_session_id;
+	/**
+	 * The user's session id for this session
+	 * @var string
+	 */
+	protected $user_session_id;
 
 
 	/**
@@ -339,10 +339,10 @@ class login_security_solution {
 
 		$this->table_fail = $wpdb->get_blog_prefix(0) . $this->prefix . 'fail';
 
-        if ($this->is_session_active() === false) {
-            session_start();
-        }
-        $this->user_session_id = session_id();
+		if ($this->is_session_active() === false) {
+			session_start();
+		}
+		$this->user_session_id = session_id();
 
 		$this->key_login_msg = self::ID . '-login-msg-id';
 		$this->option_name = self::ID . '-options';
@@ -352,7 +352,7 @@ class login_security_solution {
 		$this->umk_hashes = self::ID . '-pw-hashes';
 		$this->umk_last_active = self::ID . '-last-active';
 		$this->umk_verified_ips = self::ID . '-verified-ips';
-        $this->umk_session_ids = self::ID . '-session-ids';
+		$this->umk_session_ids = self::ID . '-session-ids';
 
 		$this->dir_dictionaries = dirname(__FILE__) . '/pw_dictionaries/';
 		$this->dir_sequences = dirname(__FILE__) . '/pw_sequences/';
@@ -439,7 +439,7 @@ class login_security_solution {
 			return -1;
 		}
 
-        $this->delete_user_session($user->ID);
+		$this->delete_user_session($user->ID);
 
 		###$this->log(__FUNCTION__, $user->user_login);
 		return delete_user_meta($user->ID, $this->umk_last_active);
@@ -530,11 +530,11 @@ class login_security_solution {
 		 * NOTE: redirect_to_login() calls exit(), except when unit testing.
 		 */
 
-        if ($this->is_session_invalid($user->ID)) {
-            ###$this->log(__FUNCTION__, "reached session limit");
-            $this->redirect_to_login('session_limit', true);
-            return -6;
-        }
+		if ($this->is_session_invalid($user->ID)) {
+			###$this->log(__FUNCTION__, "reached session limit");
+			$this->redirect_to_login('session_limit', true);
+			return -6;
+		}
 
 		if (!$this->is_xmlrpc) {
 			if ($this->is_idle($user->ID)) {
@@ -621,27 +621,27 @@ class login_security_solution {
 			$user_ID = $user->ID;
 		}
 
-        $this->delete_user_session($user_ID);
+		$this->delete_user_session($user_ID);
 
 		return delete_user_meta($user_ID, $this->umk_last_active);
 	}
 
-    /**
-     * Removes users session from meta
-     *
-     * @return mixed
-     */
-    protected function delete_user_session($userID) {
-        if ($this->options['session_limit']) {
-            $meta_session_ids = get_user_meta($userID, $this->umk_session_ids, true) ?: array();
-            $key = array_search($this->user_session_id, $meta_session_ids);
-            if ($key !== false) {
-                ###$this->log(__FUNCTION__, 'unsetting session id');
-                unset($meta_session_ids[$key]);
-            }
-            return update_user_meta($userID, $this->umk_session_ids, $meta_session_ids);
-        }
-    }
+	/**
+	 * Removes users session from meta
+	 *
+	 * @return mixed
+	 */
+	protected function delete_user_session($userID) {
+		if ($this->options['session_limit']) {
+			$meta_session_ids = get_user_meta($userID, $this->umk_session_ids, true) ?: array();
+			$key = array_search($this->user_session_id, $meta_session_ids);
+			if ($key !== false) {
+				###$this->log(__FUNCTION__, 'unsetting session id');
+				unset($meta_session_ids[$key]);
+			}
+			return update_user_meta($userID, $this->umk_session_ids, $meta_session_ids);
+		}
+	}
 
 	/**
 	 * Alters the failure messages from logins and password resets that
@@ -719,10 +719,10 @@ class login_security_solution {
 
 		if (!empty($_GET[$this->key_login_msg])) {
 			switch ($_GET[$this->key_login_msg]) {
-                case 'session_limit':
-                    $ours = sprintf(__('You have reached your session limit of %d.', self::ID), $this->options['session_limit']);
-                    $ours .= ' ' . __('Please close your other browsers and try again.', self::ID);
-                    break;
+				case 'session_limit':
+					$ours = sprintf(__('You have reached your session limit of %d.', self::ID), $this->options['session_limit']);
+					$ours .= ' ' . __('Please close your other browsers and try again.', self::ID);
+					break;
 				case 'idle':
 					$ours = sprintf(__('It has been over %d minutes since your last action.', self::ID), $this->options['idle_timeout']);
 					$ours .= ' ' . __('Please log back in.', self::ID);
@@ -1452,21 +1452,21 @@ Password MD5                 %5d     %s
 		);
 	}
 
-    /**
-     * Determines if user has an active session
-     *
-     * @return bool
-     */
-    protected function is_session_active() {
-        if ( php_sapi_name() !== 'cli' ) {
-            if ( version_compare(phpversion(), '5.4.0', '>=') ) {
-                return session_status() === PHP_SESSION_ACTIVE ? true : false;
-            } else {
-                return session_id() === '' ? false : true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * Determines if user has an active session
+	 *
+	 * @return bool
+	 */
+	protected function is_session_active() {
+		if ( php_sapi_name() !== 'cli' ) {
+			if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+				return session_status() === PHP_SESSION_ACTIVE ? true : false;
+			} else {
+				return session_id() === '' ? false : true;
+			}
+		}
+		return false;
+	}
 
 
 	/**
@@ -1530,18 +1530,18 @@ Password MD5                 %5d     %s
 	}
 
 
-    public function is_session_invalid($user_ID) {
-        if (!$this->options['session_limit']) {
-            return null;
-        }
+	public function is_session_invalid($user_ID) {
+		if (!$this->options['session_limit']) {
+			return null;
+		}
 
-        $meta_session_ids = get_user_meta($user_ID, $this->umk_session_ids, true) ?: array();
-        if (!empty($meta_session_ids) && !in_array($this->user_session_id, $meta_session_ids)) {
-            return true;
-        }
-        return false;
+		$meta_session_ids = get_user_meta($user_ID, $this->umk_session_ids, true) ?: array();
+		if (!empty($meta_session_ids) && !in_array($this->user_session_id, $meta_session_ids)) {
+			return true;
+		}
+		return false;
 
-    }
+	}
 
 	/**
 	 * Does the current login failure exactly match an earlier failure
@@ -2385,7 +2385,7 @@ Password MD5                 %5d     %s
 
 		###$this->log(__FUNCTION__, $user->user_login);
 
-        $this->update_user_session($user->ID);
+		$this->update_user_session($user->ID);
 
 		if (!$this->is_xmlrpc) {
 			delete_user_meta($user->ID, $this->umk_last_active);
@@ -2627,26 +2627,26 @@ Password MD5                 %5d     %s
 		return true;
 	}
 
-    /*
-     * Update the current sessions
-     *
-     * @param int $user_ID  the current user's ID number
-     * @return int|bool  the record number if added, TRUE if updated, FALSE
-     *                   if error
-     */
-    protected function update_user_session($user_ID) {
-        if ($this->options['session_limit']) {
-            $meta_session_ids = get_user_meta($user_ID, $this->umk_session_ids, true) ?: array();
-            if (count($meta_session_ids) < $this->options['session_limit']) {
-                ###$this->log(__FUNCTION__, 'count of sessions is less than limit');
-                if (!in_array($this->user_session_id, $meta_session_ids)) {
-                    ###$this->log(__FUNCTION__, 'current session id is not in user meta.. updating');
-                    $meta_session_ids[] = $this->user_session_id;
-                    return update_user_meta($user_ID, $this->umk_session_ids, $meta_session_ids);
-                }
-            }
-        }
-    }
+	/*
+	 * Update the current sessions
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return int|bool  the record number if added, TRUE if updated, FALSE
+	 *                   if error
+	 */
+	protected function update_user_session($user_ID) {
+		if ($this->options['session_limit']) {
+			$meta_session_ids = get_user_meta($user_ID, $this->umk_session_ids, true) ?: array();
+			if (count($meta_session_ids) < $this->options['session_limit']) {
+				###$this->log(__FUNCTION__, 'count of sessions is less than limit');
+				if (!in_array($this->user_session_id, $meta_session_ids)) {
+					###$this->log(__FUNCTION__, 'current session id is not in user meta.. updating');
+					$meta_session_ids[] = $this->user_session_id;
+					return update_user_meta($user_ID, $this->umk_session_ids, $meta_session_ids);
+				}
+			}
+		}
+	}
 
 
 	/**
