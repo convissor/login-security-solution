@@ -156,6 +156,10 @@ class login_security_solution {
 		'pw_change_days' => 0,
 		'pw_change_grace_period_minutes' => 15,
 		'pw_complexity_exemption_length' => 20,
+		'pw_complexity_uppercase_length' => 1,
+		'pw_complexity_lowercase_length' => 1,
+		'pw_complexity_number_length' => 1,
+		'pw_complexity_special_length' => 1,
 		'pw_length' => 10,
 		'pw_reuse_count' => 0,
 	);
