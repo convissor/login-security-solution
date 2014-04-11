@@ -1748,18 +1748,31 @@ Password MD5                 %5d     %s
 			$upper = mb_strtoupper($pw);
 			if ($upper == $lower) {
 				if (preg_match('/^[\P{L}\p{Nd}]+$/u', $pw)) {
-						// Contains only numbers or punctuation.  Sorry, Charlie.
-						return true;
+					// Contains only numbers or punctuation.  Sorry, Charlie.
+					return true;
 				}
 				// Unicameral alphabet. That's cool.
 				return false;
 			}
 			if ($pw != $upper) {
-				return false;
+				$chars = preg_replace('/[\*\?\.\(\)]/u', '', $upper);
+				$chars = preg_split('/(?<!^)(?!$)/u', $chars );
+				$lowers = preg_replace('/[\*\?\.\(\)]/u', '', $pw);
+				foreach ($chars as $char) {
+					$lowers = mb_ereg_replace($char, '', $lowers);
+				}
+				$count = mb_strlen($lowers);
+				if ($count >= (int) $this->options['pw_complexity_lowercase_length'] ) {
+					return false;
+				}
 			}
 			return true;
 		} else {
 			if (!preg_match('/[[:lower:]]/u', $pw)) {
+				return true;
+			}
+			$count = strlen($pw) - strlen(preg_replace('/[[:lower:]]/u', '', $pw));
+			if ($count < (int) $this->options['pw_complexity_lowercase_length'] ) {
 				return true;
 			}
 			return false;
@@ -1778,18 +1791,31 @@ Password MD5                 %5d     %s
 			$upper = mb_strtoupper($pw);
 			if ($upper == $lower) {
 				if (preg_match('/^[\P{L}\p{Nd}]+$/u', $pw)) {
-						// Contains only numbers or punctuation.  Sorry, Charlie.
-						return true;
+					// Contains only numbers or punctuation.  Sorry, Charlie.
+					return true;
 				}
 				// Unicameral alphabet. That's cool.
 				return false;
 			}
 			if ($pw != $lower) {
-				return false;
+				$chars = preg_replace('/[\*\?\.\(\)]/u', '', $lower);
+				$chars = preg_split('/(?<!^)(?!$)/u', $chars );
+				$uppers = preg_replace('/[\*\?\.\(\)]/u', '', $pw);
+				foreach ($chars as $char) {
+					$uppers = mb_ereg_replace($char, '', $uppers);
+				}
+				$count = mb_strlen($uppers);
+				if ($count >= (int) $this->options['pw_complexity_uppercase_length'] ) {
+					return false;
+				}
 			}
 			return true;
 		} else {
 			if (!preg_match('/[[:upper:]]/u', $pw)) {
+				return true;
+			}
+			$count = strlen($pw) - strlen(preg_replace('/[[:upper:]]/u', '', $pw));
+			if ($count < (int) $this->options['pw_complexity_uppercase_length'] ) {
 				return true;
 			}
 			return false;
