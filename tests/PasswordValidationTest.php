@@ -309,7 +309,7 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 
-	public function test_missing_upper_lower_chars_false() {
+	public function test_missing_lower_chars_false() {
 		$tests = array(
 			"aA1!",
 			"aAb",
@@ -322,31 +322,26 @@ class PasswordValidationTest extends TestCase {
 		}
 
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
 			$this->assertFalse($actual, "Should have passed: '$pw'");
 		}
 	}
-	public function test_missing_upper_lower_chars_true() {
+	public function test_missing_lower_chars_true() {
 		$tests = array(
 			"123",
-			"abc",
 			"ABC",
 			"!@#",
-			"a1a",
-			"a!a!",
 			"A!A!",
-			"a1!",
 			"A1!",
-			"бƥ",
 			"БƤ",
 		);
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
 			$this->assertTrue($actual, "Should have failed: '$pw'");
 		}
 	}
 
-	public function test_missing_upper_lower_chars_false__nomb() {
+	public function test_missing_lower_chars_false__nomb() {
 		self::$lss->available_mbstring = false;
 		$tests = array(
 			"aA1!",
@@ -354,26 +349,82 @@ class PasswordValidationTest extends TestCase {
 			"aA!",
 		);
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
 			$this->assertFalse($actual, "Should have passed: '$pw'");
 		}
 	}
 
-	public function test_missing_upper_lower_chars_true__nomb() {
+	public function test_missing_lower_chars_true__nomb() {
+		self::$lss->available_mbstring = false;
+		$tests = array(
+			"123",
+			"ABC",
+			"!@#",
+			"A!A!",
+			"A1!",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_upper_chars_false() {
+		$tests = array(
+			"aA1!",
+			"aAb",
+			"aA!",
+		);
+
+		if (self::$mbstring_available) {
+			$tests[] = "БбƤƥ";  // Bicameral UTF-8.
+			$tests[] = "חح";  // Unicameral UTF-8.
+		}
+
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+	public function test_missing_upper_chars_true() {
+		$tests = array(
+			"123",
+			"abc",
+			"!@#",
+			"a!a!",
+			"a1!",
+			"бƥ",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_upper_chars_false__nomb() {
+		self::$lss->available_mbstring = false;
+		$tests = array(
+			"aA1!",
+			"aAb",
+			"aA!",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+
+	public function test_missing_upper_chars_true__nomb() {
 		self::$lss->available_mbstring = false;
 		$tests = array(
 			"123",
 			"abc",
-			"ABC",
 			"!@#",
-			"a1a",
 			"a!a!",
-			"A!A!",
 			"a1!",
-			"A1!",
 		);
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
 			$this->assertTrue($actual, "Should have failed: '$pw'");
 		}
 	}
@@ -569,7 +620,20 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__noupperlower() {
+	public function test_validate_pw__nolower() {
+		$this->user->user_pass = 'AXJ*1@YQY';
+
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertFalse($actual,
+				"'" . $this->user->user_pass . "' should have failed.");
+		$this->assertEquals(
+					$this->err(sprintf(__("Passwords must either contain lower-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
+			$errors->get_error_message()
+		);
+	}
+
+	public function test_validate_pw__noupper() {
 		$this->user->user_pass = 'axj*1@yqy';
 
 		$errors = new WP_Error;
@@ -577,7 +641,7 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-					$this->err(sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
+					$this->err(sprintf(__("Passwords must either contain upper-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
 			$errors->get_error_message()
 		);
 	}
