@@ -1755,13 +1755,13 @@ Password MD5                 %5d     %s
 				return false;
 			}
 			if ($pw != $upper) {
-				$chars = preg_replace('/[\*\?\.\(\)]/u', '', $upper);
-				$chars = preg_split('/(?<!^)(?!$)/u', $chars );
-				$lowers = preg_replace('/[\*\?\.\(\)]/u', '', $pw);
+				$chars = $this->strip_nonword_chars($upper);
+				$chars = $this->split($chars);
+				$lowers = $this->strip_nonword_chars($pw);
 				foreach ($chars as $char) {
 					$lowers = mb_ereg_replace($char, '', $lowers);
 				}
-				$count = mb_strlen($lowers);
+				$count = $this->strlen($lowers);
 				if ($count >= (int) $this->options['pw_complexity_lowercase_length'] ) {
 					return false;
 				}
@@ -1798,13 +1798,13 @@ Password MD5                 %5d     %s
 				return false;
 			}
 			if ($pw != $lower) {
-				$chars = preg_replace('/[\*\?\.\(\)]/u', '', $lower);
-				$chars = preg_split('/(?<!^)(?!$)/u', $chars );
-				$uppers = preg_replace('/[\*\?\.\(\)]/u', '', $pw);
+				$chars = $this->strip_nonword_chars($lower);
+				$chars = $this->split($chars);
+				$uppers = $this->strip_nonword_chars($pw);
 				foreach ($chars as $char) {
 					$uppers = mb_ereg_replace($char, '', $uppers);
 				}
-				$count = mb_strlen($uppers);
+				$count = $this->strlen($uppers);
 				if ($count >= (int) $this->options['pw_complexity_uppercase_length'] ) {
 					return false;
 				}
