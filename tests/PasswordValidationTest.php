@@ -739,8 +739,8 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__nopunct() {
-		$this->user->user_pass = '123456789012';
+	public function test_validate_pw__nopunct_required_true() {
+		$this->user->user_pass = 'axj15UXyqy';
 
 		$errors = new WP_Error;
 		$actual = self::$lss->validate_pw($this->user, $errors);
@@ -752,7 +752,18 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__nonumbers() {
+	public function test_validate_pw__nopunct_required_false() {
+		$this->user->user_pass = 'axj15UXyqy';
+		$options = self::$lss->options;
+		$options['pw_complexity_special_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
+	}
+
+	public function test_validate_pw__nonumbers_required_true() {
 		$this->user->user_pass = 'axj*@UXyqy';
 
 		$errors = new WP_Error;
@@ -765,7 +776,18 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__nolower() {
+	public function test_validate_pw__nonumbers_required_false() {
+		$this->user->user_pass = 'axj*@UXyqy';
+		$options = self::$lss->options;
+		$options['pw_complexity_number_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
+	}
+
+	public function test_validate_pw__nolower_required_true() {
 		$this->user->user_pass = 'AXJ*1@YQY';
 
 		$errors = new WP_Error;
@@ -778,7 +800,18 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__noupper() {
+	public function test_validate_pw__nolower_required_false() {
+		$this->user->user_pass = 'AXJ*1@YQY';
+		$options = self::$lss->options;
+		$options['pw_complexity_lowercase_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
+	}
+
+	public function test_validate_pw__noupper_required_true() {
 		$this->user->user_pass = 'axj*1@yqy';
 
 		$errors = new WP_Error;
@@ -789,6 +822,17 @@ class PasswordValidationTest extends TestCase {
 					$this->err(sprintf(__("Passwords must either contain upper-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
 			$errors->get_error_message()
 		);
+	}
+
+	public function test_validate_pw__noupper_required_false() {
+		$this->user->user_pass = 'axj*1@yqy';
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
 	}
 
 	public function test_validate_pw__sequentialfile() {

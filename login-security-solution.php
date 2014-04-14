@@ -2852,7 +2852,9 @@ Password MD5                 %5d     %s
 			}
 			return false;
 		}
-		if ($enforce_complexity && $this->is_pw_missing_numeric($pw)) {
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_number_length'] &&
+			$this->is_pw_missing_numeric($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID . '_' . self::E_NUMBER,
 					$this->err($this->msg(self::E_NUMBER)),
@@ -2861,7 +2863,9 @@ Password MD5                 %5d     %s
 			}
 			return false;
 		}
-		if ($enforce_complexity && $this->is_pw_missing_punct_chars($pw)) {
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_special_length'] &&
+			$this->is_pw_missing_punct_chars($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID . '_' . self::E_PUNCT,
 					$this->err($this->msg(self::E_PUNCT)),
@@ -2870,7 +2874,9 @@ Password MD5                 %5d     %s
 			}
 			return false;
 		}
-		if ($enforce_complexity && $this->is_pw_missing_lower_chars($pw)) {
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_lowercase_length'] &&
+			$this->is_pw_missing_lower_chars($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID . '_' . self::E_LOWERCASE,
 					$this->err($this->msg(self::E_LOWERCASE)),
@@ -2879,7 +2885,9 @@ Password MD5                 %5d     %s
 			}
 			return false;
 		}
-		if ($enforce_complexity && $this->is_pw_missing_upper_chars($pw)) {
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_uppercase_length'] &&
+			$this->is_pw_missing_upper_chars($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID . '_' . self::E_UPPERCASE,
 					$this->err($this->msg(self::E_UPPERCASE)),
