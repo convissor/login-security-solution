@@ -692,6 +692,28 @@ class login_security_solution_admin extends login_security_solution {
 			$out[$name] = 5;
 		}
 
+		// Special check to make sure that password minimum length is greater
+		// than the totals set for the character password requirements
+		$name = 'pw_length';
+		$char_reqs = (int) $out['pw_complexity_uppercase_length'] +
+			(int) $out['pw_complexity_lowercase_length'] +
+			(int) $out['pw_complexity_special_length'] +
+			(int) $out['pw_complexity_number_length'];
+		if ($out[$name] < $char_reqs) {
+			$label = $this->fields['pw_complexity_uppercase_length']['label'] . ",\n" .
+				$this->fields['pw_complexity_lowercase_length']['label'] . ", " .
+				$this->fields['pw_complexity_special_length']['label'] . ", and " .
+				$this->fields['pw_complexity_number_length']['label'];
+			$new_length = $char_reqs;
+			add_settings_error($this->option_name,
+					$this->hsc_utf8($name),
+					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
+							. sprintf($gt_format, $label)
+							. sprintf(__(" so we used %s instead.", self::ID), $new_length)));
+
+			$out[$name] = $new_length;
+		}
+
 		return $out;
 	}
 
