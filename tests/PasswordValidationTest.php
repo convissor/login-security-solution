@@ -280,6 +280,42 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 
+	public function test_missing_required_numeric_false() {
+		$options = self::$lss->options;
+		$options['pw_complexity_number_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1!1",
+			"123",
+			"a२c१",  // Devanagari number 2 and 1.
+			"a୨c୦",  // Oriya number 2 and 0.
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_numeric($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+	public function test_missing_required_numeric_true() {
+		$options = self::$lss->options;
+		$options['pw_complexity_number_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"abc1",
+			"ABC2",
+			"!3@#",
+			"aA4b",
+			"5a!a!",
+			"A6!A!",
+			"aA!7",
+			"aבc",  // Hebrew letter number 2.
+			"ةيبرعلا",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_numeric($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
 	public function test_missing_punct_chars_false() {
 		$tests = array(
 			"aA1!",
@@ -305,6 +341,45 @@ class PasswordValidationTest extends TestCase {
 			"A",
 			"1",
 			"Россия",
+			"中國哲學史大綱胡適",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_punct_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_punct_chars_false() {
+		$options = self::$lss->options;
+		$options['pw_complexity_special_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1!*",
+			"#b9.",
+			".1?j",
+			"Р!оссия.",
+			"「中國哲學史大綱」、胡適",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_punct_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+	public function test_missing_required_punct_chars_true() {
+		$options = self::$lss->options;
+		$options['pw_complexity_special_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"123!",
+			"abc.",
+			"ABC?",
+			"aAb*",
+			"a1a",
+			"a!A1",
+			".a",
+			"?A",
+			"$1",
+			"Россия.",
 			"中國哲學史大綱胡適",
 		);
 		foreach ($tests as $pw) {

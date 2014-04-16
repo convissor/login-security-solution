@@ -1723,17 +1723,31 @@ Password MD5                 %5d     %s
 	 * @return bool
 	 */
 	protected function is_pw_missing_numeric($pw) {
-		return !preg_match('/\d/u', $pw);
+		if (!preg_match('/[\p{N}]/u', $pw)) {
+			return true;
+		}
+		$count = $this->strlen($pw) - $this->strlen(preg_replace('/[\p{N}]+/u', '', $pw));
+		if ($count < (int) $this->options['pw_complexity_number_length'] ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
-	 * Does the password lack punctuation characters?
+	 * Does the password lack punctuation/symbol characters?
 	 *
 	 * @param string $pw  the password to examine
 	 * @return bool
 	 */
 	protected function is_pw_missing_punct_chars($pw) {
-		return !preg_match('/[^\p{L}\p{Nd}]/u', $pw);
+		if (!preg_match('/[\p{P}|\p{S}]/u', $pw)) {
+			return true;
+		}
+		$count = $this->strlen($pw) - $this->strlen(preg_replace('/[\p{P}|\p{S}]+/u', '', $pw));
+		if ($count < (int) $this->options['pw_complexity_special_length'] ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -1747,8 +1761,8 @@ Password MD5                 %5d     %s
 			$lower = mb_strtolower($pw);
 			$upper = mb_strtoupper($pw);
 			if ($upper == $lower) {
-				if (preg_match('/^[\P{L}\p{Nd}]+$/u', $pw)) {
-					// Contains only numbers or punctuation.  Sorry, Charlie.
+				if (preg_match('/^[\p{P}|\p{N}|\p{S}]+$/u', $pw)) {
+					// Contains only numbers, symbols, or punctuation.  Sorry, Charlie.
 					return true;
 				}
 				// Unicameral alphabet. That's cool.
@@ -1790,8 +1804,8 @@ Password MD5                 %5d     %s
 			$lower = mb_strtolower($pw);
 			$upper = mb_strtoupper($pw);
 			if ($upper == $lower) {
-				if (preg_match('/^[\P{L}\p{Nd}]+$/u', $pw)) {
-					// Contains only numbers or punctuation.  Sorry, Charlie.
+				if (preg_match('/^[\p{P}|\p{N}|\p{S}]+$/u', $pw)) {
+					// Contains only numbers, symbols, or punctuation.  Sorry, Charlie.
 					return true;
 				}
 				// Unicameral alphabet. That's cool.
