@@ -38,6 +38,12 @@ class VerifiedIpTest extends TestCase {
 		// start indexing at 10 to ensure tests do what we really expect
 		// than passing by getting lucky.
 		self::$lss->time_overload = 10;
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 1;
+		$options['pw_complexity_lowercase_length'] = 1;
+		$options['pw_complexity_special_length'] = 1;
+		$options['pw_complexity_number_length'] = 1;
+		self::$lss->options = $options;
 	}
 
 

@@ -50,6 +50,10 @@ class PasswordChangeTest extends TestCase {
 		$options['pw_change_days'] = 10;
 		$options['pw_length'] = 8;
 		$options['pw_reuse_count'] = 3;
+		$options['pw_complexity_uppercase_length'] = 1;
+		$options['pw_complexity_lowercase_length'] = 1;
+		$options['pw_complexity_special_length'] = 1;
+		$options['pw_complexity_number_length'] = 1;
 		self::$lss->options = $options;
 
 		if (!extension_loaded('mbstring')) {
