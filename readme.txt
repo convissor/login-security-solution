@@ -440,6 +440,16 @@ on our GitHub.
     `Translation from WordPress.`  Those phrases are already translated
     in Wordporess' core.  Leaving them untranslated here ensures
     consistency with the rest of WordPress.
+1. To start a new translation:
+
+        cd languages
+
+        # Adjust "lc" to your language code.
+        # Adjust "CC" to your country code.
+        cp login-security-solution.pot login-security-solution-lc_CC.po
+
+        # Edit the new login-security-solution-lc_CC.po file.
+
 
 = Translation Information for Developers =
 
