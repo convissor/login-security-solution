@@ -439,7 +439,7 @@ class login_security_solution {
 			return -1;
 		}
 
-		$this->delete_user_session($user->ID);
+		$this->delete_user_session($user->ID, $this->user_session_id);
 
 		###$this->log(__FUNCTION__, $user->user_login);
 		return delete_user_meta($user->ID, $this->umk_last_active);
@@ -621,7 +621,7 @@ class login_security_solution {
 			$user_ID = $user->ID;
 		}
 
-		$this->delete_user_session($user_ID);
+		$this->delete_user_session($user_ID, $this->user_session_id);
 
 		return delete_user_meta($user_ID, $this->umk_last_active);
 	}
@@ -631,10 +631,10 @@ class login_security_solution {
 	 *
 	 * @return mixed
 	 */
-	protected function delete_user_session($userID) {
+	protected function delete_user_session($userID, $sessionID) {
 		if ($this->options['session_limit']) {
 			$meta_session_ids = get_user_meta($userID, $this->umk_session_ids, true) ?: array();
-			$key = array_search($this->user_session_id, $meta_session_ids);
+			$key = array_search($sessionID, $meta_session_ids);
 			if ($key !== false) {
 				###$this->log(__FUNCTION__, 'unsetting session id');
 				unset($meta_session_ids[$key]);
@@ -1531,7 +1531,7 @@ Password MD5                 %5d     %s
 
 
 	public function is_session_invalid($user_ID) {
-		if (!$this->options['session_limit']) {
+		if (!$this->options['session_limit'] || !$this->options['idle_timeout']) {
 			return null;
 		}
 
@@ -2637,14 +2637,31 @@ Password MD5                 %5d     %s
 	protected function update_user_session($user_ID) {
 		if ($this->options['session_limit']) {
 			$meta_session_ids = get_user_meta($user_ID, $this->umk_session_ids, true) ?: array();
+
+			// Update older sessions with new timestamps
+			$time = array_search($this->user_session_id, $meta_session_ids);
+			if ($time !== false) {
+			  // replace the timestamp
+			  unset($meta_session_ids[$time]);
+			  $meta_session_ids[$this->get_time()] = $this->user_session_id;
+			}
+
+			// Garbage collect older unused sessions
+			foreach ($meta_session_ids as $time => $session_id) {
+				if (($this->options['idle_timeout'] * 60) + $time < $this->get_time() ) {
+					unset($meta_session_ids[$time]);
+				}
+			}
+
+			// Add new sessions
 			if (count($meta_session_ids) < $this->options['session_limit']) {
 				###$this->log(__FUNCTION__, 'count of sessions is less than limit');
 				if (!in_array($this->user_session_id, $meta_session_ids)) {
 					###$this->log(__FUNCTION__, 'current session id is not in user meta.. updating');
-					$meta_session_ids[] = $this->user_session_id;
-					return update_user_meta($user_ID, $this->umk_session_ids, $meta_session_ids);
+					$meta_session_ids[$this->get_time()] = $this->user_session_id;
 				}
 			}
+			return update_user_meta($user_ID, $this->umk_session_ids, $meta_session_ids);
 		}
 	}
 
@@ -2657,6 +2674,7 @@ Password MD5                 %5d     %s
 	 *                   if error
 	 */
 	protected function set_last_active($user_ID) {
+		$this->update_user_session($user_ID);
 		return update_user_meta($user_ID, $this->umk_last_active, time());
 	}
 

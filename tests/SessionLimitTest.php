@@ -44,7 +44,7 @@ class SessionLimitTest extends TestCase {
 
 		$user_ID = null;
 		$user_name = $this->user->user_login;
-		$actual = self::$lss->delete_user_session($this->user->ID);
+		$actual = self::$lss->delete_user_session($this->user->ID, self::$lss->user_session_id);
 		$this->assertInternalType('integer', $actual, 'Delete last active...');
 	}
 
@@ -115,7 +115,7 @@ class SessionLimitTest extends TestCase {
 		self::$lss->options = $options;
 
 		$actual = self::$lss->update_user_session($this->user->ID);
-		$this->assertNull($actual, 'Set last active...');
+		$this->assertTrue($actual, 'Set last active...');
 
 		$expected_error = 'Cannot modify header information';
 		$this->expected_errors($expected_error);
