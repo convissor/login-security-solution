@@ -384,22 +384,7 @@ class login_security_solution {
 	 * @return int|bool  the record number if added, TRUE if updated, FALSE
 	 *                   if error
 	 */
-	public function add_to_message_queue($message) {
-		global $user_ID, $user_name;
-
-		if (empty($user_ID)) {
-			if (empty($user_name)) {
-				###$this->log(__FUNCTION__, "empty user_ID, user_name");
-				return;
-			}
-			$user = get_user_by('login', $user_name);
-			if (! $user instanceof WP_User) {
-				###$this->log(__FUNCTION__, "unknown user_name");
-				return -1;
-			}
-			$user_ID = $user->ID;
-		}
-
+	public function add_to_message_queue($message, $user_ID) {
 		$message_queue = $this->get_message_queue($user_ID);
 		$message_queue[] = $message;
 		###$this->log(__FUNCTION__, var_export($message_queue, true));
@@ -844,7 +829,7 @@ class login_security_solution {
 		$date_value  = date_i18n( "F j, Y g:i a T", $last_login, true );
 		$message = sprintf(__("Welcome back. Last logged in %s", self::ID), $date_value);
 		###$this->log(__FUNCTION__, $message);
-		$this->add_to_message_queue($message);
+		$this->add_to_message_queue($message, $user_ID);
 		return $this->set_last_login($user_ID);
 	}
 

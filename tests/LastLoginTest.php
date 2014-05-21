@@ -28,6 +28,9 @@ class LastLoginTest extends TestCase {
 		$this->assertSame(0, $actual);
 	}
 
+	/**
+	 * @depends test_get_last_login__empty_1
+	 */
 	public function test_set_last_login__add() {
 		$actual = self::$lss->set_last_login($this->user->ID);
 		$this->assertInternalType('integer', $actual, 'Bad return value.');
@@ -52,12 +55,12 @@ class LastLoginTest extends TestCase {
 		$this->assertLessThanOrEqual(1, $diff, 'Time was in the future.');
 	}
 
-
+	/**
+	 * @depends test_get_last_login__empty_1
+	 */
 	public function test_add_to_message_queue__add() {
-		global $user_ID;
-		$user_ID = $this->user->ID;
 		$message = 'foo';
-		$actual = self::$lss->add_to_message_queue($message);
+		$actual = self::$lss->add_to_message_queue($message, $this->user->ID);
 		$this->assertInternalType('integer', $actual, 'Bad return value.');
 	}
 
@@ -67,7 +70,7 @@ class LastLoginTest extends TestCase {
 	public function test_add_to_message_queue__update() {
 		sleep(1);
 		$message = 'bar';
-		$actual = self::$lss->add_to_message_queue($message);
+		$actual = self::$lss->add_to_message_queue($message, $this->user->ID);
 		$this->assertTrue($actual, 'Bad return value.');
 	}
 
@@ -75,6 +78,8 @@ class LastLoginTest extends TestCase {
 	 * @depends test_add_to_message_queue__update
 	 */
 	public function test_display_admin_notices__display() {
+		global $user_ID;
+		$user_ID = $this->user->ID;
 		sleep(1);
 		$queue = (array) get_user_meta($this->user->ID, self::$lss->umk_message_queue);
 		$this->assertSame(2, count($queue[0]));
