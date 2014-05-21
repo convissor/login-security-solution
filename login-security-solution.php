@@ -826,7 +826,10 @@ class login_security_solution {
 	 */
 	public function push_last_login_to_message_queue($user_ID) {
 		$last_login = $this->get_last_login($user_ID) ?: time();
-		$date_value  = date_i18n( "F j, Y g:i a T", $last_login, true );
+		$tz_string = get_option('timezone_string');
+		date_default_timezone_set($tz_string);
+		$date_value  = date( "F j, Y g:i a T", $last_login);
+		date_default_timezone_set('UTC');
 		$message = sprintf(__("Welcome back. Last logged in %s", self::ID), $date_value);
 		###$this->log(__FUNCTION__, $message);
 		$this->add_to_message_queue($message, $user_ID);
