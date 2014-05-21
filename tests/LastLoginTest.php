@@ -102,7 +102,9 @@ class LastLoginTest extends TestCase {
 	 */
 	public function test_push_last_login_to_message_queue__adds_message() {
 		$time = self::$lss->get_last_login($this->user->ID);
-		$date_value  = date_i18n( "F j, Y g:i a T", $time, true );
+		$tz_string = get_option('timezone_string');
+		date_default_timezone_set($tz_string);
+		$date_value  = date( "F j, Y g:i a T", $time);
 		$expected_message = sprintf(__("Welcome back. Last logged in %s", self::ID), $date_value);
 		$actual = self::$lss->push_last_login_to_message_queue($this->user->ID);
 		$this->assertTrue($actual, 'Bad return value.');
