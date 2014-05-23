@@ -36,6 +36,14 @@ class LoginFailTest extends TestCase {
 
 	public function setUp() {
 		parent::setUp();
+		global $wpdb;
+		$actual = $wpdb->insert(
+			$wpdb->users,
+			array(
+				'user_login' => $this->user->user_login,
+			)
+		);
+		$this->assertSame(1, $actual, 'Could not insert sample record.');
 
 		if (!$this->is_fail_table_configured()) {
 			$this->markTestSkipped("The " . self::$lss->table_fail . " table doesn't exist or isn't using the InnoDB engine. Probably the plugin hasn't been activated.");
@@ -54,6 +62,7 @@ class LoginFailTest extends TestCase {
 		$options['login_fail_notify_multiple'] = 0;
 		$options['login_fail_tier_2'] = 3;
 		$options['login_fail_tier_3'] = 4;
+		$options['login_fail_disable_user'] = 3;
 		$options['login_fail_breach_notify'] = 4;
 		$options['login_fail_breach_pw_force_change'] = 4;
 		self::$lss->options = $options;
@@ -163,6 +172,16 @@ class LoginFailTest extends TestCase {
 	/**
 	 * @depends test_get_login_fail
 	 */
+	public function test_process_login_fail__account_enabled() {
+		// At this point, our user should not be disabled
+		$user = get_user_by('login', $this->user_name);
+		$disabled = self::$lss->is_account_disabled($user->ID);
+		$this->assertFalse($disabled, 'Account should not be disabled');
+	}
+
+	/**
+	 * @depends test_get_login_fail
+	 */
 	public function test_process_login_fail__pre_threshold() {
 		global $wpdb;
 
@@ -172,6 +191,18 @@ class LoginFailTest extends TestCase {
 		$this->assertInternalType('integer', $wpdb->insert_id,
 				'This should be an insert id.');
 	}
+
+	/**
+	 * @depends test_process_login_fail__pre_threshold
+	 */
+	public function test_process_login_fail__account_disbled() {
+		// test_process_login_fail__pre_threshold should have triggered our
+		// limit and disabled the user
+		$user = get_user_by('login', $this->user_name);
+		$disabled = self::$lss->is_account_disabled($user->ID);
+		$this->assertTrue($disabled, 'Account should be disabled' );
+	}
+
 
 	/**
 	 * @depends test_get_login_fail

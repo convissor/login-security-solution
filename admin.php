@@ -272,7 +272,7 @@ class login_security_solution_admin extends login_security_solution {
 			'login_fail_minutes' => array(
 				'group' => 'login',
 				'label' => __("Match Time", self::ID),
-				'text' => __("How far back, in minutes, should login failures look for matching data? 0 disables Login Failure slow downs, notifications and breach confirmations.", self::ID),
+				'text' => __("How far back, in minutes, should login failures look for matching data? 0 disables Login Failure slow downs, disabling accounts, notifications and breach confirmations.", self::ID),
 				'type' => 'int',
 			),
 			'login_fail_tier_2' => array(
@@ -286,6 +286,12 @@ class login_security_solution_admin extends login_security_solution {
 				'group' => 'login',
 				'label' => __("Delay Tier 3", self::ID),
 				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be > Delay Tier 2.", self::ID), 25, 60),
+				'type' => 'int',
+			),
+			'login_fail_disable_user' => array(
+				'group' => 'login',
+				'label' => __("Disable User", self::ID),
+				'text' => __("How many matching login failures should it take to disable the user account? 0 disables this feature.", self::ID),
 				'type' => 'int',
 			),
 			'admin_email' => array(

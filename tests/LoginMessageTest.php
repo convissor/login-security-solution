@@ -71,6 +71,17 @@ class LoginMessageTest extends TestCase {
 				'Output should have been modified.');
 	}
 
+	public function test_login_message__account_disabled() {
+		$_GET[self::$lss->key_login_msg] = 'account_disabled';
+
+		$ours = __('Your account has been disabled.', self::ID);
+		$ours .= ' ' . __('Please contact your administrator to re-enable your account.', self::ID);
+
+		$actual = self::$lss->login_message('input');
+		$this->assertEquals('input' . $this->ours($ours), $actual,
+				'Output should have been modified.');
+	}
+
 	public function test_login_message__pw_expired() {
 		$_GET[self::$lss->key_login_msg] = 'pw_expired';
 

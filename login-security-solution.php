@@ -148,6 +148,7 @@ class login_security_solution {
 		'login_fail_minutes' => 120,
 		'login_fail_tier_2' => 5,
 		'login_fail_tier_3' => 10,
+		'login_fail_disable_user' => 0,
 		'login_fail_notify' => 50,
 		'login_fail_notify_multiple' => 0,
 		'login_fail_breach_notify' => 6,
@@ -220,6 +221,12 @@ class login_security_solution {
 	protected $umk_verified_ips;
 
 	/**
+	 * Our usermeta key for tracking if this user account is disabled
+	 * @var bool
+	 */
+	protected $umk_disabled_account;
+
+	/**
 	 * The user's password from the authenticate filter
 	 * @var string
 	 */
@@ -257,6 +264,11 @@ class login_security_solution {
 		add_action('wp_login', array(&$this, 'wp_login'), 1, 2);
 		add_filter('login_errors', array(&$this, 'login_errors'));
 		add_filter('login_message', array(&$this, 'login_message'));
+
+		add_action( 'show_user_profile', array(&$this, 'use_disabled_profile_field'));
+		add_action( 'edit_user_profile', array(&$this, 'use_disabled_profile_field'));
+		add_action( 'personal_options_update', array(&$this, 'use_disbled_profile_field_save' ));
+		add_action( 'edit_user_profile_update', array(&$this, 'use_disabled_profile_field_save' ));
 
 		if ($this->options['disable_logins']) {
 			add_filter('comments_open', array(&$this, 'comments_open'));
@@ -333,6 +345,7 @@ class login_security_solution {
 		$this->umk_hashes = self::ID . '-pw-hashes';
 		$this->umk_last_active = self::ID . '-last-active';
 		$this->umk_verified_ips = self::ID . '-verified-ips';
+		$this->umk_disabled_account = self::ID . '-disabled-account';
 
 		$this->dir_dictionaries = dirname(__FILE__) . '/pw_dictionaries/';
 		$this->dir_sequences = dirname(__FILE__) . '/pw_sequences/';
@@ -516,6 +529,13 @@ class login_security_solution {
 			}
 		}
 
+		if ($this->is_account_disabled($user->ID)) {
+			if (!$this->is_xmlrpc) {
+				$this->redirect_to_login('account_disabled', true);
+			}
+			return -7;
+		}
+
 		if ($this->is_pw_expired($user->ID)) {
 			$grace = $this->check_pw_grace_period($user->ID);
 			if ($grace === true) {
@@ -675,6 +695,10 @@ class login_security_solution {
 				case 'idle':
 					$ours = sprintf(__('It has been over %d minutes since your last action.', self::ID), $this->options['idle_timeout']);
 					$ours .= ' ' . __('Please log back in.', self::ID);
+					break;
+				case 'account_disabled':
+					$ours = __('Your account has been disabled.', self::ID);
+					$ours .= ' ' . __('Please contact your administrator to re-enable your account.', self::ID);
 					break;
 				case 'pw_expired':
 					$ours = __('The grace period for changing your password has expired.', self::ID);
@@ -1075,6 +1099,16 @@ class login_security_solution {
 	}
 
 	/**
+	 * Obtains the status of the user account
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return bool  disable status of the user account
+	 */
+	protected function get_user_account_disabled($user_ID) {
+		return get_user_meta($user_ID, $this->umk_disabled_account, true);
+	}
+
+	/**
 	 * Obtains the number of login failures for the current IP, user name
 	 * and password in the period specified by login_fail_minutes
 	 *
@@ -1458,6 +1492,18 @@ Password MD5                 %5d     %s
 
 		$this->set_last_active($user_ID);
 
+		return false;
+	}
+
+	/**
+	 * Is the user accoutn disabled?
+	 * @param in $user_ID  the user's id number
+	 * @return bool  true if account is disabled
+	 */
+	public function is_account_disabled($user_ID) {
+		if ($this->get_user_account_disabled($user_ID) == '1') {
+			return true;
+		}
 		return false;
 	}
 
@@ -2260,6 +2306,18 @@ Password MD5                 %5d     %s
 			return -4;
 		}
 
+		if ($this->options['login_fail_disable_user']
+			&& ($fails['total'] == $this->options['login_fail_disable_user'])) {
+
+			$this->log(__FUNCTION__, "Trying to get user to disable");
+			$user = get_user_by('login', $user_name);
+			$this->log(__FUNCTION__, $user->ID);
+			if ($user) {
+				$this->log(__FUNCTION__, "Disabling user: " . $user_name . ' ID: ' . $user->ID);
+				$this->set_user_account_disabled($user->ID);
+			}
+		}
+
 		if ($this->options['login_fail_notify']
 			&& ! ($fails['total'] % $this->options['login_fail_notify']))
 		{
@@ -2555,6 +2613,17 @@ Password MD5                 %5d     %s
 	}
 
 	/**
+	 * Disables the user account
+	 *
+	 * @param int $user_ID the current user's ID number
+	 * @return int|bool the record number if added, TRUE if updated, FALSE if error
+	 *
+	 */
+	protected function set_user_account_disabled($user_ID) {
+		return update_user_meta($user_ID, $this->umk_disabled_account, 1);
+	}
+
+	/**
 	 * Replaces the default option values with those stored in the database
 	 * @uses login_security_solution::$options  to hold the data
 	 */
@@ -2718,6 +2787,53 @@ Password MD5                 %5d     %s
 		} else {
 			return substr($pw, $start, $length);
 		}
+	}
+
+	/**
+	 * Add the disabled field to user profiles
+	 *
+	 * @param object $user
+	 */
+	public function use_disabled_profile_field( $user ) {
+
+		// Only show this option to users who can delete other users
+		if ( !current_user_can( 'edit_users' ) )
+			return;
+		?>
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th>
+						<label for="<?php echo $this->umk_disabled_account ?>"><?php _e('User Account Disabled', self::ID ); ?></label>
+					</th>
+					<td>
+						<input type="checkbox" name="<?php echo $this->umk_disabled_account ?>" id="<?php echo $this->umk_disabled_account ?>" value="1" <?php checked( 1, get_the_author_meta( $this->umk_disabled_account, $user->ID ) ); ?> />
+						<span class="description"><?php _e( 'If checked, the user cannot login with this account.' , self::ID ); ?></span>
+					</td>
+				</tr>
+			<tbody>
+		</table>
+		<?php
+	}
+
+	/**
+	 * Saves the custom disabled field to user meta
+	 *
+	 * @param int $user_ID
+	 */
+	public function use_disabled_profile_field_save( $user_ID ) {
+
+		// Only worry about saving this field if the user has access
+		if ( !current_user_can( 'edit_users' ) )
+			return;
+
+		if ( !isset( $_POST[$this->umk_disabled_account] ) ) {
+			$disabled = 0;
+		} else {
+			$disabled = $_POST[$this->umk_disabled_account];
+		}
+
+		update_user_meta( $user_ID, $this->umk_disabled_account, $disabled );
 	}
 
 	/**
