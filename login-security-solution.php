@@ -941,7 +941,11 @@ class login_security_solution {
 
 		if (!defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
 			// Keep login failures from becoming denial of service attacks.
-			mysql_close($wpdb->dbh);
+			if (empty($wpdb->use_mysqli)) {
+				mysql_close($wpdb->dbh);
+			} else {
+				mysqli_close($wpdb->dbh);
+			}
 
 			sleep($this->sleep);
 
