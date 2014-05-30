@@ -480,7 +480,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.44.0 () =
+= 0.44.0 (2014-05-30) =
 * Handle mysqli usage
 * Indicate that setting "Match Time" to 0 disables slowdowns, notifications,
 and breach confirmations.
