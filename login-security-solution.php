@@ -941,7 +941,12 @@ class login_security_solution {
 
 		if (!defined('LOGIN_SECURITY_SOLUTION_TESTING')) {
 			// Keep login failures from becoming denial of service attacks.
-			mysql_close($wpdb->dbh);
+			// since WP 3.9 mysqli could be used, see: https://core.trac.wordpress.org/ticket/27703
+			if ( ! empty( $wpdb->use_mysqli ) ) {
+				mysqli_close($wpdb->dbh);
+			} else {
+				mysql_close($wpdb->dbh);
+			}
 
 			sleep($this->sleep);
 
