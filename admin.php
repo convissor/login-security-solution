@@ -359,9 +359,15 @@ class login_security_solution_admin extends login_security_solution {
 				'type' => 'int',
 				'greater_than' => 20,
 			),
-			'pw_change_days' => array(
+			'pw_min_age_change_days' => array(
 				'group' => 'pw',
-				'label' => __("Aging", self::ID),
+				'label' => __("Minimum Age", self::ID),
+				'text' => __("How many days old must a password be before allowing it be changed? Not recommended. 0 disables this feature.", self::ID),
+				'type' => 'int',
+			),
+			'pw_max_age_change_days' => array(
+				'group' => 'pw',
+				'label' => __("Maximum Age", self::ID),
 				'text' => __("How many days old can a password be before requiring it be changed? Not recommended. 0 disables this feature.", self::ID),
 				'type' => 'int',
 			),
@@ -682,7 +688,7 @@ class login_security_solution_admin extends login_security_solution {
 
 		// Speical check to ensure reuse count is set if aging is enabled.
 		$name = 'pw_reuse_count';
-		if ($out['pw_change_days'] && !$out[$name]) {
+		if ($out['pw_max_age_change_days'] && !$out[$name]) {
 			add_settings_error($this->option_name,
 					$this->hsc_utf8($name),
 					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "

@@ -32,7 +32,7 @@ class PasswordExpirationTest extends TestCase {
 		parent::setUp();
 
 		$options = self::$lss->options;
-		$options['pw_change_days'] = 10;
+		$options['pw_max_age_change_days'] = 10;
 		$options['pw_change_grace_period_minutes'] = 10;
 		self::$lss->options = $options;
 	}
@@ -125,7 +125,7 @@ class PasswordExpirationTest extends TestCase {
 
 	public function test_is_pw_expired__disabled() {
 		$options = self::$lss->options;
-		$options['pw_change_days'] = 0;
+		$options['pw_max_age_change_days'] = 0;
 		self::$lss->options = $options;
 
 		$actual = self::$lss->is_pw_expired($this->user->ID);
@@ -154,7 +154,7 @@ class PasswordExpirationTest extends TestCase {
 	 */
 	public function test_is_pw_expired__expired() {
 		$options = self::$lss->options;
-		$options['pw_change_days'] = -1;
+		$options['pw_max_age_change_days'] = -1;
 		self::$lss->options = $options;
 
 		$actual = self::$lss->is_pw_expired($this->user->ID);
@@ -218,7 +218,7 @@ class PasswordExpirationTest extends TestCase {
 	 */
 	public function test_check__post_expiration_first() {
 		$options = self::$lss->options;
-		$options['pw_change_days'] = -1;
+		$options['pw_max_age_change_days'] = -1;
 		self::$lss->options = $options;
 
 		$expected_error = 'Cannot modify header information';
@@ -242,7 +242,7 @@ class PasswordExpirationTest extends TestCase {
 	 */
 	public function test_check__post_expiration_grace_expired() {
 		$options = self::$lss->options;
-		$options['pw_change_days'] = -1;
+		$options['pw_max_age_change_days'] = -1;
 		$options['pw_change_grace_period_minutes'] = -1;
 		self::$lss->options = $options;
 

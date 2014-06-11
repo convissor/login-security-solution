@@ -153,7 +153,8 @@ class login_security_solution {
 		'login_fail_notify_multiple' => 0,
 		'login_fail_breach_notify' => 6,
 		'login_fail_breach_pw_force_change' => 6,
-		'pw_change_days' => 0,
+		'pw_max_age_change_days' => 0,
+		'pw_min_age_change_days' => 0,
 		'pw_change_grace_period_minutes' => 15,
 		'pw_complexity_exemption_length' => 20,
 		'pw_complexity_uppercase_length' => 1,
@@ -251,6 +252,8 @@ class login_security_solution {
 		add_action('auth_cookie_bad_hash', array(&$this, 'auth_cookie_bad'));
 		add_action('auth_cookie_valid', array(&$this, 'check'), 1, 2);
 		add_action('password_reset', array(&$this, 'password_reset'), 10, 2);
+		add_filter('allow_password_reset', array(&$this, 'allow_password_change'));
+		add_filter('show_password_fields', array(&$this, 'allow_password_change'));
 		add_action('user_profile_update_errors',
 				array(&$this, 'user_profile_update_errors'), 999, 3);
 
@@ -347,7 +350,7 @@ class login_security_solution {
 		if ($this->options['login_fail_tier_2'] < 2) {
 			$this->options['login_fail_tier_2'] = 2;
 		}
-		if ($this->options['pw_change_days']
+		if ($this->options['pw_max_age_change_days']
 			&& !$this->options['pw_reuse_count'])
 		{
 			$this->options['pw_reuse_count'] = 5;
@@ -366,6 +369,22 @@ class login_security_solution {
 	/*
 	 * ===== ACTION & FILTER CALLBACK METHODS =====
 	 */
+
+	/**
+	 * Determines whether a user is allowed to change their password
+	 *
+	 * @return boolean
+	 */
+	public function allow_password_change($allow, $user_ID) {
+		global $pagenow;
+		if ($user_ID instanceof WP_User && ! empty($user_ID->ID)) {
+			$user_ID = $user_ID->ID;
+		}
+		if ($pagenow !== 'user-edit.php') {
+			return ! $this->is_pw_too_fresh($user_ID);
+		}
+		return $allow;
+	}
 
 	/**
 	 * Sends failed auth cookie data to our login failure process
@@ -1614,14 +1633,14 @@ Password MD5                 %5d     %s
 	 * @return mixed  true if expired.  Other replies all evaluate to empty
 	 *                but use different types to aid unit testing.
 	 *
-	 * @uses login_security_solution::$options  for the pw_change_days value
+	 * @uses login_security_solution::$options  for the pw_max_age_change_days value
 	 * @uses login_security_solution::get_last_changed_time()  to get the last
 	 *       time the user changed their password
 	 * @uses login_security_solution::set_last_changed_time()  to update the
 	 *       user's password changed time if it's not available
 	 */
 	protected function is_pw_expired($user_ID) {
-		if (!$this->options['pw_change_days']) {
+		if (!$this->options['pw_max_age_change_days']) {
 			return null;
 		}
 		$time = $this->get_pw_changed_time($user_ID);
@@ -1629,7 +1648,35 @@ Password MD5                 %5d     %s
 			$this->set_pw_changed_time($user_ID);
 			return 0;
 		}
-		if (((time() - $time) / 86400) > $this->options['pw_change_days']) {
+		if (((time() - $time) / 86400) > $this->options['pw_max_age_change_days']) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Is the user's password too new?
+	 *
+	 * @param int $user_ID  the user's id number
+	 * @return mixed  true if too new.  Other replies all evaluate to empty
+	 *                but use different types to aid unit testing.
+	 *
+	 * @uses login_security_solution::$options  for the pw_min_age_change_days value
+	 * @uses login_security_solution::get_last_changed_time()  to get the last
+	 *       time the user changed their password
+	 * @uses login_security_solution::set_last_changed_time()  to update the
+	 *       user's password changed time if it's not available
+	 */
+	protected function is_pw_too_fresh($user_ID) {
+		if (!$this->options['pw_min_age_change_days']) {
+			return null;
+		}
+		$time = $this->get_pw_changed_time($user_ID);
+		if (!$time) {
+			$this->set_pw_changed_time($user_ID);
+			return 1;
+		}
+		if (((time() - $time) / 86400) < $this->options['pw_min_age_change_days']) {
 			return true;
 		}
 		return false;
@@ -2474,7 +2521,7 @@ Password MD5                 %5d     %s
 	 * @return void
 	 */
 	protected function process_pw_metadata($user_ID, $user_pass) {
-		if ($this->options['pw_change_days']) {
+		if ($this->options['pw_max_age_change_days'] || $this->options['pw_min_age_change_days']) {
 			$this->set_pw_changed_time($user_ID);
 		}
 		if ($this->options['pw_reuse_count']) {

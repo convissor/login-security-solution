@@ -47,7 +47,8 @@ class PasswordChangeTest extends TestCase {
 		parent::setUp();
 
 		$options = self::$lss->options;
-		$options['pw_change_days'] = 10;
+		$options['pw_max_age_change_days'] = 10;
+		$options['pw_min_age_change_days'] = 1;
 		$options['pw_length'] = 8;
 		$options['pw_reuse_count'] = 3;
 		$options['pw_complexity_uppercase_length'] = 1;
@@ -181,7 +182,8 @@ class PasswordChangeTest extends TestCase {
 
 	public function test_password_reset__options_0() {
 		$options = self::$lss->options;
-		$options['pw_change_days'] = 0;  // Don't set change time.
+		$options['pw_max_age_change_days'] = 0;  // Don't set change time.
+		$options['pw_min_age_change_days'] = 0;
 		$options['pw_reuse_count'] = 0;  // Don't save hashes.
 		self::$lss->options = $options;
 
