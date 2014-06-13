@@ -60,6 +60,9 @@ class login_security_solution {
 	const E_NUMBER = 'pw-number';
 	const E_PUNCT = 'pw-punct';
 	const E_REUSED = 'pw-reused';
+	const E_WRONG_CURRENT = 'pw-invalid-current';
+	const E_EMPTY_CURRENT = 'pw-empty-current';
+	const E_CHARS_DIFF = 'pw-chardiff';
 	const E_SEQ_CHAR = 'pw-seqchar';
 	const E_SEQ_KEY = 'pw-seqkey';
 	const E_SHORT = 'pw-short';
@@ -162,6 +165,7 @@ class login_security_solution {
 		'pw_complexity_number_length' => 1,
 		'pw_complexity_special_length' => 1,
 		'pw_length' => 10,
+		'pw_change_char_diff' => 1,
 		'pw_reuse_count' => 0,
 	);
 
@@ -254,6 +258,8 @@ class login_security_solution {
 		add_action('password_reset', array(&$this, 'password_reset'), 10, 2);
 		add_filter('allow_password_reset', array(&$this, 'allow_password_change'));
 		add_filter('show_password_fields', array(&$this, 'allow_password_change'));
+		add_action( 'show_user_profile', array(&$this, 'use_current_password_field'), 1, 1);
+		add_action( 'edit_user_profile', array(&$this, 'use_current_password_field'), 1, 1);
 		add_action('user_profile_update_errors',
 				array(&$this, 'user_profile_update_errors'), 999, 3);
 
@@ -832,6 +838,8 @@ class login_security_solution {
 	 * @uses login_security_solution::save_verified_ip()  to store good IPs
 	 */
 	public function user_profile_update_errors(&$errors, $update, $user) {
+		global $pagenow;
+
 		if (!empty($user->ID) && $user->ID == get_current_user_id()) {
 			$this->save_verified_ip($user->ID, $this->get_ip());
 		}
@@ -845,6 +853,38 @@ class login_security_solution {
 				$errors->add(self::ID,
 					$this->err($this->msg(self::E_REUSED)),
 					array('form-field' => 'pass1')
+				);
+				return false;
+			}
+		}
+		if ($pagenow === 'profile.php') {
+			$current_pass = '';
+			if ( isset( $_POST['current_pass'] ) ) {
+				$current_pass = $_POST['current_pass'];
+			}
+			if (! $current_pass) {
+				$errors->add(self::ID,
+					$this->err($this->msg(self::E_EMPTY_CURRENT)),
+					array('form-field' => 'current_pass')
+				);
+				return false;
+			}
+			$this_user = get_user_by('id', $user->ID);
+			if ($this_user && wp_check_password($current_pass, $this_user->data->user_pass)) {
+				// current pass is valid, check for char diff
+				$diff = (strlen($user->user_pass) - similar_text($current_pass, $user->user_pass));
+				if ($diff < $this->options['pw_change_char_diff']) {
+					$errors->add(self::ID,
+						$this->err($this->msg(self::E_CHARS_DIFF)),
+						array('form-field' => 'current_pass')
+					);
+					return false;
+				}
+
+			} else {
+				$errors->add(self::ID,
+					$this->err($this->msg(self::E_WRONG_CURRENT)),
+					array('form-field' => 'current_pass')
 				);
 				return false;
 			}
@@ -2062,6 +2102,12 @@ Password MD5                 %5d     %s
 				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
 			case self::E_REUSED:
 				return __("Passwords can not be reused.", self::ID);
+			case self::E_WRONG_CURRENT:
+				return __("You have entered the wrong current password.", self::ID);
+			case self::E_EMPTY_CURRENT:
+				return __("You must enter your current password.", self::ID);
+			case self::E_CHARS_DIFF:
+				return sprintf(__("You must change at least %d characters of your password.", self::ID), $this->options['pw_change_char_diff']);
 			case self::E_SEQ_CHAR:
 				return __("Passwords can't have that many sequential characters.", self::ID);
 			case self::E_SEQ_KEY:
@@ -2838,6 +2884,28 @@ Password MD5                 %5d     %s
 			return mb_substr($pw, $start, $length);
 		} else {
 			return substr($pw, $start, $length);
+		}
+	}
+
+	public function use_current_password_field( $user ) {
+		global $pagenow;
+		$show_password_fields = apply_filters('show_password_fields', true, $user);
+		if ($show_password_fields && $pagenow === 'profile.php') {
+			?>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th>
+							<label for="current_pass"><?php _e('Current Password', self::ID ); ?></label>
+						</th>
+						<td>
+							<input type="password" name="current_pass" id="current_pass" class="regular-text" size="16" value="" autocomplete="off" /><br />
+							<span class="description"><?php _e( 'If you would like to set a new password, type your current one here. Otherwise leave this blank.' , self::ID ); ?></span>
+						</td>
+					</tr>
+				<tbody>
+			</table>
+			<?php
 		}
 	}
 

@@ -378,6 +378,12 @@ class login_security_solution_admin extends login_security_solution {
 				'type' => 'int',
 				'greater_than' => 5,
 			),
+			'pw_change_char_diff' => array(
+				'group' => 'pw',
+				'label' => __("Changed Characters", self::ID),
+				'text' => __("How many characters should be required to be changed for new passwords?", self::ID),
+				'type' => 'int',
+			),
 			'pw_reuse_count' => array(
 				'group' => 'pw',
 				'label' => __("History", self::ID),

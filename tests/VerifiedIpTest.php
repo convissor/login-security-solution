@@ -163,13 +163,11 @@ class VerifiedIpTest extends TestCase {
 		// So user id = current user id in our profile update errors method.
 		$current_user = $this->user;
 
-		if (!extension_loaded('mbstring')) {
-			$this->user->user_pass = 'Some ASCII Only PW 4 You!';
-		}
+		$this->user->user_pass = '';
 
 		$errors = new WP_Error;
 		$actual = self::$lss->user_profile_update_errors($errors, 1, $this->user);
-		$this->assertTrue($actual, 'Bad return value.');
+		$this->assertNull($actual, 'Bad return value.');
 
 		// Check the outcome.
 		$actual = self::$lss->get_verified_ips($this->user->ID);
