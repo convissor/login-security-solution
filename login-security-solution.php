@@ -148,6 +148,8 @@ class login_security_solution {
 		'login_fail_minutes' => 120,
 		'login_fail_tier_2' => 5,
 		'login_fail_tier_3' => 10,
+		'login_fail_templock_user' => 0,
+		'login_fail_templock_time' => 30,
 		'login_fail_disable_user' => 0,
 		'login_fail_notify' => 50,
 		'login_fail_notify_multiple' => 0,
@@ -219,6 +221,12 @@ class login_security_solution {
 	 * @var string
 	 */
 	protected $umk_verified_ips;
+
+	/**
+	 * Our usermeta key for tracking when this users account was temporarily locked
+	 * @var bool
+	 */
+	protected $umk_locked_time;
 
 	/**
 	 * Our usermeta key for tracking if this user account is disabled
@@ -345,6 +353,7 @@ class login_security_solution {
 		$this->umk_hashes = self::ID . '-pw-hashes';
 		$this->umk_last_active = self::ID . '-last-active';
 		$this->umk_verified_ips = self::ID . '-verified-ips';
+		$this->umk_locked_time = self::ID . '-lock-time';
 		$this->umk_disabled_account = self::ID . '-disabled-account';
 
 		$this->dir_dictionaries = dirname(__FILE__) . '/pw_dictionaries/';
@@ -529,6 +538,13 @@ class login_security_solution {
 			}
 		}
 
+		if ($this->is_account_locked($user->ID)) {
+			if (!$this->is_xmlrpc) {
+				$this->redirect_to_login('account_locked', true);
+			}
+			return -8;
+		}
+
 		if ($this->is_account_disabled($user->ID)) {
 			if (!$this->is_xmlrpc) {
 				$this->redirect_to_login('account_disabled', true);
@@ -695,6 +711,10 @@ class login_security_solution {
 				case 'idle':
 					$ours = sprintf(__('It has been over %d minutes since your last action.', self::ID), $this->options['idle_timeout']);
 					$ours .= ' ' . __('Please log back in.', self::ID);
+					break;
+				case 'account_locked':
+					$ours = __('Your account has been temporarily locked.', self::ID);
+					$ours = ' ' . sprintf(__('You can login again in approximately %d minutes', self::ID), $this->options['login_fail_templock_time']);
 					break;
 				case 'account_disabled':
 					$ours = __('Your account has been disabled.', self::ID);
@@ -1109,6 +1129,16 @@ class login_security_solution {
 	}
 
 	/**
+	 * Obtains the timestamp of the locked time on users account
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return int  the Unix timestamp of the user's lockout time
+	 */
+	protected function get_lockout_time($user_ID) {
+		return (int) get_user_meta($user_ID, $this->umk_locked_time, true);
+	}
+
+	/**
 	 * Obtains the number of login failures for the current IP, user name
 	 * and password in the period specified by login_fail_minutes
 	 *
@@ -1504,6 +1534,27 @@ Password MD5                 %5d     %s
 		if ($this->get_user_account_disabled($user_ID) == '1') {
 			return true;
 		}
+		return false;
+	}
+
+	/**
+	 * Is the user account locked?
+	 * @param in $user_ID  the user's id number
+	 * @return bool  true if account is temporarily locked
+	 */
+	public function is_account_locked($user_ID) {
+		if (!$this->options['login_fail_templock_user']) {
+			return null;
+		}
+
+		$lockout_time = $this->get_lockout_time($user_ID);
+		if ( ! $lockout_time ) {
+			return false;
+		}
+		if (($this->options['login_fail_templock_time'] * 60) + $lockout_time > time()) {
+			return true;
+		}
+		delete_user_meta($user_ID, $this->umk_locked_time);
 		return false;
 	}
 
@@ -2306,6 +2357,18 @@ Password MD5                 %5d     %s
 			return -4;
 		}
 
+		if ($this->options['login_fail_templock_user']
+			&& ($fails['total'] == $this->options['login_fail_templock_user'])) {
+
+			$this->log(__FUNCTION__, "Trying to get user to lock");
+			$user = get_user_by('login', $user_name);
+			$this->log(__FUNCTION__, $user->ID);
+			if ($user) {
+				$this->log(__FUNCTION__, "Locking user: " . $user_name . ' ID: ' . $user->ID);
+				$this->set_lockout_time($user->ID);
+			}
+		}
+
 		if ($this->options['login_fail_disable_user']
 			&& ($fails['total'] == $this->options['login_fail_disable_user'])) {
 
@@ -2621,6 +2684,17 @@ Password MD5                 %5d     %s
 	 */
 	protected function set_user_account_disabled($user_ID) {
 		return update_user_meta($user_ID, $this->umk_disabled_account, 1);
+	}
+
+	/**
+	 * Stores the present time in the given user's "locked time" metadata
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return int|bool  the record number if added, TRUE if updated, FALSE
+	 *                   if error
+	 */
+	protected function set_lockout_time($user_ID) {
+		return update_user_meta($user_ID, $this->umk_locked_time, time());
 	}
 
 	/**

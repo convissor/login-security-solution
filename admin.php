@@ -288,6 +288,18 @@ class login_security_solution_admin extends login_security_solution {
 				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be > Delay Tier 2.", self::ID), 25, 60),
 				'type' => 'int',
 			),
+			'login_fail_templock_user' => array(
+				'group' => 'login',
+				'label' => __("Temporarily Lock User", self::ID),
+				'text' => __("How many matching login failures should it take to temporarily lock the user account? 0 disables this feature.", self::ID),
+				'type' => 'int',
+			),
+			'login_fail_templock_time' => array(
+				'group' => 'login',
+				'label' => __("Temporary Lock Time", self::ID),
+				'text' => __("How long should the user account be temporarily locked?", self::ID),
+				'type' => 'int',
+			),
 			'login_fail_disable_user' => array(
 				'group' => 'login',
 				'label' => __("Disable User", self::ID),

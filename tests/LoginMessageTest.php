@@ -71,6 +71,22 @@ class LoginMessageTest extends TestCase {
 				'Output should have been modified.');
 	}
 
+	public function test_login_message__account_locked() {
+		$_GET[self::$lss->key_login_msg] = 'account_locked';
+
+		$value = 13;
+		$options = self::$lss->options;
+		$options['login_fail_templock_time'] = $value;
+		self::$lss->options = $options;
+
+		$ours = __('Your account has been temporarily locked.', self::ID);
+		$ours = ' ' . sprintf(__('You can login again in approximately %d minutes', self::ID), $value);
+
+		$actual = self::$lss->login_message('input');
+		$this->assertEquals('input' . $this->ours($ours), $actual,
+				'Output should have been modified.');
+	}
+
 	public function test_login_message__account_disabled() {
 		$_GET[self::$lss->key_login_msg] = 'account_disabled';
 

@@ -62,6 +62,8 @@ class LoginFailTest extends TestCase {
 		$options['login_fail_notify_multiple'] = 0;
 		$options['login_fail_tier_2'] = 3;
 		$options['login_fail_tier_3'] = 4;
+		$options['login_fail_templock_user'] = 3;
+		$options['login_fail_templock_time'] = 30;
 		$options['login_fail_disable_user'] = 3;
 		$options['login_fail_breach_notify'] = 4;
 		$options['login_fail_breach_pw_force_change'] = 4;
@@ -172,6 +174,16 @@ class LoginFailTest extends TestCase {
 	/**
 	 * @depends test_get_login_fail
 	 */
+	public function test_process_login_fail__account_not_locked() {
+		// At this point, our user should not be disabled
+		$user = get_user_by('login', $this->user_name);
+		$disabled = self::$lss->is_account_locked($user->ID);
+		$this->assertFalse($disabled, 'Account should not be locked');
+	}
+
+	/**
+	 * @depends test_get_login_fail
+	 */
 	public function test_process_login_fail__account_enabled() {
 		// At this point, our user should not be disabled
 		$user = get_user_by('login', $this->user_name);
@@ -190,6 +202,18 @@ class LoginFailTest extends TestCase {
 
 		$this->assertInternalType('integer', $wpdb->insert_id,
 				'This should be an insert id.');
+	}
+
+	/**
+	 * @depends test_process_login_fail__pre_threshold
+	 */
+	public function test_process_login_fail__account_locked() {
+		// test_process_login_fail__pre_threshold should have triggered our
+		// limit and disabled the user
+		sleep(1);
+		$user = get_user_by('login', $this->user_name);
+		$disabled = self::$lss->is_account_locked($user->ID);
+		$this->assertTrue($disabled, 'Account should be locked' );
 	}
 
 	/**
