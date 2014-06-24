@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.43.0\n"
+"Project-Id-Version: Login Security Solution 0.44.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
-"POT-Creation-Date: 2014-01-16 02:27:32+00:00\n"
+"POT-Creation-Date: 2014-05-30 13:49:15+00:00\n"
 "PO-Revision-Date: 2014-01-16 02:27:32+00:00\n"
 "Last-Translator: Daniel Convissor <danielc@analysisandsolutions.com>\n"
 "Language-Team: Friso van Wieringen\n"
@@ -92,10 +92,14 @@ msgid "Match Time"
 msgstr "Gerelateerde pogingen"
 
 #: admin.php:275
-msgid "How far back, in minutes, should login failures look for matching data?"
+msgid ""
+"How far back, in minutes, should login failures look for matching data? 0 "
+"disables Login Failure slow downs, notifications and breach confirmations."
 msgstr ""
 "Hoe ver terug (in minuten) moet de plugin zoeken naar gerelateerde "
 "inlogpogingen?"
+" 0 disables Login Failure slow downs, notifications and breach confirmations."
+# TODO: translate added sentence.
 
 #: admin.php:280
 msgid "Delay Tier 2"
@@ -182,7 +186,7 @@ msgstr ""
 "Stuur de beheerder een bericht wanneer er succesvol wordt ingelogd door "
 "iemand met x gerelateerde inlogpogingen. 0 schakelt deze optie uit."
 
-#: admin.php:319 login-security-solution.php:2109
+#: admin.php:319 login-security-solution.php:2128
 msgid "Breach Email Confirm"
 msgstr "E-mailbevestiging van succesvolle inbraak"
 
@@ -528,11 +532,11 @@ msgstr ""
 "woorden gerelateerd aan jou of deze website bevatten."
 
 # Translation from WordPress.
-#: login-security-solution.php:1025
+#: login-security-solution.php:1029
 msgid "ERROR"
 msgstr ""
 
-#: login-security-solution.php:1178
+#: login-security-solution.php:1192
 msgid ""
 "\n"
 "Component                    Count     Value from Current Attempt\n"
@@ -548,12 +552,12 @@ msgstr ""
 "Gebruikersnaam               %5d     %s\n"
 "Wachtwoord MD5               %5d     %s\n"
 
-#: login-security-solution.php:1914 tests/LoginMessageTest.php:148
+#: login-security-solution.php:1933 tests/LoginMessageTest.php:148
 #: tests/PasswordValidationTest.php:510
 msgid "Passwords must use ASCII characters."
 msgstr "Wachtwoorden moeten ASCII karakters gebruiken."
 
-#: login-security-solution.php:1916 tests/PasswordValidationTest.php:580
+#: login-security-solution.php:1935 tests/PasswordValidationTest.php:580
 msgid ""
 "Passwords must either contain upper-case and lower-case letters or be %d "
 "characters long."
@@ -561,69 +565,69 @@ msgstr ""
 "Wachtwoorden moeten óf zowel hoofd- als kleine letters bevatten óf %d "
 "karakters lang zijn."
 
-#: login-security-solution.php:1918 tests/PasswordValidationTest.php:658
+#: login-security-solution.php:1937 tests/PasswordValidationTest.php:658
 msgid "Password is too common."
 msgstr "Wachtwoord is te gewoon."
 
-#: login-security-solution.php:1920 tests/PasswordValidationTest.php:674
+#: login-security-solution.php:1939 tests/PasswordValidationTest.php:674
 msgid "Passwords can't be variations of dictionary words."
 msgstr "Wachtwoorden mogen geen variaties op bestaande woorden zijn."
 
-#: login-security-solution.php:1922 tests/PasswordValidationTest.php:486
+#: login-security-solution.php:1941 tests/PasswordValidationTest.php:486
 msgid "Password not set."
 msgstr "Wachtwoord is niet ingesteld."
 
-#: login-security-solution.php:1924 tests/PasswordValidationTest.php:567
+#: login-security-solution.php:1943 tests/PasswordValidationTest.php:567
 msgid "Passwords must either contain numbers or be %d characters long."
 msgstr "Wachtwoorden moeten óf nummers bevatten óf %d karakters lang zijn."
 
-#: login-security-solution.php:1926 tests/PasswordValidationTest.php:554
+#: login-security-solution.php:1945 tests/PasswordValidationTest.php:554
 msgid ""
 "Passwords must either contain punctuation marks / symbols or be %d "
 "characters long."
 msgstr ""
 "Wachtwoorden moeten óf vreemde tekens bevatten óf %d karakters lang zijn."
 
-#: login-security-solution.php:1928 tests/PasswordChangeTest.php:300
+#: login-security-solution.php:1947 tests/PasswordChangeTest.php:303
 msgid "Passwords can not be reused."
 msgstr "Wachtwoorden kunnen niet worden hergebruikt."
 
-#: login-security-solution.php:1930 tests/PasswordValidationTest.php:606
+#: login-security-solution.php:1949 tests/PasswordValidationTest.php:606
 msgid "Passwords can't have that many sequential characters."
 msgstr "Wachtwoorden mogen niet zoveel opeenvolgende karakters bevatten."
 
-#: login-security-solution.php:1932 tests/PasswordValidationTest.php:593
+#: login-security-solution.php:1951 tests/PasswordValidationTest.php:593
 msgid "Passwords can't be sequential keys."
 msgstr "Wachtwoorden mogen geen opeenvolgende tekens bevatten (bijv. qwerty)."
 
-#: login-security-solution.php:1934 tests/LoginMessageTest.php:115
-#: tests/PasswordChangeTest.php:333 tests/PasswordValidationTest.php:527
+#: login-security-solution.php:1953 tests/LoginMessageTest.php:115
+#: tests/PasswordChangeTest.php:336 tests/PasswordValidationTest.php:527
 #: tests/PasswordValidationTest.php:541
 msgid "Password is too short."
 msgstr "Wachtwoord is te kort."
 
-#: login-security-solution.php:1936 tests/PasswordValidationTest.php:497
+#: login-security-solution.php:1955 tests/PasswordValidationTest.php:497
 msgid "Passwords must be strings."
 msgstr "Wachtwoorden moeten tekenreeksen zijn."
 
-#: login-security-solution.php:1938 tests/PasswordValidationTest.php:645
+#: login-security-solution.php:1957 tests/PasswordValidationTest.php:645
 msgid "Passwords can't contain site info."
 msgstr "Wachtwoorden mogen geen informatie over de website bevatten."
 
-#: login-security-solution.php:1940 tests/PasswordValidationTest.php:619
+#: login-security-solution.php:1959 tests/PasswordValidationTest.php:619
 #: tests/PasswordValidationTest.php:632
 msgid "Passwords can't contain user data."
 msgstr "Wachtwoorden mogen geen gebruikersgegevens bevatten."
 
-#: login-security-solution.php:2092
+#: login-security-solution.php:2111
 msgid "POTENTIAL INTRUSION AT %s"
 msgstr "MOGELIJKE INBRAAK OP %s"
 
-#: login-security-solution.php:2096
+#: login-security-solution.php:2115
 msgid "Your website, %s, may have been broken in to."
 msgstr "Er is mogelijk ingebroken op %s."
 
-#: login-security-solution.php:2099
+#: login-security-solution.php:2118
 msgid ""
 "Someone just logged in using the following components. Prior to that, some "
 "combination of those components were a part of %d failed attempts to log in "
@@ -633,11 +637,11 @@ msgstr ""
 "daarvoor was een combinatie van deze kenmerken deel van %d foutieve "
 "inlogpogingen in de afgelopen %d minuten:"
 
-#: login-security-solution.php:2104
+#: login-security-solution.php:2123
 msgid "They logged in from the following IP address: %s"
 msgstr "Ze ingelogd van de volgende IP-adres: %s"
 
-#: login-security-solution.php:2107
+#: login-security-solution.php:2126
 msgid ""
 "The user has been logged out and will be required to confirm their identity "
 "via the password reset functionality."
@@ -645,7 +649,7 @@ msgstr ""
 "De gebruiker is uitgelogd en dient zijn wachtwoord opnieuw in te stellen "
 "door gebruik te maken van de 'wachtwoord reset' functionaliteit."
 
-#: login-security-solution.php:2109
+#: login-security-solution.php:2128
 msgid ""
 "WARNING: The '%s' setting you chose means this person has NOT been logged "
 "out and will NOT be required to confirm their identity."
@@ -653,19 +657,19 @@ msgstr ""
 "WAARSCHUWING: De '%s' instelling die je hebt gekozen betekent dat personen "
 "NIET worden uitgelogd en NIET een nieuw wachtwoord moeten kiezen."
 
-#: login-security-solution.php:2111
+#: login-security-solution.php:2130
 msgid "A notification about this potential breach has been sent to the user."
 msgstr "Een melding van deze mogelijke inbraak is naar de gebruiker gestuurd."
 
-#: login-security-solution.php:2114
+#: login-security-solution.php:2133
 msgid "This message is from the %s plugin (%s) for WordPress."
 msgstr "Deze melding is van de %s plugin (%s) voor WordPress."
 
-#: login-security-solution.php:2137
+#: login-security-solution.php:2156
 msgid "VERIFY YOU LOGGED IN TO %s"
 msgstr "VERIFIEER DAT JE BENT INGELOGD BIJ %s"
 
-#: login-security-solution.php:2141
+#: login-security-solution.php:2160
 msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
 "in?  We are asking because the site happens to be under attack at the moment."
@@ -673,7 +677,7 @@ msgstr ""
 "Er is zojuist ingelogd op jouw '%s' account op %s. Was jij dit? We vragen "
 "dit omdat de site mogelijk aangevallen wordt op dit moment."
 
-#: login-security-solution.php:2145
+#: login-security-solution.php:2164
 msgid ""
 "To ensure your account is not being hijacked, you will have go through the "
 "'%s' process before logging in again."
@@ -682,33 +686,33 @@ msgstr ""
 "te volgen voordat je opnieuw kunt inloggen."
 
 # Translation from WordPress.
-#: login-security-solution.php:2145
+#: login-security-solution.php:2164
 msgid "Lost your password?"
 msgstr ""
 
-#: login-security-solution.php:2148
+#: login-security-solution.php:2167
 msgid "If it was NOT YOU, please do the following right away:"
 msgstr "Als jij dit NIET was, volg dan de volgende instructies direct:"
 
-#: login-security-solution.php:2151
+#: login-security-solution.php:2170
 msgid " * Log into the site and change your password."
 msgstr " * Log in om je wachtwoord te veranderen"
 
-#: login-security-solution.php:2154
+#: login-security-solution.php:2173
 msgid " * Send an email to %s letting them know it was not you who logged in."
 msgstr ""
 " * Stuur een e-mail naar %s om te laten weten dat jij niet probeerde in te "
 "loggen."
 
-#: login-security-solution.php:2181
+#: login-security-solution.php:2200
 msgid "ATTACK HAPPENING TO %s"
 msgstr "AANVAL OP %s"
 
-#: login-security-solution.php:2185
+#: login-security-solution.php:2204
 msgid "Your website, %s, is undergoing a brute force attack."
 msgstr "Jouw website, %s, ondergaat op dit moment een brute force aanval."
 
-#: login-security-solution.php:2188
+#: login-security-solution.php:2207
 msgid ""
 "There have been at least %d failed attempts to log in during the past %d "
 "minutes that used one or more of the following components:"
@@ -716,11 +720,11 @@ msgstr ""
 "Er zijn ten minste %d foutieve inlogpogingen geweest in de afgelopen %d "
 "minuten, waarbij de volgende kenmerken werden gebruikt:"
 
-#: login-security-solution.php:2193
+#: login-security-solution.php:2212
 msgid "The most recent attempt came from the following IP address: %s"
 msgstr "De meest recente poging kwam van het volgende IP-adres: %s"
 
-#: login-security-solution.php:2195
+#: login-security-solution.php:2214
 msgid ""
 "The %s plugin (%s) for WordPress is repelling the attack by making their "
 "login failures take a very long time."
@@ -728,7 +732,7 @@ msgstr ""
 "De %s plugin (%s) voor WordPress houdt de aanval af door de foutieve "
 "inlogpogingen ernstig te vertragen."
 
-#: login-security-solution.php:2199
+#: login-security-solution.php:2218
 msgid ""
 "This attacker will also be denied access in the event they stumble upon "
 "valid credentials."
@@ -736,7 +740,7 @@ msgstr ""
 "De aanvaller zal ook de toegang worden ontzegt wanneer hij met geldige "
 "gegevens inlogt."
 
-#: login-security-solution.php:2205
+#: login-security-solution.php:2224
 msgid ""
 "Further notifications about this attacker will only be sent if the attack "
 "stops for at least %d minutes and then resumes."
