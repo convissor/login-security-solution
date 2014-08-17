@@ -2455,9 +2455,18 @@ Password MD5                 %5d     %s
 		}
 		$uri .= 'action=' . urlencode($action);
 
+		$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
+
+		if ( isset( $_COOKIE[ $rp_cookie ] ) && 0 < strpos( $_COOKIE[ $rp_cookie ], ':' ) ) {
+				list( $rp_login, $rp_key ) = explode( ':', wp_unslash( $_COOKIE[ $rp_cookie ] ), 2 );
+		}else {
+			$rp_login = $_GET['login'];
+			$rp_key = $_GET['key'];			
+		}
+
 		if ($action == 'rp') {
-			$uri .= '&key=' . urlencode(@$_GET['key']);
-			$uri .= '&login=' . urlencode(@$_GET['login']);
+				$uri .= '&key=' . urlencode(@$rp_key);
+				$uri .= '&login=' . urlencode(@$rp_login);
 		}
 
 		if ($login_msg_id) {
