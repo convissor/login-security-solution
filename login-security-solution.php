@@ -2456,8 +2456,11 @@ Password MD5                 %5d     %s
 		$uri .= 'action=' . urlencode($action);
 
 		if ($action == 'rp') {
-			$uri .= '&key=' . urlencode(@$_GET['key']);
-			$uri .= '&login=' . urlencode(@$_GET['login']);
+			if (empty($_COOKIE['wp-resetpass-' . COOKIEHASH])) {
+				// Cookie not set.  Site on WP < 3.9.2.  Do it the old way.
+				$uri .= '&key=' . urlencode(@$_GET['key']);
+				$uri .= '&login=' . urlencode(@$_GET['login']);
+			}
 		}
 
 		if ($login_msg_id) {
