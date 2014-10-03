@@ -480,7 +480,10 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.45.0 (2014-08-17)
+= 0.46.0 (2014-10-03) =
+* Adjust unit tests for new auth cookie format in WP 4.0
+
+= 0.45.0 (2014-08-17) =
 * Adjust for password reset process for security changes in WP 3.9.2
 
 = 0.44.0 (2014-05-30) =

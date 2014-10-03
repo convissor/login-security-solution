@@ -27,6 +27,7 @@ class AuthCookieBadTest extends TestCase {
 	protected $network_ip;
 	protected $user_name;
 	protected $pass_md5;
+	protected $cookie_key_pass;
 
 
 	public static function setUpBeforeClass() {
@@ -35,6 +36,8 @@ class AuthCookieBadTest extends TestCase {
 	}
 
 	public function setUp() {
+		global $wp_version;
+
 		parent::setUp();
 
 		if (!$this->is_fail_table_configured()) {
@@ -47,6 +50,12 @@ class AuthCookieBadTest extends TestCase {
 
 		$this->user_name = 'test';
 		$this->pass_md5 = 'ababab';
+
+		if (version_compare($wp_version, '4.0', '>=')) {
+			$this->cookie_key_pass = 3;
+		} else {
+			$this->cookie_key_pass = 2;
+		}
 
 		// wp_validate_auth_cookie() operates on the original object.
 		global $login_security_solution;
@@ -96,7 +105,7 @@ class AuthCookieBadTest extends TestCase {
 		$result = wp_validate_auth_cookie();
 		$this->assertFalse($result);
 
-		$pass = self::$lss->md5($parts[2]);
+		$pass = self::$lss->md5($parts[$this->cookie_key_pass]);
 		$this->check_fail_record($this->ip, $parts[0], $pass);
 
 		$this->assertTrue($this->were_expected_errors_found(),
@@ -110,7 +119,7 @@ class AuthCookieBadTest extends TestCase {
 		$_SERVER['REQUEST_METHOD'] = 'GET';
 		$_COOKIE[AUTH_COOKIE] = wp_generate_auth_cookie(1, time() + 10);
 		$parts = explode('|', $_COOKIE[AUTH_COOKIE]);
-		$parts[2] = 'badpassword';
+		$parts[$this->cookie_key_pass] = 'badpassword';
 		$_COOKIE[AUTH_COOKIE] = implode('|', $parts);
 
 		$expected_error = 'Cannot modify header information';
@@ -119,7 +128,7 @@ class AuthCookieBadTest extends TestCase {
 		$result = wp_validate_auth_cookie();
 		$this->assertFalse($result);
 
-		$pass = self::$lss->md5($parts[2]);
+		$pass = self::$lss->md5($parts[$this->cookie_key_pass]);
 		$this->check_fail_record($this->ip, $parts[0], $pass);
 
 		$this->assertTrue($this->were_expected_errors_found(),
