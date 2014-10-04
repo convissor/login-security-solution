@@ -274,6 +274,31 @@ has probably gotten itself into your computer.
 1. Ensure your password strength by changing it.
 
 
+= Hooks =
+
+Login Security Solution provides [hooks](https://codex.wordpress.org/Plugin_API)
+in critical methods, allowing you to add custom behaviors.
+
+== Actions ==
+
+* login_security_solution_insert_fail
+* login_security_solution_notify_breach
+* login_security_solution_notify_fail
+
+== Filters ==
+
+The following filters allow customizing email subjects and messages.  If
+either the "subject"or "message" filters in a method returns an empty
+string, the given method will skip calling `wp_mail()`.
+
+* login_security_solution_notify_breach_subject
+* login_security_solution_notify_breach_message
+* login_security_solution_notify_breach_user_subject
+* login_security_solution_notify_breach_user_message
+* login_security_solution_notify_fail_subject
+* login_security_solution_notify_fail_message
+
+
 = Unit Tests =
 
 A thorough set of unit tests are found in the `tests` directory.
@@ -479,6 +504,19 @@ on our GitHub.
 
 
 == Changelog ==
+
+= 0.47.0 () =
+* Added "action" hooks:
+    - login_security_solution_insert_fail
+    - login_security_solution_notify_breach
+    - login_security_solution_notify_fail
+* Added "filter" hooks. See "Hooks" in the "Installation" tab for more info.
+    - login_security_solution_notify_breach_subject
+    - login_security_solution_notify_breach_message
+    - login_security_solution_notify_breach_user_subject
+    - login_security_solution_notify_breach_user_message
+    - login_security_solution_notify_fail_subject
+    - login_security_solution_notify_fail_message
 
 = 0.46.0 (2014-10-03) =
 * Fix password policy hint broken by changes in WP 3.9

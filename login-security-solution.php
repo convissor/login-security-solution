@@ -1397,15 +1397,20 @@ Password MD5                 %5d     %s
 
 		###$this->log(__FUNCTION__, "$ip, $user_login, $pass_md5");
 
+		$args = array(
+			'ip' => $ip,
+			'user_login' => $user_login,
+			'pass_md5' => $pass_md5,
+		);
+
 		$wpdb->insert(
 			$this->table_fail,
-			array(
-				'ip' => $ip,
-				'user_login' => $user_login,
-				'pass_md5' => $pass_md5,
-			),
+			$args,
 			array('%s', '%s', '%s')
 		);
+
+		$args['options'] = $this->options;
+		do_action('login_security_solution_insert_fail', $args);
 	}
 
 	/**
@@ -2136,6 +2141,26 @@ Password MD5                 %5d     %s
 		$message .= sprintf(__("This message is from the %s plugin (%s) for WordPress.", self::ID),
 			self::NAME, self::VERSION) . "\n";
 
+		$args = array(
+			'ip' => $ip,
+			'network_ip' => $network_ip,
+			'user_login' => $user_name,
+			'pass_md5' => $pass_md5,
+			'fails' => $fails,
+			'pw_force_change' => $pw_force_change,
+			'to' => $to,
+			'blog' => $blog,
+			'options' => $this->options,
+		);
+
+		do_action('login_security_solution_notify_breach', $args);
+
+		$subject = apply_filters('login_security_solution_notify_breach_subject', $subject, $args);
+		$message = apply_filters('login_security_solution_notify_breach_message', $message, $args);
+		if (!$subject || !$message) {
+			return;
+		}
+
 		return wp_mail($to, $subject, $message);
 	}
 
@@ -2174,6 +2199,20 @@ Password MD5                 %5d     %s
 		}
 
 		$message .= sprintf(__(" * Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n";
+
+		$args = array(
+			'user' => $user,
+			'pw_force_change' => $pw_force_change,
+			'to' => $to,
+			'blog' => $blog,
+			'options' => $this->options,
+		);
+
+		$subject = apply_filters('login_security_solution_notify_breach_user_subject', $subject, $args);
+		$message = apply_filters('login_security_solution_notify_breach_user_message', $message, $args);
+		if (!$subject || !$message) {
+			return;
+		}
 
 		return wp_mail($to, $subject, $message);
 	}
@@ -2225,6 +2264,25 @@ Password MD5                 %5d     %s
 
 		if (!$this->options['login_fail_notify_multiple']) {
 			$message .= "\n" . sprintf(__("Further notifications about this attacker will only be sent if the attack stops for at least %d minutes and then resumes.", self::ID), $this->options['login_fail_minutes']) . "\n";
+		}
+
+		$args = array(
+			'ip' => $ip,
+			'network_ip' => $network_ip,
+			'user_login' => $user_name,
+			'pass_md5' => $pass_md5,
+			'fails' => $fails,
+			'to' => $to,
+			'blog' => $blog,
+			'options' => $this->options,
+		);
+
+		do_action('login_security_solution_notify_fail', $args);
+
+		$subject = apply_filters('login_security_solution_notify_fail_subject', $subject, $args);
+		$message = apply_filters('login_security_solution_notify_fail_message', $message, $args);
+		if (!$subject || !$message) {
+			return;
 		}
 
 		return wp_mail($to, $subject, $message);
