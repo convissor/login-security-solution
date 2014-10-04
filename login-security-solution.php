@@ -2227,6 +2227,15 @@ Password MD5                 %5d     %s
 			$message .= "\n" . sprintf(__("Further notifications about this attacker will only be sent if the attack stops for at least %d minutes and then resumes.", self::ID), $this->options['login_fail_minutes']) . "\n";
 		}
 
+		$action_args = array(
+			'ip' => $ip,
+			'user_name' => $user_name,
+			'pass_md5' => $pass_md5,
+			'fails' => $fails,
+			'options' => $this->options
+		);
+		do_action( 'login_security_solution_notify_fail', $action_args );
+
 		return wp_mail($to, $subject, $message);
 	}
 
