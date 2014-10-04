@@ -47,9 +47,15 @@ class PasswordChangeTest extends TestCase {
 		parent::setUp();
 
 		$options = self::$lss->options;
-		$options['pw_change_days'] = 10;
+		$options['pw_max_age_change_days'] = 10;
+		$options['pw_min_age_change_days'] = 1;
 		$options['pw_length'] = 8;
 		$options['pw_reuse_count'] = 3;
+		$options['pw_change_char_diff'] = 9;
+		$options['pw_complexity_uppercase_length'] = 1;
+		$options['pw_complexity_lowercase_length'] = 1;
+		$options['pw_complexity_special_length'] = 1;
+		$options['pw_complexity_number_length'] = 1;
 		self::$lss->options = $options;
 
 		if (!extension_loaded('mbstring')) {
@@ -177,7 +183,8 @@ class PasswordChangeTest extends TestCase {
 
 	public function test_password_reset__options_0() {
 		$options = self::$lss->options;
-		$options['pw_change_days'] = 0;  // Don't set change time.
+		$options['pw_max_age_change_days'] = 0;  // Don't set change time.
+		$options['pw_min_age_change_days'] = 0;
 		$options['pw_reuse_count'] = 0;  // Don't save hashes.
 		self::$lss->options = $options;
 
@@ -343,7 +350,89 @@ class PasswordChangeTest extends TestCase {
 	/**
 	 * @depends test_password_reset__normal
 	 */
+	public function test_profile_update__no_current_pass() {
+		global $pagenow;
+		$pagenow = 'profile.php';
+		$this->user->user_pass = self::$pass_1;
+		$_POST['pass1'] = self::$pass_1;
+		$errors = new WP_Error;
+		$actual = self::$lss->user_profile_update_errors($errors, 1, $this->user);
+		$this->assertFalse($actual, 'Bad return value.');
+		$this->assertEquals(
+			$this->err(__("You must enter your current password.", self::ID)),
+			$errors->get_error_message()
+		);
+	}
+
+	/**
+	 * @depends test_password_reset__normal
+	 */
+	public function test_profile_update__wrong_current_pass() {
+		global $pagenow;
+		$pagenow = 'profile.php';
+		$this->user->user_pass = self::$pass_1;
+		$_POST['pass1'] = self::$pass_1;
+		$_POST['current_pass'] = self::$pass_1;
+		$errors = new WP_Error;
+		$actual = self::$lss->user_profile_update_errors($errors, 1, $this->user);
+		$this->assertFalse($actual, 'Bad return value.');
+		$this->assertEquals(
+			$this->err(__("You have entered the wrong current password.", self::ID)),
+			$errors->get_error_message()
+		);
+	}
+
+	/**
+	 * @depends test_password_reset__normal
+	 */
+	public function test_profile_update__same_chars() {
+		global $wpdb, $user_ID, $pagenow;
+		$pagenow = 'profile.php';
+		$actual = $wpdb->insert(
+			$wpdb->users,
+			array(
+				'user_login' => $this->user->user_login,
+			)
+		);
+		$this->assertSame(1, $actual, 'Could not insert sample record.');
+		$user_ID = $actual;
+		$pw = "Flibur34#%";
+		wp_set_password($pw, $user_ID);
+		$this_user = get_user_by('id', $user_ID);
+		$this_user->user_pass = $pw;
+		$_POST['pass1'] = $pw;
+		$_POST['current_pass'] = $pw;
+		$errors = new WP_Error;
+		$actual = self::$lss->user_profile_update_errors($errors, 1, $this_user);
+		$this->assertFalse($actual, 'Bad return value.');
+		$this->assertEquals(
+			$this->err(__("You must change at least 9 characters of your password.", self::ID)),
+			$errors->get_error_message()
+		);
+	}
+
+	/**
+	 * @depends test_profile_update__same_chars
+	 */
+	public function test_profile_update__changed_chars_success() {
+		global $user_ID, $pagenow;
+		$pagenow = 'profile.php';
+		$this_user = get_user_by('id', $user_ID);
+		$this->user_pass = self::$pass_2;
+		$_POST['pass1'] = self::$pass_2;
+		$_POST['current_pass'] = 'Flibur34#%';
+		$errors = new WP_Error;
+		$actual = self::$lss->user_profile_update_errors($errors, 1, $this_user);
+		$this->assertTrue($actual, 'Bad return value.');
+
+	}
+
+	/**
+	 * @depends test_password_reset__normal
+	 */
 	public function test_profile_update__add() {
+		global $pagenow;
+		$pagenow = 'user-edit.php';
 		$tmp_id = $this->user->ID;
 		$this->user->ID = null;
 

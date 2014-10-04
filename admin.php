@@ -328,16 +328,46 @@ class login_security_solution_admin extends login_security_solution {
 				'type' => 'int',
 				'greater_than' => 10,
 			),
+			'pw_complexity_uppercase_length' => array(
+				'group' => 'pw',
+				'label' => __("Complexity: Required Uppercase Characters", self::ID),
+				'text' => sprintf(__("How many uppercase characters are required in passwords? 0 skips this requirement.", self::ID)),
+				'type' => 'int',
+			),
+			'pw_complexity_lowercase_length' => array(
+				'group' => 'pw',
+				'label' => __("Complexity: Required Lowercase Characters", self::ID),
+				'text' => sprintf(__("How many lowercase characters are required in passwords? 0 skips this requirement.", self::ID)),
+				'type' => 'int',
+			),
+			'pw_complexity_number_length' => array(
+				'group' => 'pw',
+				'label' => __("Complexity: Required Number Characters", self::ID),
+				'text' => sprintf(__("How many numeric characters are required in passwords? 0 skips this requirement.", self::ID)),
+				'type' => 'int',
+			),
+			'pw_complexity_special_length' => array(
+				'group' => 'pw',
+				'label' => __("Complexity: Required Special Characters", self::ID),
+				'text' => sprintf(__("How many special characters are required in passwords? 0 skips this requirement.", self::ID)),
+				'type' => 'int',
+			),
 			'pw_complexity_exemption_length' => array(
 				'group' => 'pw',
-				'label' => __("Complexity Exemption", self::ID),
+				'label' => __("Complexity: Password Length Exemption", self::ID),
 				'text' => sprintf(__("How long must passwords be to be exempt from the complexity requirements? Must be >= %d.", self::ID), 20),
 				'type' => 'int',
 				'greater_than' => 20,
 			),
-			'pw_change_days' => array(
+			'pw_min_age_change_days' => array(
 				'group' => 'pw',
-				'label' => __("Aging", self::ID),
+				'label' => __("Minimum Age", self::ID),
+				'text' => __("How many days old must a password be before allowing it be changed? Not recommended. 0 disables this feature.", self::ID),
+				'type' => 'int',
+			),
+			'pw_max_age_change_days' => array(
+				'group' => 'pw',
+				'label' => __("Maximum Age", self::ID),
 				'text' => __("How many days old can a password be before requiring it be changed? Not recommended. 0 disables this feature.", self::ID),
 				'type' => 'int',
 			),
@@ -347,6 +377,12 @@ class login_security_solution_admin extends login_security_solution {
 				'text' => sprintf(__("How many minutes should a user have to change their password once they know it has expired? Must be >= %d.", self::ID), 5),
 				'type' => 'int',
 				'greater_than' => 5,
+			),
+			'pw_change_char_diff' => array(
+				'group' => 'pw',
+				'label' => __("Changed Characters", self::ID),
+				'text' => __("How many characters should be required to be changed for new passwords?", self::ID),
+				'type' => 'int',
 			),
 			'pw_reuse_count' => array(
 				'group' => 'pw',
@@ -658,7 +694,7 @@ class login_security_solution_admin extends login_security_solution {
 
 		// Speical check to ensure reuse count is set if aging is enabled.
 		$name = 'pw_reuse_count';
-		if ($out['pw_change_days'] && !$out[$name]) {
+		if ($out['pw_max_age_change_days'] && !$out[$name]) {
 			add_settings_error($this->option_name,
 					$this->hsc_utf8($name),
 					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
@@ -666,6 +702,28 @@ class login_security_solution_admin extends login_security_solution {
 							. ' ' . $default));
 
 			$out[$name] = 5;
+		}
+
+		// Special check to make sure that password minimum length is greater
+		// than the totals set for the character password requirements
+		$name = 'pw_length';
+		$char_reqs = (int) $out['pw_complexity_uppercase_length'] +
+			(int) $out['pw_complexity_lowercase_length'] +
+			(int) $out['pw_complexity_special_length'] +
+			(int) $out['pw_complexity_number_length'];
+		if ($out[$name] < $char_reqs) {
+			$label = $this->fields['pw_complexity_uppercase_length']['label'] . ",\n" .
+				$this->fields['pw_complexity_lowercase_length']['label'] . ", " .
+				$this->fields['pw_complexity_special_length']['label'] . ", and " .
+				$this->fields['pw_complexity_number_length']['label'];
+			$new_length = $char_reqs;
+			add_settings_error($this->option_name,
+					$this->hsc_utf8($name),
+					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
+							. sprintf($gt_format, $label)
+							. sprintf(__(" so we used %s instead.", self::ID), $new_length)));
+
+			$out[$name] = $new_length;
 		}
 
 		return $out;

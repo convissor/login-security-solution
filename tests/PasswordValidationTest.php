@@ -46,6 +46,10 @@ class PasswordValidationTest extends TestCase {
 		self::$lss->available_mbstring = extension_loaded('mbstring');
 
 		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 1;
+		$options['pw_complexity_lowercase_length'] = 1;
+		$options['pw_complexity_number_length'] = 1;
+		$options['pw_complexity_special_length'] = 1;
 		$options['pw_complexity_exemption_length'] = 20;
 		$options['pw_length'] = 8;
 		self::$lss->options = $options;
@@ -276,6 +280,42 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 
+	public function test_missing_required_numeric_false() {
+		$options = self::$lss->options;
+		$options['pw_complexity_number_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1!1",
+			"123",
+			"a२c१",  // Devanagari number 2 and 1.
+			"a୨c୦",  // Oriya number 2 and 0.
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_numeric($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+	public function test_missing_required_numeric_true() {
+		$options = self::$lss->options;
+		$options['pw_complexity_number_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"abc1",
+			"ABC2",
+			"!3@#",
+			"aA4b",
+			"5a!a!",
+			"A6!A!",
+			"aA!7",
+			"aבc",  // Hebrew letter number 2.
+			"ةيبرعلا",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_numeric($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
 	public function test_missing_punct_chars_false() {
 		$tests = array(
 			"aA1!",
@@ -309,7 +349,46 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 
-	public function test_missing_upper_lower_chars_false() {
+	public function test_missing_required_punct_chars_false() {
+		$options = self::$lss->options;
+		$options['pw_complexity_special_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1!*",
+			"#b9.",
+			".1?j",
+			"Р!оссия.",
+			"「中國哲學史大綱」、胡適",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_punct_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+	public function test_missing_required_punct_chars_true() {
+		$options = self::$lss->options;
+		$options['pw_complexity_special_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"123!",
+			"abc.",
+			"ABC?",
+			"aAb*",
+			"a1a",
+			"a!A1",
+			".a",
+			"?A",
+			"$1",
+			"Россия.",
+			"中國哲學史大綱胡適",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_punct_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_lower_chars_false() {
 		$tests = array(
 			"aA1!",
 			"aAb",
@@ -322,31 +401,26 @@ class PasswordValidationTest extends TestCase {
 		}
 
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
 			$this->assertFalse($actual, "Should have passed: '$pw'");
 		}
 	}
-	public function test_missing_upper_lower_chars_true() {
+	public function test_missing_lower_chars_true() {
 		$tests = array(
 			"123",
-			"abc",
 			"ABC",
 			"!@#",
-			"a1a",
-			"a!a!",
 			"A!A!",
-			"a1!",
 			"A1!",
-			"бƥ",
 			"БƤ",
 		);
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
 			$this->assertTrue($actual, "Should have failed: '$pw'");
 		}
 	}
 
-	public function test_missing_upper_lower_chars_false__nomb() {
+	public function test_missing_lower_chars_false__nomb() {
 		self::$lss->available_mbstring = false;
 		$tests = array(
 			"aA1!",
@@ -354,29 +428,226 @@ class PasswordValidationTest extends TestCase {
 			"aA!",
 		);
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
 			$this->assertFalse($actual, "Should have passed: '$pw'");
 		}
 	}
 
-	public function test_missing_upper_lower_chars_true__nomb() {
+	public function test_missing_lower_chars_true__nomb() {
+		self::$lss->available_mbstring = false;
+		$tests = array(
+			"123",
+			"ABC",
+			"!@#",
+			"A!A!",
+			"A1!",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_number_lower_chars_true() {
+		$options = self::$lss->options;
+		$options['pw_complexity_lowercase_length'] = 2;
+		self::$lss->options = $options;
+
+		$tests = array(
+			"aA1!",
+			"aA1",
+			"aA!",
+			"AaB",
+			"БƤƥ",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_number_lower_chars_false() {
+		$options = self::$lss->options;
+		$options['pw_complexity_lowercase_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1b!",
+			"aA1b",
+			"aA!b",
+			"abc",
+			"бƤƥ",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_number_lower_chars_true__nomb() {
+		self::$lss->available_mbstring = false;
+		$options = self::$lss->options;
+		$options['pw_complexity_lowercase_length'] = 2;
+		self::$lss->options = $options;
+
+		$tests = array(
+			"aA1!",
+			"aA1",
+			"aA!",
+			"AaB",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_number_lower_chars_false__nomb() {
+		self::$lss->available_mbstring = false;
+		$options = self::$lss->options;
+		$options['pw_complexity_lowercase_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1b!",
+			"aA1b",
+			"aA!b",
+			"abc",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_lower_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+
+	public function test_missing_upper_chars_false() {
+		$tests = array(
+			"aA1!",
+			"aAb",
+			"aA!",
+		);
+
+		if (self::$mbstring_available) {
+			$tests[] = "БбƤƥ";  // Bicameral UTF-8.
+			$tests[] = "חح";  // Unicameral UTF-8.
+		}
+
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+	public function test_missing_upper_chars_true() {
+		$tests = array(
+			"123",
+			"abc",
+			"!@#",
+			"a!a!",
+			"a1!",
+			"бƥ",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_upper_chars_false__nomb() {
+		self::$lss->available_mbstring = false;
+		$tests = array(
+			"aA1!",
+			"aAb",
+			"aA!",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+
+	public function test_missing_upper_chars_true__nomb() {
 		self::$lss->available_mbstring = false;
 		$tests = array(
 			"123",
 			"abc",
-			"ABC",
 			"!@#",
-			"a1a",
 			"a!a!",
-			"A!A!",
 			"a1!",
-			"A1!",
 		);
 		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_missing_upper_lower_chars($pw);
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
 			$this->assertTrue($actual, "Should have failed: '$pw'");
 		}
 	}
+
+	public function test_missing_required_number_upper_chars_true() {
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 2;
+		self::$lss->options = $options;
+
+		$tests = array(
+			"aA1!",
+			"aA1",
+			"aA!",
+			"Aab",
+			"бƤƥ",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_number_upper_chars_false() {
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1B!",
+			"aA1B",
+			"aA!B",
+			"ABC",
+			"БƤƥ",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_number_upper_chars_true__nomb() {
+		self::$lss->available_mbstring = false;
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 2;
+		self::$lss->options = $options;
+
+		$tests = array(
+			"aA1!",
+			"aA1",
+			"aA!",
+			"Aab",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertTrue($actual, "Should have failed: '$pw'");
+		}
+	}
+
+	public function test_missing_required_number_upper_chars_false__nomb() {
+		self::$lss->available_mbstring = false;
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 2;
+		self::$lss->options = $options;
+		$tests = array(
+			"aA1B!",
+			"aA1B",
+			"aA!B",
+			"ABC",
+		);
+		foreach ($tests as $pw) {
+			$actual = self::$lss->is_pw_missing_upper_chars($pw);
+			$this->assertFalse($actual, "Should have passed: '$pw'");
+		}
+	}
+
 
 	public function test_sequential_codepoints_false() {
 		$tests = array(
@@ -543,8 +814,8 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__nopunct() {
-		$this->user->user_pass = '123456789012';
+	public function test_validate_pw__nopunct_required_true() {
+		$this->user->user_pass = 'axj15UXyqy';
 
 		$errors = new WP_Error;
 		$actual = self::$lss->validate_pw($this->user, $errors);
@@ -556,7 +827,18 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__nonumbers() {
+	public function test_validate_pw__nopunct_required_false() {
+		$this->user->user_pass = 'axj15UXyqy';
+		$options = self::$lss->options;
+		$options['pw_complexity_special_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
+	}
+
+	public function test_validate_pw__nonumbers_required_true() {
 		$this->user->user_pass = 'axj*@UXyqy';
 
 		$errors = new WP_Error;
@@ -569,7 +851,42 @@ class PasswordValidationTest extends TestCase {
 		);
 	}
 
-	public function test_validate_pw__noupperlower() {
+	public function test_validate_pw__nonumbers_required_false() {
+		$this->user->user_pass = 'axj*@UXyqy';
+		$options = self::$lss->options;
+		$options['pw_complexity_number_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
+	}
+
+	public function test_validate_pw__nolower_required_true() {
+		$this->user->user_pass = 'AXJ*1@YQY';
+
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertFalse($actual,
+				"'" . $this->user->user_pass . "' should have failed.");
+		$this->assertEquals(
+					$this->err(sprintf(__("Passwords must either contain lower-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
+			$errors->get_error_message()
+		);
+	}
+
+	public function test_validate_pw__nolower_required_false() {
+		$this->user->user_pass = 'AXJ*1@YQY';
+		$options = self::$lss->options;
+		$options['pw_complexity_lowercase_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
+	}
+
+	public function test_validate_pw__noupper_required_true() {
 		$this->user->user_pass = 'axj*1@yqy';
 
 		$errors = new WP_Error;
@@ -577,9 +894,20 @@ class PasswordValidationTest extends TestCase {
 		$this->assertFalse($actual,
 				"'" . $this->user->user_pass . "' should have failed.");
 		$this->assertEquals(
-					$this->err(sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
+					$this->err(sprintf(__("Passwords must either contain upper-case letters or be %d characters long.", self::ID), self::$lss->options['pw_complexity_exemption_length'])),
 			$errors->get_error_message()
 		);
+	}
+
+	public function test_validate_pw__noupper_required_false() {
+		$this->user->user_pass = 'axj*1@yqy';
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 0;
+		self::$lss->options = $options;
+		$errors = new WP_Error;
+		$actual = self::$lss->validate_pw($this->user, $errors);
+		$this->assertTrue($actual,
+				"'" . $this->user->user_pass . "' should have passed.");
 	}
 
 	public function test_validate_pw__sequentialfile() {

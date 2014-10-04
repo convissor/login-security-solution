@@ -38,6 +38,12 @@ class VerifiedIpTest extends TestCase {
 		// start indexing at 10 to ensure tests do what we really expect
 		// than passing by getting lucky.
 		self::$lss->time_overload = 10;
+		$options = self::$lss->options;
+		$options['pw_complexity_uppercase_length'] = 1;
+		$options['pw_complexity_lowercase_length'] = 1;
+		$options['pw_complexity_special_length'] = 1;
+		$options['pw_complexity_number_length'] = 1;
+		self::$lss->options = $options;
 	}
 
 
@@ -157,13 +163,11 @@ class VerifiedIpTest extends TestCase {
 		// So user id = current user id in our profile update errors method.
 		$current_user = $this->user;
 
-		if (!extension_loaded('mbstring')) {
-			$this->user->user_pass = 'Some ASCII Only PW 4 You!';
-		}
+		$this->user->user_pass = '';
 
 		$errors = new WP_Error;
 		$actual = self::$lss->user_profile_update_errors($errors, 1, $this->user);
-		$this->assertTrue($actual, 'Bad return value.');
+		$this->assertNull($actual, 'Bad return value.');
 
 		// Check the outcome.
 		$actual = self::$lss->get_verified_ips($this->user->ID);

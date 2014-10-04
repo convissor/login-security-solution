@@ -52,13 +52,17 @@ class login_security_solution {
 
 
 	const E_ASCII = 'pw-ascii';
-	const E_CASE = 'pw-case';
+	const E_LOWERCASE = 'pw-lowercase';
+	const E_UPPERCASE = 'pw-uppercase';
 	const E_COMMON = 'pw-common';
 	const E_DICT = 'pw-dict';
 	const E_EMPTY = 'pw-empty';
 	const E_NUMBER = 'pw-number';
 	const E_PUNCT = 'pw-punct';
 	const E_REUSED = 'pw-reused';
+	const E_WRONG_CURRENT = 'pw-invalid-current';
+	const E_EMPTY_CURRENT = 'pw-empty-current';
+	const E_CHARS_DIFF = 'pw-chardiff';
 	const E_SEQ_CHAR = 'pw-seqchar';
 	const E_SEQ_KEY = 'pw-seqkey';
 	const E_SHORT = 'pw-short';
@@ -152,10 +156,16 @@ class login_security_solution {
 		'login_fail_notify_multiple' => 0,
 		'login_fail_breach_notify' => 6,
 		'login_fail_breach_pw_force_change' => 6,
-		'pw_change_days' => 0,
+		'pw_max_age_change_days' => 0,
+		'pw_min_age_change_days' => 0,
 		'pw_change_grace_period_minutes' => 15,
 		'pw_complexity_exemption_length' => 20,
+		'pw_complexity_uppercase_length' => 1,
+		'pw_complexity_lowercase_length' => 1,
+		'pw_complexity_number_length' => 1,
+		'pw_complexity_special_length' => 1,
 		'pw_length' => 10,
+		'pw_change_char_diff' => 1,
 		'pw_reuse_count' => 0,
 	);
 
@@ -246,6 +256,10 @@ class login_security_solution {
 		add_action('auth_cookie_bad_hash', array(&$this, 'auth_cookie_bad'));
 		add_action('auth_cookie_valid', array(&$this, 'check'), 1, 2);
 		add_action('password_reset', array(&$this, 'password_reset'), 10, 2);
+		add_filter('allow_password_reset', array(&$this, 'allow_password_change'));
+		add_filter('show_password_fields', array(&$this, 'allow_password_change'));
+		add_action( 'show_user_profile', array(&$this, 'use_current_password_field'), 1, 1);
+		add_action( 'edit_user_profile', array(&$this, 'use_current_password_field'), 1, 1);
 		add_action('user_profile_update_errors',
 				array(&$this, 'user_profile_update_errors'), 999, 3);
 
@@ -342,7 +356,7 @@ class login_security_solution {
 		if ($this->options['login_fail_tier_2'] < 2) {
 			$this->options['login_fail_tier_2'] = 2;
 		}
-		if ($this->options['pw_change_days']
+		if ($this->options['pw_max_age_change_days']
 			&& !$this->options['pw_reuse_count'])
 		{
 			$this->options['pw_reuse_count'] = 5;
@@ -361,6 +375,22 @@ class login_security_solution {
 	/*
 	 * ===== ACTION & FILTER CALLBACK METHODS =====
 	 */
+
+	/**
+	 * Determines whether a user is allowed to change their password
+	 *
+	 * @return boolean
+	 */
+	public function allow_password_change($allow, $user_ID) {
+		global $pagenow;
+		if ($user_ID instanceof WP_User && ! empty($user_ID->ID)) {
+			$user_ID = $user_ID->ID;
+		}
+		if ($pagenow !== 'user-edit.php') {
+			return ! $this->is_pw_too_fresh($user_ID);
+		}
+		return $allow;
+	}
 
 	/**
 	 * Sends failed auth cookie data to our login failure process
@@ -811,6 +841,8 @@ class login_security_solution {
 	 * @uses login_security_solution::save_verified_ip()  to store good IPs
 	 */
 	public function user_profile_update_errors(&$errors, $update, $user) {
+		global $pagenow;
+
 		if (!empty($user->ID) && $user->ID == get_current_user_id()) {
 			$this->save_verified_ip($user->ID, $this->get_ip());
 		}
@@ -824,6 +856,38 @@ class login_security_solution {
 				$errors->add(self::ID,
 					$this->err($this->msg(self::E_REUSED)),
 					array('form-field' => 'pass1')
+				);
+				return false;
+			}
+		}
+		if ($pagenow === 'profile.php') {
+			$current_pass = '';
+			if ( isset( $_POST['current_pass'] ) ) {
+				$current_pass = $_POST['current_pass'];
+			}
+			if (! $current_pass) {
+				$errors->add(self::ID,
+					$this->err($this->msg(self::E_EMPTY_CURRENT)),
+					array('form-field' => 'current_pass')
+				);
+				return false;
+			}
+			$this_user = get_user_by('id', $user->ID);
+			if ($this_user && wp_check_password($current_pass, $this_user->data->user_pass)) {
+				// current pass is valid, check for char diff
+				$diff = (strlen($user->user_pass) - similar_text($current_pass, $user->user_pass));
+				if ($diff < $this->options['pw_change_char_diff']) {
+					$errors->add(self::ID,
+						$this->err($this->msg(self::E_CHARS_DIFF)),
+						array('form-field' => 'current_pass')
+					);
+					return false;
+				}
+
+			} else {
+				$errors->add(self::ID,
+					$this->err($this->msg(self::E_WRONG_CURRENT)),
+					array('form-field' => 'current_pass')
 				);
 				return false;
 			}
@@ -1621,14 +1685,14 @@ Password MD5                 %5d     %s
 	 * @return mixed  true if expired.  Other replies all evaluate to empty
 	 *                but use different types to aid unit testing.
 	 *
-	 * @uses login_security_solution::$options  for the pw_change_days value
+	 * @uses login_security_solution::$options  for the pw_max_age_change_days value
 	 * @uses login_security_solution::get_last_changed_time()  to get the last
 	 *       time the user changed their password
 	 * @uses login_security_solution::set_last_changed_time()  to update the
 	 *       user's password changed time if it's not available
 	 */
 	protected function is_pw_expired($user_ID) {
-		if (!$this->options['pw_change_days']) {
+		if (!$this->options['pw_max_age_change_days']) {
 			return null;
 		}
 		$time = $this->get_pw_changed_time($user_ID);
@@ -1636,7 +1700,35 @@ Password MD5                 %5d     %s
 			$this->set_pw_changed_time($user_ID);
 			return 0;
 		}
-		if (((time() - $time) / 86400) > $this->options['pw_change_days']) {
+		if (((time() - $time) / 86400) > $this->options['pw_max_age_change_days']) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Is the user's password too new?
+	 *
+	 * @param int $user_ID  the user's id number
+	 * @return mixed  true if too new.  Other replies all evaluate to empty
+	 *                but use different types to aid unit testing.
+	 *
+	 * @uses login_security_solution::$options  for the pw_min_age_change_days value
+	 * @uses login_security_solution::get_last_changed_time()  to get the last
+	 *       time the user changed their password
+	 * @uses login_security_solution::set_last_changed_time()  to update the
+	 *       user's password changed time if it's not available
+	 */
+	protected function is_pw_too_fresh($user_ID) {
+		if (!$this->options['pw_min_age_change_days']) {
+			return null;
+		}
+		$time = $this->get_pw_changed_time($user_ID);
+		if (!$time) {
+			$this->set_pw_changed_time($user_ID);
+			return 1;
+		}
+		if (((time() - $time) / 86400) < $this->options['pw_min_age_change_days']) {
 			return true;
 		}
 		return false;
@@ -1730,46 +1822,113 @@ Password MD5                 %5d     %s
 	 * @return bool
 	 */
 	protected function is_pw_missing_numeric($pw) {
-		return !preg_match('/\d/u', $pw);
+		if (!preg_match('/[\p{N}]/u', $pw)) {
+			return true;
+		}
+		$count = $this->strlen($pw) - $this->strlen(preg_replace('/[\p{N}]+/u', '', $pw));
+		if ($count < (int) $this->options['pw_complexity_number_length'] ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
-	 * Does the password lack punctuation characters?
+	 * Does the password lack punctuation/symbol characters?
 	 *
 	 * @param string $pw  the password to examine
 	 * @return bool
 	 */
 	protected function is_pw_missing_punct_chars($pw) {
-		return !preg_match('/[^\p{L}\p{Nd}]/u', $pw);
+		if (!preg_match('/[\p{P}|\p{S}]/u', $pw)) {
+			return true;
+		}
+		$count = $this->strlen($pw) - $this->strlen(preg_replace('/[\p{P}|\p{S}]+/u', '', $pw));
+		if ($count < (int) $this->options['pw_complexity_special_length'] ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
-	 * Does the password lack upper-case letters and lower-case letters?
+	 * Does the password lack lower-case letters?
 	 *
 	 * @param string $pw  the password to examine
 	 * @return bool
 	 */
-	protected function is_pw_missing_upper_lower_chars($pw) {
+	protected function is_pw_missing_lower_chars($pw) {
 		if ($this->available_mbstring) {
-			$upper = mb_strtoupper($pw);
 			$lower = mb_strtolower($pw);
+			$upper = mb_strtoupper($pw);
 			if ($upper == $lower) {
-				if (preg_match('/^[\P{L}\p{Nd}]+$/u', $pw)) {
-					// Contains only numbers or punctuation.  Sorry, Charlie.
+				if (preg_match('/^[\p{P}|\p{N}|\p{S}]+$/u', $pw)) {
+					// Contains only numbers, symbols, or punctuation.  Sorry, Charlie.
 					return true;
 				}
-				// Unicameral alphabet.  That's cool.
+				// Unicameral alphabet. That's cool.
 				return false;
 			}
-			if ($pw != $lower && $pw != $upper) {
+			if ($pw != $upper) {
+				$chars = $this->strip_nonword_chars($upper);
+				$chars = $this->split($chars);
+				$lowers = $this->strip_nonword_chars($pw);
+				foreach ($chars as $char) {
+					$lowers = mb_ereg_replace($char, '', $lowers);
+				}
+				$count = $this->strlen($lowers);
+				if ($count >= (int) $this->options['pw_complexity_lowercase_length'] ) {
+					return false;
+				}
+			}
+			return true;
+		} else {
+			if (!preg_match('/[[:lower:]]/u', $pw)) {
+				return true;
+			}
+			$count = strlen($pw) - strlen(preg_replace('/[[:lower:]]/u', '', $pw));
+			if ($count < (int) $this->options['pw_complexity_lowercase_length'] ) {
+				return true;
+			}
+			return false;
+		}
+	}
+
+	/**
+	 * Does the password lack upper-case letters?
+	 *
+	 * @param string $pw  the password to examine
+	 * @return bool
+	 */
+	protected function is_pw_missing_upper_chars($pw) {
+		if ($this->available_mbstring) {
+			$lower = mb_strtolower($pw);
+			$upper = mb_strtoupper($pw);
+			if ($upper == $lower) {
+				if (preg_match('/^[\p{P}|\p{N}|\p{S}]+$/u', $pw)) {
+					// Contains only numbers, symbols, or punctuation.  Sorry, Charlie.
+					return true;
+				}
+				// Unicameral alphabet. That's cool.
 				return false;
+			}
+			if ($pw != $lower) {
+				$chars = $this->strip_nonword_chars($lower);
+				$chars = $this->split($chars);
+				$uppers = $this->strip_nonword_chars($pw);
+				foreach ($chars as $char) {
+					$uppers = mb_ereg_replace($char, '', $uppers);
+				}
+				$count = $this->strlen($uppers);
+				if ($count >= (int) $this->options['pw_complexity_uppercase_length'] ) {
+					return false;
+				}
 			}
 			return true;
 		} else {
 			if (!preg_match('/[[:upper:]]/u', $pw)) {
 				return true;
 			}
-			if (!preg_match('/[[:lower:]]/u', $pw)) {
+			$count = strlen($pw) - strlen(preg_replace('/[[:upper:]]/u', '', $pw));
+			if ($count < (int) $this->options['pw_complexity_uppercase_length'] ) {
 				return true;
 			}
 			return false;
@@ -1939,8 +2098,10 @@ Password MD5                 %5d     %s
 		switch ($code) {
 			case self::E_ASCII:
 				return __("Passwords must use ASCII characters.", self::ID);
-			case self::E_CASE:
-				return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+			case self::E_LOWERCASE:
+				return sprintf(__("Passwords must either contain lower-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+			case self::E_UPPERCASE:
+				return sprintf(__("Passwords must either contain upper-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
 			case self::E_COMMON:
 				return __("Password is too common.", self::ID);
 			case self::E_DICT:
@@ -1953,6 +2114,12 @@ Password MD5                 %5d     %s
 				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
 			case self::E_REUSED:
 				return __("Passwords can not be reused.", self::ID);
+			case self::E_WRONG_CURRENT:
+				return __("You have entered the wrong current password.", self::ID);
+			case self::E_EMPTY_CURRENT:
+				return __("You must enter your current password.", self::ID);
+			case self::E_CHARS_DIFF:
+				return sprintf(__("You must change at least %d characters of your password.", self::ID), $this->options['pw_change_char_diff']);
 			case self::E_SEQ_CHAR:
 				return __("Passwords can't have that many sequential characters.", self::ID);
 			case self::E_SEQ_KEY:
@@ -2465,7 +2632,7 @@ Password MD5                 %5d     %s
 	 * @return void
 	 */
 	protected function process_pw_metadata($user_ID, $user_pass) {
-		if ($this->options['pw_change_days']) {
+		if ($this->options['pw_max_age_change_days'] || $this->options['pw_min_age_change_days']) {
 			$this->set_pw_changed_time($user_ID);
 		}
 		if ($this->options['pw_reuse_count']) {
@@ -2788,6 +2955,28 @@ Password MD5                 %5d     %s
 		}
 	}
 
+	public function use_current_password_field( $user ) {
+		global $pagenow;
+		$show_password_fields = apply_filters('show_password_fields', true, $user);
+		if ($show_password_fields && $pagenow === 'profile.php') {
+			?>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th>
+							<label for="current_pass"><?php _e('Current Password', self::ID ); ?></label>
+						</th>
+						<td>
+							<input type="password" name="current_pass" id="current_pass" class="regular-text" size="16" value="" autocomplete="off" /><br />
+							<span class="description"><?php _e( 'If you would like to set a new password, type your current one here. Otherwise leave this blank.' , self::ID ); ?></span>
+						</td>
+					</tr>
+				<tbody>
+			</table>
+			<?php
+		}
+	}
+
 	/**
 	 * Is the password valid?
 	 *
@@ -2860,7 +3049,9 @@ Password MD5                 %5d     %s
 			}
 			return false;
 		}
-		if ($enforce_complexity && $this->is_pw_missing_numeric($pw)) {
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_number_length'] &&
+			$this->is_pw_missing_numeric($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID . '_' . self::E_NUMBER,
 					$this->err($this->msg(self::E_NUMBER)),
@@ -2869,7 +3060,9 @@ Password MD5                 %5d     %s
 			}
 			return false;
 		}
-		if ($enforce_complexity && $this->is_pw_missing_punct_chars($pw)) {
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_special_length'] &&
+			$this->is_pw_missing_punct_chars($pw)) {
 			if ($errors !== null) {
 				$errors->add(self::ID . '_' . self::E_PUNCT,
 					$this->err($this->msg(self::E_PUNCT)),
@@ -2878,10 +3071,23 @@ Password MD5                 %5d     %s
 			}
 			return false;
 		}
-		if ($enforce_complexity && $this->is_pw_missing_upper_lower_chars($pw)) {
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_lowercase_length'] &&
+			$this->is_pw_missing_lower_chars($pw)) {
 			if ($errors !== null) {
-				$errors->add(self::ID . '_' . self::E_CASE,
-					$this->err($this->msg(self::E_CASE)),
+				$errors->add(self::ID . '_' . self::E_LOWERCASE,
+					$this->err($this->msg(self::E_LOWERCASE)),
+					array('form-field' => 'pass1')
+				);
+			}
+			return false;
+		}
+		if ($enforce_complexity &&
+			$this->options['pw_complexity_uppercase_length'] &&
+			$this->is_pw_missing_upper_chars($pw)) {
+			if ($errors !== null) {
+				$errors->add(self::ID . '_' . self::E_UPPERCASE,
+					$this->err($this->msg(self::E_UPPERCASE)),
 					array('form-field' => 'pass1')
 				);
 			}
