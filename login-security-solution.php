@@ -152,6 +152,8 @@ class login_security_solution {
 		'login_fail_notify_multiple' => 0,
 		'login_fail_breach_notify' => 6,
 		'login_fail_breach_pw_force_change' => 6,
+		'login_fail_delete_interval' => 0,
+		'login_fail_delete_days' => 120,
 		'pw_change_days' => 0,
 		'pw_change_grace_period_minutes' => 15,
 		'pw_complexity_exemption_length' => 20,
@@ -1001,6 +1003,31 @@ class login_security_solution {
 	}
 
 	/**
+	 * Remove's records older than login_fail_delete_days from the fail table
+	 *
+	 * @return bool  true if the query succeeds, false if it fails
+	 *
+	 * @uses login_security_solution::$options  for the login_fail_delete_days
+	 *       setting
+	 */
+	protected function delete_login_fail_old() {
+		global $wpdb;
+
+		$days = $this->options['login_fail_delete_days'];
+		$wpdb->escape_by_ref($days);
+
+		$wpdb->query("DELETE FROM `$this->table_fail`
+			WHERE date_failed < DATE_SUB(CURDATE(), INTERVAL '$days' DAY)");
+
+		if ($wpdb->last_error) {
+			###$this->log(__FUNCTION__, 'query failure', $wpdb->last_error);
+			return false;
+		}
+		###$this->log(__FUNCTION__, 'success');
+		return true;
+	}
+
+	/**
 	 * Remove's the "force password change" flag from the user's metadata
 	 *
 	 * @param int $user_ID  the current user's ID number
@@ -1387,10 +1414,18 @@ Password MD5                 %5d     %s
 	/**
 	 * Saves the failed login's info in the database
 	 *
+	 * If the insert ID returned is divisible by this plugin's
+	 * login_fail_delete_interval option, the delete_login_fail_old() method
+	 * gets called.
+	 *
 	 * @param string $ip  a prior result from get_ip()
 	 * @param string $user_login  the user name from the current login form
 	 * @param string $pass_md5  the md5 hashed new password
 	 * @return void
+	 *
+	 * @uses login_security_solution::$options  for the
+	 *       login_fail_delete_interval setting
+	 * @uses login_security_solution::delete_login_fail_old()  to remove cruft
 	 */
 	protected function insert_fail($ip, $user_login, $pass_md5) {
 		global $wpdb;
@@ -1408,6 +1443,12 @@ Password MD5                 %5d     %s
 			$args,
 			array('%s', '%s', '%s')
 		);
+
+		if ($this->options['login_fail_delete_interval']
+			&& $wpdb->insert_id % $this->options['login_fail_delete_interval'] == 0)
+		{
+			$this->delete_login_fail_old();
+		}
 
 		$args['options'] = $this->options;
 		do_action('login_security_solution_insert_fail', $args);

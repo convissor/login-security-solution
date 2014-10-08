@@ -506,6 +506,8 @@ on our GitHub.
 == Changelog ==
 
 = 0.47.0 () =
+* Add the "Deletion Interval" and "Deletion Days" settings for
+automatically removing old data
 * Added "action" hooks:
     - login_security_solution_insert_fail
     - login_security_solution_notify_breach

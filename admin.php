@@ -354,6 +354,19 @@ class login_security_solution_admin extends login_security_solution {
 				'text' => __("How many passwords should be remembered? Prevents reuse of old passwords. 0 disables this feature.", self::ID),
 				'type' => 'int',
 			),
+
+			'login_fail_delete_interval' => array(
+				'group' => 'retention',
+				'label' => __("Deletion Interval", self::ID),
+				'text' => sprintf(__("Run the deletion process upon every x login failures. 0 disables this feature. Suggested value: %d.", self::ID), 1000),
+				'type' => 'int',
+			),
+			'login_fail_delete_days' => array(
+				'group' => 'retention',
+				'label' => __("Deletion Days", self::ID),
+				'text' => __("Delete records older than x days.", self::ID),
+				'type' => 'int',
+			),
 		);
 	}
 
@@ -415,6 +428,12 @@ class login_security_solution_admin extends login_security_solution {
 			self::ID . '-login',
 			$this->hsc_utf8(__("Login Failure Policies", self::ID)),
 			array(&$this, 'section_login'),
+			self::ID
+		);
+		add_settings_section(
+			self::ID . '-retention',
+			$this->hsc_utf8(__("Data Retention Policies", self::ID)),
+			array(&$this, 'section_retention'),
 			self::ID
 		);
 		add_settings_section(
@@ -489,6 +508,16 @@ class login_security_solution_admin extends login_security_solution {
 		echo $this->hsc_utf8(__("The amount of the delay increases in higher tiers.", self::ID));
 		echo ' ';
 		echo $this->hsc_utf8(__("The delay time within each tier is randomized to complicate profiling by attackers.", self::ID));
+		echo '</p>';
+	}
+
+	/**
+	 * The callback for rendering the "Data Retention Policies" section
+	 * @return void
+	 */
+	public function section_retention() {
+		echo '<p>';
+		echo $this->hsc_utf8(sprintf(__("The means for automatically deleting old records from the %s table.", self::ID),$this->table_fail));
 		echo '</p>';
 	}
 
