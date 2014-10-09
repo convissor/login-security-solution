@@ -118,6 +118,7 @@ conflicts during program execution.  Please read the FAQ!
 
 * Deutsche, Deutschland (German, Germany) (de_DE) by Christian Foellmann
 * Français, français (French, France) (fr_FR) by [mermouy](http://wordpress.org/support/profile/mermouy) and and Fx Bénard
+* 日本語, 日本国 (Japanese, Japan) (ja_JP) by [motoyamayuki](http://profiles.wordpress.org/motoyamayuki/)
 * Nederlands, Nederland (Dutch, Netherlands) (nl_NL) by Friso van Wieringen
 * Português, Brasil (Portugese, Brazil) (pt_BR) by Valdir Trombini
 
