@@ -4,7 +4,7 @@ cd "`dirname "$0"`/../../makepot"
 
 svn up
 
-php -d 'error_reporting=E_ALL^E_STRICT' \
+php -d 'error_reporting=E_ALL^E_STRICT^E_DEPRECATED' \
 	makepot.php wp-plugin \
 	../login-security-solution \
 	../login-security-solution/languages/login-security-solution.pot
