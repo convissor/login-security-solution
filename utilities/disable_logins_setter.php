@@ -5,7 +5,7 @@
  * the Login Security Solution WordPress plugin
  *
  * @package login-security-solution
- * @link http://wordpress.org/extend/plugins/login-security-solution/
+ * @link http://wordpress.org/plugins/login-security-solution/
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
  * @copyright The Analysis and Solutions Company, 2012-2014
@@ -23,7 +23,7 @@ function usage() {
 	echo "  @param int input  1 = disable logins, 0 = enable logins\n";
 	echo "\nAuthor: Daniel Convissor <danielc@analysisandsolutions.com>\n";
 	echo "License: http://www.gnu.org/licenses/gpl-2.0.html\n";
-	echo "Link: http://wordpress.org/extend/plugins/login-security-solution/\n";
+	echo "Link: http://wordpress.org/plugins/login-security-solution/\n";
 	exit(1);
 }
 

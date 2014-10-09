@@ -94,18 +94,18 @@ The tests have caught every password dictionary entry I've tried.
 
 For reference, the similar plugins include:
 
-* [6Scan Security](http://wordpress.org/extend/plugins/6scan-protection/)
-* [Better WP Security](http://wordpress.org/extend/plugins/better-wp-security/)
-* [Enforce Strong Password](http://wordpress.org/extend/plugins/enforce-strong-password/)
-* [Force Strong Passwords](http://wordpress.org/extend/plugins/force-strong-passwords/)
-* [Limit Login Attempts](http://wordpress.org/extend/plugins/limit-login-attempts/)
-* [Login Lock](http://wordpress.org/extend/plugins/login-lock/)
-* [Login LockDown](http://wordpress.org/extend/plugins/login-lockdown/)
-* [PMC Lockdown](http://wordpress.org/extend/plugins/pmc-lockdown/)
-* [Simple Login Lockdown](http://wordpress.org/extend/plugins/simple-login-lockdown/)
-* [Wordfence Security](http://wordpress.org/extend/plugins/wordfence/)
-* [WP Login Security](http://wordpress.org/extend/plugins/wp-login-security/)
-* [WP Login Security 2](http://wordpress.org/extend/plugins/wp-login-security-2/)
+* [6Scan Security](http://wordpress.org/plugins/6scan-protection/)
+* [Better WP Security](http://wordpress.org/plugins/better-wp-security/)
+* [Enforce Strong Password](http://wordpress.org/plugins/enforce-strong-password/)
+* [Force Strong Passwords](http://wordpress.org/plugins/force-strong-passwords/)
+* [Limit Login Attempts](http://wordpress.org/plugins/limit-login-attempts/)
+* [Login Lock](http://wordpress.org/plugins/login-lock/)
+* [Login LockDown](http://wordpress.org/plugins/login-lockdown/)
+* [PMC Lockdown](http://wordpress.org/plugins/pmc-lockdown/)
+* [Simple Login Lockdown](http://wordpress.org/plugins/simple-login-lockdown/)
+* [Wordfence Security](http://wordpress.org/plugins/wordfence/)
+* [WP Login Security](http://wordpress.org/plugins/wp-login-security/)
+* [WP Login Security 2](http://wordpress.org/plugins/wp-login-security-2/)
 
 
 = Compatibility with Other Plugins =
@@ -198,7 +198,7 @@ has probably gotten itself into your computer.
                 $_SERVER['HTTP_X_FORWARDED_FOR']);
 
 1. Download the Login Security Solution zip file from WordPress' plugin
-    site: `http://wordpress.org/extend/plugins/login-security-solution/`
+    site: `http://wordpress.org/plugins/login-security-solution/`
 
 1. Unzip the file.
 

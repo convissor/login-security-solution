@@ -660,7 +660,7 @@ msgid "Login Security Solution"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://wordpress.org/extend/plugins/login-security-solution/"
+msgid "http://wordpress.org/plugins/login-security-solution/"
 msgstr ""
 
 #. Description of the plugin/theme

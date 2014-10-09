@@ -5,7 +5,7 @@
  *
  * Description: Requires very strong passwords, repels brute force login attacks, prevents login information disclosures, expires idle sessions, notifies admins of attacks and breaches, permits administrators to disable logins for maintenance or emergency reasons and reset all passwords.
  *
- * Plugin URI: http://wordpress.org/extend/plugins/login-security-solution/
+ * Plugin URI: http://wordpress.org/plugins/login-security-solution/
  * Version: 0.46.0
  *         (Remember to change the VERSION constant, below, as well!)
  * Author: Daniel Convissor
@@ -23,7 +23,7 @@ $GLOBALS['login_security_solution'] = new login_security_solution;
  * The Login Security Solution plugin enhances WordPress' security
  *
  * @package login-security-solution
- * @link http://wordpress.org/extend/plugins/login-security-solution/
+ * @link http://wordpress.org/plugins/login-security-solution/
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
  * @copyright The Analysis and Solutions Company, 2012-2014
