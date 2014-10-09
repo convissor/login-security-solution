@@ -519,6 +519,7 @@ automatically removing old data
     - login_security_solution_notify_breach_user_message
     - login_security_solution_notify_fail_subject
     - login_security_solution_notify_fail_message
+* Escape WP's `table_prefix` before use
 
 = 0.46.0 (2014-10-03) =
 * Fix password policy hint broken by changes in WP 3.9

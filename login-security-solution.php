@@ -325,7 +325,9 @@ class login_security_solution {
 	protected function initialize() {
 		global $wpdb;
 
-		$this->table_fail = $wpdb->get_blog_prefix(0) . $this->prefix . 'fail';
+		$prefix = $wpdb->get_blog_prefix(0);
+		$prefix = str_replace('`', '``', $prefix);
+		$this->table_fail = $prefix . $this->prefix . 'fail';
 
 		$this->key_login_msg = self::ID . '-login-msg-id';
 		$this->option_name = self::ID . '-options';
