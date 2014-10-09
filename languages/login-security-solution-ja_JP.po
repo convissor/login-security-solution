@@ -17,9 +17,10 @@ msgstr ""
 "X-Generator: Poedit 1.6.5\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+# Translation from WordPress.
 #: admin.php:112 admin.php:386
 msgid "Settings"
-msgstr "設定"
+msgstr ""
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -404,9 +405,10 @@ msgstr ""
 msgid "No thanks"
 msgstr "いいえ"
 
+# Translation from WordPress.
 #: admin.php:849 admin.php:869
 msgid "Success!"
-msgstr "成功！"
+msgstr ""
 
 #: admin.php:862
 msgid "Confirm"
@@ -468,9 +470,10 @@ msgstr ""
 "下記のリンクは、すべてのパスワードをリセットする要求をする、あるいはこの通知"
 "を無効にする設定へ誘導します。"
 
+# Translation from WordPress.
 #: admin.php:985
 msgid "You do not have sufficient permissions to access this page."
-msgstr "このページにアクセスするための十分な権限を持っていません。"
+msgstr ""
 
 #: admin.php:991
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -482,10 +485,11 @@ msgstr ""
 msgid "Invalid username or password."
 msgstr "ユーザー名またはパスワードが間違っています。"
 
+# Translation from WordPress.
 #: login-security-solution.php:654 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
-msgstr "パスワードリセットは、このユーザーに許可されていません。"
+msgstr ""
 
 #: login-security-solution.php:680 tests/LoginMessageTest.php:66
 msgid "It has been over %d minutes since your last action."
@@ -542,9 +546,10 @@ msgstr ""
 "なくても%d 文字以上でなければなりません。パスワードは、あなたやこのウェブサイ"
 "トに関連する単語を含むことは出来ません。"
 
+# Translation from WordPress.
 #: login-security-solution.php:1061
 msgid "ERROR"
-msgstr "エラー"
+msgstr ""
 
 #: login-security-solution.php:1224
 msgid ""
@@ -692,9 +697,10 @@ msgstr ""
 "あなたのアカウントが不正アクセスをされていないことを確認するために、再度ログ"
 "インするまえに「 %s 」を通じて対応してください。"
 
+# Translation from WordPress.
 #: login-security-solution.php:2235
 msgid "Lost your password?"
-msgstr "パスワードを忘れましたか"
+msgstr ""
 
 #: login-security-solution.php:2238
 msgid "If it was NOT YOU, please do the following right away:"
