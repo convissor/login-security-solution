@@ -445,13 +445,13 @@ class login_security_solution_admin extends login_security_solution {
 		add_settings_section(
 			self::ID . '-pw',
 			$this->hsc_utf8(__("Password Policies", self::ID)),
-			array(&$this, 'section_blank'),
+			'__return_empty_string',
 			self::ID
 		);
 		add_settings_section(
 			self::ID . '-misc',
 			$this->hsc_utf8(__("Miscellaneous Policies", self::ID)),
-			array(&$this, 'section_blank'),
+			'__return_empty_string',
 			self::ID
 		);
 
@@ -486,13 +486,6 @@ class login_security_solution_admin extends login_security_solution {
 		do_settings_sections(self::ID);
 		submit_button();
 		echo '</form>';
-	}
-
-	/**
-	 * The callback for "rendering" the sections that don't have text
-	 * @return void
-	 */
-	public function section_blank() {
 	}
 
 	/**
