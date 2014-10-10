@@ -725,11 +725,15 @@ class login_security_solution_admin extends login_security_solution {
 		add_submenu_page(
 			$this->page_options,
 			$this->text_pw_force_change,
-			'',
+			$this->text_pw_force_change,
 			$this->capability_required,
 			$this->option_pw_force_change_name,
 			array(&$this, 'page_pw_force_change')
 		);
+	}
+
+	public function admin_menu_hide_pw_force_change() {
+		remove_submenu_page( $this->page_options, $this->option_pw_force_change_name );
 	}
 
 	/**
