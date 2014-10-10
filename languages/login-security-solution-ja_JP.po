@@ -1,10 +1,10 @@
 # Copyright (C) 2014 Login Security Solution
 # This file is distributed under the same license as the Login Security Solution package.
-# Special thanks for Japanese Translation: motoyamayuki (http://profiles.wordpress.org/motoyamayuki/) and dote1027 (http://profiles.wordpress.org/dote1027/).
+# Special thanks for Japanese Translation: motoyamayuki (https://profiles.wordpress.org/motoyamayuki/) and dote1027 (https://profiles.wordpress.org/dote1027/).
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.44.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
+"Project-Id-Version: Login Security Solution 0.47.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
 "PO-Revision-Date: 2014-06-08 16:09+0900\n"
@@ -776,8 +776,8 @@ msgid "Login Security Solution"
 msgstr "Login Security Solution"
 
 #. Plugin URI of the plugin/theme
-msgid "http://wordpress.org/plugins/login-security-solution/"
-msgstr "http://wordpress.org/plugins/login-security-solution/"
+msgid "https://wordpress.org/plugins/login-security-solution/"
+msgstr "https://wordpress.org/plugins/login-security-solution/"
 
 #. Description of the plugin/theme
 msgid ""

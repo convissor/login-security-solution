@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Login Security Solution 0.47.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
 "MIME-Version: 1.0\n"
@@ -671,8 +671,8 @@ msgid "Login Security Solution"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://wordpress.org/plugins/login-security-solution/"
-msgstr ""
+msgid "https://wordpress.org/plugins/login-security-solution/"
+msgstr "https://wordpress.org/plugins/login-security-solution/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -684,8 +684,8 @@ msgstr ""
 
 #. Author of the plugin/theme
 msgid "Daniel Convissor"
-msgstr ""
+msgstr "Daniel Convissor"
 
 #. Author URI of the plugin/theme
 msgid "http://www.analysisandsolutions.com/"
-msgstr ""
+msgstr "http://www.analysisandsolutions.com/"

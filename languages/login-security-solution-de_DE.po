@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Login Security Solution 0.44.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
 "PO-Revision-Date: 2014-01-16 02:27:32+00:00\n"
@@ -818,8 +818,8 @@ msgid "Login Security Solution"
 msgstr "Login Security Solution"
 
 #. Plugin URI of the plugin/theme
-msgid "http://wordpress.org/plugins/login-security-solution/"
-msgstr "http://wordpress.org/plugins/login-security-solution/"
+msgid "https://wordpress.org/plugins/login-security-solution/"
+msgstr "https://wordpress.org/plugins/login-security-solution/"
 
 #. Description of the plugin/theme
 msgid ""
