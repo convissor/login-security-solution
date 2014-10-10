@@ -148,6 +148,7 @@ class login_security_solution {
 		'login_fail_minutes' => 120,
 		'login_fail_tier_2' => 5,
 		'login_fail_tier_3' => 10,
+		'login_fail_tier_dos' => 500,
 		'login_fail_notify' => 50,
 		'login_fail_notify_multiple' => 0,
 		'login_fail_breach_notify' => 6,
@@ -926,9 +927,11 @@ class login_security_solution {
 	 * Disconnects the database, sleeps, then reconnects the database.
 	 *
 	 * @param int $fails_total  how many falures have taken place
+	 * @param array $args  the data to pass to the
+	 *                     login_security_solution_fail_tier_dos action
 	 * @return int  the number of seconds sleept
 	 */
-	protected function call_sleep($fails_total) {
+	protected function call_sleep($fails_total, $args = array()) {
 		global $wpdb;
 
 		if ($this->sleep) {
@@ -941,8 +944,18 @@ class login_security_solution {
 			$this->sleep = rand(1, 7);
 		} elseif ($fails_total < $this->options['login_fail_tier_3']) {
 			$this->sleep = rand(4, 30);
-		} else {
+		} elseif (!$this->options['login_fail_tier_dos']
+				|| $fails_total < $this->options['login_fail_tier_dos'])
+		{
 			$this->sleep = rand(25, 60);
+		} else {
+			// Oh, boy.  Really avoid creating a Denial of Service attack.
+			$this->sleep = -1;
+			###$this->log(__FUNCTION__, $this->sleep);
+			if ($fails_total == $this->options['login_fail_tier_dos']) {
+				do_action('login_security_solution_fail_tier_dos', $args);
+			}
+			return $this->sleep;
 		}
 		###$this->log(__FUNCTION__, $this->sleep);
 
@@ -2362,9 +2375,19 @@ Password MD5                 %5d     %s
 			$this->insert_fail($ip, $user_name, $pass_md5);
 		}
 		$fails = $this->get_login_fail($network_ip, $user_name, $pass_md5);
+
+		$args = array(
+			'ip' => $ip,
+			'network_ip' => $network_ip,
+			'user_login' => $user_name,
+			'pass_md5' => $pass_md5,
+			'fails' => $fails,
+			'options' => $this->options,
+		);
+
 		if ($match) {
 			###$this->log(__FUNCTION__, "duplicate");
-			$this->call_sleep($fails['total']);
+			$this->call_sleep($fails['total'], $args);
 			return -4;
 		}
 
@@ -2378,7 +2401,7 @@ Password MD5                 %5d     %s
 			}
 		}
 
-		return $this->call_sleep($fails['total']);
+		return $this->call_sleep($fails['total'], $args);
 	}
 
 	/**

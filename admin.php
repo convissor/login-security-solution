@@ -288,6 +288,12 @@ class login_security_solution_admin extends login_security_solution {
 				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be > Delay Tier 2.", self::ID), 25, 60),
 				'type' => 'int',
 			),
+			'login_fail_tier_dos' => array(
+				'group' => 'login',
+				'label' => __("DoS Tier", self::ID),
+				'text' => __("How many matching login failures should it take until the plugin stops delaying responses (to avoid a Denial of Service problem)? 0 disables this feature. Must be > Delay Tier 3.", self::ID),
+				'type' => 'int',
+			),
 			'admin_email' => array(
 				'group' => 'login',
 				'label' => __("Notifications To", self::ID),
@@ -683,6 +689,18 @@ class login_security_solution_admin extends login_security_solution {
 							. ' ' . $default));
 
 			$out[$name] = $out['login_fail_tier_2'] + 5;
+		}
+
+		// Special check to make sure Delay Tier 4 > Delay Tier 3.
+		$name = 'login_fail_tier_dos';
+		if ($out[$name] <= $out['login_fail_tier_3']) {
+			add_settings_error($this->option_name,
+					$this->hsc_utf8($name),
+					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
+							. sprintf($gt_format, $this->fields['login_fail_tier_3']['label'])
+							. ' ' . $default));
+
+			$out[$name] = $out['login_fail_tier_3'] + 5;
 		}
 
 		// Speical check to ensure reuse count is set if aging is enabled.

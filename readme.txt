@@ -285,6 +285,7 @@ in critical methods, allowing you to add custom behaviors.
 * login_security_solution_insert_fail
 * login_security_solution_notify_breach
 * login_security_solution_notify_fail
+* login_security_solution_fail_tier_dos
 
 == Filters ==
 
@@ -507,12 +508,15 @@ on our GitHub.
 == Changelog ==
 
 = 0.47.0 () =
+* Add the "DoS Tier," above "Delay Tier 3," beyond which respones are no
+longer slowed down, keeping sites from befalling Denial of Service conditions
 * Add the "Deletion Interval" and "Deletion Days" settings for
 automatically removing old data
 * Added "action" hooks:
     - login_security_solution_insert_fail
     - login_security_solution_notify_breach
     - login_security_solution_notify_fail
+    - login_security_solution_fail_tier_dos
 * Added "filter" hooks. See "Hooks" in the "Installation" tab for more info.
     - login_security_solution_notify_breach_subject
     - login_security_solution_notify_breach_message
