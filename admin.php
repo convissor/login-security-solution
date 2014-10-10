@@ -476,7 +476,7 @@ class login_security_solution_admin extends login_security_solution {
 		do_settings_sections(self::ID);
 		submit_button();
 		echo '</form>';
-		echo '</div>';
+		echo '</div><!-- .wrap -->';
 	}
 
 	/**
@@ -765,6 +765,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return void
 	 */
 	public function page_pw_force_change() {
+		echo '<div class="wrap">';
 		echo '<h2>' . $this->hsc_utf8($this->text_pw_force_change) . '</h2>';
 
 		echo '<p>';
@@ -821,6 +822,7 @@ class login_security_solution_admin extends login_security_solution {
 		}
 
 		echo '</form>';
+		echo '</div><!-- .wrap -->';
 	}
 
 	/**
