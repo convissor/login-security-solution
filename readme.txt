@@ -846,5 +846,4 @@ problems under PHP 5.4.
 
 = To Do =
 
-* Delete old data in the `fail` table.
 * Provide a user interface to the `fail` table.
