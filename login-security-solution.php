@@ -11,6 +11,8 @@
  * Author: Daniel Convissor
  * Author URI: http://www.analysisandsolutions.com/
  * License: GPLv2
+ * Text Domain: login-security-solution
+ * Domain Path: /languages
  * @package login-security-solution
  */
 
