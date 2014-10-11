@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The user interface and activation/deactivation methods for administering
  * the Login Security Solution WordPress plugin
@@ -11,16 +10,6 @@
  * @copyright The Analysis and Solutions Company, 2012-2014
  */
 
-/**
- * The user interface and activation/deactivation methods for administering
- * the Login Security Solution WordPress plugin
- *
- * @package login-security-solution
- * @link https://wordpress.org/plugins/login-security-solution/
- * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
- * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012-2014
- */
 class login_security_solution_admin extends login_security_solution {
 	/**
 	 * The WP privilege level required to use the admin interface
@@ -445,13 +434,13 @@ class login_security_solution_admin extends login_security_solution {
 		add_settings_section(
 			self::ID . '-pw',
 			$this->hsc_utf8(__("Password Policies", self::ID)),
-			array(&$this, 'section_blank'),
+			'__return_empty_string',
 			self::ID
 		);
 		add_settings_section(
 			self::ID . '-misc',
 			$this->hsc_utf8(__("Miscellaneous Policies", self::ID)),
-			array(&$this, 'section_blank'),
+			'__return_empty_string',
 			self::ID
 		);
 
@@ -459,7 +448,7 @@ class login_security_solution_admin extends login_security_solution {
 		foreach ($this->fields as $id => $field) {
 			add_settings_field(
 				$id,
-				$this->hsc_utf8($field['label']),
+				"<label for='{$id}'>" . $this->hsc_utf8($field['label']) . '</label>',
 				array(&$this, $id),
 				self::ID,
 				self::ID . '-' . $field['group']
@@ -480,19 +469,14 @@ class login_security_solution_admin extends login_security_solution {
 		}
 
 		screen_icon('options-general');
+		echo '<div class="wrap">';
 		echo '<h2>' . $this->hsc_utf8($this->text_settings) . '</h2>';
 		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
 		settings_fields($this->option_name);
 		do_settings_sections(self::ID);
 		submit_button();
 		echo '</form>';
-	}
-
-	/**
-	 * The callback for "rendering" the sections that don't have text
-	 * @return void
-	 */
-	public function section_blank() {
+		echo '</div><!-- .wrap -->';
 	}
 
 	/**
@@ -580,6 +564,7 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<input type="text" size="3" name="'
 			. $this->hsc_utf8($this->option_name)
 			. '[' . $this->hsc_utf8($name) . ']"'
+			. ' id="' . $this->hsc_utf8($name) . '"'
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
 		echo $this->hsc_utf8($this->fields[$name]['text']
 				. ' ' . __('Default:', self::ID) . ' '
@@ -594,6 +579,7 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<input type="text" size="75" name="'
 			. $this->hsc_utf8($this->option_name)
 			. '[' . $this->hsc_utf8($name) . ']"'
+			. ' id="' . $this->hsc_utf8($name) . '"'
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
 		echo '<br />';
 		echo $this->hsc_utf8($this->fields[$name]['text']
@@ -732,11 +718,15 @@ class login_security_solution_admin extends login_security_solution {
 		add_submenu_page(
 			$this->page_options,
 			$this->text_pw_force_change,
-			'',
+			$this->text_pw_force_change,
 			$this->capability_required,
 			$this->option_pw_force_change_name,
 			array(&$this, 'page_pw_force_change')
 		);
+	}
+
+	public function admin_menu_hide_pw_force_change() {
+		remove_submenu_page( $this->page_options, $this->option_pw_force_change_name );
 	}
 
 	/**
@@ -772,6 +762,7 @@ class login_security_solution_admin extends login_security_solution {
 	 * @return void
 	 */
 	public function page_pw_force_change() {
+		echo '<div class="wrap">';
 		echo '<h2>' . $this->hsc_utf8($this->text_pw_force_change) . '</h2>';
 
 		echo '<p>';
@@ -828,6 +819,7 @@ class login_security_solution_admin extends login_security_solution {
 		}
 
 		echo '</form>';
+		echo '</div><!-- .wrap -->';
 	}
 
 	/**
