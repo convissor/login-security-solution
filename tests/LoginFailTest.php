@@ -54,6 +54,7 @@ class LoginFailTest extends TestCase {
 		$options['login_fail_notify_multiple'] = 0;
 		$options['login_fail_tier_2'] = 3;
 		$options['login_fail_tier_3'] = 4;
+		$options['login_fail_tier_dos'] = 0;
 		$options['login_fail_breach_notify'] = 4;
 		$options['login_fail_breach_pw_force_change'] = 4;
 		self::$lss->options = $options;
@@ -314,12 +315,32 @@ class LoginFailTest extends TestCase {
 			$this->fail($e->getMessage());
 		}
 		$this->assertGreaterThan(0, $sleep, 'Sleep was not set.');
+	}
+
+	/**
+	 * @depends test_process_login_fail__post_threshold_multiple_off
+	 */
+	public function test_process_login_fail__tier_dos() {
+		global $wpdb;
+
+		$options = self::$lss->options;
+		$options['login_fail_tier_dos'] = 7;
+		self::$lss->options = $options;
+
+		try {
+			// Do THE deed.
+			$sleep = self::$lss->process_login_fail($this->user_name, __FUNCTION__);
+			// Count is now 7.
+		} catch (Exception $e) {
+			$this->fail($e->getMessage());
+		}
+		$this->assertEquals(-1, $sleep, 'DoS protection not working.');
 
 		$wpdb->query('ROLLBACK TO pre_not_modulus');
 	}
 
 	/**
-	 * @depends test_process_login_fail__post_threshold_multiple_off
+	 * @depends test_process_login_fail__tier_dos
 	 */
 	public function test_wp_login__post_breach_threshold() {
 		self::$mail_file_basename = __METHOD__;
