@@ -459,7 +459,8 @@ class login_security_solution_admin extends login_security_solution {
 		foreach ($this->fields as $id => $field) {
 			add_settings_field(
 				$id,
-				$this->hsc_utf8($field['label']),
+				'<label for="' . $this->hsc_utf8($id) . '">'
+					. $this->hsc_utf8($field['label']) . '</label>',
 				array(&$this, $id),
 				self::ID,
 				self::ID . '-' . $field['group']
@@ -573,6 +574,7 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<input type="text" size="3" name="'
 			. $this->hsc_utf8($this->option_name)
 			. '[' . $this->hsc_utf8($name) . ']"'
+			. ' id="' . $this->hsc_utf8($name) . '"'
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
 		echo $this->hsc_utf8($this->fields[$name]['text']
 				. ' ' . __('Default:', self::ID) . ' '
@@ -587,6 +589,7 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<input type="text" size="75" name="'
 			. $this->hsc_utf8($this->option_name)
 			. '[' . $this->hsc_utf8($name) . ']"'
+			. ' id="' . $this->hsc_utf8($name) . '"'
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
 		echo '<br />';
 		echo $this->hsc_utf8($this->fields[$name]['text']
