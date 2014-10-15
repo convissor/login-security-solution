@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.44.0\n"
+"Project-Id-Version: Login Security Solution 0.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
