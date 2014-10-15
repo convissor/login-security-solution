@@ -507,7 +507,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.47.0 () =
+= 0.47.0 (2014-10-15) =
 * Add the "DoS Tier," above "Delay Tier 3," beyond which respones are no
 longer slowed down, keeping sites from befalling Denial of Service conditions
 * Add the "Deletion Interval" and "Deletion Days" settings for
