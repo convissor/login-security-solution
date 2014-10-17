@@ -507,6 +507,9 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.48.0 (2014-10-17) =
+* Fix "DoS Tier" setting validation so it can be set to 0.
+
 = 0.47.0 (2014-10-15) =
 * Add the "DoS Tier," above "Delay Tier 3," beyond which respones are no
 longer slowed down, keeping sites from befalling Denial of Service conditions

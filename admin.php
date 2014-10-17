@@ -689,7 +689,7 @@ class login_security_solution_admin extends login_security_solution {
 
 		// Special check to make sure Delay Tier 4 > Delay Tier 3.
 		$name = 'login_fail_tier_dos';
-		if ($out[$name] <= $out['login_fail_tier_3']) {
+		if ($out[$name] && $out[$name] <= $out['login_fail_tier_3']) {
 			add_settings_error($this->option_name,
 					$this->hsc_utf8($name),
 					$this->hsc_utf8("'" . $this->fields[$name]['label'] . "' "
