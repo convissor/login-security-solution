@@ -256,6 +256,7 @@ class login_security_solution {
 				array(&$this, 'user_profile_update_errors'), 999, 3);
 
 		add_action('login_form_resetpass', array(&$this, 'pw_policy_establish'));
+		add_action('validate_password_reset', array(&$this, 'pw_policy_establish'));
 
 		add_filter('xmlrpc_enabled', array(&$this, 'xmlrpc_enabled'));
 		add_filter('authenticate', array(&$this, 'authenticate'), 999, 3);

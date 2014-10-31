@@ -507,6 +507,9 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.49.0 () =
+* Fix password policy hint on password reset form broken by changes in WP
+
 = 0.48.0 (2014-10-17) =
 * Fix "DoS Tier" setting validation so it can be set to 0.
 
