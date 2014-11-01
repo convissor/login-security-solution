@@ -103,14 +103,14 @@ msgstr "Oui, supprimer ces fichues données."
 msgid "Match Time"
 msgstr "Temps de comparaisons"
 
-# TODO: translate the "0 disables..." sentence.
 #: admin.php:275
 msgid ""
 "How far back, in minutes, should login failures look for matching data? 0 "
 "disables Login Failure slow downs, notifications and breach confirmations."
 msgstr ""
 "Les échecs de connexion doivent être comparés combien de minutes en arrière? "
-"0 disables Login Failure slow downs, notifications and breach confirmations."
+"0 désactive le ralentissement suite aux échecs de connexions, les "
+"notifications et les confirmation de faille."
 
 #: admin.php:280
 msgid "Delay Tier 2"
@@ -138,7 +138,7 @@ msgstr ""
 
 #: admin.php:293
 msgid "DoS Tier"
-msgstr ""
+msgstr "Partie DoS"
 
 #: admin.php:294
 msgid ""
@@ -146,6 +146,9 @@ msgid ""
 "delaying responses (to avoid a Denial of Service problem)? 0 disables this "
 "feature. Must be > Delay Tier 3."
 msgstr ""
+"Combien de tentatives infructueuses avant que l’extension ne cesse de "
+"retarder les réponses (Afin d'éviter un problème de Dénis de service)? 0 "
+"désactive cette fonctionnalité. Doit être > Tiers Temps 3."
 
 #: admin.php:299
 msgid "Notifications To"
@@ -277,13 +280,15 @@ msgstr ""
 
 #: admin.php:366
 msgid "Deletion Interval"
-msgstr ""
+msgstr "Intervalle d'effacement"
 
 #: admin.php:367
 msgid ""
 "Run the deletion process upon every x login failures. 0 disables this "
 "feature. Suggested value: %d."
 msgstr ""
+"Exécuter le processus d'effacement tous les x échecs de connexion. 0 "
+"désactive cette fonctionnalité. Valeur suggérée: %d."
 
 #: admin.php:372
 msgid "Deletion Days"
@@ -291,7 +296,7 @@ msgstr ""
 
 #: admin.php:373
 msgid "Delete records older than x days."
-msgstr ""
+msgstr "Effacer les enregistrements plus vieux que x jours."
 
 #: admin.php:435
 msgid "Login Failure Policies"
@@ -299,12 +304,12 @@ msgstr "Politique des tentatives infructueuses"
 
 #: admin.php:441
 msgid "Data Retention Policies"
-msgstr ""
+msgstr "Politiques de rétention de données"
 
 # @ login-security-solution
 #: admin.php:447
 msgid "Password Policies"
-msgstr "Politique de mot de passe"
+msgstr "Politiques des mot de passe"
 
 #: admin.php:453
 msgid "Miscellaneous Policies"
@@ -361,6 +366,8 @@ msgstr ""
 #: admin.php:526
 msgid "The means for automatically deleting old records from the %s table."
 msgstr ""
+"Les moyens de suppression automatique des anciens enregistrements de la "
+"table %s."
 
 #: admin.php:585 admin.php:600
 msgid "Default:"
