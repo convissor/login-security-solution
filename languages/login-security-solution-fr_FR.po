@@ -4,28 +4,26 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
-"PO-Revision-Date: 2014-01-16 02:27:32+00:00\n"
-"Last-Translator: Daniel Convissor <danielc@analysisandsolutions.com>\n"
+"PO-Revision-Date: 2014-10-22 15:37+0100\n"
+"Last-Translator: MerMouY <mermouy@openmailbox.org>\n"
 "Language-Team: FxB <fx@fxbenard.com>\n"
-"Language: \n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: French\n"
-"X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
 "X-Poedit-Basepath: ../\n"
-"X-Poedit-Bookmarks: \n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-SearchPath-0: .\n"
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:112 admin.php:392
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: admin.php:126
 msgid "Change All Passwords"
@@ -290,9 +288,11 @@ msgstr ""
 "Exécuter le processus d'effacement tous les x échecs de connexion. 0 "
 "désactive cette fonctionnalité. Valeur suggérée: %d."
 
+# Means which days of the week should be run?
 #: admin.php:372
+#, fuzzy
 msgid "Deletion Days"
-msgstr ""
+msgstr "Jours d'effacement"
 
 #: admin.php:373
 msgid "Delete records older than x days."
@@ -446,7 +446,7 @@ msgstr "Non merci"
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:867 admin.php:887
 msgid "Success!"
-msgstr ""
+msgstr "Réussite!"
 
 #: admin.php:880
 msgid "Confirm"
@@ -513,7 +513,7 @@ msgstr ""
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:1003
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "Vous n'avez pas les permissions suffisantes pour accéder à cette page."
 
 #: admin.php:1009
 msgid "$user_ID variable not set. Another plugin is misbehaving."
@@ -530,7 +530,7 @@ msgstr "Identifiant ou mot de passe incorrect."
 #: login-security-solution.php:655 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
-msgstr ""
+msgstr "Ré-initialisation du mot de passe non autorisée pour cet utilisateur"
 
 # @ login-security-solution
 #: login-security-solution.php:681 tests/LoginMessageTest.php:66
@@ -601,7 +601,7 @@ msgstr ""
 # @ default
 #: login-security-solution.php:1074
 msgid "ERROR"
-msgstr ""
+msgstr "ERREUR"
 
 # @ login-security-solution
 #: login-security-solution.php:1237
@@ -784,7 +784,7 @@ msgstr ""
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:2248
 msgid "Lost your password?"
-msgstr ""
+msgstr "Mot de passe oublié?"
 
 # @ login-security-solution
 #: login-security-solution.php:2251
