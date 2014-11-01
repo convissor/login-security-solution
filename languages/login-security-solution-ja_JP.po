@@ -108,8 +108,8 @@ msgid ""
 "How many matching login failures should it take to get into this (%d - %d "
 "second) Delay Tier? Must be >= %d."
 msgstr ""
-"回、ログインに失敗した場合、この遅延レベル（%d - %d 秒）を適応します。%d 以上"
-"の指定が必要です。"
+"回ログインに失敗した場合、この遅延レベル（%d - %d 秒）を適応します。%d 以上の"
+"指定が必要です。"
 
 #: admin.php:287
 msgid "Delay Tier 3"
@@ -120,12 +120,12 @@ msgid ""
 "How many matching login failures should it take to get into this (%d - %d "
 "second) Delay Tier? Must be > Delay Tier 2."
 msgstr ""
-"回、ログインに失敗した場合、この遅延レベル（%d - %d 秒）を適応します。遅延レ"
-"ベル２を超える指定が必要です。"
+"回ログインに失敗した場合、この遅延レベル（%d - %d 秒）を適応します。遅延レベ"
+"ル２を超える指定が必要です。"
 
 #: admin.php:293
 msgid "DoS Tier"
-msgstr ""
+msgstr "DoS レベル"
 
 #: admin.php:294
 msgid ""
@@ -133,6 +133,8 @@ msgid ""
 "delaying responses (to avoid a Denial of Service problem)? 0 disables this "
 "feature. Must be > Delay Tier 3."
 msgstr ""
+"回ログインに失敗した場合、遅延応答を停止します（サービス拒否問題の回避）。0を"
+"指定することで、本機能は無効になります。3を超える指定が必要です。"
 
 #: admin.php:299
 msgid "Notifications To"
@@ -157,8 +159,8 @@ msgid ""
 "Notify the administrator after x matching login failures. 0 disables this "
 "feature."
 msgstr ""
-"回、ログインに失敗した場合、管理者へ通知されます。0を指定することで、本機能は"
-"無効になります。"
+"回ログインに失敗した場合、管理者へ通知されます。0を指定することで、本機能は無"
+"効になります。"
 
 #: admin.php:311
 msgid "Multiple Failure Notifications"
@@ -187,8 +189,8 @@ msgid ""
 "Notify the administrator if a successful login uses data matching x login "
 "failures. 0 disables this feature."
 msgstr ""
-"ログインに成功したユーザーが指定回数ログインに失敗していた場合、管理者に通知"
-"します。0を指定することで、本機能は無効になります。"
+"回、ログインしたことのあるユーザーがログインに失敗した場合、管理者に通知しま"
+"す。0を指定することで、本機能は無効になります。"
 
 #: admin.php:325 login-security-solution.php:2192
 msgid "Breach Email Confirm"
@@ -200,9 +202,9 @@ msgid ""
 "the user out and require them to use WordPress' lost password process. 0 "
 "disables this feature."
 msgstr ""
-"ログインに成功したユーザーが指定された回数ログインに失敗していた場合、すぐに"
-"そのユーザーをログアウトし、WordPressのパスワードを忘れた場合の処理を利用する"
-"ことを要求します。"
+"回、ログインしたことのあるユーザーがログインに失敗した場合、すぐにそのユー"
+"ザーをログアウトし、WordPressのパスワードを忘れた場合の処理を利用することを要"
+"求します。"
 
 #: admin.php:332
 msgid "Length"
@@ -260,21 +262,23 @@ msgstr ""
 
 #: admin.php:366
 msgid "Deletion Interval"
-msgstr ""
+msgstr "削除間隔"
 
 #: admin.php:367
 msgid ""
 "Run the deletion process upon every x login failures. 0 disables this "
 "feature. Suggested value: %d."
 msgstr ""
+"回ログインに失敗する度に、削除プロセスが動作します。0を指定することで、本機能"
+"は無効になります。提案する値：%d."
 
 #: admin.php:372
 msgid "Deletion Days"
-msgstr ""
+msgstr "削除日数"
 
 #: admin.php:373
 msgid "Delete records older than x days."
-msgstr ""
+msgstr "日より古い記録は削除します。"
 
 #: admin.php:435
 msgid "Login Failure Policies"
@@ -282,7 +286,7 @@ msgstr "ログイン失敗時のポリシー"
 
 #: admin.php:441
 msgid "Data Retention Policies"
-msgstr ""
+msgstr "データ保持ポリシー"
 
 #: admin.php:447
 msgid "Password Policies"
@@ -339,7 +343,7 @@ msgstr ""
 
 #: admin.php:526
 msgid "The means for automatically deleting old records from the %s table."
-msgstr ""
+msgstr "%s テーブルから古いデータを自動的に削除するための方法"
 
 #: admin.php:585 admin.php:600
 msgid "Default:"
