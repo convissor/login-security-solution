@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes\n"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:112 admin.php:392
 msgid "Settings"
 msgstr ""
@@ -443,7 +443,7 @@ msgstr ""
 msgid "No thanks"
 msgstr "Non merci"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:867 admin.php:887
 msgid "Success!"
 msgstr ""
@@ -510,7 +510,7 @@ msgstr ""
 "Le lien suivant conduit à une interface où vous pourrez soit forcer le "
 "changement de tous les mots de passe ou désactiver cette notification. "
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:1003
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
@@ -525,7 +525,7 @@ msgstr "variable $user_ID non déclarée. Un autre plugin est en conflit."
 msgid "Invalid username or password."
 msgstr "Identifiant ou mot de passe incorrect."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 # @ default
 #: login-security-solution.php:655 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
@@ -597,7 +597,7 @@ msgstr ""
 "contenir %d caractères. Le mot de passe ne peut contenir des mots en "
 "relation avec ce site."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 # @ default
 #: login-security-solution.php:1074
 msgid "ERROR"
@@ -781,7 +781,7 @@ msgstr ""
 "Afin de s'assurer que votre compte n'a pas été piraté, vous devez utiliser "
 "le processus '%s' avant de vous connecter à nouveau."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:2248
 msgid "Lost your password?"
 msgstr ""

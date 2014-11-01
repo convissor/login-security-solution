@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Poedit 1.6.5\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:112 admin.php:392
 msgid "Settings"
 msgstr ""
@@ -416,7 +416,7 @@ msgstr ""
 msgid "No thanks"
 msgstr "いいえ"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:867 admin.php:887
 msgid "Success!"
 msgstr ""
@@ -481,7 +481,7 @@ msgstr ""
 "下記のリンクは、すべてのパスワードをリセットする要求をする、あるいはこの通知"
 "を無効にする設定へ誘導します。"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:1003
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
@@ -496,7 +496,7 @@ msgstr ""
 msgid "Invalid username or password."
 msgstr "ユーザー名またはパスワードが間違っています。"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:655 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
@@ -557,7 +557,7 @@ msgstr ""
 "なくても%d 文字以上でなければなりません。パスワードは、あなたやこのウェブサイ"
 "トに関連する単語を含むことは出来ません。"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:1074
 msgid "ERROR"
 msgstr ""
@@ -708,7 +708,7 @@ msgstr ""
 "あなたのアカウントが不正アクセスをされていないことを確認するために、再度ログ"
 "インするまえに「 %s 」を通じて対応してください。"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:2248
 msgid "Lost your password?"
 msgstr ""

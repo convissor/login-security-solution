@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:112 admin.php:392
 msgid "Settings"
 msgstr ""
@@ -446,7 +446,7 @@ msgstr ""
 msgid "No thanks"
 msgstr "Não, obrigado"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:867 admin.php:887
 msgid "Success!"
 msgstr ""
@@ -511,7 +511,7 @@ msgstr ""
 "O link a seguir conduz à uma interface de usuário onde você pode exigir que "
 "todas as senhas sejam redefinidas ou desativar este aviso."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:1003
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
@@ -526,7 +526,7 @@ msgstr ""
 msgid "Invalid username or password."
 msgstr "Nome de usuário ou senha inválido."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:655 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
@@ -589,7 +589,7 @@ msgstr ""
 "de pontuação, ou B) pelo menos a quantidade de %d caracteres de comprimento. "
 "A senha não pode conter palavras relacionadas a você ou a este site."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:1074
 msgid "ERROR"
 msgstr ""
@@ -749,7 +749,7 @@ msgstr ""
 "Para garantir que sua conta não esteja sendo seqüestrada, você vai ter que "
 "passar pelo processo de '%s' antes de efetuar login novamente."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:2248
 msgid "Lost your password?"
 msgstr ""

@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:112 admin.php:392
 msgid "Settings"
 msgstr ""
@@ -439,7 +439,7 @@ msgstr ""
 msgid "No thanks"
 msgstr "Nein, Danke"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:867 admin.php:887
 msgid "Success!"
 msgstr ""
@@ -506,7 +506,7 @@ msgstr ""
 "Passwörter aller Nutzer zurücksetzen kannst oder diese Benachrichtigung "
 "ausschalten kannst."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:1003
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
@@ -522,7 +522,7 @@ msgstr ""
 msgid "Invalid username or password."
 msgstr "Ungültiger Benutzername oder Passwort."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:655 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
@@ -584,7 +584,7 @@ msgstr ""
 "Das Passwort darf keine Worte enthalten, die mit dir oder der Webseite in "
 "Verbindung stehen."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:1074
 msgid "ERROR"
 msgstr ""
@@ -746,7 +746,7 @@ msgstr ""
 "Um sicher zu gehen, dass dein Account nicht geknackt wurde, musst du den "
 "'%s' Prozess durchführen bevor du dich wieder einloggen kannst."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:2248
 msgid "Lost your password?"
 msgstr ""

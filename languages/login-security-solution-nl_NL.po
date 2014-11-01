@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:112 admin.php:392
 msgid "Settings"
 msgstr ""
@@ -428,7 +428,7 @@ msgstr ""
 msgid "No thanks"
 msgstr "Nee bedankt"
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:867 admin.php:887
 msgid "Success!"
 msgstr ""
@@ -493,7 +493,7 @@ msgstr ""
 "De volgende link brengt je naar een scherm waarin je alle gebruikers een "
 "nieuw wachtwoord kan laten kiezen of deze melding uit kunt schakelen."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:1003
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
@@ -508,7 +508,7 @@ msgstr ""
 msgid "Invalid username or password."
 msgstr "Ongeldige gebruikersnaam of wachtwoord."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:655 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
@@ -568,7 +568,7 @@ msgstr ""
 "tekens bevatten, of B) ten minste %d karakters lang. Het wachtwoord mag geen "
 "woorden gerelateerd aan jou of deze website bevatten."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:1074
 msgid "ERROR"
 msgstr ""
@@ -722,7 +722,7 @@ msgstr ""
 "Om zeker te zijn dat je account niet wordt gekaapt dien je het '%s' proces "
 "te volgen voordat je opnieuw kunt inloggen."
 
-# Translation from WordPress.
+# Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:2248
 msgid "Lost your password?"
 msgstr ""
