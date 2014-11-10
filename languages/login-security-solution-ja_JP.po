@@ -3,7 +3,7 @@
 # Special thanks for Japanese Translation: motoyamayuki (https://profiles.wordpress.org/motoyamayuki/) and dote1027 (https://profiles.wordpress.org/dote1027/).
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Solution 0.47.0\n"
+"Project-Id-Version: Login Security Solution 0.49.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
