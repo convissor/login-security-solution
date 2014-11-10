@@ -507,7 +507,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.49.0 () =
+= 0.49.0 (2014-11-10) =
 * Fix password policy hint on password reset form broken by changes in WP
 
 = 0.48.0 (2014-10-17) =
