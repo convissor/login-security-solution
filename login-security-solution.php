@@ -255,8 +255,14 @@ class login_security_solution {
 		add_action('user_profile_update_errors',
 				array(&$this, 'user_profile_update_errors'), 999, 3);
 
-		add_action('login_form_resetpass', array(&$this, 'pw_policy_establish'));
-		add_action('validate_password_reset', array(&$this, 'pw_policy_establish'));
+		if (version_compare($GLOBALS['wp_version'], '4.1', '<')) {
+			add_action('login_form_resetpass', array(&$this, 'pw_policy_establish'));
+			add_action('validate_password_reset', array(&$this, 'pw_policy_establish'));
+			add_action('personal_options', array(&$admin, 'pw_policy_establish'));
+			add_action('user_new_form_tag', array(&$admin, 'pw_policy_establish'));
+		} else {
+			add_filter('password_hint', array(&$this, 'password_hint'));
+		}
 
 		add_filter('xmlrpc_enabled', array(&$this, 'xmlrpc_enabled'));
 		add_filter('authenticate', array(&$this, 'authenticate'), 999, 3);
@@ -293,8 +299,6 @@ class login_security_solution {
 			add_action($admin_menu, array(&$admin, 'admin_menu'));
 			add_action('admin_init', array(&$admin, 'admin_init'));
 			add_filter($plugin_action_links, array(&$admin, 'plugin_action_links'));
-			add_action('personal_options', array(&$admin, 'pw_policy_establish'));
-			add_action('user_new_form_tag', array(&$admin, 'pw_policy_establish'));
 
 			if ($this->options['disable_logins']) {
 				add_action('admin_notices', array(&$admin, 'admin_notices_disable_logins'));
@@ -719,6 +723,23 @@ class login_security_solution {
 	}
 
 	/**
+	 * For WP >= 4.1, replaces WP's password policy text with ours
+	 *
+	 * NOTE: This method is automatically called by WordPress'
+	 * password_hint filter in wp_get_password_hint().
+	 *
+	 * @param string $hint  the output from earlier password_hint filters
+	 * @return string
+	 *
+	 * @uses login_security_solution::$options  for the pw_length and
+	 *       pw_complexity_exemption_length values
+	 */
+	public function password_hint($hint = '') {
+		$this->load_plugin_textdomain();
+		return $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", self::ID), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
+	}
+
+	/**
 	 * Conveys the password change information to the user's metadata
 	 *
 	 * NOTE: This method is automatically called by WordPress when users
@@ -774,7 +795,7 @@ class login_security_solution {
 	}
 
 	/**
-	 * Replaces WP's password policy text with ours
+	 * For WP < 4.1, replaces WP's password policy text with ours
 	 *
 	 * NOTE: This method is automatically called by WordPress during gettext
 	 * calls on the wp-login.php, user-new.php, and user-edit.php pages.
@@ -793,8 +814,7 @@ class login_security_solution {
 		);
 
 		if (in_array($original,$policy)) {
-			$this->load_plugin_textdomain();
-			$translated = $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", self::ID), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
+			$translated = $this->password_hint();
 		}
 
 		return $translated;

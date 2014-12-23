@@ -507,6 +507,9 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.50.0 (2014-12-23) =
+* Take advantage of WP 4.1's new password_hint filter
+
 = 0.49.0 (2014-11-10) =
 * Fix password policy hint on password reset form broken by changes in WP
 
