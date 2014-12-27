@@ -4,21 +4,20 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
 "POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
-"PO-Revision-Date: 2014-01-16 02:27:32+00:00\n"
-"Last-Translator: Daniel Convissor <danielc@analysisandsolutions.com>\n"
+"PO-Revision-Date: 2014-10-10 17:01+0100\n"
+"Last-Translator: Christian Foellmann <foellmann@foe-services.de>\n"
 "Language-Team: Translate.foe-services.de <translate@foe-services.de>\n"
-"Language: \n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_nx_noop:4c,1,2;__ngettext:1,2;"
 "__ngettext_noop:1,2\n"
 "X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
@@ -55,8 +54,8 @@ msgstr "Zeitüberschreitung wegen Untätigkeit"
 msgid ""
 "Close inactive sessions after this many minutes. 0 disables this feature."
 msgstr ""
-"Beende inaktive Sessions nach dieser Anzahl an Minuten. Setze 0 um diese "
-"Feature zu deaktivieren."
+"Beende inaktive Sessions nach dieser Anzahl an Minuten. 0 deaktiviert dieses "
+"Feature"
 
 #: admin.php:257
 msgid "Maintenance Mode"
@@ -140,7 +139,7 @@ msgstr ""
 
 #: admin.php:293
 msgid "DoS Tier"
-msgstr ""
+msgstr "DoS Stufe"
 
 #: admin.php:294
 msgid ""
@@ -148,6 +147,9 @@ msgid ""
 "delaying responses (to avoid a Denial of Service problem)? 0 disables this "
 "feature. Must be > Delay Tier 3."
 msgstr ""
+"Nach wie vielen gleichen Loginfehlern soll das Plugin aufhören die "
+"Rückmeldungen zu verzögern (um Denial of Service Probleme zu verhindern)? 0 "
+"deaktiviert dieses Feature. Muss > Verzögerung Stufe 3 sein."
 
 #: admin.php:299
 msgid "Notifications To"
@@ -281,21 +283,23 @@ msgstr ""
 
 #: admin.php:366
 msgid "Deletion Interval"
-msgstr ""
+msgstr "Löschintervall"
 
 #: admin.php:367
 msgid ""
 "Run the deletion process upon every x login failures. 0 disables this "
 "feature. Suggested value: %d."
 msgstr ""
+"Löschvorgang alle x Loginfehler ausführen. 0 deaktiviert dieses Feature. "
+"Empfehlung: %d"
 
 #: admin.php:372
 msgid "Deletion Days"
-msgstr ""
+msgstr "Eintragsalter"
 
 #: admin.php:373
 msgid "Delete records older than x days."
-msgstr ""
+msgstr "Lösche Einträge älter als x Tage."
 
 #: admin.php:435
 msgid "Login Failure Policies"
@@ -303,7 +307,7 @@ msgstr "Login Fehler-Richtlinien"
 
 #: admin.php:441
 msgid "Data Retention Policies"
-msgstr ""
+msgstr "Datenspeicherungs-Richtlinien"
 
 #: admin.php:447
 msgid "Password Policies"
@@ -363,6 +367,8 @@ msgstr ""
 #: admin.php:526
 msgid "The means for automatically deleting old records from the %s table."
 msgstr ""
+"Definiere die Parameter für die automatische Löschung alter Einträge aus der "
+"%s Tabelle."
 
 #: admin.php:585 admin.php:600
 msgid "Default:"
@@ -442,7 +448,7 @@ msgstr "Nein, Danke"
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: admin.php:867 admin.php:887
 msgid "Success!"
-msgstr ""
+msgstr "Erfolgreich!"
 
 #: admin.php:880
 msgid "Confirm"
@@ -526,7 +532,7 @@ msgstr "Ungültiger Benutzername oder Passwort."
 #: login-security-solution.php:655 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
-msgstr ""
+msgstr "Das Zurücksetzen für diesen Benutzer ist nicht erlaubt"
 
 #: login-security-solution.php:681 tests/LoginMessageTest.php:66
 msgid "It has been over %d minutes since your last action."
@@ -587,7 +593,7 @@ msgstr ""
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
 #: login-security-solution.php:1074
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
 
 #: login-security-solution.php:1237
 msgid ""

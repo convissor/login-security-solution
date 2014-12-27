@@ -116,7 +116,7 @@ conflicts during program execution.  Please read the FAQ!
 
 = Translations =
 
-* Deutsche, Deutschland (German, Germany) (de_DE) by Christian Foellmann
+* Deutsch, Deutschland (German, Germany) (de_DE) by [Christian Foellmann](https://github.com/cfoellmann)
 * Français, français (French, France) (fr_FR) by [mermouy](https://profiles.wordpress.org/mermouy) and and Fx Bénard
 * Italiano, Italia (Italian, Italy) (it_IT) by Daniele Passalacqua
 * 日本語, 日本国 (Japanese, Japan) (ja_JP) by [motoyamayuki](https://profiles.wordpress.org/motoyamayuki/)
