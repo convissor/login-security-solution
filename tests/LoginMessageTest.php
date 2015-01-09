@@ -71,6 +71,22 @@ class LoginMessageTest extends TestCase {
 				'Output should have been modified.');
 	}
 
+	public function test_login_message__session_limit() {
+		$_GET[self::$lss->key_login_msg] = 'session_limit';
+
+		$value = 2;
+		$options = self::$lss->options;
+		$options['session_limit'] = $value;
+		self::$lss->options = $options;
+
+		$ours = sprintf(__('You have reached your session limit of %d.', self::ID), $value);
+		$ours .= ' ' . __('Please close your other browsers and try again.', self::ID);
+
+		$actual = self::$lss->login_message('input');
+		$this->assertEquals('input' . $this->ours($ours), $actual,
+				'Output should have been modified.');
+	}
+
 	public function test_login_message__pw_expired() {
 		$_GET[self::$lss->key_login_msg] = 'pw_expired';
 
