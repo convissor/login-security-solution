@@ -1653,18 +1653,44 @@ Password MD5                 %5d     %s
 	 * @return bool
 	 */
 	protected function is_pw_dictionary__file($pw) {
-		$dir = new DirectoryIterator($this->dir_dictionaries);
+		if ($this->is_pw_dictionary__file_parse_dir($pw, $this->dir_dictionaries)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Helps parse all files in a given directory for the password
+	 *
+	 * @param string $pw  the password to examine
+	 * @param string $dir_name  the name of the directory to examine
+	 * @return bool
+	 */
+	protected function is_pw_dictionary__file_parse_dir($pw, $dir_name) {
+		$dir = new DirectoryIterator($dir_name);
 		foreach ($dir as $file) {
 			if ($file->isDir()) {
 				continue;
 			}
-			$words = file($this->dir_dictionaries . $file->getFilename(),
-					FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-			if (in_array($pw, $words)) {
+			if ($this->is_pw_dictionary__file_parse_file($pw,
+					$dir_name . $file->getFilename()))
+			{
 				return true;
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Helps parse a file for the password
+	 *
+	 * @param string $pw  the password to examine
+	 * @param string $file  the name of the file to examine
+	 * @return bool
+	 */
+	protected function is_pw_dictionary__file_parse_file($pw, $file) {
+		$words = file($file, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+		return in_array($pw, $words);
 	}
 
 	/**
