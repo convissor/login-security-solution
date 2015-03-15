@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Login Security Solution 0.47.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/login-security-"
 "solution\n"
-"POT-Creation-Date: 2014-10-10 01:25:31+00:00\n"
+"POT-Creation-Date: 2015-03-15 20:27:16+00:00\n"
 "PO-Revision-Date: 2014-01-16 02:27:32+00:00\n"
 "Last-Translator: Daniel Convissor <danielc@analysisandsolutions.com>\n"
 "Language-Team: Friso van Wieringen\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: admin.php:112 admin.php:392
+#: admin.php:112 admin.php:398
 msgid "Settings"
 msgstr ""
 
@@ -197,7 +197,7 @@ msgstr ""
 "Stuur de beheerder een bericht wanneer er succesvol wordt ingelogd door "
 "iemand met x gerelateerde inlogpogingen. 0 schakelt deze optie uit."
 
-#: admin.php:325 login-security-solution.php:2192
+#: admin.php:325 login-security-solution.php:2184
 msgid "Breach Email Confirm"
 msgstr "E-mailbevestiging van succesvolle inbraak"
 
@@ -232,10 +232,18 @@ msgstr ""
 "complexiteitseisen? Moet groter zijn dan %d."
 
 #: admin.php:346
+msgid "Dict Program Index File"
+msgstr ""
+
+#: admin.php:347
+msgid "The path and name of the 'dict' index file to examine for common words."
+msgstr ""
+
+#: admin.php:352
 msgid "Aging"
 msgstr "Veroudering"
 
-#: admin.php:347
+#: admin.php:353
 msgid ""
 "How many days old can a password be before requiring it be changed? Not "
 "recommended. 0 disables this feature."
@@ -243,11 +251,11 @@ msgstr ""
 "Hoe oud mag een wachtwoord zijn voordat dit moet worden veranderd? Niet "
 "aanbevolen. 0 schakelt deze optie uit."
 
-#: admin.php:352
+#: admin.php:358
 msgid "Grace Period"
 msgstr "Wijzigingsperiode"
 
-#: admin.php:353
+#: admin.php:359
 msgid ""
 "How many minutes should a user have to change their password once they know "
 "it has expired? Must be >= %d."
@@ -255,11 +263,11 @@ msgstr ""
 "Hoeveel minuten heeft een gebruiker de tijd om het wachtwoord te veranderen "
 "nadat hij/zij weet dat het is verlopen? Moet groter zijn dan %d."
 
-#: admin.php:359
+#: admin.php:365
 msgid "History"
 msgstr "Geschiedenis"
 
-#: admin.php:360
+#: admin.php:366
 msgid ""
 "How many passwords should be remembered? Prevents reuse of old passwords. 0 "
 "disables this feature."
@@ -267,37 +275,37 @@ msgstr ""
 "Hoeveel wachtwoorden moeten worden onthouden? Dit voorkomt hergebruik van "
 "oude wachtwoorden. 0 schakelt deze optie uit."
 
-#: admin.php:366
+#: admin.php:372
 msgid "Deletion Interval"
 msgstr ""
 
-#: admin.php:367
+#: admin.php:373
 msgid ""
 "Run the deletion process upon every x login failures. 0 disables this "
 "feature. Suggested value: %d."
 msgstr ""
 
-#: admin.php:372
+#: admin.php:378
 msgid "Deletion Days"
 msgstr ""
 
-#: admin.php:373
+#: admin.php:379
 msgid "Delete records older than x days."
 msgstr ""
 
-#: admin.php:435
+#: admin.php:441
 msgid "Login Failure Policies"
 msgstr "Beleid voor foutieve inlogpogingen"
 
-#: admin.php:441
+#: admin.php:447
 msgid "Data Retention Policies"
 msgstr ""
 
-#: admin.php:447
+#: admin.php:453
 msgid "Password Policies"
 msgstr "Wachtwoordbeleid"
 
-#: admin.php:453
+#: admin.php:459
 msgid "Miscellaneous Policies"
 msgstr "Diversen"
 
@@ -352,33 +360,33 @@ msgstr ""
 msgid "The means for automatically deleting old records from the %s table."
 msgstr ""
 
-#: admin.php:585 admin.php:600
+#: admin.php:586 admin.php:602
 msgid "Default:"
 msgstr "Standaard:"
 
-#: admin.php:624
+#: admin.php:626
 msgid "must be >= '%s',"
 msgstr "moet groter zijn dan '%s',"
 
-#: admin.php:625
+#: admin.php:627
 msgid "so we used the default value instead."
 msgstr "dus hebben we de standaardwaarde gebruikt."
 
-#: admin.php:658
+#: admin.php:660
 msgid "must be an integer,"
 msgstr "moet een heel getal (integer) zijn,"
 
-#: admin.php:778
+#: admin.php:790
 msgid "There may be cases where everyone's password should be reset."
 msgstr ""
 "Er zijn diverse scenario's waardoor de wachtwoorden van alle gebruikers "
 "zouden moeten worden gereset."
 
-#: admin.php:780
+#: admin.php:792
 msgid "This page, provided by the %s plugin, offers that functionality."
 msgstr "Deze pagina, onderdeel van de %s plugin, biedt deze mogelijkheid."
 
-#: admin.php:784
+#: admin.php:796
 msgid ""
 "Submitting this form sets a flag that forces all users, except yourself, to "
 "utilize WordPress' built in password reset functionality."
@@ -387,7 +395,7 @@ msgstr ""
 "wachtwoord moeten veranderen d.m.v. Wordpress' ingebouwde wachtwoord reset "
 "funtionaliteit."
 
-#: admin.php:786
+#: admin.php:798
 msgid ""
 "Users who are presently logged in will be logged out the next time they view "
 "a page that requires authentication."
@@ -396,7 +404,7 @@ msgstr ""
 "uitgelogd op het moment dat zij een pagina openen waarvoor authenticatie "
 "nodig is."
 
-#: admin.php:798
+#: admin.php:810
 msgid ""
 "Confirm that you want to force all users to change their passwords by "
 "checking this box, then click the button, below."
@@ -404,11 +412,11 @@ msgstr ""
 "Bevestig dat je wilt dat alle gebruikers worden gedwongen hun wachtwoord te "
 "veranderen door deze optie aan te vinken en druk op de onderstaande knop."
 
-#: admin.php:817
+#: admin.php:829
 msgid "No thanks. I know what I'm doing. Please don't remind me about this."
 msgstr "Nee bedankt. Ik weet wat ik doe. Herinner mij niet opnieuw hieraan."
 
-#: admin.php:849
+#: admin.php:861
 msgid ""
 "You have checked a box that does not correspond with the button you pressed. "
 "Please check and press buttons inside the same section."
@@ -416,7 +424,7 @@ msgstr ""
 "Je hebt een keuze aangevinkt die niet overeenstemt met de knop die je hebt "
 "ingedrukt. Selecteer een optie en druk op een knop binnen dezelfde sectie."
 
-#: admin.php:851
+#: admin.php:863
 msgid ""
 "Please confirm that you really want to do this. Put a check in the '%s' box "
 "before hitting the submit button."
@@ -424,24 +432,24 @@ msgstr ""
 "Bevestig a.u.b. dat je dit echt wilt. Vink de optie in de '%s' box aan "
 "voordat je op de knop drukt."
 
-#: admin.php:862
+#: admin.php:874
 msgid "No thanks"
 msgstr "Nee bedankt"
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: admin.php:867 admin.php:887
+#: admin.php:879 admin.php:899
 msgid "Success!"
 msgstr ""
 
-#: admin.php:880
+#: admin.php:892
 msgid "Confirm"
 msgstr "Bevestig"
 
-#: admin.php:921
+#: admin.php:933
 msgid "an administrator"
 msgstr "een beheerder"
 
-#: admin.php:932
+#: admin.php:944
 msgid ""
 "NOTICE: you turned on Maintenance Mode at some point. It disables new "
 "comments and keeps non-administrators from logging in."
@@ -449,14 +457,14 @@ msgstr ""
 "LET OP: je hebt de Onderhoudsmodus aangezet. Dit voorkomt nieuwe commentaren "
 "en zorgt ervoor dat niet-beheerders niet kunnen inloggen."
 
-#: admin.php:934
+#: admin.php:946
 msgid ""
 "WARNING: the site in Maintenance Mode. Talk to %s before making any changes."
 msgstr ""
 "WAARSCHUWING: de site is in Onderhoudsmodus. Neem contact op met %s voordat "
 "je wijzigingen doorvoert."
 
-#: admin.php:940
+#: admin.php:952
 msgid ""
 "To turn this off, go to Settings | Login Security Solution | Maintenance "
 "Mode."
@@ -464,7 +472,7 @@ msgstr ""
 "Om dit uit te schakelen, ga naar Instellingen | Login Security Solution | "
 "Onderhoudsmodus."
 
-#: admin.php:965
+#: admin.php:977
 msgid ""
 "You have not asked your users to change their passwords since the plugin was "
 "activated. Most users have weak passwords. This plugin's password policies "
@@ -477,7 +485,7 @@ msgstr ""
 "aanvallen. Verbeter de beveiliging voor iedereen op het Internet door alle "
 "gebruikers nieuwe, sterke wachtwoorden te laten nemen."
 
-#: admin.php:969
+#: admin.php:981
 msgid ""
 "Speaking of which, do YOU have a strong password? Make sure by changing "
 "yours too."
@@ -485,7 +493,7 @@ msgstr ""
 "En by the way... heb JIJ eigenlijk een sterk wachtwoord? Zorg ervoor dat je "
 "je eigen wachtwoord ook verandert."
 
-#: admin.php:973
+#: admin.php:985
 msgid ""
 "The following link leads to a user interface where you can either require "
 "all passwords to be reset or disable this notice."
@@ -494,69 +502,69 @@ msgstr ""
 "nieuw wachtwoord kan laten kiezen of deze melding uit kunt schakelen."
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: admin.php:1003
+#: admin.php:1015
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin.php:1009
+#: admin.php:1021
 msgid "$user_ID variable not set. Another plugin is misbehaving."
 msgstr ""
 "$user_ID variabele is niet ingesteld. Een andere plugin misdraagt zich."
 
-#: login-security-solution.php:648 tests/LoginErrorsTest.php:97
+#: login-security-solution.php:652 tests/LoginErrorsTest.php:97
 #: tests/LoginErrorsTest.php:111
 msgid "Invalid username or password."
 msgstr "Ongeldige gebruikersnaam of wachtwoord."
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: login-security-solution.php:655 tests/LoginErrorsTest.php:125
+#: login-security-solution.php:659 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
 msgstr ""
 
-#: login-security-solution.php:681 tests/LoginMessageTest.php:66
+#: login-security-solution.php:685 tests/LoginMessageTest.php:66
 msgid "It has been over %d minutes since your last action."
 msgstr "Je vorige actie is %d minuten geleden."
 
-#: login-security-solution.php:682 tests/LoginMessageTest.php:67
+#: login-security-solution.php:686 tests/LoginMessageTest.php:67
 msgid "Please log back in."
 msgstr "Log a.u.b. opnieuw in."
 
-#: login-security-solution.php:685 tests/LoginMessageTest.php:77
+#: login-security-solution.php:689 tests/LoginMessageTest.php:77
 msgid "The grace period for changing your password has expired."
 msgstr "De periode voor het wijzigen van je wachtwoord is verlopen."
 
-#: login-security-solution.php:686 tests/LoginMessageTest.php:78
+#: login-security-solution.php:690 tests/LoginMessageTest.php:78
 msgid "Please submit this form to reset your password."
 msgstr "Stuur dit formulier in om je wachtwoord opnieuw in te stellen."
 
-#: login-security-solution.php:689 tests/LoginMessageTest.php:88
+#: login-security-solution.php:693 tests/LoginMessageTest.php:88
 msgid "Your password must be reset."
 msgstr "Je wachtwoord moet opnieuw worden ingesteld."
 
-#: login-security-solution.php:690 tests/LoginMessageTest.php:89
+#: login-security-solution.php:694 tests/LoginMessageTest.php:89
 msgid "Please submit this form to reset it."
 msgstr "Stuur dit formulier in om het opnieuw in te stellen."
 
-#: login-security-solution.php:693 tests/LoginMessageTest.php:104
+#: login-security-solution.php:697 tests/LoginMessageTest.php:104
 msgid "Your password has expired. Please log and change it."
 msgstr "Je wachtwoord is verlopen. Log in om het te veranderen."
 
-#: login-security-solution.php:694 tests/LoginMessageTest.php:105
+#: login-security-solution.php:698 tests/LoginMessageTest.php:105
 msgid "We provide a %d minute grace period to do so."
 msgstr "Je hebt %d minuten om dit te doen."
 
-#: login-security-solution.php:702 tests/LoginMessageTest.php:129
+#: login-security-solution.php:706 tests/LoginMessageTest.php:129
 #: tests/LoginMessageTest.php:144
 msgid "The site is undergoing maintenance."
 msgstr "De site is in onderhoud."
 
-#: login-security-solution.php:703 tests/LoginMessageTest.php:130
+#: login-security-solution.php:707 tests/LoginMessageTest.php:130
 #: tests/LoginMessageTest.php:145
 msgid "Please try again later."
 msgstr "Probeer het later opnieuw."
 
-#: login-security-solution.php:792
+#: login-security-solution.php:734
 msgid ""
 "The password should either be: A) at least %d characters long and contain "
 "upper and lower case letters (except languages that only have one case) plus "
@@ -569,11 +577,11 @@ msgstr ""
 "woorden gerelateerd aan jou of deze website bevatten."
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: login-security-solution.php:1074
+#: login-security-solution.php:1094
 msgid "ERROR"
 msgstr ""
 
-#: login-security-solution.php:1237
+#: login-security-solution.php:1257
 msgid ""
 "\n"
 "Component                    Count     Value from Current Attempt\n"
@@ -589,12 +597,12 @@ msgstr ""
 "Gebruikersnaam               %5d     %s\n"
 "Wachtwoord MD5               %5d     %s\n"
 
-#: login-security-solution.php:1997 tests/LoginMessageTest.php:148
-#: tests/PasswordValidationTest.php:510
+#: login-security-solution.php:1989 tests/LoginMessageTest.php:148
+#: tests/PasswordValidationTest.php:474
 msgid "Passwords must use ASCII characters."
 msgstr "Wachtwoorden moeten ASCII karakters gebruiken."
 
-#: login-security-solution.php:1999 tests/PasswordValidationTest.php:580
+#: login-security-solution.php:1991 tests/PasswordValidationTest.php:544
 msgid ""
 "Passwords must either contain upper-case and lower-case letters or be %d "
 "characters long."
@@ -602,69 +610,69 @@ msgstr ""
 "Wachtwoorden moeten óf zowel hoofd- als kleine letters bevatten óf %d "
 "karakters lang zijn."
 
-#: login-security-solution.php:2001 tests/PasswordValidationTest.php:658
+#: login-security-solution.php:1993 tests/PasswordValidationTest.php:622
 msgid "Password is too common."
 msgstr "Wachtwoord is te gewoon."
 
-#: login-security-solution.php:2003 tests/PasswordValidationTest.php:674
+#: login-security-solution.php:1995 tests/PasswordValidationTest.php:638
 msgid "Passwords can't be variations of dictionary words."
 msgstr "Wachtwoorden mogen geen variaties op bestaande woorden zijn."
 
-#: login-security-solution.php:2005 tests/PasswordValidationTest.php:486
+#: login-security-solution.php:1997 tests/PasswordValidationTest.php:450
 msgid "Password not set."
 msgstr "Wachtwoord is niet ingesteld."
 
-#: login-security-solution.php:2007 tests/PasswordValidationTest.php:567
+#: login-security-solution.php:1999 tests/PasswordValidationTest.php:531
 msgid "Passwords must either contain numbers or be %d characters long."
 msgstr "Wachtwoorden moeten óf nummers bevatten óf %d karakters lang zijn."
 
-#: login-security-solution.php:2009 tests/PasswordValidationTest.php:554
+#: login-security-solution.php:2001 tests/PasswordValidationTest.php:518
 msgid ""
 "Passwords must either contain punctuation marks / symbols or be %d "
 "characters long."
 msgstr ""
 "Wachtwoorden moeten óf vreemde tekens bevatten óf %d karakters lang zijn."
 
-#: login-security-solution.php:2011 tests/PasswordChangeTest.php:303
+#: login-security-solution.php:2003 tests/PasswordChangeTest.php:303
 msgid "Passwords can not be reused."
 msgstr "Wachtwoorden kunnen niet worden hergebruikt."
 
-#: login-security-solution.php:2013 tests/PasswordValidationTest.php:606
+#: login-security-solution.php:2005 tests/PasswordValidationTest.php:570
 msgid "Passwords can't have that many sequential characters."
 msgstr "Wachtwoorden mogen niet zoveel opeenvolgende karakters bevatten."
 
-#: login-security-solution.php:2015 tests/PasswordValidationTest.php:593
+#: login-security-solution.php:2007 tests/PasswordValidationTest.php:557
 msgid "Passwords can't be sequential keys."
 msgstr "Wachtwoorden mogen geen opeenvolgende tekens bevatten (bijv. qwerty)."
 
-#: login-security-solution.php:2017 tests/LoginMessageTest.php:115
-#: tests/PasswordChangeTest.php:336 tests/PasswordValidationTest.php:527
-#: tests/PasswordValidationTest.php:541
+#: login-security-solution.php:2009 tests/LoginMessageTest.php:115
+#: tests/PasswordChangeTest.php:336 tests/PasswordValidationTest.php:491
+#: tests/PasswordValidationTest.php:505
 msgid "Password is too short."
 msgstr "Wachtwoord is te kort."
 
-#: login-security-solution.php:2019 tests/PasswordValidationTest.php:497
+#: login-security-solution.php:2011 tests/PasswordValidationTest.php:461
 msgid "Passwords must be strings."
 msgstr "Wachtwoorden moeten tekenreeksen zijn."
 
-#: login-security-solution.php:2021 tests/PasswordValidationTest.php:645
+#: login-security-solution.php:2013 tests/PasswordValidationTest.php:609
 msgid "Passwords can't contain site info."
 msgstr "Wachtwoorden mogen geen informatie over de website bevatten."
 
-#: login-security-solution.php:2023 tests/PasswordValidationTest.php:619
-#: tests/PasswordValidationTest.php:632
+#: login-security-solution.php:2015 tests/PasswordValidationTest.php:583
+#: tests/PasswordValidationTest.php:596
 msgid "Passwords can't contain user data."
 msgstr "Wachtwoorden mogen geen gebruikersgegevens bevatten."
 
-#: login-security-solution.php:2175
+#: login-security-solution.php:2167
 msgid "POTENTIAL INTRUSION AT %s"
 msgstr "MOGELIJKE INBRAAK OP %s"
 
-#: login-security-solution.php:2179
+#: login-security-solution.php:2171
 msgid "Your website, %s, may have been broken in to."
 msgstr "Er is mogelijk ingebroken op %s."
 
-#: login-security-solution.php:2182
+#: login-security-solution.php:2174
 msgid ""
 "Someone just logged in using the following components. Prior to that, some "
 "combination of those components were a part of %d failed attempts to log in "
@@ -674,11 +682,11 @@ msgstr ""
 "daarvoor was een combinatie van deze kenmerken deel van %d foutieve "
 "inlogpogingen in de afgelopen %d minuten:"
 
-#: login-security-solution.php:2187
+#: login-security-solution.php:2179
 msgid "They logged in from the following IP address: %s"
 msgstr "Ze ingelogd van de volgende IP-adres: %s"
 
-#: login-security-solution.php:2190
+#: login-security-solution.php:2182
 msgid ""
 "The user has been logged out and will be required to confirm their identity "
 "via the password reset functionality."
@@ -686,7 +694,7 @@ msgstr ""
 "De gebruiker is uitgelogd en dient zijn wachtwoord opnieuw in te stellen "
 "door gebruik te maken van de 'wachtwoord reset' functionaliteit."
 
-#: login-security-solution.php:2192
+#: login-security-solution.php:2184
 msgid ""
 "WARNING: The '%s' setting you chose means this person has NOT been logged "
 "out and will NOT be required to confirm their identity."
@@ -694,19 +702,19 @@ msgstr ""
 "WAARSCHUWING: De '%s' instelling die je hebt gekozen betekent dat personen "
 "NIET worden uitgelogd en NIET een nieuw wachtwoord moeten kiezen."
 
-#: login-security-solution.php:2194
+#: login-security-solution.php:2186
 msgid "A notification about this potential breach has been sent to the user."
 msgstr "Een melding van deze mogelijke inbraak is naar de gebruiker gestuurd."
 
-#: login-security-solution.php:2197
+#: login-security-solution.php:2189
 msgid "This message is from the %s plugin (%s) for WordPress."
 msgstr "Deze melding is van de %s plugin (%s) voor WordPress."
 
-#: login-security-solution.php:2240
+#: login-security-solution.php:2232
 msgid "VERIFY YOU LOGGED IN TO %s"
 msgstr "VERIFIEER DAT JE BENT INGELOGD BIJ %s"
 
-#: login-security-solution.php:2244
+#: login-security-solution.php:2236
 msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
 "in?  We are asking because the site happens to be under attack at the moment."
@@ -714,7 +722,7 @@ msgstr ""
 "Er is zojuist ingelogd op jouw '%s' account op %s. Was jij dit? We vragen "
 "dit omdat de site mogelijk aangevallen wordt op dit moment."
 
-#: login-security-solution.php:2248
+#: login-security-solution.php:2240
 msgid ""
 "To ensure your account is not being hijacked, you will have go through the "
 "'%s' process before logging in again."
@@ -723,33 +731,33 @@ msgstr ""
 "te volgen voordat je opnieuw kunt inloggen."
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: login-security-solution.php:2248
+#: login-security-solution.php:2240
 msgid "Lost your password?"
 msgstr ""
 
-#: login-security-solution.php:2251
+#: login-security-solution.php:2243
 msgid "If it was NOT YOU, please do the following right away:"
 msgstr "Als jij dit NIET was, volg dan de volgende instructies direct:"
 
-#: login-security-solution.php:2254
+#: login-security-solution.php:2246
 msgid " * Log into the site and change your password."
 msgstr " * Log in om je wachtwoord te veranderen"
 
-#: login-security-solution.php:2257
+#: login-security-solution.php:2249
 msgid " * Send an email to %s letting them know it was not you who logged in."
 msgstr ""
 " * Stuur een e-mail naar %s om te laten weten dat jij niet probeerde in te "
 "loggen."
 
-#: login-security-solution.php:2298
+#: login-security-solution.php:2290
 msgid "ATTACK HAPPENING TO %s"
 msgstr "AANVAL OP %s"
 
-#: login-security-solution.php:2302
+#: login-security-solution.php:2294
 msgid "Your website, %s, is undergoing a brute force attack."
 msgstr "Jouw website, %s, ondergaat op dit moment een brute force aanval."
 
-#: login-security-solution.php:2305
+#: login-security-solution.php:2297
 msgid ""
 "There have been at least %d failed attempts to log in during the past %d "
 "minutes that used one or more of the following components:"
@@ -757,11 +765,11 @@ msgstr ""
 "Er zijn ten minste %d foutieve inlogpogingen geweest in de afgelopen %d "
 "minuten, waarbij de volgende kenmerken werden gebruikt:"
 
-#: login-security-solution.php:2310
+#: login-security-solution.php:2302
 msgid "The most recent attempt came from the following IP address: %s"
 msgstr "De meest recente poging kwam van het volgende IP-adres: %s"
 
-#: login-security-solution.php:2312
+#: login-security-solution.php:2304
 msgid ""
 "The %s plugin (%s) for WordPress is repelling the attack by making their "
 "login failures take a very long time."
@@ -769,7 +777,7 @@ msgstr ""
 "De %s plugin (%s) voor WordPress houdt de aanval af door de foutieve "
 "inlogpogingen ernstig te vertragen."
 
-#: login-security-solution.php:2316
+#: login-security-solution.php:2308
 msgid ""
 "This attacker will also be denied access in the event they stumble upon "
 "valid credentials."
@@ -777,7 +785,7 @@ msgstr ""
 "De aanvaller zal ook de toegang worden ontzegt wanneer hij met geldige "
 "gegevens inlogt."
 
-#: login-security-solution.php:2322
+#: login-security-solution.php:2314
 msgid ""
 "Further notifications about this attacker will only be sent if the attack "
 "stops for at least %d minutes and then resumes."
