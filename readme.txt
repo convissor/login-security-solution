@@ -508,7 +508,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.51.0 () =
+= 0.51.0 (2015-03-15) =
 * Security Fixes:
   - Remove calls to `dict`. Parse `dict` file if available instead.
   - Remove use of `grep`.
