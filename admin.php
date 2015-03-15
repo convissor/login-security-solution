@@ -341,6 +341,12 @@ class login_security_solution_admin extends login_security_solution {
 				'type' => 'int',
 				'greater_than' => 20,
 			),
+			'pw_dict_file' => array(
+				'group' => 'pw',
+				'label' => __("Dict Program Index File", self::ID),
+				'text' => sprintf(__("The path and name of the 'dict' index file to examine for common words.", self::ID)),
+				'type' => 'string',
+			),
 			'pw_change_days' => array(
 				'group' => 'pw',
 				'label' => __("Aging", self::ID),

@@ -24,7 +24,6 @@ require_once dirname(__FILE__) .  '/TestCase.php';
  */
 class PasswordValidationTest extends TestCase {
 	protected static $dict_available;
-	protected static $grep_available;
 	protected static $mbstring_available;
 
 
@@ -35,9 +34,6 @@ class PasswordValidationTest extends TestCase {
 		if (self::$lss->is_pw_dict_program('zygote')) {
 			self::$dict_available = true;
 		}
-		if (self::$lss->is_pw_dictionary__grep('Pa$$w0rd1')) {
-			self::$grep_available = true;
-		}
 		self::$mbstring_available = extension_loaded('mbstring');
 	}
 
@@ -46,12 +42,12 @@ class PasswordValidationTest extends TestCase {
 		self::$lss->available_mbstring = extension_loaded('mbstring');
 
 		$options = self::$lss->options;
+		$options['pw_dict_file'] = '/usr/share/dictd/gcide.index';
 		$options['pw_complexity_exemption_length'] = 20;
 		$options['pw_length'] = 8;
 		self::$lss->options = $options;
 
 		self::$lss->available_dict = self::$dict_available;
-		self::$lss->available_grep = self::$grep_available;
 		self::$lss->available_mbstring = self::$mbstring_available;
 	}
 
@@ -61,24 +57,30 @@ class PasswordValidationTest extends TestCase {
 	}
 
 
-	public function test_is_pw_dictionary__grepavail() {
-		if (!self::$dict_available) {
-			$this->markTestSkipped('grep not available');
-		}
-		self::$lss->available_grep = true;
-		$actual = self::$lss->is_pw_dictionary('Pa$$w0rd1');
-		$this->assertTrue($actual);
-	}
-
-	public function test_is_pw_dictionary__grepunavail() {
-		self::$lss->available_grep = false;
-		$actual = self::$lss->is_pw_dictionary('Pa$$w0rd1');
-		$this->assertTrue($actual);
-	}
-
-
 	public function test_dict_program__unavailable() {
 		self::$lss->available_dict = false;
+		$actual = self::$lss->is_pw_dict_program('foo');
+		$this->assertNull($actual);
+	}
+
+	public function test_dict_program__no_file() {
+		$options = self::$lss->options;
+		$options['pw_dict_file'] = '';
+		self::$lss->options = $options;
+
+		self::$lss->available_dict = null;
+
+		$actual = self::$lss->is_pw_dict_program('foo');
+		$this->assertNull($actual);
+	}
+
+	public function test_dict_program__bad_file() {
+		$options = self::$lss->options;
+		$options['pw_dict_file'] = '/this/path/cant/really/exist/no/way';
+		self::$lss->options = $options;
+
+		self::$lss->available_dict = null;
+
 		$actual = self::$lss->is_pw_dict_program('foo');
 		$this->assertNull($actual);
 	}
@@ -109,16 +111,7 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 
-	public function test_dictionary__grep_unavailable() {
-		self::$lss->available_grep = false;
-		$actual = self::$lss->is_pw_dictionary__grep('foo');
-		$this->assertNull($actual);
-	}
-
 	public function test_dictionary__file_false() {
-		if (!self::$grep_available) {
-			$this->markTestSkipped('grep is not available');
-		}
 		$tests = array(
 			"thiscannotbeaword",
 			"化字的昨天今天和明",
@@ -129,9 +122,6 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 	public function test_dictionary__file_true() {
-		if (!self::$grep_available) {
-			$this->markTestSkipped('grep is not available');
-		}
 		$tests = array(
 			'Pa$$w0rd1',
 			"简化字的昨天今天和明天",
@@ -142,32 +132,6 @@ class PasswordValidationTest extends TestCase {
 		}
 	}
 
-	public function test_dictionary__grep_false() {
-		if (!self::$grep_available) {
-			$this->markTestSkipped('grep is not available');
-		}
-		$tests = array(
-			"thiscannotbeaword",
-			"化字的昨天今天和明",
-		);
-		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_dictionary__grep($pw);
-			$this->assertFalse($actual, "Should have passed: '$pw'");
-		}
-	}
-	public function test_dictionary__grep_true() {
-		if (!self::$grep_available) {
-			$this->markTestSkipped('grep is not available');
-		}
-		$tests = array(
-			'Pa$$w0rd1',
-			"简化字的昨天今天和明天",
-		);
-		foreach ($tests as $pw) {
-			$actual = self::$lss->is_pw_dictionary__grep($pw);
-			$this->assertTrue($actual, "Should have failed: '$pw'");
-		}
-	}
 
 	public function test_like_bloginfo_false() {
 		$tests = array(
@@ -662,7 +626,7 @@ class PasswordValidationTest extends TestCase {
 
 	public function test_validate_pw__dict() {
 		if (!self::$dict_available) {
-			$this->markTestSkipped('grep not available');
+			$this->markTestSkipped('dict is not available');
 		}
 		$this->user->user_pass = 'R3n0vat!on';
 

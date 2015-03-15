@@ -84,12 +84,6 @@ class login_security_solution {
 	protected $available_dict;
 
 	/**
-	 * Is the grep command available?
-	 * @var bool  true/false if known, null if unknown
-	 */
-	protected $available_grep;
-
-	/**
 	 * Is PHP's mbstring extension enabled?
 	 * @var bool  true/false if known, null if unknown
 	 */
@@ -161,6 +155,7 @@ class login_security_solution {
 		'pw_change_days' => 0,
 		'pw_change_grace_period_minutes' => 15,
 		'pw_complexity_exemption_length' => 20,
+		'pw_dict_file' => '/usr/share/dictd/gcide.index',
 		'pw_length' => 10,
 		'pw_reuse_count' => 0,
 	);
@@ -1495,32 +1490,6 @@ Password MD5                 %5d     %s
 	}
 
 	/**
-	 * Determines if PHP's exec() function is usable
-	 * @return bool
-	 */
-	protected function is_exec_available() {
-		static $available;
-
-		if (!isset($available)) {
-			$available = true;
-			if (ini_get('safe_mode')) {
-				$available = false;
-			} else {
-				$d = ini_get('disable_functions');
-				$s = ini_get('suhosin.executor.func.blacklist');
-				if ("$d$s") {
-					$array = preg_split('/,\s*/', "$d,$s");
-					if (in_array('exec', $array)) {
-						$available = false;
-					}
-				}
-			}
-		}
-
-		return $available;
-	}
-
-	/**
 	 * Examines how long ago the current user last interacted with the
 	 * site and takes appropriate action
 	 *
@@ -1600,27 +1569,36 @@ Password MD5                 %5d     %s
 			return null;
 		}
 
-		if (!$this->is_exec_available()) {
+		if ($this->available_dict !== true
+			&& (!$this->options['pw_dict_file']
+				|| !is_readable($this->options['pw_dict_file']))
+		) {
 			$this->available_dict = false;
 			return null;
 		}
 
-		$term = escapeshellarg($pw);
-		exec("dict -m -s exact $term 2>&1", $output, $result);
-		if (!$result) {
-			return true;
-		} elseif ($result == 127) {
+		$this->available_dict = true;
+
+		$fh = fopen($this->options['pw_dict_file'], 'r');
+		if (!$fh) {
 			$this->available_dict = false;
 			return null;
 		}
+
+		while (!feof($fh)) {
+			list($word) = fgetcsv($fh, 0, "\t");
+			if (strtolower($pw) == strtolower($word)) {
+				fclose($fh);
+				return true;
+			}
+		}
+
+		fclose($fh);
 		return false;
 	}
 
 	/**
 	 * Is this password in our dictionary files?
-	 *
-	 * The checks are done using "grep."  If grep is not available, each file
-	 * is examined using file() and in_array().
 	 *
 	 * The dictionary files are in the "pw_dictionaries" directory.  Feel free
 	 * to add your own dictionary files.  Please be aware that checking the
@@ -1634,15 +1612,6 @@ Password MD5                 %5d     %s
 	 * @return bool
 	 */
 	protected function is_pw_dictionary($pw) {
-		if ($this->available_grep === true) {
-			return $this->is_pw_dictionary__grep($pw);
-		} elseif ($this->available_grep === false) {
-			return $this->is_pw_dictionary__file($pw);
-		}
-		$result = $this->is_pw_dictionary__grep($pw);
-		if ($result !== null) {
-			return $result;
-		}
 		return $this->is_pw_dictionary__file($pw);
 	}
 
@@ -1691,34 +1660,6 @@ Password MD5                 %5d     %s
 	protected function is_pw_dictionary__file_parse_file($pw, $file) {
 		$words = file($file, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
 		return in_array($pw, $words);
-	}
-
-	/**
-	 * Examines the password files via grep, if it is available
-	 *
-	 * @param string $pw  the password to examine
-	 * @return bool|null  true or false if known, null if grep isn't available
-	 */
-	protected function is_pw_dictionary__grep($pw) {
-		if ($this->available_grep === false) {
-			return null;
-		}
-
-		if (!$this->is_exec_available()) {
-			$this->available_grep = false;
-			return null;
-		}
-
-		$term = escapeshellarg($pw);
-		$dir = escapeshellarg($this->dir_dictionaries);
-		exec("grep -iqrx $term $dir", $output, $result);
-		if (!$result) {
-			return true;
-		} elseif ($result == 127) {
-			$this->available_grep = false;
-			return null;
-		}
-		return false;
 	}
 
 	/**

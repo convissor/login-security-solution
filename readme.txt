@@ -508,6 +508,11 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.51.0 () =
+* Security Fixes:
+  - Remove calls to `dict`. Parse `dict` file if available instead.
+  - Remove use of `grep`.
+
 = 0.50.0 (2014-12-25) =
 * Take advantage of WP 4.1's new password_hint filter
 * Add Italian translation
