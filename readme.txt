@@ -464,9 +464,11 @@ on our GitHub.
 1. Please don't change formatting inside the `.po` file
 1. __Run `git diff` before all commits.__  Ensure only expected changes
     are being made.
-1. Do not translate items that have a comment above them saying
-    `Translation from WordPress.`  Those phrases are already translated
-    in Wordporess' core.  Leaving them untranslated here ensures
+1. Do NOT translate items that have a comment above them saying
+    `Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.`
+    When starting a new translation, please take a look at an existing
+    `.po` file to see which strings they are.  Those phrases are already
+    translated in WordPress' core.  Leaving them untranslated here ensures
     consistency with the rest of WordPress.
 1. To start a new translation:
 
