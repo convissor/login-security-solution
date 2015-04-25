@@ -121,7 +121,9 @@ conflicts during program execution.  Please read the FAQ!
 * Italiano, Italia (Italian, Italy) (it_IT) by Daniele Passalacqua
 * 日本語, 日本国 (Japanese, Japan) (ja_JP) by [motoyamayuki](https://profiles.wordpress.org/motoyamayuki/)
 * Nederlands, Nederland (Dutch, Netherlands) (nl_NL) by Friso van Wieringen
+* polski, Polska (Polish, Poland) (pl_PL) by Michał Seweryniak [miniol](https://github.com/miniol)
 * Português, Brasil (Portugese, Brazil) (pt_BR) by Valdir Trombini
+* suomi, Suomi (Finnish, Finland) (fi_FI) by Juha Remes [Newman101](https://github.com/Newman101)
 
 
 = Source Code, Bugs, and Feature Requests =
@@ -509,6 +511,10 @@ on our GitHub.
 
 
 == Changelog ==
+
+= 0.52.0 () =
+* Add Polish translation
+* Add Finnish translation
 
 = 0.51.0 (2015-03-15) =
 * Security Fixes:
