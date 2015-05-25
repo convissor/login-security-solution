@@ -516,6 +516,7 @@ on our GitHub.
 * Silence safe mode warnings from is_readable()
 * Add Polish translation
 * Add Finnish translation
+* Rename Japanese translation files from `ja_JP` to `ja`
 
 = 0.51.0 (2015-03-15) =
 * Security Fixes:
