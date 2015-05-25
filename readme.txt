@@ -512,7 +512,8 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.52.0 () =
+= 0.52.0 (2015-05-25) =
+* Silence safe mode warnings from is_readable()
 * Add Polish translation
 * Add Finnish translation
 
