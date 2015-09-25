@@ -682,20 +682,20 @@ class login_security_solution {
 		if (!empty($_GET[$this->key_login_msg])) {
 			switch ($_GET[$this->key_login_msg]) {
 				case 'idle':
-					$ours = sprintf(__('It has been over %d minutes since your last action.', self::ID), $this->options['idle_timeout']);
-					$ours .= ' ' . __('Please log back in.', self::ID);
+					$ours = sprintf(__('It has been over %d minutes since your last action.', 'login-security-solution'), $this->options['idle_timeout']);
+					$ours .= ' ' . __('Please log back in.', 'login-security-solution');
 					break;
 				case 'pw_expired':
-					$ours = __('The grace period for changing your password has expired.', self::ID);
-					$ours .= ' ' . __('Please submit this form to reset your password.', self::ID);
+					$ours = __('The grace period for changing your password has expired.', 'login-security-solution');
+					$ours .= ' ' . __('Please submit this form to reset your password.', 'login-security-solution');
 					break;
 				case 'pw_force':
-					$ours = __('Your password must be reset.', self::ID);
-					$ours .= ' ' . __('Please submit this form to reset it.', self::ID);
+					$ours = __('Your password must be reset.', 'login-security-solution');
+					$ours .= ' ' . __('Please submit this form to reset it.', 'login-security-solution');
 					break;
 				case 'pw_grace':
-					$ours = __('Your password has expired. Please log and change it.', self::ID);
-					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $this->options['pw_change_grace_period_minutes']);
+					$ours = __('Your password has expired. Please log and change it.', 'login-security-solution');
+					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', 'login-security-solution'), $this->options['pw_change_grace_period_minutes']);
 					break;
 				default:
 					$ours .= $this->msg($_GET[$this->key_login_msg]);
@@ -703,8 +703,8 @@ class login_security_solution {
 		}
 
 		if ($this->options['disable_logins']) {
-			$msg = __('The site is undergoing maintenance.', self::ID);
-			$msg .= ' ' . __('Please try again later.', self::ID);
+			$msg = __('The site is undergoing maintenance.', 'login-security-solution');
+			$msg .= ' ' . __('Please try again later.', 'login-security-solution');
 			$out .= '<p class="login message">'
 					. $this->hsc_utf8($msg) . '</p>';
 		}
@@ -731,7 +731,7 @@ class login_security_solution {
 	 */
 	public function password_hint($hint = '') {
 		$this->load_plugin_textdomain();
-		return $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", self::ID), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
+		return $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", 'login-security-solution'), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
 	}
 
 	/**
@@ -1260,7 +1260,7 @@ Component                    Count     Value from Current Attempt
 Network IP                   %5d     %s
 Username                     %5d     %s
 Password MD5                 %5d     %s
-", self::ID),
+", 'login-security-solution'),
 			$fails['network_ip'], $network_ip,
 			$fails['user_name'], $user_name,
 			$fails['pass_md5'], $pass_md5) . "\n";
@@ -1986,33 +1986,33 @@ Password MD5                 %5d     %s
 		$this->load_plugin_textdomain();
 		switch ($code) {
 			case self::E_ASCII:
-				return __("Passwords must use ASCII characters.", self::ID);
+				return __("Passwords must use ASCII characters.", 'login-security-solution');
 			case self::E_CASE:
-				return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+				return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
 			case self::E_COMMON:
-				return __("Password is too common.", self::ID);
+				return __("Password is too common.", 'login-security-solution');
 			case self::E_DICT:
-				return __("Passwords can't be variations of dictionary words.", self::ID);
+				return __("Passwords can't be variations of dictionary words.", 'login-security-solution');
 			case self::E_EMPTY:
-				return __("Password not set.", self::ID);
+				return __("Password not set.", 'login-security-solution');
 			case self::E_NUMBER:
-				return sprintf(__("Passwords must either contain numbers or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+				return sprintf(__("Passwords must either contain numbers or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
 			case self::E_PUNCT:
-				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", self::ID), $this->options['pw_complexity_exemption_length']);
+				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
 			case self::E_REUSED:
-				return __("Passwords can not be reused.", self::ID);
+				return __("Passwords can not be reused.", 'login-security-solution');
 			case self::E_SEQ_CHAR:
-				return __("Passwords can't have that many sequential characters.", self::ID);
+				return __("Passwords can't have that many sequential characters.", 'login-security-solution');
 			case self::E_SEQ_KEY:
-				return __("Passwords can't be sequential keys.", self::ID);
+				return __("Passwords can't be sequential keys.", 'login-security-solution');
 			case self::E_SHORT:
-				return __("Password is too short.", self::ID);
+				return __("Password is too short.", 'login-security-solution');
 			case self::E_STRING:
-				return __("Passwords must be strings.", self::ID);
+				return __("Passwords must be strings.", 'login-security-solution');
 			case self::E_SITE:
-				return __("Passwords can't contain site info.", self::ID);
+				return __("Passwords can't contain site info.", 'login-security-solution');
 			case self::E_USER:
-				return __("Passwords can't contain user data.", self::ID);
+				return __("Passwords can't contain user data.", 'login-security-solution');
 		}
 	}
 
@@ -2164,29 +2164,29 @@ Password MD5                 %5d     %s
 		$to = $this->sanitize_whitespace($this->get_admin_email());
 
 		$blog = $this->get_blogname();
-		$subject = sprintf(__("POTENTIAL INTRUSION AT %s", self::ID), $blog);
+		$subject = sprintf(__("POTENTIAL INTRUSION AT %s", 'login-security-solution'), $blog);
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =
-			sprintf(__("Your website, %s, may have been broken in to.", self::ID),
+			sprintf(__("Your website, %s, may have been broken in to.", 'login-security-solution'),
 				$blog) . "\n\n"
 
-			. sprintf(__("Someone just logged in using the following components. Prior to that, some combination of those components were a part of %d failed attempts to log in during the past %d minutes:", self::ID),
+			. sprintf(__("Someone just logged in using the following components. Prior to that, some combination of those components were a part of %d failed attempts to log in during the past %d minutes:", 'login-security-solution'),
 				$fails['total'], $this->options['login_fail_minutes']) . "\n\n"
 
 			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails);
 
-		$message .= sprintf(__("They logged in from the following IP address: %s", self::ID), $ip) . "\n\n";
+		$message .= sprintf(__("They logged in from the following IP address: %s", 'login-security-solution'), $ip) . "\n\n";
 
 		if ($pw_force_change) {
-			$message .= __("The user has been logged out and will be required to confirm their identity via the password reset functionality.", self::ID) . "\n\n";
+			$message .= __("The user has been logged out and will be required to confirm their identity via the password reset functionality.", 'login-security-solution') . "\n\n";
 		} else {
-			$message .= sprintf(__("WARNING: The '%s' setting you chose means this person has NOT been logged out and will NOT be required to confirm their identity.", self::ID), __("Breach Email Confirm", self::ID)) . "\n\n"
+			$message .= sprintf(__("WARNING: The '%s' setting you chose means this person has NOT been logged out and will NOT be required to confirm their identity.", 'login-security-solution'), __("Breach Email Confirm", 'login-security-solution')) . "\n\n"
 
-				. __("A notification about this potential breach has been sent to the user.", self::ID) . "\n\n";
+				. __("A notification about this potential breach has been sent to the user.", 'login-security-solution') . "\n\n";
 		}
 
-		$message .= sprintf(__("This message is from the %s plugin (%s) for WordPress.", self::ID),
+		$message .= sprintf(__("This message is from the %s plugin (%s) for WordPress.", 'login-security-solution'),
 			self::NAME, self::VERSION) . "\n";
 
 		$args = array(
@@ -2229,24 +2229,24 @@ Password MD5                 %5d     %s
 		$to = $this->sanitize_whitespace($user->user_email);
 
 		$blog = $this->get_blogname();
-		$subject = sprintf(__("VERIFY YOU LOGGED IN TO %s", self::ID), $blog);
+		$subject = sprintf(__("VERIFY YOU LOGGED IN TO %s", 'login-security-solution'), $blog);
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =
-			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.", self::ID), $user->user_login, $blog) . "\n\n";
+			sprintf(__("Someone just logged into your '%s' account at %s.  Was it you that logged in?  We are asking because the site happens to be under attack at the moment.", 'login-security-solution'), $user->user_login, $blog) . "\n\n";
 
 		if ($pw_force_change) {
 			// Translation already in WP (partial).
-			$message .= sprintf(__("To ensure your account is not being hijacked, you will have go through the '%s' process before logging in again.", self::ID), __('Lost your password?')) . "\n\n";
+			$message .= sprintf(__("To ensure your account is not being hijacked, you will have go through the '%s' process before logging in again.", 'login-security-solution'), __('Lost your password?')) . "\n\n";
 		}
 
-		$message .= __("If it was NOT YOU, please do the following right away:", self::ID) . "\n";
+		$message .= __("If it was NOT YOU, please do the following right away:", 'login-security-solution') . "\n";
 
 		if (!$pw_force_change) {
-			$message .= __(" * Log into the site and change your password.", self::ID) . "\n";
+			$message .= __(" * Log into the site and change your password.", 'login-security-solution') . "\n";
 		}
 
-		$message .= sprintf(__(" * Send an email to %s letting them know it was not you who logged in.", self::ID), $this->get_admin_email()) . "\n";
+		$message .= sprintf(__(" * Send an email to %s letting them know it was not you who logged in.", 'login-security-solution'), $this->get_admin_email()) . "\n";
 
 		$args = array(
 			'user' => $user,
@@ -2287,31 +2287,31 @@ Password MD5                 %5d     %s
 		$to = $this->sanitize_whitespace($this->get_admin_email());
 
 		$blog = $this->get_blogname();
-		$subject = sprintf(__("ATTACK HAPPENING TO %s", self::ID), $blog);
+		$subject = sprintf(__("ATTACK HAPPENING TO %s", 'login-security-solution'), $blog);
 		$subject = $this->sanitize_whitespace($subject);
 
 		$message =
-			sprintf(__("Your website, %s, is undergoing a brute force attack.", self::ID),
+			sprintf(__("Your website, %s, is undergoing a brute force attack.", 'login-security-solution'),
 				$blog) . "\n\n"
 
-			. sprintf(__("There have been at least %d failed attempts to log in during the past %d minutes that used one or more of the following components:", self::ID),
+			. sprintf(__("There have been at least %d failed attempts to log in during the past %d minutes that used one or more of the following components:", 'login-security-solution'),
 				$fails['total'], $this->options['login_fail_minutes']) . "\n\n"
 
 			. $this->get_notify_counts($network_ip, $user_name, $pass_md5, $fails)
 
-			. sprintf(__("The most recent attempt came from the following IP address: %s", self::ID), $ip) . "\n\n"
+			. sprintf(__("The most recent attempt came from the following IP address: %s", 'login-security-solution'), $ip) . "\n\n"
 
-			. sprintf(__("The %s plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.", self::ID),
+			. sprintf(__("The %s plugin (%s) for WordPress is repelling the attack by making their login failures take a very long time.", 'login-security-solution'),
 				self::NAME, self::VERSION);
 
 		if ($this->options['login_fail_breach_pw_force_change']) {
-			$message .= '  ' . __("This attacker will also be denied access in the event they stumble upon valid credentials.", self::ID);
+			$message .= '  ' . __("This attacker will also be denied access in the event they stumble upon valid credentials.", 'login-security-solution');
 		}
 
 		$message .= "\n";
 
 		if (!$this->options['login_fail_notify_multiple']) {
-			$message .= "\n" . sprintf(__("Further notifications about this attacker will only be sent if the attack stops for at least %d minutes and then resumes.", self::ID), $this->options['login_fail_minutes']) . "\n";
+			$message .= "\n" . sprintf(__("Further notifications about this attacker will only be sent if the attack stops for at least %d minutes and then resumes.", 'login-security-solution'), $this->options['login_fail_minutes']) . "\n";
 		}
 
 		$args = array(

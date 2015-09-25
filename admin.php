@@ -123,9 +123,9 @@ class login_security_solution_admin extends login_security_solution {
 
 		// NON-STANDARD: This is for the password change page.
 		$this->option_pw_force_change_name = self::ID . '-pw-force-change-done';
-		$this->text_pw_force_change = __("Change All Passwords", self::ID);
-		$this->text_button_remind = __("Do not remind me about this", self::ID);
-		$this->text_button_require = __("Require All Passwords Be Changed", self::ID);
+		$this->text_pw_force_change = __("Change All Passwords", 'login-security-solution');
+		$this->text_button_remind = __("Do not remind me about this", 'login-security-solution');
+		$this->text_button_require = __("Require All Passwords Be Changed", 'login-security-solution');
 	}
 
 	/*
@@ -140,7 +140,7 @@ class login_security_solution_admin extends login_security_solution {
 		global $wpdb;
 
 		if (is_multisite() && !is_network_admin()) {
-			die($this->hsc_utf8(sprintf(__("%s must be activated via the Network Admin interface when WordPress is in multistie network mode.", self::ID), self::NAME)));
+			die($this->hsc_utf8(sprintf(__("%s must be activated via the Network Admin interface when WordPress is in multistie network mode.", 'login-security-solution'), self::NAME)));
 		}
 
 		/*
@@ -248,135 +248,135 @@ class login_security_solution_admin extends login_security_solution {
 		$this->fields = array(
 			'idle_timeout' => array(
 				'group' => 'misc',
-				'label' => __("Idle Timeout", self::ID),
-				'text' => __("Close inactive sessions after this many minutes. 0 disables this feature.", self::ID),
+				'label' => __("Idle Timeout", 'login-security-solution'),
+				'text' => __("Close inactive sessions after this many minutes. 0 disables this feature.", 'login-security-solution'),
 				'type' => 'int',
 			),
 			'disable_logins' => array(
 				'group' => 'misc',
-				'label' => __("Maintenance Mode", self::ID),
-				'text' => __("Disable logins from users who are not administrators and disable posting of comments?", self::ID),
+				'label' => __("Maintenance Mode", 'login-security-solution'),
+				'text' => __("Disable logins from users who are not administrators and disable posting of comments?", 'login-security-solution'),
 				'type' => 'bool',
-				'bool0' => __("Off, let all users log in.", self::ID),
-				'bool1' => __("On, disable comments and only let administrators log in.", self::ID),
+				'bool0' => __("Off, let all users log in.", 'login-security-solution'),
+				'bool1' => __("On, disable comments and only let administrators log in.", 'login-security-solution'),
 			),
 			'deactivate_deletes_data' => array(
 				'group' => 'misc',
-				'label' => __("Deactivation", self::ID),
-				'text' => __("Should deactivating the plugin remove all of the plugin's data and settings?", self::ID),
+				'label' => __("Deactivation", 'login-security-solution'),
+				'text' => __("Should deactivating the plugin remove all of the plugin's data and settings?", 'login-security-solution'),
 				'type' => 'bool',
-				'bool0' => __("No, preserve the data for future use.", self::ID),
-				'bool1' => __("Yes, delete the damn data.", self::ID),
+				'bool0' => __("No, preserve the data for future use.", 'login-security-solution'),
+				'bool1' => __("Yes, delete the damn data.", 'login-security-solution'),
 			),
 
 			'login_fail_minutes' => array(
 				'group' => 'login',
-				'label' => __("Match Time", self::ID),
-				'text' => __("How far back, in minutes, should login failures look for matching data? 0 disables Login Failure slow downs, notifications and breach confirmations.", self::ID),
+				'label' => __("Match Time", 'login-security-solution'),
+				'text' => __("How far back, in minutes, should login failures look for matching data? 0 disables Login Failure slow downs, notifications and breach confirmations.", 'login-security-solution'),
 				'type' => 'int',
 			),
 			'login_fail_tier_2' => array(
 				'group' => 'login',
-				'label' => __("Delay Tier 2", self::ID),
-				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be >= %d.", self::ID), 4, 30, 2),
+				'label' => __("Delay Tier 2", 'login-security-solution'),
+				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be >= %d.", 'login-security-solution'), 4, 30, 2),
 				'type' => 'int',
 				'greater_than' => 2,
 			),
 			'login_fail_tier_3' => array(
 				'group' => 'login',
-				'label' => __("Delay Tier 3", self::ID),
-				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be > Delay Tier 2.", self::ID), 25, 60),
+				'label' => __("Delay Tier 3", 'login-security-solution'),
+				'text' => sprintf(__("How many matching login failures should it take to get into this (%d - %d second) Delay Tier? Must be > Delay Tier 2.", 'login-security-solution'), 25, 60),
 				'type' => 'int',
 			),
 			'login_fail_tier_dos' => array(
 				'group' => 'login',
-				'label' => __("DoS Tier", self::ID),
-				'text' => __("How many matching login failures should it take until the plugin stops delaying responses (to avoid a Denial of Service problem)? 0 disables this feature. Must be > Delay Tier 3.", self::ID),
+				'label' => __("DoS Tier", 'login-security-solution'),
+				'text' => __("How many matching login failures should it take until the plugin stops delaying responses (to avoid a Denial of Service problem)? 0 disables this feature. Must be > Delay Tier 3.", 'login-security-solution'),
 				'type' => 'int',
 			),
 			'admin_email' => array(
 				'group' => 'login',
-				'label' => __("Notifications To", self::ID),
-				'text' => __("The email address(es) the failure and breach notifications should be sent to. For multiple addresses, separate them with commas. WordPress' 'admin_email' setting is used if none is provided here.", self::ID),
+				'label' => __("Notifications To", 'login-security-solution'),
+				'text' => __("The email address(es) the failure and breach notifications should be sent to. For multiple addresses, separate them with commas. WordPress' 'admin_email' setting is used if none is provided here.", 'login-security-solution'),
 				'type' => 'string',
 			),
 			'login_fail_notify' => array(
 				'group' => 'login',
-				'label' => __("Failure Notification", self::ID),
-				'text' => __("Notify the administrator after x matching login failures. 0 disables this feature.", self::ID),
+				'label' => __("Failure Notification", 'login-security-solution'),
+				'text' => __("Notify the administrator after x matching login failures. 0 disables this feature.", 'login-security-solution'),
 				'type' => 'int',
 			),
 			'login_fail_notify_multiple' => array(
 				'group' => 'login',
-				'label' => __("Multiple Failure Notifications", self::ID),
-				'text' => __("Should multiple failure notifications be sent to the administrators?", self::ID),
+				'label' => __("Multiple Failure Notifications", 'login-security-solution'),
+				'text' => __("Should multiple failure notifications be sent to the administrators?", 'login-security-solution'),
 				'type' => 'bool',
-				'bool0' => __("No, just notify them the first time that x matching login failures happen.", self::ID),
-				'bool1' => __("Yes, notify them upon every x matching login failures.", self::ID),
+				'bool0' => __("No, just notify them the first time that x matching login failures happen.", 'login-security-solution'),
+				'bool1' => __("Yes, notify them upon every x matching login failures.", 'login-security-solution'),
 			),
 			'login_fail_breach_notify' => array(
 				'group' => 'login',
-				'label' => __("Breach Notification", self::ID),
-				'text' => __("Notify the administrator if a successful login uses data matching x login failures. 0 disables this feature.", self::ID),
+				'label' => __("Breach Notification", 'login-security-solution'),
+				'text' => __("Notify the administrator if a successful login uses data matching x login failures. 0 disables this feature.", 'login-security-solution'),
 				'type' => 'int',
 			),
 			'login_fail_breach_pw_force_change' => array(
 				'group' => 'login',
-				'label' => __("Breach Email Confirm", self::ID),
-				'text' => __("If a successful login uses data matching x login failures, immediately log the user out and require them to use WordPress' lost password process. 0 disables this feature.", self::ID),
+				'label' => __("Breach Email Confirm", 'login-security-solution'),
+				'text' => __("If a successful login uses data matching x login failures, immediately log the user out and require them to use WordPress' lost password process. 0 disables this feature.", 'login-security-solution'),
 				'type' => 'int',
 			),
 
 			'pw_length' => array(
 				'group' => 'pw',
-				'label' => __("Length", self::ID),
-				'text' => sprintf(__("How long must passwords be? Must be >= %d.", self::ID), 10),
+				'label' => __("Length", 'login-security-solution'),
+				'text' => sprintf(__("How long must passwords be? Must be >= %d.", 'login-security-solution'), 10),
 				'type' => 'int',
 				'greater_than' => 10,
 			),
 			'pw_complexity_exemption_length' => array(
 				'group' => 'pw',
-				'label' => __("Complexity Exemption", self::ID),
-				'text' => sprintf(__("How long must passwords be to be exempt from the complexity requirements? Must be >= %d.", self::ID), 20),
+				'label' => __("Complexity Exemption", 'login-security-solution'),
+				'text' => sprintf(__("How long must passwords be to be exempt from the complexity requirements? Must be >= %d.", 'login-security-solution'), 20),
 				'type' => 'int',
 				'greater_than' => 20,
 			),
 			'pw_dict_file' => array(
 				'group' => 'pw',
-				'label' => __("Dict Program Index File", self::ID),
-				'text' => sprintf(__("The path and name of the 'dict' index file to examine for common words.", self::ID)),
+				'label' => __("Dict Program Index File", 'login-security-solution'),
+				'text' => sprintf(__("The path and name of the 'dict' index file to examine for common words.", 'login-security-solution')),
 				'type' => 'string',
 			),
 			'pw_change_days' => array(
 				'group' => 'pw',
-				'label' => __("Aging", self::ID),
-				'text' => __("How many days old can a password be before requiring it be changed? Not recommended. 0 disables this feature.", self::ID),
+				'label' => __("Aging", 'login-security-solution'),
+				'text' => __("How many days old can a password be before requiring it be changed? Not recommended. 0 disables this feature.", 'login-security-solution'),
 				'type' => 'int',
 			),
 			'pw_change_grace_period_minutes' => array(
 				'group' => 'pw',
-				'label' => __("Grace Period", self::ID),
-				'text' => sprintf(__("How many minutes should a user have to change their password once they know it has expired? Must be >= %d.", self::ID), 5),
+				'label' => __("Grace Period", 'login-security-solution'),
+				'text' => sprintf(__("How many minutes should a user have to change their password once they know it has expired? Must be >= %d.", 'login-security-solution'), 5),
 				'type' => 'int',
 				'greater_than' => 5,
 			),
 			'pw_reuse_count' => array(
 				'group' => 'pw',
-				'label' => __("History", self::ID),
-				'text' => __("How many passwords should be remembered? Prevents reuse of old passwords. 0 disables this feature.", self::ID),
+				'label' => __("History", 'login-security-solution'),
+				'text' => __("How many passwords should be remembered? Prevents reuse of old passwords. 0 disables this feature.", 'login-security-solution'),
 				'type' => 'int',
 			),
 
 			'login_fail_delete_interval' => array(
 				'group' => 'retention',
-				'label' => __("Deletion Interval", self::ID),
-				'text' => sprintf(__("Run the deletion process upon every x login failures. 0 disables this feature. Suggested value: %d.", self::ID), 1000),
+				'label' => __("Deletion Interval", 'login-security-solution'),
+				'text' => sprintf(__("Run the deletion process upon every x login failures. 0 disables this feature. Suggested value: %d.", 'login-security-solution'), 1000),
 				'type' => 'int',
 			),
 			'login_fail_delete_days' => array(
 				'group' => 'retention',
-				'label' => __("Deletion Days", self::ID),
-				'text' => __("Delete records older than x days.", self::ID),
+				'label' => __("Deletion Days", 'login-security-solution'),
+				'text' => __("Delete records older than x days.", 'login-security-solution'),
 				'type' => 'int',
 			),
 		);
@@ -438,25 +438,25 @@ class login_security_solution_admin extends login_security_solution {
 
 		add_settings_section(
 			self::ID . '-login',
-			$this->hsc_utf8(__("Login Failure Policies", self::ID)),
+			$this->hsc_utf8(__("Login Failure Policies", 'login-security-solution')),
 			array(&$this, 'section_login'),
 			self::ID
 		);
 		add_settings_section(
 			self::ID . '-retention',
-			$this->hsc_utf8(__("Data Retention Policies", self::ID)),
+			$this->hsc_utf8(__("Data Retention Policies", 'login-security-solution')),
 			array(&$this, 'section_retention'),
 			self::ID
 		);
 		add_settings_section(
 			self::ID . '-pw',
-			$this->hsc_utf8(__("Password Policies", self::ID)),
+			$this->hsc_utf8(__("Password Policies", 'login-security-solution')),
 			'__return_empty_string',
 			self::ID
 		);
 		add_settings_section(
 			self::ID . '-misc',
-			$this->hsc_utf8(__("Miscellaneous Policies", self::ID)),
+			$this->hsc_utf8(__("Miscellaneous Policies", 'login-security-solution')),
 			'__return_empty_string',
 			self::ID
 		);
@@ -501,19 +501,19 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	public function section_login() {
 		echo '<p>';
-		echo $this->hsc_utf8(__("This plugin stores the IP address, username and password for each failed log in attempt.", self::ID));
+		echo $this->hsc_utf8(__("This plugin stores the IP address, username and password for each failed log in attempt.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(__("The data from future login failures are compared against the historical data.", self::ID));
+		echo $this->hsc_utf8(__("The data from future login failures are compared against the historical data.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(__("If any of the data points match, the plugin delays printing out the failure message.", self::ID));
+		echo $this->hsc_utf8(__("If any of the data points match, the plugin delays printing out the failure message.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(__("The goal is for the responses to take so long that the attackers give up and go find an easier target.", self::ID));
+		echo $this->hsc_utf8(__("The goal is for the responses to take so long that the attackers give up and go find an easier target.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(__("The length of the delay is broken up into three tiers.", self::ID));
+		echo $this->hsc_utf8(__("The length of the delay is broken up into three tiers.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(__("The amount of the delay increases in higher tiers.", self::ID));
+		echo $this->hsc_utf8(__("The amount of the delay increases in higher tiers.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(__("The delay time within each tier is randomized to complicate profiling by attackers.", self::ID));
+		echo $this->hsc_utf8(__("The delay time within each tier is randomized to complicate profiling by attackers.", 'login-security-solution'));
 		echo '</p>';
 	}
 
@@ -523,7 +523,7 @@ class login_security_solution_admin extends login_security_solution {
 	 */
 	public function section_retention() {
 		echo '<p>';
-		echo $this->hsc_utf8(sprintf(__("The means for automatically deleting old records from the %s table.", self::ID),$this->table_fail));
+		echo $this->hsc_utf8(sprintf(__("The means for automatically deleting old records from the %s table.", 'login-security-solution'),$this->table_fail));
 		echo '</p>';
 	}
 
@@ -583,7 +583,7 @@ class login_security_solution_admin extends login_security_solution {
 			. ' id="' . $this->hsc_utf8($name) . '"'
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
 		echo $this->hsc_utf8($this->fields[$name]['text']
-				. ' ' . __('Default:', self::ID) . ' '
+				. ' ' . __('Default:', 'login-security-solution') . ' '
 				. $this->options_default[$name] . '.');
 	}
 
@@ -599,7 +599,7 @@ class login_security_solution_admin extends login_security_solution {
 			. ' value="' . $this->hsc_utf8($this->options[$name]) . '" /> ';
 		echo '<br />';
 		echo $this->hsc_utf8($this->fields[$name]['text']
-				. ' ' . __('Default:', self::ID) . ' '
+				. ' ' . __('Default:', 'login-security-solution') . ' '
 				. $this->options_default[$name] . '.');
 	}
 
@@ -623,8 +623,8 @@ class login_security_solution_admin extends login_security_solution {
 			return $out;
 		}
 
-		$gt_format = __("must be >= '%s',", self::ID);
-		$default = __("so we used the default value instead.", self::ID);
+		$gt_format = __("must be >= '%s',", 'login-security-solution');
+		$default = __("so we used the default value instead.", 'login-security-solution');
 
 		// Dynamically validate each field using the info in $fields.
 		foreach ($this->fields as $name => $field) {
@@ -657,7 +657,7 @@ class login_security_solution_admin extends login_security_solution {
 						add_settings_error($this->option_name,
 								$this->hsc_utf8($name),
 								$this->hsc_utf8("'" . $field['label'] . "' "
-										. __("must be an integer,", self::ID)
+										. __("must be an integer,", 'login-security-solution')
 										. ' ' . $default));
 						continue 2;
 					}
@@ -787,15 +787,15 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<h2>' . $this->hsc_utf8($this->text_pw_force_change) . '</h2>';
 
 		echo '<p>';
-		echo $this->hsc_utf8(__("There may be cases where everyone's password should be reset.", self::ID));
+		echo $this->hsc_utf8(__("There may be cases where everyone's password should be reset.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(sprintf(__("This page, provided by the %s plugin, offers that functionality.", self::ID), self::NAME));
+		echo $this->hsc_utf8(sprintf(__("This page, provided by the %s plugin, offers that functionality.", 'login-security-solution'), self::NAME));
 		echo '</p>';
 
 		echo '<p>';
-		echo $this->hsc_utf8(__("Submitting this form sets a flag that forces all users, except yourself, to utilize WordPress' built in password reset functionality.", self::ID));
+		echo $this->hsc_utf8(__("Submitting this form sets a flag that forces all users, except yourself, to utilize WordPress' built in password reset functionality.", 'login-security-solution'));
 		echo ' ';
-		echo $this->hsc_utf8(__("Users who are presently logged in will be logged out the next time they view a page that requires authentication.", self::ID));
+		echo $this->hsc_utf8(__("Users who are presently logged in will be logged out the next time they view a page that requires authentication.", 'login-security-solution'));
 		echo '</p>';
 
 		echo '<form action="' . $this->hsc_utf8($this->form_action) . '" method="post">' . "\n";
@@ -807,7 +807,7 @@ class login_security_solution_admin extends login_security_solution {
 			. $this->hsc_utf8($this->option_pw_force_change_name)
 			. '[' . $this->hsc_utf8($this->key_checkbox_require)
 			. ']" /> ';
-		echo $this->hsc_utf8(__("Confirm that you want to force all users to change their passwords by checking this box, then click the button, below.", self::ID));
+		echo $this->hsc_utf8(__("Confirm that you want to force all users to change their passwords by checking this box, then click the button, below.", 'login-security-solution'));
 		echo '</strong></p>';
 
 		// This function escapes output.
@@ -826,7 +826,7 @@ class login_security_solution_admin extends login_security_solution {
 				. $this->hsc_utf8($this->option_pw_force_change_name)
 				. '[' . $this->hsc_utf8($this->key_checkbox_remind)
 				. ']" /> ';
-			echo $this->hsc_utf8(__("No thanks. I know what I'm doing. Please don't remind me about this.", self::ID));
+			echo $this->hsc_utf8(__("No thanks. I know what I'm doing. Please don't remind me about this.", 'login-security-solution'));
 			echo '</p>';
 
 			// This function escapes output.
@@ -858,9 +858,9 @@ class login_security_solution_admin extends login_security_solution {
 			&& !empty($in['submit'])
 			&& is_scalar($in['submit']))
 		{
-			$crossed = $this->hsc_utf8(__("You have checked a box that does not correspond with the button you pressed. Please check and press buttons inside the same section.", self::ID));
+			$crossed = $this->hsc_utf8(__("You have checked a box that does not correspond with the button you pressed. Please check and press buttons inside the same section.", 'login-security-solution'));
 
-			$confirm = __("Please confirm that you really want to do this. Put a check in the '%s' box before hitting the submit button.", self::ID);
+			$confirm = __("Please confirm that you really want to do this. Put a check in the '%s' box before hitting the submit button.", 'login-security-solution');
 
 			switch ($in['submit']) {
 				case $this->text_button_remind:
@@ -871,7 +871,7 @@ class login_security_solution_admin extends login_security_solution {
 					} elseif (empty($in[$this->key_checkbox_remind])) {
 						add_settings_error($this->option_pw_force_change_name,
 								$this->hsc_utf8($this->option_pw_force_change_name),
-								$this->hsc_utf8(sprintf($confirm, __("No thanks", self::ID))));
+								$this->hsc_utf8(sprintf($confirm, __("No thanks", 'login-security-solution'))));
 					} else {
 						// Translation already in WP.
 						add_settings_error($this->option_pw_force_change_name,
@@ -889,7 +889,7 @@ class login_security_solution_admin extends login_security_solution {
 					} elseif (empty($in[$this->key_checkbox_require])) {
 						add_settings_error($this->option_pw_force_change_name,
 								$this->hsc_utf8($this->option_pw_force_change_name),
-								$this->hsc_utf8(sprintf($confirm, __("Confirm", self::ID))));
+								$this->hsc_utf8(sprintf($confirm, __("Confirm", 'login-security-solution'))));
 					} else {
 						$result = $this->force_change_for_all();
 						if ($result === true) {
@@ -930,7 +930,7 @@ class login_security_solution_admin extends login_security_solution {
 		$self = false;
 		if (ctype_digit($this->options['disable_logins'])) {
 			// The setting's value in older versions was 0 or 1.
-			$user = __('an administrator', self::ID);
+			$user = __('an administrator', 'login-security-solution');
 		} else {
 			// Version 0.42.0 began putting user's name into the setting.
 			$user = $this->options['disable_logins'];
@@ -941,15 +941,15 @@ class login_security_solution_admin extends login_security_solution {
 
 		echo '<p><strong>';
 		if ($self) {
-			echo $this->hsc_utf8(__("NOTICE: you turned on Maintenance Mode at some point. It disables new comments and keeps non-administrators from logging in.", self::ID));
+			echo $this->hsc_utf8(__("NOTICE: you turned on Maintenance Mode at some point. It disables new comments and keeps non-administrators from logging in.", 'login-security-solution'));
 		} else {
-			echo $this->hsc_utf8(sprintf(__("WARNING: the site in Maintenance Mode. Talk to %s before making any changes.", self::ID), $user));
+			echo $this->hsc_utf8(sprintf(__("WARNING: the site in Maintenance Mode. Talk to %s before making any changes.", 'login-security-solution'), $user));
 		}
 		echo '</strong></p>';
 
 		if (current_user_can('administrator')) {
 			echo '<p><strong>';
-			echo $this->hsc_utf8(__("To turn this off, go to Settings | Login Security Solution | Maintenance Mode.", self::ID));
+			echo $this->hsc_utf8(__("To turn this off, go to Settings | Login Security Solution | Maintenance Mode.", 'login-security-solution'));
 			echo '</strong></p>';
 		}
 
@@ -974,15 +974,15 @@ class login_security_solution_admin extends login_security_solution {
 		echo '<div class="error">';
 
 		echo '<p><strong>';
-		echo $this->hsc_utf8(__("You have not asked your users to change their passwords since the plugin was activated. Most users have weak passwords. This plugin's password policies protect your site from brute force attacks. Please improve security for everyone on the Internet by making all users pick new, strong, passwords.", self::ID));
+		echo $this->hsc_utf8(__("You have not asked your users to change their passwords since the plugin was activated. Most users have weak passwords. This plugin's password policies protect your site from brute force attacks. Please improve security for everyone on the Internet by making all users pick new, strong, passwords.", 'login-security-solution'));
 		echo '</strong></p>';
 
 		echo '<p><strong>';
-		echo $this->hsc_utf8(__("Speaking of which, do YOU have a strong password? Make sure by changing yours too.", self::ID));
+		echo $this->hsc_utf8(__("Speaking of which, do YOU have a strong password? Make sure by changing yours too.", 'login-security-solution'));
 		echo '</strong></p>';
 
 		echo '<p><strong>';
-		echo $this->hsc_utf8(__("The following link leads to a user interface where you can either require all passwords to be reset or disable this notice.", self::ID));
+		echo $this->hsc_utf8(__("The following link leads to a user interface where you can either require all passwords to be reset or disable this notice.", 'login-security-solution'));
 		echo '</strong></p>';
 
 		echo '<p><strong>';
@@ -1018,7 +1018,7 @@ class login_security_solution_admin extends login_security_solution {
 		if (empty($user_ID)) {
 			###$this->log("force_change_for_all() user_ID not set.");
 			###$this->log(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
-			return __("\$user_ID variable not set. Another plugin is misbehaving.", self::ID);
+			return __("\$user_ID variable not set. Another plugin is misbehaving.", 'login-security-solution');
 		}
 
 		$sql = "INSERT INTO `$wpdb->usermeta`
