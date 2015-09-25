@@ -8,7 +8,7 @@
  * @link https://wordpress.org/plugins/login-security-solution/
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012-2014
+ * @copyright The Analysis and Solutions Company, 2012-2015
  */
 
 /**
@@ -19,7 +19,7 @@
  * @link https://wordpress.org/plugins/login-security-solution/
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2
  * @author Daniel Convissor <danielc@analysisandsolutions.com>
- * @copyright The Analysis and Solutions Company, 2012-2014
+ * @copyright The Analysis and Solutions Company, 2012-2015
  */
 class login_security_solution_admin extends login_security_solution {
 	/**

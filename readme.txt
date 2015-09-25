@@ -512,6 +512,10 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.53.0 (2015-09-25) =
+* Change translation domain from constant to string in preparation for
+integration with translate.wordpress.org
+
 = 0.52.0 (2015-05-25) =
 * Silence safe mode warnings from is_readable()
 * Add Polish translation
