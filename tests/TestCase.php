@@ -79,11 +79,6 @@ if (is_multisite()) {
 require_once dirname(__FILE__) . '/Accessor.php';
 
 /**
- * Obtain the PHPUnit infrastructure
- */
-require_once 'PHPUnit/Autoload.php';
-
-/**
  * Parent TestCase class containing common methods and properties
  *
  * @package login-security-solution
