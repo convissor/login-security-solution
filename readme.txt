@@ -512,6 +512,10 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.54.0 () =
+* Fix memory exhaustion on sites with many users during plugin activation
+if password history is enabled
+
 = 0.53.0 (2015-09-25) =
 * Change translation domain from constant to string in preparation for
 integration with translate.wordpress.org

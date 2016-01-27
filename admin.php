@@ -188,16 +188,28 @@ class login_security_solution_admin extends login_security_solution {
 		 */
 
 		if ($this->options['pw_reuse_count']) {
-			$sql = "SELECT ID, user_pass FROM `$wpdb->users`";
-			$result = $wpdb->get_results($sql, ARRAY_A);
-			if (!$result) {
-				die(self::ID . ' could not find users.');
-			}
+			$i = 0;
 
-			foreach ($result as $user) {
-				if (!$this->save_pw_hash($user['ID'], $user['user_pass'])) {
-					die(self::ID . ' could not save password hash.');
+			while (true) {
+				$sql = "SELECT ID, user_pass FROM `$wpdb->users`
+					LIMIT $i, 1000";
+
+				$result = $wpdb->get_results($sql, ARRAY_A);
+				if (!$result) {
+					if ($i == 0) {
+						die(self::ID . ' could not find users.');
+					} else {
+						break;
+					}
 				}
+
+				foreach ($result as $user) {
+					if (!$this->save_pw_hash($user['ID'], $user['user_pass'])) {
+						die(self::ID . ' could not save password hash.');
+					}
+				}
+
+				$i += 1000;
 			}
 		}
 	}
