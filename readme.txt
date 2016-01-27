@@ -3,7 +3,7 @@ Contributors: convissor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=danielc%40analysisandsolutions%2ecom&lc=US&item_name=Donate%3a%20Login%20Security%20Solution&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: login, password, passwords, strength, strong, strong passwords, password strength, idle, timeout, maintenance, security, attack, hack, lock, lockdown, ban, brute force, brute, force, authentication, xml-rpc, auth, cookie, users
 Requires at least: 3.3
-Tested up to: 4.2
+Tested up to: 4.4
 Stable tag: trunk
 
 Security against brute force attacks by tracking IP, name, password; requiring very strong passwords. Idle timeout. Maintenance mode lockdown.
@@ -512,7 +512,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.54.0 () =
+= 0.54.0 (2016-01-27) =
 * Fix memory exhaustion on sites with many users during plugin activation
 if password history is enabled
 * Put "in" in "Please log and change it"
