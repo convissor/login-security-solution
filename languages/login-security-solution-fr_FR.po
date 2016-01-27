@@ -572,7 +572,7 @@ msgstr "Veuillez remplir ce formulaire pour le ré-initialiser."
 
 # @ login-security-solution
 #: login-security-solution.php:697 tests/LoginMessageTest.php:104
-msgid "Your password has expired. Please log and change it."
+msgid "Your password has expired. Please log in and change it."
 msgstr "Votre mot de passe a expiré. Veuillez vous connecter et le changer."
 
 # @ login-security-solution

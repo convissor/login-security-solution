@@ -525,7 +525,7 @@ msgid "Please submit this form to reset it."
 msgstr "Ole hyvä ja lähetä tämä lomake nollataksesi salasanasi."
 
 #: login-security-solution.php:697 tests/LoginMessageTest.php:104
-msgid "Your password has expired. Please log and change it."
+msgid "Your password has expired. Please log in and change it."
 msgstr "Salasanasi on vanhentunut. Ole hyvä ja vaihda se."
 
 #: login-security-solution.php:698 tests/LoginMessageTest.php:105

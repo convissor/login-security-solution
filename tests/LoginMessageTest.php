@@ -101,7 +101,7 @@ class LoginMessageTest extends TestCase {
 		$options['pw_change_grace_period_minutes'] = $value;
 		self::$lss->options = $options;
 
-		$ours = __('Your password has expired. Please log and change it.', self::ID);
+		$ours = __('Your password has expired. Please log in and change it.', self::ID);
 		$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', self::ID), $value);
 
 		$actual = self::$lss->login_message('input');

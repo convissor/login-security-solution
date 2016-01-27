@@ -539,7 +539,7 @@ msgid "Please submit this form to reset it."
 msgstr "パスワードリセットするために、このフォームに申請してください。"
 
 #: login-security-solution.php:697 tests/LoginMessageTest.php:104
-msgid "Your password has expired. Please log and change it."
+msgid "Your password has expired. Please log in and change it."
 msgstr ""
 "あなたのパスワードが失効しました。ログインして、パスワード変更してください。"
 

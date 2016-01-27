@@ -694,7 +694,7 @@ class login_security_solution {
 					$ours .= ' ' . __('Please submit this form to reset it.', 'login-security-solution');
 					break;
 				case 'pw_grace':
-					$ours = __('Your password has expired. Please log and change it.', 'login-security-solution');
+					$ours = __('Your password has expired. Please log in and change it.', 'login-security-solution');
 					$ours .= ' ' . sprintf(__('We provide a %d minute grace period to do so.', 'login-security-solution'), $this->options['pw_change_grace_period_minutes']);
 					break;
 				default:

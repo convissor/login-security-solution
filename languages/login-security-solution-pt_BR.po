@@ -566,7 +566,7 @@ msgid "Please submit this form to reset it."
 msgstr "Por favor envie este formulário para redefini-la."
 
 #: login-security-solution.php:697 tests/LoginMessageTest.php:104
-msgid "Your password has expired. Please log and change it."
+msgid "Your password has expired. Please log in and change it."
 msgstr "Sua senha expirou. Por favor, efetue login para alterar."
 
 #: login-security-solution.php:698 tests/LoginMessageTest.php:105
