@@ -264,6 +264,14 @@ class login_security_solution_admin extends login_security_solution {
 				'text' => __("Close inactive sessions after this many minutes. 0 disables this feature.", 'login-security-solution'),
 				'type' => 'int',
 			),
+			'block_author_query' => array(
+				'group' => 'misc',
+				'label' => __("Block Author Query", 'login-security-solution'),
+				'text' => __("Prevent attackers from discovering your users' names via the '?author=<id>' URI.", 'login-security-solution'),
+				'type' => 'bool',
+				'bool0' => __("Off, allow discovering authors.", 'login-security-solution'),
+				'bool1' => __("On, redirect requests to the home page.", 'login-security-solution'),
+			),
 			'disable_logins' => array(
 				'group' => 'misc',
 				'label' => __("Maintenance Mode", 'login-security-solution'),

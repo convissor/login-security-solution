@@ -139,6 +139,7 @@ class login_security_solution {
 	 */
 	protected $options_default = array(
 		'admin_email' => '',
+		'block_author_query' => 1,
 		'deactivate_deletes_data' => 0,
 		'disable_logins' => 0,
 		'idle_timeout' => 15,
@@ -265,6 +266,10 @@ class login_security_solution {
 		add_action('wp_login', array(&$this, 'wp_login'), 1, 2);
 		add_filter('login_errors', array(&$this, 'login_errors'));
 		add_filter('login_message', array(&$this, 'login_message'));
+
+		if ($this->options['block_author_query']) {
+			add_filter('wp_redirect', array(&$this, 'author_query_redirect'));
+		}
 
 		if ($this->options['disable_logins']) {
 			add_filter('comments_open', array(&$this, 'comments_open'));
@@ -480,6 +485,29 @@ class login_security_solution {
 
 		###$this->log(__FUNCTION__, "$user_name good");
 		return $user;
+	}
+
+	/**
+	 * Blocks attempts to discover user names via the "?author=<id>" URI
+	 *
+	 * WP redirects the author query string to a page showing the author's
+	 * name.  This allows attackers to probe sites for the names of actual
+	 * users, which can then be used for brute force attacks.
+	 *
+	 * Tried "author_link" filter, but is called multiple times and does
+	 * not work.
+	 *
+	 * @param string $location  the requested URI to go to
+	 * @return string  the URI to go to
+	 *
+	 * @uses get_site_url()  to know where the home page is
+	 */
+	public function author_query_redirect($location) {
+		###$this->log(__FUNCTION__, $location);
+		if (strpos($location, 'index.php/author/') !== false) {
+			return get_site_url();
+		}
+		return $location;
 	}
 
 	/**

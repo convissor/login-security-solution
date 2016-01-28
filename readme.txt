@@ -49,6 +49,8 @@ The tests have caught every password dictionary entry I've tried.
     + The password/phrase is not found by the `dict` dictionary
       program (if available)
 
+* Blocks discovering user names via the "?author=<id>" query string
+
 * Password aging (optional) (not recommended)
     + Users need to change password every x days (customizable)
     + Grace period for picking a new password (customizable)
@@ -511,6 +513,9 @@ on our GitHub.
 
 
 == Changelog ==
+
+= 0.55.0 () =
+* Block discovering user names via the "?author=<id>" query string
 
 = 0.54.0 (2016-01-27) =
 * Fix memory exhaustion on sites with many users during plugin activation
