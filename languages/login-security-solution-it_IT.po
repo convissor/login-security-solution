@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Login Security Solution 0.49.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "solution\n"
-"POT-Creation-Date: 2015-09-25 00:39:12+00:00\n"
+"POT-Creation-Date: 2016-01-29 23:53:28+00:00\n"
 "PO-Revision-Date: 2014-12-16 17:03:00+01:00\n"
 "Last-Translator: Daniele <info@sinapsi.org>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: admin.php:112 admin.php:398
+#: admin.php:112 admin.php:418
 msgid "Settings"
 msgstr ""
 
@@ -45,21 +45,39 @@ msgstr ""
 "%s deve essere attivato tramite l'interfaccia Network Admin quando WordPress "
 "è in modalità multisite."
 
-#: admin.php:251
+#: admin.php:263
 msgid "Idle Timeout"
 msgstr "Tempo di inattività"
 
-#: admin.php:252
+#: admin.php:264
 msgid ""
 "Close inactive sessions after this many minutes. 0 disables this feature."
 msgstr ""
 "Chiude le sessioni inattive dopo questi minuti. 0 disabilita questa funzione."
 
-#: admin.php:257
+#: admin.php:269
+msgid "Block Author Query"
+msgstr ""
+
+#: admin.php:270
+msgid ""
+"Prevent attackers from discovering your users' names via the '?author=<id>' "
+"URI."
+msgstr ""
+
+#: admin.php:272
+msgid "Off, allow discovering authors."
+msgstr ""
+
+#: admin.php:273
+msgid "On, redirect requests to the home page."
+msgstr ""
+
+#: admin.php:277
 msgid "Maintenance Mode"
 msgstr "Modalità manutenzione"
 
-#: admin.php:258
+#: admin.php:278
 msgid ""
 "Disable logins from users who are not administrators and disable posting of "
 "comments?"
@@ -67,38 +85,38 @@ msgstr ""
 "Disabilitare logins degli utenti che non sono amministratori e disabilitare "
 "i commenti?"
 
-#: admin.php:260
+#: admin.php:280
 msgid "Off, let all users log in."
 msgstr "Spento, lascia accedere tutti gli utenti."
 
-#: admin.php:261
+#: admin.php:281
 msgid "On, disable comments and only let administrators log in."
 msgstr ""
 "Attivo, disabilitati i commenti, solo gli amministratori possono accedere."
 
-#: admin.php:265
+#: admin.php:285
 msgid "Deactivation"
 msgstr "Disattivazione."
 
-#: admin.php:266
+#: admin.php:286
 msgid ""
 "Should deactivating the plugin remove all of the plugin's data and settings?"
 msgstr ""
 "Se disattivi il plugin vuoi rimuovere anche tutti i dati e le impostazioni?"
 
-#: admin.php:268
+#: admin.php:288
 msgid "No, preserve the data for future use."
 msgstr "No, conservali per un uso futuro."
 
-#: admin.php:269
+#: admin.php:289
 msgid "Yes, delete the damn data."
 msgstr "Sì! Distruggi tutto!"
 
-#: admin.php:274
+#: admin.php:294
 msgid "Match Time"
 msgstr "Tempo di controllo"
 
-#: admin.php:275
+#: admin.php:295
 msgid ""
 "How far back, in minutes, should login failures look for matching data? 0 "
 "disables Login Failure slow downs, notifications and breach confirmations."
@@ -107,11 +125,11 @@ msgstr ""
 "il rallentamento degli accessi, l'invio degli avvertimenti e le conferme di "
 "violazioni."
 
-#: admin.php:280
+#: admin.php:300
 msgid "Delay Tier 2"
 msgstr "Livello di ritardo 2"
 
-#: admin.php:281
+#: admin.php:301
 msgid ""
 "How many matching login failures should it take to get into this (%d - %d "
 "second) Delay Tier? Must be >= %d."
@@ -119,11 +137,11 @@ msgstr ""
 "Quanti tentativi di accesso per imporre questo livello ((%d - %d second) di "
 "ritardo? Deve essere >= %d."
 
-#: admin.php:287
+#: admin.php:307
 msgid "Delay Tier 3"
 msgstr "Livello di ritardo 3"
 
-#: admin.php:288
+#: admin.php:308
 msgid ""
 "How many matching login failures should it take to get into this (%d - %d "
 "second) Delay Tier? Must be > Delay Tier 2."
@@ -131,11 +149,11 @@ msgstr ""
 "Quanti tentativi di accesso prima di imporre questo livello (%d - %d "
 "second)? Deve essere >= del livello 2."
 
-#: admin.php:293
+#: admin.php:313
 msgid "DoS Tier"
 msgstr "Livello di DoS"
 
-#: admin.php:294
+#: admin.php:314
 msgid ""
 "How many matching login failures should it take until the plugin stops "
 "delaying responses (to avoid a Denial of Service problem)? 0 disables this "
@@ -145,11 +163,11 @@ msgstr ""
 "(per evitare il problem DoS Denial of Service)? 0 diabilitato, deve essere "
 ">= del livello 3."
 
-#: admin.php:299
+#: admin.php:319
 msgid "Notifications To"
 msgstr "Invia gli avvertimenti a"
 
-#: admin.php:300
+#: admin.php:320
 msgid ""
 "The email address(es) the failure and breach notifications should be sent "
 "to. For multiple addresses, separate them with commas. WordPress' "
@@ -159,11 +177,11 @@ msgstr ""
 "separarli con una virgola. Se lasciato vuoti, verrà usato l'indirizzo email "
 "dell'amministratore di WordPress."
 
-#: admin.php:305
+#: admin.php:325
 msgid "Failure Notification"
 msgstr "Avviso di Errore"
 
-#: admin.php:306
+#: admin.php:326
 msgid ""
 "Notify the administrator after x matching login failures. 0 disables this "
 "feature."
@@ -171,31 +189,31 @@ msgstr ""
 "Avvisa l'amministratore dopo x tentativi falliti di accesso. 0 disabilita "
 "questa funzione."
 
-#: admin.php:311
+#: admin.php:331
 msgid "Multiple Failure Notifications"
 msgstr "Avvisi di errori multipli"
 
-#: admin.php:312
+#: admin.php:332
 msgid "Should multiple failure notifications be sent to the administrators?"
 msgstr ""
 "Gli avvisi di errori multipli devono essere inviati all'amministratore?"
 
-#: admin.php:314
+#: admin.php:334
 msgid ""
 "No, just notify them the first time that x matching login failures happen."
 msgstr ""
 "No, avvisa l'amministratore solo la prima volta che si verificano x "
 "tentativi falliti di accesso."
 
-#: admin.php:315
+#: admin.php:335
 msgid "Yes, notify them upon every x matching login failures."
 msgstr "Sì, avvisa l'amministratore ogni x tentativi falliti di accesso."
 
-#: admin.php:319
+#: admin.php:339
 msgid "Breach Notification"
 msgstr "Avviso di intrusione."
 
-#: admin.php:320
+#: admin.php:340
 msgid ""
 "Notify the administrator if a successful login uses data matching x login "
 "failures. 0 disables this feature."
@@ -203,11 +221,11 @@ msgstr ""
 "Avvisa l'amministratore se un accesso avviene dopo x tentativi. 0 disabilita "
 "questa funzione."
 
-#: admin.php:325 login-security-solution.php:2184
+#: admin.php:345 login-security-solution.php:2212
 msgid "Breach Email Confirm"
 msgstr "Imponi conferma intrusione"
 
-#: admin.php:326
+#: admin.php:346
 msgid ""
 "If a successful login uses data matching x login failures, immediately log "
 "the user out and require them to use WordPress' lost password process. 0 "
@@ -216,19 +234,19 @@ msgstr ""
 "Se un utente accede dopo x tentativi falliti verrà costretto ad utilizzare "
 "il procedimento di recupero password. 0 disabilita questa funzione."
 
-#: admin.php:332
+#: admin.php:352
 msgid "Length"
 msgstr "Lunghezza"
 
-#: admin.php:333
+#: admin.php:353
 msgid "How long must passwords be? Must be >= %d."
 msgstr "Quanto deve essere lunga la password? Almeno >= %d."
 
-#: admin.php:339
+#: admin.php:359
 msgid "Complexity Exemption"
 msgstr "Esenzione di complessità"
 
-#: admin.php:340
+#: admin.php:360
 msgid ""
 "How long must passwords be to be exempt from the complexity requirements? "
 "Must be >= %d."
@@ -236,19 +254,19 @@ msgstr ""
 "Quanto deve essere lunga la password per essere esentata dalla complessità? "
 "Almeno >= %d."
 
-#: admin.php:346
+#: admin.php:366
 msgid "Dict Program Index File"
 msgstr ""
 
-#: admin.php:347
+#: admin.php:367
 msgid "The path and name of the 'dict' index file to examine for common words."
 msgstr ""
 
-#: admin.php:352
+#: admin.php:372
 msgid "Aging"
 msgstr "Età"
 
-#: admin.php:353
+#: admin.php:373
 msgid ""
 "How many days old can a password be before requiring it be changed? Not "
 "recommended. 0 disables this feature."
@@ -256,11 +274,11 @@ msgstr ""
 "Quanti giorni dura la password prima che si venga costretti a cambiarla? 0 "
 "disabilita questa funzione."
 
-#: admin.php:358
+#: admin.php:378
 msgid "Grace Period"
 msgstr "Periodo concesso"
 
-#: admin.php:359
+#: admin.php:379
 msgid ""
 "How many minutes should a user have to change their password once they know "
 "it has expired? Must be >= %d."
@@ -268,11 +286,11 @@ msgstr ""
 "Quanti minuti di tempo sono concessi all'utente per cambiare la propria "
 "password scaduta? Almeno >= %d."
 
-#: admin.php:365
+#: admin.php:385
 msgid "History"
 msgstr "Storia"
 
-#: admin.php:366
+#: admin.php:386
 msgid ""
 "How many passwords should be remembered? Prevents reuse of old passwords. 0 "
 "disables this feature."
@@ -280,11 +298,11 @@ msgstr ""
 "Quante password precedenti devono essere ricordate? Impedisce l'uso di "
 "password vecchie. 0 disabilita questa funzione."
 
-#: admin.php:372
+#: admin.php:392
 msgid "Deletion Interval"
 msgstr "Intervallo cancellazione"
 
-#: admin.php:373
+#: admin.php:393
 msgid ""
 "Run the deletion process upon every x login failures. 0 disables this "
 "feature. Suggested value: %d."
@@ -292,31 +310,31 @@ msgstr ""
 "Avvia il processo di rimozione della password dopo x tentativi falliti. 0 "
 "disabilita questa funzione. Valore suggerito: %d."
 
-#: admin.php:378
+#: admin.php:398
 msgid "Deletion Days"
 msgstr "Giorni cancellazione"
 
-#: admin.php:379
+#: admin.php:399
 msgid "Delete records older than x days."
 msgstr "Cancella i dati più vecchi di x giorni."
 
-#: admin.php:441
+#: admin.php:461
 msgid "Login Failure Policies"
 msgstr "Accessi falliti"
 
-#: admin.php:447
+#: admin.php:467
 msgid "Data Retention Policies"
 msgstr "Conservazione dati"
 
-#: admin.php:453
+#: admin.php:473
 msgid "Password Policies"
 msgstr "Password"
 
-#: admin.php:459
+#: admin.php:479
 msgid "Miscellaneous Policies"
 msgstr "Varie"
 
-#: admin.php:504
+#: admin.php:524
 msgid ""
 "This plugin stores the IP address, username and password for each failed log "
 "in attempt."
@@ -324,13 +342,13 @@ msgstr ""
 "Questo plugin conserva gli indirizzi IP, i nomi utente e le password di ogni "
 "tentativo fallito di accesso."
 
-#: admin.php:506
+#: admin.php:526
 msgid ""
 "The data from future login failures are compared against the historical data."
 msgstr ""
 "I dati di accesso vengono confrontati con quelli memorizzati in precedenza."
 
-#: admin.php:508
+#: admin.php:528
 msgid ""
 "If any of the data points match, the plugin delays printing out the failure "
 "message."
@@ -338,7 +356,7 @@ msgstr ""
 "Se un dato corrisponde con un precedente tentativo fallito, il plugin "
 "ritarda la visualizzazione del messaggio di accesso."
 
-#: admin.php:510
+#: admin.php:530
 msgid ""
 "The goal is for the responses to take so long that the attackers give up and "
 "go find an easier target."
@@ -346,15 +364,15 @@ msgstr ""
 "Lo scopo è ritardare la risposta così a lungo per convincere le intrusioni a "
 "cambiare obiettivo."
 
-#: admin.php:512
+#: admin.php:532
 msgid "The length of the delay is broken up into three tiers."
 msgstr "La lunghezza del ritardo è suddivisa in 3 livelli."
 
-#: admin.php:514
+#: admin.php:534
 msgid "The amount of the delay increases in higher tiers."
 msgstr "La lunghezza del ritardo aumenta ad ogni livello."
 
-#: admin.php:516
+#: admin.php:536
 msgid ""
 "The delay time within each tier is randomized to complicate profiling by "
 "attackers."
@@ -362,35 +380,35 @@ msgstr ""
 "Il tempo di ritardo è cambiato in modo casuale per rendere più complicato il "
 "tentativo di attacco."
 
-#: admin.php:526
+#: admin.php:546
 msgid "The means for automatically deleting old records from the %s table."
 msgstr "Come cancellare automaticamente i vecchi dati dalla tabella %s."
 
-#: admin.php:586 admin.php:602
+#: admin.php:606 admin.php:622
 msgid "Default:"
 msgstr "Default:"
 
-#: admin.php:626
+#: admin.php:646
 msgid "must be >= '%s',"
 msgstr "deve essere >= '%s',"
 
-#: admin.php:627
+#: admin.php:647
 msgid "so we used the default value instead."
 msgstr "allora useremo i valori di default."
 
-#: admin.php:660
+#: admin.php:680
 msgid "must be an integer,"
 msgstr "deve essere un intero."
 
-#: admin.php:790
+#: admin.php:810
 msgid "There may be cases where everyone's password should be reset."
 msgstr "Ci sono situazioni in cui tutte le password devono essere azzerate."
 
-#: admin.php:792
+#: admin.php:812
 msgid "This page, provided by the %s plugin, offers that functionality."
 msgstr "Questa pagina, fornita dal plugin %s, offre quella funzione."
 
-#: admin.php:796
+#: admin.php:816
 msgid ""
 "Submitting this form sets a flag that forces all users, except yourself, to "
 "utilize WordPress' built in password reset functionality."
@@ -398,13 +416,13 @@ msgstr ""
 "Inviando questo modulo, tutti gli utenti, tranne tu stesso, saranno "
 "costretti ad azzerare la propria password."
 
-#: admin.php:798
+#: admin.php:818
 msgid ""
 "Users who are presently logged in will be logged out the next time they view "
 "a page that requires authentication."
 msgstr "Gli utenti verranno costretti ad autenticarsi di nuovo."
 
-#: admin.php:810
+#: admin.php:830
 msgid ""
 "Confirm that you want to force all users to change their passwords by "
 "checking this box, then click the button, below."
@@ -412,11 +430,11 @@ msgstr ""
 "Confermi che vuoi costringere tutti gli utenti ad azzerare la propria "
 "password? Metti una spunta alla casella e clicca il bottone sottostante."
 
-#: admin.php:829
+#: admin.php:849
 msgid "No thanks. I know what I'm doing. Please don't remind me about this."
 msgstr "No, grazie. So cosa sto facendo. Per favore non me lo ricordare più."
 
-#: admin.php:861
+#: admin.php:881
 msgid ""
 "You have checked a box that does not correspond with the button you pressed. "
 "Please check and press buttons inside the same section."
@@ -425,7 +443,7 @@ msgstr ""
 "cliccato. Per favore controlla e premi il pulsante che vedi vicino alla "
 "casella."
 
-#: admin.php:863
+#: admin.php:883
 msgid ""
 "Please confirm that you really want to do this. Put a check in the '%s' box "
 "before hitting the submit button."
@@ -433,24 +451,24 @@ msgstr ""
 "Per favore conferma che vuoi realmente fare questo. Metti una spunta nella "
 "casella '%s' prima di cliccare sul pulsante."
 
-#: admin.php:874
+#: admin.php:894
 msgid "No thanks"
 msgstr "No grazie"
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: admin.php:879 admin.php:899
+#: admin.php:899 admin.php:919
 msgid "Success!"
 msgstr ""
 
-#: admin.php:892
+#: admin.php:912
 msgid "Confirm"
 msgstr "Conferma"
 
-#: admin.php:933
+#: admin.php:953
 msgid "an administrator"
 msgstr "un amministratore"
 
-#: admin.php:944
+#: admin.php:964
 msgid ""
 "NOTICE: you turned on Maintenance Mode at some point. It disables new "
 "comments and keeps non-administrators from logging in."
@@ -459,14 +477,14 @@ msgstr ""
 "inseriti commenti ed impedisce agli utenti che non sono amministratori di "
 "accedere."
 
-#: admin.php:946
+#: admin.php:966
 msgid ""
 "WARNING: the site in Maintenance Mode. Talk to %s before making any changes."
 msgstr ""
 "ATTENZIONE: questo sito è in manutenzione. Rivolgersi a %s prima di "
 "qualsiasi azione."
 
-#: admin.php:952
+#: admin.php:972
 msgid ""
 "To turn this off, go to Settings | Login Security Solution | Maintenance "
 "Mode."
@@ -474,7 +492,7 @@ msgstr ""
 "Per uscire da questa modalità, vai a Impostazioni | Login Security Solution "
 "| Maintenance Mode."
 
-#: admin.php:977
+#: admin.php:997
 msgid ""
 "You have not asked your users to change their passwords since the plugin was "
 "activated. Most users have weak passwords. This plugin's password policies "
@@ -486,14 +504,14 @@ msgstr ""
 "forza bruta. Per favore migliora la sicurezza degli utenti chiedendo loro di "
 "scegliere password più robuste."
 
-#: admin.php:981
+#: admin.php:1001
 msgid ""
 "Speaking of which, do YOU have a strong password? Make sure by changing "
 "yours too."
 msgstr ""
 "A proposito, TU hai una password robusta? Se necessario, cambia anche la tua!"
 
-#: admin.php:985
+#: admin.php:1005
 msgid ""
 "The following link leads to a user interface where you can either require "
 "all passwords to be reset or disable this notice."
@@ -502,68 +520,68 @@ msgstr ""
 "password oppure di disattivare questo avviso."
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: admin.php:1015
+#: admin.php:1035
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin.php:1021
+#: admin.php:1041
 msgid "$user_ID variable not set. Another plugin is misbehaving."
 msgstr "Variabile $user_ID  non impostata. Forse un altro plugin interferisce."
 
-#: login-security-solution.php:652 tests/LoginErrorsTest.php:97
+#: login-security-solution.php:680 tests/LoginErrorsTest.php:97
 #: tests/LoginErrorsTest.php:111
 msgid "Invalid username or password."
 msgstr "Nome o password errati."
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: login-security-solution.php:659 tests/LoginErrorsTest.php:125
+#: login-security-solution.php:687 tests/LoginErrorsTest.php:125
 #: tests/LoginErrorsTest.php:139
 msgid "Password reset is not allowed for this user"
 msgstr ""
 
-#: login-security-solution.php:685 tests/LoginMessageTest.php:66
+#: login-security-solution.php:713 tests/LoginMessageTest.php:66
 msgid "It has been over %d minutes since your last action."
 msgstr "Sono trascorsi oltre %d minuti dalla tua ultima azione."
 
-#: login-security-solution.php:686 tests/LoginMessageTest.php:67
+#: login-security-solution.php:714 tests/LoginMessageTest.php:67
 msgid "Please log back in."
 msgstr "Per favore riprova ad accedere."
 
-#: login-security-solution.php:689 tests/LoginMessageTest.php:77
+#: login-security-solution.php:717 tests/LoginMessageTest.php:77
 msgid "The grace period for changing your password has expired."
 msgstr "Il tempo consentito per il cambio password è finito."
 
-#: login-security-solution.php:690 tests/LoginMessageTest.php:78
+#: login-security-solution.php:718 tests/LoginMessageTest.php:78
 msgid "Please submit this form to reset your password."
 msgstr "Per favore inoltra questo modulo per ripristinare la tua password."
 
-#: login-security-solution.php:693 tests/LoginMessageTest.php:88
+#: login-security-solution.php:721 tests/LoginMessageTest.php:88
 msgid "Your password must be reset."
 msgstr "La tua password deve essere ripristinata."
 
-#: login-security-solution.php:694 tests/LoginMessageTest.php:89
+#: login-security-solution.php:722 tests/LoginMessageTest.php:89
 msgid "Please submit this form to reset it."
 msgstr "Per favore invia questo modulo per ripristinarla."
 
-#: login-security-solution.php:697 tests/LoginMessageTest.php:104
+#: login-security-solution.php:725 tests/LoginMessageTest.php:104
 msgid "Your password has expired. Please log in and change it."
 msgstr "La tua password è scaduta. Per favore accedi e cambiala."
 
-#: login-security-solution.php:698 tests/LoginMessageTest.php:105
+#: login-security-solution.php:726 tests/LoginMessageTest.php:105
 msgid "We provide a %d minute grace period to do so."
 msgstr "Hai %d minuti per cambiarla."
 
-#: login-security-solution.php:706 tests/LoginMessageTest.php:129
+#: login-security-solution.php:734 tests/LoginMessageTest.php:129
 #: tests/LoginMessageTest.php:144
 msgid "The site is undergoing maintenance."
 msgstr "Questo sito è in modalità manutenzione."
 
-#: login-security-solution.php:707 tests/LoginMessageTest.php:130
+#: login-security-solution.php:735 tests/LoginMessageTest.php:130
 #: tests/LoginMessageTest.php:145
 msgid "Please try again later."
 msgstr "Per favore riprova fra poco."
 
-#: login-security-solution.php:734
+#: login-security-solution.php:762
 msgid ""
 "The password should either be: A) at least %d characters long and contain "
 "upper and lower case letters (except languages that only have one case) plus "
@@ -575,11 +593,11 @@ msgstr ""
 "%d carateri"
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: login-security-solution.php:1094
+#: login-security-solution.php:1122
 msgid "ERROR"
 msgstr ""
 
-#: login-security-solution.php:1257
+#: login-security-solution.php:1285
 msgid ""
 "\n"
 "Component                    Count     Value from Current Attempt\n"
@@ -595,12 +613,12 @@ msgstr ""
 "Username                     %5d     %s\n"
 "Password MD5                 %5d     %s\n"
 
-#: login-security-solution.php:1989 tests/LoginMessageTest.php:148
+#: login-security-solution.php:2017 tests/LoginMessageTest.php:148
 #: tests/PasswordValidationTest.php:474
 msgid "Passwords must use ASCII characters."
 msgstr "Le password devono usare caratteri ASCII."
 
-#: login-security-solution.php:1991 tests/PasswordValidationTest.php:544
+#: login-security-solution.php:2019 tests/PasswordValidationTest.php:544
 msgid ""
 "Passwords must either contain upper-case and lower-case letters or be %d "
 "characters long."
@@ -608,24 +626,24 @@ msgstr ""
 "Le password devono contenere maiuscole e minuscole oppure essere almeno di "
 "%d caratteri."
 
-#: login-security-solution.php:1993 tests/PasswordValidationTest.php:622
+#: login-security-solution.php:2021 tests/PasswordValidationTest.php:622
 msgid "Password is too common."
 msgstr "Password troppo semplice."
 
-#: login-security-solution.php:1995 tests/PasswordValidationTest.php:638
+#: login-security-solution.php:2023 tests/PasswordValidationTest.php:638
 msgid "Passwords can't be variations of dictionary words."
 msgstr "Le password non devono essere prese dal dizionario."
 
-#: login-security-solution.php:1997 tests/PasswordValidationTest.php:450
+#: login-security-solution.php:2025 tests/PasswordValidationTest.php:450
 msgid "Password not set."
 msgstr "Non hai scelto la password."
 
-#: login-security-solution.php:1999 tests/PasswordValidationTest.php:531
+#: login-security-solution.php:2027 tests/PasswordValidationTest.php:531
 msgid "Passwords must either contain numbers or be %d characters long."
 msgstr ""
 "Le password devono contenere numeri oppure essere almeno di %d caratteri."
 
-#: login-security-solution.php:2001 tests/PasswordValidationTest.php:518
+#: login-security-solution.php:2029 tests/PasswordValidationTest.php:518
 msgid ""
 "Passwords must either contain punctuation marks / symbols or be %d "
 "characters long."
@@ -633,49 +651,49 @@ msgstr ""
 "Le password devono contenere segni di punteggiatura e simboli oppure essere "
 "almeno di %d caratteri."
 
-#: login-security-solution.php:2003 tests/PasswordChangeTest.php:303
+#: login-security-solution.php:2031 tests/PasswordChangeTest.php:303
 msgid "Passwords can not be reused."
 msgstr ""
 "Le password non possono essere le stesse che hai già usato in precedenza."
 
-#: login-security-solution.php:2005 tests/PasswordValidationTest.php:570
+#: login-security-solution.php:2033 tests/PasswordValidationTest.php:570
 msgid "Passwords can't have that many sequential characters."
 msgstr "Le password non devono avere molti caratteri sequenziali."
 
-#: login-security-solution.php:2007 tests/PasswordValidationTest.php:557
+#: login-security-solution.php:2035 tests/PasswordValidationTest.php:557
 msgid "Passwords can't be sequential keys."
 msgstr ""
 "Le password non devono essere formate da caratteri che sono in sequenza "
 "sulla tastiera."
 
-#: login-security-solution.php:2009 tests/LoginMessageTest.php:115
+#: login-security-solution.php:2037 tests/LoginMessageTest.php:115
 #: tests/PasswordChangeTest.php:336 tests/PasswordValidationTest.php:491
 #: tests/PasswordValidationTest.php:505
 msgid "Password is too short."
 msgstr "Password troppo corta."
 
-#: login-security-solution.php:2011 tests/PasswordValidationTest.php:461
+#: login-security-solution.php:2039 tests/PasswordValidationTest.php:461
 msgid "Passwords must be strings."
 msgstr "Le password devono essere delle stringhe di caratteri."
 
-#: login-security-solution.php:2013 tests/PasswordValidationTest.php:609
+#: login-security-solution.php:2041 tests/PasswordValidationTest.php:609
 msgid "Passwords can't contain site info."
 msgstr "Le password non devono contenere informazioni relative al sito."
 
-#: login-security-solution.php:2015 tests/PasswordValidationTest.php:583
+#: login-security-solution.php:2043 tests/PasswordValidationTest.php:583
 #: tests/PasswordValidationTest.php:596
 msgid "Passwords can't contain user data."
 msgstr "Le password non devono contenere riferimenti al nome utente."
 
-#: login-security-solution.php:2167
+#: login-security-solution.php:2195
 msgid "POTENTIAL INTRUSION AT %s"
 msgstr "PROBABILE INTRUSIONE A %s"
 
-#: login-security-solution.php:2171
+#: login-security-solution.php:2199
 msgid "Your website, %s, may have been broken in to."
 msgstr "Il tuo sito, %s, potrebbe essere stato VIOLATO."
 
-#: login-security-solution.php:2174
+#: login-security-solution.php:2202
 msgid ""
 "Someone just logged in using the following components. Prior to that, some "
 "combination of those components were a part of %d failed attempts to log in "
@@ -684,11 +702,11 @@ msgstr ""
 "Qualcuno è entrato utilizzando questi componenti. Alcune parti di questo "
 "accesso sono state usate in %d tentativi falliti negli ultimi %d minuti:"
 
-#: login-security-solution.php:2179
+#: login-security-solution.php:2207
 msgid "They logged in from the following IP address: %s"
 msgstr "Sono entrati da questo indirizzo IP: %s"
 
-#: login-security-solution.php:2182
+#: login-security-solution.php:2210
 msgid ""
 "The user has been logged out and will be required to confirm their identity "
 "via the password reset functionality."
@@ -696,7 +714,7 @@ msgstr ""
 "L'utente è uscito e dovrà confermare nuovamente la propria identità "
 "utilizzando la funzione di azzeramento password."
 
-#: login-security-solution.php:2184
+#: login-security-solution.php:2212
 msgid ""
 "WARNING: The '%s' setting you chose means this person has NOT been logged "
 "out and will NOT be required to confirm their identity."
@@ -704,20 +722,20 @@ msgstr ""
 "ATTENZIONE: Il settaggio '%s' che hai scelto, significa che questa persona "
 "NON è uscita e non dovrà confermare la propria identità."
 
-#: login-security-solution.php:2186
+#: login-security-solution.php:2214
 msgid "A notification about this potential breach has been sent to the user."
 msgstr ""
 "Un avviso relativo a questa potenziale intrusione è stato inviato all'utente."
 
-#: login-security-solution.php:2189
+#: login-security-solution.php:2217
 msgid "This message is from the %s plugin (%s) for WordPress."
 msgstr "Questo messaggio proviene dal %s plugin (%s) per WordPress."
 
-#: login-security-solution.php:2232
+#: login-security-solution.php:2260
 msgid "VERIFY YOU LOGGED IN TO %s"
 msgstr "CONTROLLA DI ESSERE ENTRATO IN %s"
 
-#: login-security-solution.php:2236
+#: login-security-solution.php:2264
 msgid ""
 "Someone just logged into your '%s' account at %s.  Was it you that logged "
 "in?  We are asking because the site happens to be under attack at the moment."
@@ -725,7 +743,7 @@ msgstr ""
 "Qualcuno è entrato usando il tuo account '%s' a %s. Sei stato tu? Te lo "
 "chiediamo perché il sito è sotto attacco."
 
-#: login-security-solution.php:2240
+#: login-security-solution.php:2268
 msgid ""
 "To ensure your account is not being hijacked, you will have go through the "
 "'%s' process before logging in again."
@@ -734,31 +752,31 @@ msgstr ""
 "il procedimento '%s' prima di poter accedere nuovamente."
 
 # Translation from WordPress.  DO NOT TRANSLATE IT IN THIS PLUGIN.
-#: login-security-solution.php:2240
+#: login-security-solution.php:2268
 msgid "Lost your password?"
 msgstr ""
 
-#: login-security-solution.php:2243
+#: login-security-solution.php:2271
 msgid "If it was NOT YOU, please do the following right away:"
 msgstr "Se NON ERI TU, per favore segui subito queste istruzioni:"
 
-#: login-security-solution.php:2246
+#: login-security-solution.php:2274
 msgid " * Log into the site and change your password."
 msgstr " * Accedi al sito e cambia immediatamente la tua password."
 
-#: login-security-solution.php:2249
+#: login-security-solution.php:2277
 msgid " * Send an email to %s letting them know it was not you who logged in."
 msgstr " * Invia una email a %s avvisando che non eri tu ad entrare."
 
-#: login-security-solution.php:2290
+#: login-security-solution.php:2318
 msgid "ATTACK HAPPENING TO %s"
 msgstr "ATTACCO IN CORSO A %s"
 
-#: login-security-solution.php:2294
+#: login-security-solution.php:2322
 msgid "Your website, %s, is undergoing a brute force attack."
 msgstr "Il tuo sito %s è sotto attacco di forza bruta."
 
-#: login-security-solution.php:2297
+#: login-security-solution.php:2325
 msgid ""
 "There have been at least %d failed attempts to log in during the past %d "
 "minutes that used one or more of the following components:"
@@ -766,11 +784,11 @@ msgstr ""
 "Ci sono stati almeno %d tentativi falliti di accesso durante gli ultimi %d "
 "minuti, utilizzando questi componenti:"
 
-#: login-security-solution.php:2302
+#: login-security-solution.php:2330
 msgid "The most recent attempt came from the following IP address: %s"
 msgstr "Il tentativo più recente proveniva da questo indirizzo IP: %s"
 
-#: login-security-solution.php:2304
+#: login-security-solution.php:2332
 msgid ""
 "The %s plugin (%s) for WordPress is repelling the attack by making their "
 "login failures take a very long time."
@@ -778,14 +796,14 @@ msgstr ""
 "Questo %s plugin (%s) per WordPress respinge gli attacchi rendendo i "
 "tentativi di accesso molto lunghi."
 
-#: login-security-solution.php:2308
+#: login-security-solution.php:2336
 msgid ""
 "This attacker will also be denied access in the event they stumble upon "
 "valid credentials."
 msgstr ""
 "Questo utente sarà bloccato anche se per caso trovasse le password giuste."
 
-#: login-security-solution.php:2314
+#: login-security-solution.php:2342
 msgid ""
 "Further notifications about this attacker will only be sent if the attack "
 "stops for at least %d minutes and then resumes."
