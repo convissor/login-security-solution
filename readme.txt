@@ -514,7 +514,7 @@ on our GitHub.
 
 == Changelog ==
 
-= 0.55.0 () =
+= 0.55.0 (2016-01-30) =
 * Block discovering user names via the "?author=<id>" query string
 
 = 0.54.0 (2016-01-27) =
