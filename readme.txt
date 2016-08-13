@@ -514,6 +514,9 @@ on our GitHub.
 
 == Changelog ==
 
+= 0.56.0 (2016-08-13) =
+* Fix translation domain to be string in one __() call.
+
 = 0.55.0 (2016-01-30) =
 * Block discovering user names via the "?author=<id>" query string
 

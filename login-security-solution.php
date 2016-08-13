@@ -677,7 +677,7 @@ class login_security_solution {
 			// Unset user name to avoid information disclosure.
 			unset($_POST['log']);
 			$this->load_plugin_textdomain();
-			return $this->hsc_utf8(__('Invalid username or password.', self::ID));
+			return $this->hsc_utf8(__('Invalid username or password.', 'login-security-solution'));
 		}
 
 		$codes_to_cloak = array('invalid_email', 'invalidcombo');
