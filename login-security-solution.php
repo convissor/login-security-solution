@@ -210,6 +210,18 @@ class login_security_solution {
 	protected $umk_last_active;
 
 	/**
+	 * Our usermeta key for tracking when the user last logged in
+	 * @var string
+	 */
+	protected $umk_last_login;
+
+	/**
+	 * Our usermeta key for tracking messages
+	 * @var array
+	 */
+	protected $umk_message_queue;
+
+	/**
 	 * Our usermeta key for tracking if a user's password needs to be changed
 	 * @var string
 	 */
@@ -244,6 +256,7 @@ class login_security_solution {
 	public function __construct() {
 		$this->initialize();
 
+		add_action('admin_notices', array(&$this, 'display_admin_notices_in_queue'));
 		add_action('auth_cookie_bad_username', array(&$this, 'auth_cookie_bad'));
 		add_action('auth_cookie_bad_hash', array(&$this, 'auth_cookie_bad'));
 		add_action('auth_cookie_valid', array(&$this, 'check'), 1, 2);
@@ -346,6 +359,8 @@ class login_security_solution {
 		$this->umk_grace_period = self::ID . '-pw-grace-period-start-time';
 		$this->umk_hashes = self::ID . '-pw-hashes';
 		$this->umk_last_active = self::ID . '-last-active';
+		$this->umk_last_login = self::ID . '-last-login';
+		$this->umk_message_queue = self::ID . '-message-queue';
 		$this->umk_verified_ips = self::ID . '-verified-ips';
 
 		$this->dir_dictionaries = dirname(__FILE__) . '/pw_dictionaries/';
@@ -375,6 +390,21 @@ class login_security_solution {
 	/*
 	 * ===== ACTION & FILTER CALLBACK METHODS =====
 	 */
+
+
+	/**
+	 * Adds a new message to a users message queue
+	 *
+	 * @return int|bool  the record number if added, TRUE if updated, FALSE
+	 *                   if error
+	 */
+	public function add_to_message_queue($message, $user_ID) {
+		$message_queue = $this->get_message_queue($user_ID);
+		$message_queue[] = $message;
+		###$this->log(__FUNCTION__, var_export($message_queue, true));
+
+		return update_user_meta($user_ID, $this->umk_message_queue, $message_queue);
+	}
 
 	/**
 	 * Sends failed auth cookie data to our login failure process
@@ -634,6 +664,45 @@ class login_security_solution {
 	}
 
 	/**
+	 * Produces a notice at the top of each admin page, depending on the messages
+	 * in the admin_message_queue
+	 *
+	 * @return void
+	 */
+	public function display_admin_notices_in_queue() {
+		global $user_ID, $user_name;
+
+		if (empty($user_ID)) {
+			if (empty($user_name)) {
+				###$this->log(__FUNCTION__, "empty user_ID, user_name");
+				return;
+			}
+			$user = get_user_by('login', $user_name);
+			if (! $user instanceof WP_User) {
+				###$this->log(__FUNCTION__, "unknown user_name");
+				return -1;
+			}
+			$user_ID = $user->ID;
+		}
+		$messages = $this->get_message_queue($user_ID);
+		$message_buffer = '';
+		###$this->log(__FUNCTION__, var_export($messages, true));
+
+		if (!empty($messages)) {
+			foreach ($messages as $message) {
+				###$this->log(__FUNCTION__, $message);
+				$message_buffer .= '<div class="updated"><p>'. $message . '</p></div>';
+			}
+		}
+
+		// Clear the message queue
+		delete_user_meta($user_ID, $this->umk_message_queue);
+
+		echo $message_buffer;
+		return $message_buffer;
+	}
+
+	/**
 	 * Alters the failure messages from logins and password resets that
 	 * contain information disclosures
 	 *
@@ -801,6 +870,24 @@ class login_security_solution {
 
 		$this->save_verified_ip($user->ID, $this->get_ip());
 		$this->process_pw_metadata($user->ID, $user_pass);
+	}
+
+	/**
+	 * Adds new last login message to users message queue
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return mixed  return values provided for unit testing
+	 */
+	public function push_last_login_to_message_queue($user_ID) {
+		$last_login = $this->get_last_login($user_ID) ?: time();
+		$tz_string = get_option('timezone_string');
+		date_default_timezone_set($tz_string);
+		$date_value  = date( "F j, Y g:i a T", $last_login);
+		date_default_timezone_set('UTC');
+		$message = sprintf(__("Welcome back. Last logged in %s", self::ID), $date_value);
+		###$this->log(__FUNCTION__, $message);
+		$this->add_to_message_queue($message, $user_ID);
+		return $this->set_last_login($user_ID);
 	}
 
 	/**
@@ -1172,6 +1259,17 @@ class login_security_solution {
 	}
 
 	/**
+	 * Obtains the timestamp of the given user's last login on the site
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return int  the Unix timestamp of the user's last login
+	 */
+	protected function get_last_login($user_ID) {
+		return (int) get_user_meta($user_ID, $this->umk_last_login, true);
+	}
+
+
+	/**
 	 * Obtains the number of login failures for the current IP, user name
 	 * and password in the period specified by login_fail_minutes
 	 *
@@ -1226,6 +1324,21 @@ class login_security_solution {
 		$result = $wpdb->get_row($sql, ARRAY_A);
 		###$this->log(__FUNCTION__, '', $result);
 		return $result;
+	}
+
+	/**
+	 * Gets the users message queue
+	 *
+	 * return array the message queue
+	 */
+	protected function get_message_queue($user_ID) {
+		$message_queue = get_user_meta($user_ID, $this->umk_message_queue, true);
+		if (empty($message_queue)) {
+			$message_queue = array();
+		} elseif (!is_array($message_queue)) {
+			$message_queue = (array) $message_queue;
+		}
+		return $message_queue;
 	}
 
 	/**
@@ -2458,6 +2571,8 @@ Password MD5                 %5d     %s
 			delete_user_meta($user->ID, $this->umk_last_active);
 		}
 
+		$this->push_last_login_to_message_queue($user->ID);
+
 		$flag = 1;
 		$ip = $this->get_ip();
 		$network_ip = $this->get_network_ip($ip);
@@ -2706,6 +2821,17 @@ Password MD5                 %5d     %s
 	 */
 	protected function set_last_active($user_ID) {
 		return update_user_meta($user_ID, $this->umk_last_active, time());
+	}
+
+	/**
+	 * Stores the present time in the given user's "last login" metadata
+	 *
+	 * @param int $user_ID  the current user's ID number
+	 * @return int|bool  the record number if added, TRUE if updated, FALSE
+	 *                   if error
+	 */
+	protected function set_last_login($user_ID) {
+		return update_user_meta($user_ID, $this->umk_last_login, time());
 	}
 
 	/**
