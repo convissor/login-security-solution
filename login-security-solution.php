@@ -2032,7 +2032,11 @@ Password MD5                 %5d     %s
 			case self::E_EMPTY:
 				return __("Password not set.", 'login-security-solution');
 			case self::E_NUMBER:
-				return sprintf(__("Passwords must either contain numbers or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+					return sprintf(__("Passwords must either contain numbers or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				} else {
+					return __("Passwords must contain numbers.", 'login-security-solution');
+				}
 			case self::E_PUNCT:
 				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
 			case self::E_REUSED:
