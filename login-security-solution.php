@@ -759,7 +759,11 @@ class login_security_solution {
 	 */
 	public function password_hint($hint = '') {
 		$this->load_plugin_textdomain();
-		return $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", 'login-security-solution'), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
+		if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+			return $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", 'login-security-solution'), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
+		} else {
+			return $this->hsc_utf8(sprintf(__("The password should at least be %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation. The password can not contain words related to you or this website.", 'login-security-solution'), $this->options['pw_length']));
+		}
 	}
 
 	/**
