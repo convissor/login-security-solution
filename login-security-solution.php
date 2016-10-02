@@ -759,7 +759,11 @@ class login_security_solution {
 	 */
 	public function password_hint($hint = '') {
 		$this->load_plugin_textdomain();
-		return $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", 'login-security-solution'), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
+		if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+			return $this->hsc_utf8(sprintf(__("The password should either be: A) at least %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation, or B) at least %d characters long. The password can not contain words related to you or this website.", 'login-security-solution'), $this->options['pw_length'], $this->options['pw_complexity_exemption_length']));
+		} else {
+			return $this->hsc_utf8(sprintf(__("The password should at least be %d characters long and contain upper and lower case letters (except languages that only have one case) plus numbers and punctuation. The password can not contain words related to you or this website.", 'login-security-solution'), $this->options['pw_length']));
+		}
 	}
 
 	/**
@@ -2016,7 +2020,11 @@ Password MD5                 %5d     %s
 			case self::E_ASCII:
 				return __("Passwords must use ASCII characters.", 'login-security-solution');
 			case self::E_CASE:
-				return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+					return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				} else {
+					return __("Passwords must contain upper-case and lower-case letters.", 'login-security-solution');
+				}
 			case self::E_COMMON:
 				return __("Password is too common.", 'login-security-solution');
 			case self::E_DICT:
@@ -2024,9 +2032,17 @@ Password MD5                 %5d     %s
 			case self::E_EMPTY:
 				return __("Password not set.", 'login-security-solution');
 			case self::E_NUMBER:
-				return sprintf(__("Passwords must either contain numbers or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+					return sprintf(__("Passwords must either contain numbers or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				} else {
+					return __("Passwords must contain numbers.", 'login-security-solution');
+				}
 			case self::E_PUNCT:
-				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+					return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				} else {
+					return __("Passwords must contain punctuation marks / symbols.", 'login-security-solution');
+				}
 			case self::E_REUSED:
 				return __("Passwords can not be reused.", 'login-security-solution');
 			case self::E_SEQ_CHAR:
@@ -2928,11 +2944,16 @@ Password MD5                 %5d     %s
 			return false;
 		}
 
-		$length = $this->strlen($pw);
-		if ($length < $this->options['pw_complexity_exemption_length']) {
-			$enforce_complexity = true;
+		$length = $this->strlen( $pw );
+		if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+			if ( $length < $this->options['pw_complexity_exemption_length'] ) {
+				$enforce_complexity = true;
+			} else {
+				$enforce_complexity = false;
+			}
 		} else {
-			$enforce_complexity = false;
+			// Don't exempt with password length, check anyway password policy
+			$enforce_complexity = true;
 		}
 
 		// NOTE: tests ordered from fastest to slowest.
