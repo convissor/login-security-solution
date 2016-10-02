@@ -2020,7 +2020,11 @@ Password MD5                 %5d     %s
 			case self::E_ASCII:
 				return __("Passwords must use ASCII characters.", 'login-security-solution');
 			case self::E_CASE:
-				return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+					return sprintf(__("Passwords must either contain upper-case and lower-case letters or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				} else {
+					return __("Passwords must contain upper-case and lower-case letters.", 'login-security-solution');
+				}
 			case self::E_COMMON:
 				return __("Password is too common.", 'login-security-solution');
 			case self::E_DICT:
