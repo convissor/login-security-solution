@@ -2944,11 +2944,16 @@ Password MD5                 %5d     %s
 			return false;
 		}
 
-		$length = $this->strlen($pw);
-		if ($length < $this->options['pw_complexity_exemption_length']) {
-			$enforce_complexity = true;
+		$length = $this->strlen( $pw );
+		if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+			if ( $length < $this->options['pw_complexity_exemption_length'] ) {
+				$enforce_complexity = true;
+			} else {
+				$enforce_complexity = false;
+			}
 		} else {
-			$enforce_complexity = false;
+			// Don't exempt with password length, check anyway password policy
+			$enforce_complexity = true;
 		}
 
 		// NOTE: tests ordered from fastest to slowest.
