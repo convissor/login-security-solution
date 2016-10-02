@@ -2038,7 +2038,11 @@ Password MD5                 %5d     %s
 					return __("Passwords must contain numbers.", 'login-security-solution');
 				}
 			case self::E_PUNCT:
-				return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				if ( apply_filters( 'pw_complexity_exemption_length\activation', true ) ) {
+					return sprintf(__("Passwords must either contain punctuation marks / symbols or be %d characters long.", 'login-security-solution'), $this->options['pw_complexity_exemption_length']);
+				} else {
+					return __("Passwords must contain punctuation marks / symbols.", 'login-security-solution');
+				}
 			case self::E_REUSED:
 				return __("Passwords can not be reused.", 'login-security-solution');
 			case self::E_SEQ_CHAR:
